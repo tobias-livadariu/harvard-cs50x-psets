@@ -4,7 +4,7 @@
 
 int main(void)
 {
-    char userRes = '';
+    char userRes = ' ';
     while (userRes != 'y' && userRes != 'n')
     {
         printf("TERMS AND AGREEMENTS:\n");
@@ -14,15 +14,15 @@ int main(void)
         userRes = tolower(get_char("DO YOU ACCEPT THE FOLLOWING TERMS AND AGREEMENTS? (Y/N) "));
         if (userRes == 'y')
         {
-            printf("YOU HAVE ACCEPTED THE TERMS AND AGREEMENTS");
+            printf("\nYOU HAVE ACCEPTED THE TERMS AND AGREEMENTS\n");
         }
         else if (userRes == 'n')
         {
-            printf("YOU HAVE REJECTED THE TERMS AND AGREEMENTS");
+            printf("\nYOU HAVE REJECTED THE TERMS AND AGREEMENTS\n");
         }
         else
         {
-            printf("You entered this character: %c\nThis is invalid input, you must enter a Y or N\n", userRes);
+            printf("\nYou entered this character: %c\nThis is invalid input, you must enter a Y or N\n\n", userRes);
         }
     }
 }
