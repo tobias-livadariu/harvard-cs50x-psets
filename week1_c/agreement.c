@@ -3,5 +3,6 @@
 
 int main(void)
 {
-    
+    string userRes = ""
+    while (userRes != )
 }
