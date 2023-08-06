@@ -9,7 +9,12 @@ int main(void)
         numMeows = get_int("How many meows would you like? (enter a positive integer) ");
         if (numMeows < 1)
         {
-            printf("You entered %d")
+            printf("\nYou entered %d.\nThis is an invalid input. You must enter a positive integer value.\n", numMeows);
         }
+    }
+    printf("\n");
+    for (int i = 0; i < numMeows; i++)
+    {
+        printf("Meow\n");
     }
 }
