@@ -15,18 +15,18 @@ int main(void)
     int popEndSize;
     do
     {
-        popEndSize = get_int("End size: ")
+        popEndSize = get_int("End size: ");
     }
-    while (popEndSize < popStartSize)
+    while (popEndSize < popStartSize);
 
     // TODO: Calculate number of years until we reach threshold
     int numYears = 0;
     while (popEndSize >= popStartSize);
     {
-        popStartSize = popStartSize + (popStartSize / 3) - (popStartSize / 4)
-        numYears += 1
+        popStartSize = popStartSize + (popStartSize / 3) - (popStartSize / 4);
+        numYears += 1;
     }
 
     // TODO: Print number of years
-    printf("Years: %i\n", numYears)
+    printf("Years: %i\n", numYears);
 }
