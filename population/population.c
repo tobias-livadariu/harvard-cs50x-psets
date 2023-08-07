@@ -4,7 +4,9 @@
 int main(void)
 {
     // TODO: Prompt for start size
+    // initializing the variable that will hold the user's starting llama population size
     int popStartSize;
+    // using a do-
     do
     {
         popStartSize = get_int("Start size: ");
