@@ -17,8 +17,9 @@ int main(void)
 
     // Determining if the user's inputted number passes the chucksum as described by Luhan's Algorithm
     int checksum = 0;
+    int cur
     for (digit = 0; digit < numLength; digit++)
     {
-        
+
     }
 }
