@@ -11,7 +11,8 @@ int main(void)
     // Initializing the variable that will store the height of the pyramid.
     int height;
     /* Using a do-while loop to prompt the user for the integer height of the pyramid,
-    and reprompting them if the height isn't between 1 and 8 inclusively (note that I learned to do multi-line comments in C from my dad). */
+    and reprompting them if the height isn't between 1 and 8 inclusively.
+    (note that I learned to do multi-line comments in C from my dad) */
     do
     {
         height = get_int("Height: ");
@@ -34,12 +35,13 @@ int main(void)
 void column_printer(int size)
 {
     for (int column = 0; column <= size; column++)
-        {
-            printf("#");
-        }
+    {
+        printf("#");
+    }
 }
 
-// Defining the function that is used to print spaces to properly space out the vertical columns of increasing and then decreasing height.
+/* Defining the function that is used to print spaces to properly space out the
+vertical columns of increasing and then decreasing height. */
 void space_printer(int length)
 {
     for (int count = 0; count < length; count++)
