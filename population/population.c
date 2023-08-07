@@ -6,7 +6,7 @@ int main(void)
     // TODO: Prompt for start size
     // initializing the variable that will hold the user's starting llama population size
     int popStartSize;
-    // using a do-
+    // using a do-while loop to prompt the user for the starting population size and reprompting them if their input was an integer less than 9
     do
     {
         popStartSize = get_int("Start size: ");
@@ -14,7 +14,9 @@ int main(void)
     while (popStartSize < 9);
 
     // TODO: Prompt for end size
+    // initializing the variable that will hold the user's ending llama population size
     int popEndSize;
+    // using a do-while loop to prompt the user for the ending population size and reprompting them if their input was an integer less than the inputted starting population size
     do
     {
         popEndSize = get_int("End size: ");
@@ -22,7 +24,9 @@ int main(void)
     while (popEndSize < popStartSize);
 
     // TODO: Calculate number of years until we reach threshold
+    // initializing the variable that will hold the number of elapsed years, and assigning it a value of 0
     int numYears = 0;
+    // this while loop simulates the 
     while (popEndSize > popStartSize)
     {
         popStartSize = popStartSize + (popStartSize / 3) - (popStartSize / 4);
