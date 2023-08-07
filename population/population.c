@@ -14,7 +14,9 @@ int main(void)
     while (popEndSize >= popStartSize);
     {
         popStartSize = popStartSize + (popStartSize / 3) - (popStartSize / 4)
+        numYears += 1
     }
 
     // TODO: Print number of years
+    printf("Years: %i\n", numYears)
 }
