@@ -23,3 +23,12 @@ int main(void)
         curDigit = userNumber % (10 )
     }
 }
+
+int exponentation(int num, int pow)
+{
+    int exponentedNum = 0;
+    for (count = 0; count < pow; count++)
+    {
+        exponentedNum
+    }
+}
