@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 void column_printer(int size);
+void space_printer(int length);
 
 int main(void)
 {
@@ -27,4 +28,12 @@ void column_printer(int size)
         {
             printf("#");
         }
+}
+
+void space_printer(int length)
+{
+    for (int count = 0; count < length; count++)
+    {
+        print(" ");
+    }
 }
