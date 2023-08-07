@@ -21,7 +21,7 @@ int main(void)
 
     // TODO: Calculate number of years until we reach threshold
     int numYears = 0;
-    while (popEndSize >= popStartSize);
+    while (popEndSize >= popStartSize)
     {
         popStartSize = popStartSize + (popStartSize / 3) - (popStartSize / 4);
         numYears += 1;
