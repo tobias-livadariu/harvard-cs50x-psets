@@ -1,9 +1,9 @@
 #include <cs50.h>
 #include <stdio.h>
 
-// Referencing the function that is used to print the vertical columns
+// Referencing the function that is used to print the vertical columns.
 void column_printer(int size);
-// Referencing the function that can be used to repeatedly print white spaces
+// Referencing the function that can be used to repeatedly print white spaces.
 void space_printer(int length);
 
 int main(void)
@@ -30,7 +30,7 @@ int main(void)
     }
 }
 
-// Defining the function that is used to print the vertical columns
+// Defining the function that is used to print the vertical columns.
 void column_printer(int size)
 {
     for (int column = 0; column <= size; column++)
@@ -39,7 +39,7 @@ void column_printer(int size)
         }
 }
 
-// Defining the function that is used to print spaces to properly space out the vertical columns of increasing and then decreasing height
+// Defining the function that is used to print spaces to properly space out the vertical columns of increasing and then decreasing height.
 void space_printer(int length)
 {
     for (int count = 0; count < length; count++)
