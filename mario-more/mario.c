@@ -15,8 +15,9 @@ int main(void)
 
     for (int row = 0; row < height; row++)
     {
+        space_printer(height - (row + 1));
         column_printer(row);
-        printf(" ");
+        space_printer(1);
         column_printer(row);
         printf("\n");
     }
@@ -34,6 +35,6 @@ void space_printer(int length)
 {
     for (int count = 0; count < length; count++)
     {
-        print(" ");
+        printf(" ");
     }
 }
