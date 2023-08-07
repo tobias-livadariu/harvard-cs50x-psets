@@ -26,7 +26,7 @@ int main(void)
     // TODO: Calculate number of years until we reach threshold
     // initializing the variable that will hold the number of elapsed years, and assigning it a value of 0
     int numYears = 0;
-    // this while loop simulates the 
+    // this while loop increases popStartSize by the number of llamas that were born (popStartSize / 3) and decreasing it by the number of llamas that died (popStartSize / 4) to simulate the years going by
     while (popEndSize > popStartSize)
     {
         popStartSize = popStartSize + (popStartSize / 3) - (popStartSize / 4);
