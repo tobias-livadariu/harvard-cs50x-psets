@@ -30,7 +30,7 @@ int main(void)
         {
             if (digitCount == 0)
             {
-                curDigit = 
+                curDigit =
             }
         }
     }
