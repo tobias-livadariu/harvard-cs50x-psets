@@ -4,10 +4,19 @@
 int main(void)
 {
     // TODO: Prompt for start size
-    int popStartSize = get_int("Start size: ");
+    int popStartSize;
+    do
+    {
+        popStartSize = get_int("Start size: ");
+    }
+    while (popStartSize < 9);
 
     // TODO: Prompt for end size
-    int popEndSize = get_int("End size: ");
+    int popEndSize;
+    do
+    {
+        popEndSize = get_int("End size: ")
+    }
 
     // TODO: Calculate number of years until we reach threshold
     int numYears = 0;
