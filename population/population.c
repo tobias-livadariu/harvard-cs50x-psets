@@ -17,6 +17,7 @@ int main(void)
     {
         popEndSize = get_int("End size: ")
     }
+    while (popEndSize < popStartSize)
 
     // TODO: Calculate number of years until we reach threshold
     int numYears = 0;
