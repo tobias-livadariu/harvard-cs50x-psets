@@ -20,17 +20,21 @@ int main(void)
     // Determining if the user's inputted number passes the chucksum as described by Luhan's Algorithm
     int checksum = 0;
     int curDigit;
-    for (digitCount = 0; digitCount < numLength; digitCount++)
+    for (digitCount = 1; digitCount <= numLength; digitCount++)
     {
-        if (digitCount % 2 == 1)
+        if (digitCount % 2 == 0)
         {
-
+            curDigit = (userNumber % exponentation(10, digitCount)) - (userNumber % exponentation(10, digitCount - 1));
         }
         else
         {
-            if (digitCount == 0)
+            if (digitCount == 1)
             {
-                curDigit =
+                curDigit = userNumber % 10;
+            }
+            else
+            {
+                curDigit = (userNumber % exponentation(10, digitCount)) - (userNumber % exponentation(10, digitCount - 1));
             }
         }
     }
