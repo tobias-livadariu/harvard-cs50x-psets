@@ -25,7 +25,7 @@ int main(void)
     {
         space_printer(height - (row + 1));
         column_printer(row);
-        space_printer(1);
+        space_printer(2);
         column_printer(row);
         printf("\n");
     }
