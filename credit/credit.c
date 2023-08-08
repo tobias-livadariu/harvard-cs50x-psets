@@ -25,6 +25,11 @@ int main(void)
         if (digitCount % 2 == 0)
         {
             curDigit = (userNumber % exponentation(10, digitCount)) - (userNumber % exponentation(10, digitCount - 1));
+            if (curDigit > 4)
+            {
+                curDigit *= 2
+                
+            }
         }
         else
         {
