@@ -17,9 +17,14 @@ int main(void)
         numLength += 1;
     }
 
+    printf("length = %i\n", numLength);
+
     // Determining the two starting digits in the user's credit card number
     // These values will be used to check if the user's credit card is AMEX/MASTERCARD/VISA/INVALID if the number passes Luhan's Algorithm
     int firstTwo = (userNumber % exponentation(10, numLength - 2)) / exponentation(10, numLength - 2);
+
+    printf("exponentation(10, numLength - 2) = %i\n", exponentation(10, numLength - 2));
+    printf("first two digits = %i\n", firstTwo);
 
     // Determining if the user's inputted number passes the chucksum as described by Luhan's Algorithm
     int checksum = 0;
