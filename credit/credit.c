@@ -19,6 +19,8 @@ int main(void)
 
     // Determining if the user's inputted number passes the chucksum as described by Luhan's Algorithm
     int checksum = 0;
+    int tensDigit;
+    int onesDigit;
     int curDigit;
     for (digitCount = 1; digitCount <= numLength; digitCount++)
     {
@@ -28,7 +30,10 @@ int main(void)
             if (curDigit > 4)
             {
                 curDigit *= 2
-
+                onesDigit = curDigit % 10
+                tensDigit = (curDigit - onesDigit) / 10
+                checksum += onesDigit
+                checksum += tensDigit
             }
         }
         else
