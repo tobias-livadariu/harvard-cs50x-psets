@@ -32,9 +32,11 @@ int main(void)
     int curDigit;
     for (int digitCount = 1; digitCount <= numLength; digitCount++)
     {
+        printf("current digit: %i\n", curDigit);
         if (digitCount % 2 == 0)
         {
             curDigit = ((userNumber % exponentation(10, digitCount)) - (userNumber % exponentation(10, digitCount - 1))) / exponentation(10, digitCount - 1);
+            printf("even digit\n");
             if (curDigit > 4)
             {
                 curDigit *= 2;
@@ -51,6 +53,7 @@ int main(void)
         }
         else
         {
+            printf("odd digit\n");
             if (digitCount == 1)
             {
                 curDigit = userNumber % 10;
