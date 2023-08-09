@@ -29,11 +29,16 @@ int main(void)
             curDigit = ((userNumber % exponentation(10, digitCount)) - (userNumber % exponentation(10, digitCount - 1))) / exponentation(10, digitCount - 1);
             if (curDigit > 4)
             {
-                curDigit *= 2
-                onesDigit = curDigit % 10
-                tensDigit = (curDigit - onesDigit) / 10
-                checksum += onesDigit
-                checksum += tensDigit
+                curDigit *= 2;
+                onesDigit = curDigit % 10;
+                tensDigit = (curDigit - onesDigit) / 10;
+                checksum += onesDigit;
+                checksum += tensDigit;
+            }
+            else
+            {
+                curDigit *= 2;
+                checksum += curDigit;
             }
         }
         else
@@ -41,13 +46,16 @@ int main(void)
             if (digitCount == 1)
             {
                 curDigit = userNumber % 10;
+                checksum += curDigit;
             }
             else
             {
                 curDigit = ((userNumber % exponentation(10, digitCount)) - (userNumber % exponentation(10, digitCount - 1))) / exponentation(10, digitCount - 1);
+                checksum += curDigit;
             }
         }
     }
+    if (checksum % 10 == 0 && )
 }
 
 // Defining a function that can be used to raise numbers to exponents
