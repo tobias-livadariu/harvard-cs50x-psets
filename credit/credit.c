@@ -11,7 +11,7 @@ int main(void)
     // Determining the number of digits in the user's credit card number
     long storageVar = userNumber;
     int numLength = 0;
-    while (! (storageVar = 0))
+    while (! (storageVar == 0))
     {
         storageVar /= 10;
         numLength += 1;
