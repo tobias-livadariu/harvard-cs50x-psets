@@ -1,7 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
-int exponentation(int num, int pow);
+long exponentation(int num, int pow);
 
 int main(void)
 {
@@ -23,7 +23,7 @@ int main(void)
     // These values will be used to check if the user's credit card is AMEX/MASTERCARD/VISA/INVALID if the number passes Luhan's Algorithm
     int firstTwo = (userNumber % exponentation(10, numLength - 2)) / exponentation(10, numLength - 2);
 
-    printf("exponentation(10, numLength - 2) = %i\n", exponentation(10, numLength - 2));
+    printf("exponentation(10, numLength - 2) = %li\n", exponentation(10, numLength - 2));
     printf("first two digits = %i\n", firstTwo);
 
     // Determining if the user's inputted number passes the chucksum as described by Luhan's Algorithm
@@ -89,9 +89,9 @@ int main(void)
 
 // Defining a function that can be used to raise numbers to exponents
 // This function will be used to generate powers of ten for getting individual digits of the user's number
-int exponentation(int num, int pow)
+long exponentation(int num, int pow)
 {
-    int exponentedNum = 1;
+    long exponentedNum = 1;
     for (int count = 0; count < pow; count++)
     {
         exponentedNum *= num;
