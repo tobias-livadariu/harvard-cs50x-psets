@@ -55,7 +55,14 @@ int main(void)
             }
         }
     }
-    if (checksum % 10 == 0 && )
+    if (checksum % 10 == 0)
+    {
+        if ()
+    }
+    else
+    {
+        printf("INVALID")
+    }
 }
 
 // Defining a function that can be used to raise numbers to exponents
