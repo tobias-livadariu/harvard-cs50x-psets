@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
+// Referencing the exponentation function so that it can be used in the main body of my program
 long exponentation(int num, int pow);
 
 int main(void)
