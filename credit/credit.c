@@ -12,24 +12,27 @@ int main(void)
     // Determining the number of digits in the user's credit card number
     long storageVar = userNumber;
     int numLength = 0;
-    while (! (storageVar == 0))
+    while (!(storageVar == 0))
     {
         storageVar /= 10;
         numLength += 1;
     }
 
     // Determining the two starting digits in the user's credit card number
-    // These values will be used to check if the user's credit card is AMEX/MASTERCARD/VISA/INVALID if the number passes Luhan's Algorithm
+    /* These values will be used to check if the user's credit card is AMEX/MASTERCARD/VISA/INVALID
+    if the number passes Luhan's Algorithm */
     int firstTwo = (userNumber - (userNumber % exponentation(10, numLength - 2))) / exponentation(10, numLength - 2);
 
     // Determining if the user's inputted number passes the chucksum as described by Luhan's Algorithm
     // Initializing the variable that will hold the integer value of the checksum
     int checksum = 0;
-    // Initializing the variables that will hold the current digit of the checksum, and also the tens/ones digits of two-digit numbers produced when the current digit is above 4 and doubled
+    /* Initializing the variables that will hold the current digit of the checksum,
+    and also the tens/ones digits of two-digit numbers produced when the current digit is above 4 and doubled */
     int tensDigit;
     int onesDigit;
     int curDigit;
-    // This loop goes through every digit of the user's number and applies all steps of Luhan's algorithm to them to produce the checksum
+    /* This loop goes through every digit of the user's number and
+    applies all steps of Luhan's algorithm to them to produce the checksum */
     for (int digitCount = 1; digitCount <= numLength; digitCount++)
     {
         if (digitCount % 2 == 0)
@@ -64,7 +67,8 @@ int main(void)
         }
     }
 
-    // If the user's credit card number passes Luhan's Algorithm, determining if it falls into the AMEX/MASTERCARD/VISA category or is INVALID regardless
+    /* If the user's credit card number passes Luhan's Algorithm,
+    determining if it falls into the AMEX/MASTERCARD/VISA category or is INVALID regardless */
     if (checksum % 10 == 0)
     {
         if (numLength == 15 && (firstTwo == 34 || firstTwo == 37))
