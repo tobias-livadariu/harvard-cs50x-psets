@@ -79,7 +79,7 @@ int main(void)
         }
         else if (numLength == 16 && (firstTwo == 51 || firstTwo == 52 || firstTwo == 53 || firstTwo == 54 || firstTwo == 55))
         {
-            printf("MASTERCARED\n");
+            printf("MASTERCARD\n");
         }
         else if ((numLength == 13 || numLength == 16) && firstTwo / 10 == 4)
         {
