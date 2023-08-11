@@ -37,7 +37,8 @@ int main(void)
     {
         if (digitCount % 2 == 0)
         {
-            curDigit = ((userNumber % exponentation(10, digitCount)) - (userNumber % exponentation(10, digitCount - 1))) / exponentation(10, digitCount - 1);
+            curDigit = ((userNumber % exponentation(10, digitCount)) -
+                    (userNumber % exponentation(10, digitCount - 1))) / exponentation(10, digitCount - 1);
             if (curDigit > 4)
             {
                 curDigit *= 2;
@@ -61,7 +62,8 @@ int main(void)
             }
             else
             {
-                curDigit = ((userNumber % exponentation(10, digitCount)) - (userNumber % exponentation(10, digitCount - 1))) / exponentation(10, digitCount - 1);
+                curDigit = ((userNumber % exponentation(10, digitCount)) -
+                        (userNumber % exponentation(10, digitCount - 1))) / exponentation(10, digitCount - 1);
                 checksum += curDigit;
             }
         }
