@@ -81,7 +81,7 @@ int main(void)
         }
         else
         {
-            printf("INVALID -> BUT CHECKSUM WORKS\n");
+            printf("INVALID\n");
         }
     }
     else
