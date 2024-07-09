@@ -7,5 +7,5 @@ string scrambler(string key);
 
 int main(int argc, string argv)
 {
-    
+    if (argc == 0)
 }
