@@ -81,9 +81,9 @@ int numWords(string text)
     for (int i = 0; i++, text[i] != '\0')
     {
         char c = text[i];
-        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+        if (c = ' ')
         {
-            letterCount++;
+            wordCount++;
         }
     }
 
