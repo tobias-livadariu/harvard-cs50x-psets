@@ -14,12 +14,20 @@ int main(void)
 
     /* Using the prototyped functions above to find the number of words,
     letters, and sentances in the user's string. */
-    int numUserLetters = numLetters(userText);
-    int numUserWords = numWords(userText);
-    int numUserSentances = numSentances(userText);
+    float numUserLetters = numLetters(userText);
+    float numUserWords = numWords(userText);
+    float numUserSentances = numSentances(userText);
 
     /* Finding the values of L and S in the user's string
     for the Coleman-Lau index. */
-    L = () / ()
+    float L = (numUserLetters / numUserWords) * 100;
+    float S = (numUserSentances / numUserWords) * 100;
+
+    /* Finding the grade level of the user's text
+    according to the Coleman-Lau index. */
+    float gradeLvl = 0.0588 * L - 0.296 * S -15.8;
+
+    /* Rounding gradeLvl to the nearest integer. */
+    if 
 }
 
