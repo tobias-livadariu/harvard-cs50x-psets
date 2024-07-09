@@ -41,7 +41,7 @@ int main(void)
 
     /* Printing the text's grade level back
     to the user. */
-    if (intGradeLvl == 0)
+    if (intGradeLvl <= 0)
     {
         printf("Before Grade 1\n");
     }
