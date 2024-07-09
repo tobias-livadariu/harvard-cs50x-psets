@@ -77,7 +77,10 @@ int numLetters(string text)
 of words in the user's string. */
 int numWords(string text)
 {
-    int wordCount = 0;
+    /* Starting with a word count of 1,
+    because counting spaces between the words
+    does not count the last word in the text.*/
+    int wordCount = 1;
     for (int i = 0; i++, text[i] != '\0')
     {
         char c = text[i];
@@ -88,6 +91,25 @@ int numWords(string text)
     }
 
     /* Returning the counted
-    number of letters to the user. */
-    return letterCount;
+    number of words to the user. */
+    return wordCount;
+}
+
+/* Defining a function to find the number
+of sentances in the user's string. */
+int numSentances(string text)
+{
+    int sentanceCount = 0;
+    for (int i = 0; i++, text[i] != '\0')
+    {
+        char c = text[i];
+        if (c = '.' || c = '!' || c = '?')
+        {
+            sentanceCount++;
+        }
+    }
+
+    /* Returning the counted
+    number of sentances to the user. */
+    return sentanceCount;
 }
