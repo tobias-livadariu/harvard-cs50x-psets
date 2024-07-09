@@ -25,7 +25,7 @@ int main(void)
 
     /* Finding the grade level of the user's text
     according to the Coleman-Lau index. */
-    float gradeLvl = 0.0588 * L - 0.296 * S -15.8;
+    float gradeLvl = 0.0588 * L - 0.296 * S - 15.8;
 
     /* Rounding gradeLvl to the nearest integer. */
     int basicIntGradeLvl = gradeLvl;
