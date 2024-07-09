@@ -60,7 +60,7 @@ of letters in the user's string. */
 int numLetters(string text)
 {
     int letterCount = 0;
-    for (int i = 0; i++; text[i] != '\0')
+    for (int i = 0; text[i] != '\0'; i++)
     {
         char c = text[i];
         if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
@@ -82,7 +82,7 @@ int numWords(string text)
     because counting spaces between the words
     does not count the last word in the text.*/
     int wordCount = 1;
-    for (int i = 0; text[i] != '\0'; i++;)
+    for (int i = 0; text[i] != '\0'; i++)
     {
         char c = text[i];
         if (c == ' ')
@@ -101,7 +101,7 @@ of sentances in the user's string. */
 int numSentances(string text)
 {
     int sentanceCount = 0;
-    for (int i = 0; text[i] != '\0')i++;
+    for (int i = 0; text[i] != '\0'; i++)
     {
         char c = text[i];
         if (c == '.' || c == '!' || c == '?')
