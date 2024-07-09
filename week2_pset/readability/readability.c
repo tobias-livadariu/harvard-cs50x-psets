@@ -28,6 +28,10 @@ int main(void)
     float gradeLvl = 0.0588 * L - 0.296 * S -15.8;
 
     /* Rounding gradeLvl to the nearest integer. */
-    if 
+    basicIntGradeLvl = (int)gradeLvl;
+    if ((gradeLvl - basicIntGradeLvl) >= 0.5)
+    {
+        intGradeLvl = basicIntGradeLvl++
+    }
 }
 
