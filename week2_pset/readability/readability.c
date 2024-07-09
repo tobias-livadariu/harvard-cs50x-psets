@@ -28,14 +28,14 @@ int main(void)
     float gradeLvl = 0.0588 * L - 0.296 * S -15.8;
 
     /* Rounding gradeLvl to the nearest integer. */
-    basicIntGradeLvl = (int)gradeLvl;
+    int basicIntGradeLvl = gradeLvl;
     if ((gradeLvl - basicIntGradeLvl) >= 0.5)
     {
-        intGradeLvl = ++basicIntGradeLvl;
+        int intGradeLvl = ++basicIntGradeLvl;
     }
     else
     {
-        intGradeLvl = basicIntGradeLvl;
+        int intGradeLvl = basicIntGradeLvl;
     }
 
     /* Printing the text's grade level back
