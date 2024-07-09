@@ -62,6 +62,32 @@ int numLetters(string text)
     for (int i = 0; i++, text[i] != '\0')
     {
         char c = text[i];
-        if (letterCount )
+        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+        {
+            letterCount++;
+        }
     }
+
+    /* Returning the counted
+    number of letters to the user. */
+    return letterCount;
+}
+
+/* Defining a function to find the number
+of words in the user's string. */
+int numWords(string text)
+{
+    int wordCount = 0;
+    for (int i = 0; i++, text[i] != '\0')
+    {
+        char c = text[i];
+        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+        {
+            letterCount++;
+        }
+    }
+
+    /* Returning the counted
+    number of letters to the user. */
+    return letterCount;
 }
