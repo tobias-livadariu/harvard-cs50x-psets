@@ -31,7 +31,37 @@ int main(void)
     basicIntGradeLvl = (int)gradeLvl;
     if ((gradeLvl - basicIntGradeLvl) >= 0.5)
     {
-        intGradeLvl = basicIntGradeLvl++
+        intGradeLvl = ++basicIntGradeLvl;
+    }
+    else
+    {
+        intGradeLvl = basicIntGradeLvl;
+    }
+
+    /* Printing the text's grade level back
+    to the user. */
+    if (gradeLvl = 0)
+    {
+        printf("Before Grade 1\n");
+    }
+    else if (gradeLvl => 16)
+    {
+        printf("Grade 16+\n");
+    }
+    else
+    {
+        printf("Grade %i\n", intGradeLvl);
     }
 }
 
+/* Defining a function to find the number
+of letters in the user's string. */
+int numLetters(string text)
+{
+    int letterCount = 0;
+    for (int i = 0; i++, text[i] != '\0')
+    {
+        char c = text[i];
+        if (letterCount )
+    }
+}
