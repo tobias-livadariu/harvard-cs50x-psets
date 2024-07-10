@@ -117,4 +117,7 @@ int keyChecker(string key)
             return 0;
         }
     }
+
+    /* Returning 1 to represent "true". */
+    return 1;
 }
