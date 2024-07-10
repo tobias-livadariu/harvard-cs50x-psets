@@ -85,7 +85,7 @@ int keyChecker(string key)
     for (int i = 0; key[i] != '\0'; i++)
     {
         char c = key[i];
-        if (!(c <= 'a' &&))
+        if (!((c <= 'a' && c <= 'z') || ((c <= 'A' && c <= 'Z'))))
         numChars++;
 
     }
