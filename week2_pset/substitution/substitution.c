@@ -19,7 +19,7 @@ int main(int argc, string argv[])
     /* Getting the user's key inputted through the
     command-line interface. */
     string userKey = argv[1];
-    else if (keyChecker(userKey) == 0)
+    if (keyChecker(userKey) == 0)
     {
         printf("Key must contain 26 different alphabetical characters with no spaces.");
         return 1;
@@ -51,7 +51,7 @@ string scrambler(string key, string plainText)
         }
 
         /* Adding the cyphered character to cypherText*/
-        if (isCharCapital = 0)
+        if (isCharCapital == 0)
         {
             cypherKeyIndex = (int)plainText[i] - (int)'a';
             cypherText[i] = key[cypherKeyIndex];
@@ -90,11 +90,11 @@ int keyChecker(string key)
         alphabetical. */
         if (c <= 'a' && c <= 'z')
         {
-            alphabet[(int)c - (int)'a']++
+            alphabet[(int)c - (int)'a']++;
         }
         else if (c <= 'A' && c <= 'Z')
         {
-            alphabet[(int)c - (int)'A']++
+            alphabet[(int)c - (int)'A']++;
         }
         else
         {
