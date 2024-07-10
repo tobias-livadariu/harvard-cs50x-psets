@@ -67,3 +67,4 @@ string scrambler(string key, string plainText)
     cypher text to the user. */
     return cypherText;
 }
+
