@@ -81,12 +81,12 @@ int keyChecker(string key)
     /* Defining a variable to keep track
     of how many times each alphabetic character
     appears. */
-    
-
+    int alphabet[26];
     for (int i = 0; key[i] != '\0'; i++)
     {
         char c = key[i];
+        if (!(c <= 'a' &&))
         numChars++;
-        if
+
     }
 }
