@@ -86,21 +86,20 @@ int keyChecker(string key)
     for (int i = 0; key[i] != '\0'; i++)
     {
         char c = key[i];
-        /* Checking if the character in c is not
+        /* Checking if the character in c is
         alphabetical. */
         if (c <= 'a' && c <= 'z')
         {
-            isUpper = 0;
+            alphabet[(int)c - (int)'a']++
         }
         else if (c <= 'A' && c <= 'Z')
         {
-            isUpper = 1;
+            alphabet[(int)c - (int)'A']++
         }
         else
         {
             return 0;
         }
-        alphabet[(int)c]++
         numChars++;
     }
 }
