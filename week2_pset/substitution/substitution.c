@@ -88,11 +88,11 @@ int keyChecker(string key)
         char c = key[i];
         /* Checking if the character in c is
         alphabetical. */
-        if (c <= 'a' && c <= 'z')
+        if (c >= 'a' && c <= 'z')
         {
             alphabet[(int)c - (int)'a']++;
         }
-        else if (c <= 'A' && c <= 'Z')
+        else if (c >= 'A' && c <= 'Z')
         {
             alphabet[(int)c - (int)'A']++;
         }
