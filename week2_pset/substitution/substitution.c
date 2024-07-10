@@ -77,10 +77,16 @@ int keyChecker(string key)
     track of the number of characters
     in the key. */
     int numChars = 0;
+
+    /* Defining a variable to keep track
+    of how many times each alphabetic character
+    appears. */
+    
+
     for (int i = 0; key[i] != '\0'; i++)
     {
         char c = key[i];
         numChars++;
-        if 
+        if
     }
 }
