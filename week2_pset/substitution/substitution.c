@@ -82,11 +82,25 @@ int keyChecker(string key)
     of how many times each alphabetic character
     appears. */
     int alphabet[26];
+
     for (int i = 0; key[i] != '\0'; i++)
     {
         char c = key[i];
-        if (!((c <= 'a' && c <= 'z') || ((c <= 'A' && c <= 'Z'))))
+        /* Checking if the character in c is not
+        alphabetical. */
+        if (c <= 'a' && c <= 'z')
+        {
+            isUpper = 0;
+        }
+        else if (c <= 'A' && c <= 'Z')
+        {
+            isUpper = 1;
+        }
+        else
+        {
+            return 0;
+        }
+        alphabet[(int)c]++
         numChars++;
-
     }
 }
