@@ -102,4 +102,19 @@ int keyChecker(string key)
         }
         numChars++;
     }
+
+    /* Checking if the number of character is valid. */
+    if (numChars != 26)
+    {
+        return 0;
+    }
+
+    /* Checking that each alphabetical character appears once. */
+    for (int i = 0; i <= 25; i++)
+    {
+        if (alphabet[i] > 1)
+        {
+            return 0;
+        }
+    }
 }
