@@ -68,3 +68,19 @@ string scrambler(string key, string plainText)
     return cypherText;
 }
 
+/* Defining the function used to
+determine if the user's inputted
+cypher key is valid. */
+int keyChecker(string key)
+{
+    /* Defining a variable to keep
+    track of the number of characters
+    in the key. */
+    int numChars = 0;
+    for (int i = 0; key[i] != '\0'; i++)
+    {
+        char c = key[i];
+        numChars++;
+        if 
+    }
+}
