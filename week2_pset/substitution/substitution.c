@@ -13,7 +13,7 @@ int main(int argc, string argv[])
 {
     if (argc != 2)
     {
-        printf("Usage: ./substitution key\n");
+        printf("Usage: ./substitution key (where the key is composed of 26 different alphabetical characters with no spaces).\n");
         return 1;
     }
     /* Getting the user's key inputted through the
