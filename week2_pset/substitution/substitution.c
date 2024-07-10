@@ -1,11 +1,45 @@
 #include <cs50.h>
 #include <stdio.h>
 
-/* Defining the function that will be used
-to substitute the user's plaintext.*/
-string scrambler(string key);
+/* Prototyping the function that will be used
+to substitute the user's plaintext. */
+string scrambler(string key, string plainText);
+
+/* Prototyping the function that will be used
+to check if the user's inputted key is valid. */
+int keyChecker(string key);
 
 int main(int argc, string argv[])
 {
-    if (argc == 0)
+    if (argc != 1)
+    {
+        printf("Usage: ./substitution key");
+        return 1;
+    }
+    /* Getting the user's key inputted through the
+    command-line interface. */
+    string userKey = argv[1];
+    else if (keyChecker(userKey) == 0)
+    {
+        printf("Key must contain 26 different alphabetical characters with no spaces.");
+        return 1;
+    }
+    string userPlainText = get_string("Plaintext:  ");
+    string userScrambledText = scrambler(userKey, userPlainText);
+
+    /* Printing the computed cyphertext back
+    to the user. */
+    printf("ciphertext: \n");
+}
+
+/* Defining the function used to generate
+the user's cyphertext. */
+string scrambler(string key, string plainText)
+{
+    for (int i = 0; plainText[i] != '\0'; i++)
+    {
+        char c = plainText[i];
+        
+        int characterCode = (int)plainText[i] -
+    }
 }
