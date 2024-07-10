@@ -11,9 +11,9 @@ int keyChecker(string key);
 
 int main(int argc, string argv[])
 {
-    if (argc != 1)
+    if (argc != 2)
     {
-        printf("Usage: ./substitution key");
+        printf("Usage: ./substitution key\n");
         return 1;
     }
     /* Getting the user's key inputted through the
@@ -21,7 +21,7 @@ int main(int argc, string argv[])
     string userKey = argv[1];
     if (keyChecker(userKey) == 0)
     {
-        printf("Key must contain 26 different alphabetical characters with no spaces.");
+        printf("Key must contain 26 different alphabetical characters with no spaces.\n");
         return 1;
     }
     string userPlainText = get_string("Plaintext:  ");
