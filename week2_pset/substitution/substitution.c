@@ -53,7 +53,17 @@ string scrambler(string key, string plainText)
         /* Adding the cyphered character to cypherText*/
         if (isCharCapital = 0)
         {
-            cypherText[i] =
+            cypherKeyIndex = (int)plainText[i] - (int)'a';
+            cypherText[i] = key[cypherKeyIndex];
+        }
+        else
+        {
+            cypherKeyIndex = (int)plainText[i] - (int)'A';
+            cypherText[i] = key[cypherKeyIndex];
         }
     }
+
+    /* Returning the computed
+    cypher text to the user. */
+    return cypherText;
 }
