@@ -39,7 +39,7 @@ string scrambler(string key, string plainText)
     /* Initializing the variables needed to create
     and store the cyphered text.*/
     string cypherText = "";
-    char cypherKeyIndex = 0;
+    int cypherKeyIndex = 0;
 
     for (int i = 0; plainText[i] != '\0'; i++)
     {
