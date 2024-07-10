@@ -36,8 +36,10 @@ int main(int argc, string argv[])
 the user's cyphertext. */
 string scrambler(string key, string plainText)
 {
-    /* Initializing the cypher text. */
+    /* Initializing the variables needed to create
+    and store the cyphered text.*/
     string cypherText = "";
+    char cypherKey
 
     for (int i = 0; plainText[i] != '\0'; i++)
     {
@@ -51,7 +53,7 @@ string scrambler(string key, string plainText)
         /* Adding the cyphered character to cypherText*/
         if (isCharCapital = 0)
         {
-            cypherText[i] = 
+            cypherText[i] =
         }
     }
 }
