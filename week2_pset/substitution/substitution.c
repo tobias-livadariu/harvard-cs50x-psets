@@ -1,9 +1,11 @@
 #include <cs50.h>
+#include <ctype.h>
 #include <stdio.h>
+#include <string.h>
 
 /* Prototyping the function that will be used
 to substitute the user's plaintext. */
-string scrambler(string key, string plainText);
+int scrambler(string key, string plainText, int lenPlainText);
 
 /* Prototyping the function that will be used
 to check if the user's inputted key is valid. */
@@ -13,7 +15,8 @@ int main(int argc, string argv[])
 {
     if (argc != 2)
     {
-        printf("Usage: ./substitution key (where the key is composed of 26 different alphabetical characters with no spaces).\n");
+        printf("Usage: ./substitution key (where the key is composed of 26 different alphabetical "
+               "characters with no spaces).\n");
         return 1;
     }
     /* Getting the user's key inputted through the
@@ -24,53 +27,53 @@ int main(int argc, string argv[])
         printf("Key must contain 26 different alphabetical characters with no spaces.\n");
         return 1;
     }
-    string userPlainText = get_string("Plaintext:  ");
-    string userScrambledText = scrambler(userKey, userPlainText);
+    string userPlainText = get_string("plaintext:  ");
+    printf("ciphertext: ");
+    int lenUserPlainText = strlen(userPlainText);
 
-    /* Printing the computed cyphertext back
-    to the user. */
-    printf("ciphertext: \n");
+    /* Printing the scrambled text. */
+    scrambler(userKey, userPlainText, lenUserPlainText);
+    printf("\n");
 }
 
 /* Defining the function used to generate
-the user's cyphertext. */
-string scrambler(string key, string plainText)
+the user's ciphertext. */
+int scrambler(string key, string plainText, int lenPlainText)
 {
     /* Initializing the variables needed to create
-    and store the cyphered text.*/
-    string cypherText = "";
-    int cypherKeyIndex = 0;
+    and store the ciphered text.*/
+    char cipheredCharacter = ' ';
+    int cipherKeyIndex = 0;
 
     for (int i = 0; plainText[i] != '\0'; i++)
     {
         char c = plainText[i];
-        int isCharCapital = 0;
         if (c >= 'A' && c <= 'Z')
         {
-            isCharCapital = 1;
+            cipherKeyIndex = (int) c - (int) 'A';
+            cipheredCharacter = toupper(key[cipherKeyIndex]);
         }
 
-        /* Adding the cyphered character to cypherText*/
-        if (isCharCapital == 0)
+        /* Adding the ciphered character to cipherText*/
+        else if (c >= 'a' && c <= 'z')
         {
-            cypherKeyIndex = (int)plainText[i] - (int)'a';
-            cypherText[i] = key[cypherKeyIndex];
+            cipherKeyIndex = (int) c - (int) 'a';
+            cipheredCharacter = tolower(key[cipherKeyIndex]);
         }
         else
         {
-            cypherKeyIndex = (int)plainText[i] - (int)'A';
-            cypherText[i] = key[cypherKeyIndex];
+            cipheredCharacter = c;
         }
+        printf("%c", cipheredCharacter);
     }
 
-    /* Returning the computed
-    cypher text to the user. */
-    return cypherText;
+    /* Ending the function. */
+    return 0;
 }
 
 /* Defining the function used to
 determine if the user's inputted
-cypher key is valid. */
+cipher key is valid. */
 int keyChecker(string key)
 {
     /* Defining a variable to keep
@@ -81,7 +84,7 @@ int keyChecker(string key)
     /* Defining a variable to keep track
     of how many times each alphabetic character
     appears. */
-    int alphabet[26];
+    int alphabet[26] = {0};
 
     for (int i = 0; key[i] != '\0'; i++)
     {
@@ -90,11 +93,11 @@ int keyChecker(string key)
         alphabetical. */
         if (c >= 'a' && c <= 'z')
         {
-            alphabet[(int)c - (int)'a']++;
+            alphabet[(int) c - (int) 'a']++;
         }
         else if (c >= 'A' && c <= 'Z')
         {
-            alphabet[(int)c - (int)'A']++;
+            alphabet[(int) c - (int) 'A']++;
         }
         else
         {
