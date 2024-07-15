@@ -1,11 +1,17 @@
-sort1 uses: TODO
+sort1 uses: bubble sort
 
-How do you know?: TODO
+How do you know?: As the size of the integer array being sorted increases, the time taken for sort1 to sort the array increases exponentially.
+To sort random10000, sort1 took on average around 0.246 seconds. However, to sort random50000, sort1 took on average around 5.598 seconds.
+This rapid and extreme increase in sorting times indicates that the algorithm used by sort1 is on the order of n^2, so sort1 uses either
+bubble or selection sort. However, sort1 took on average around 0.435 seconds to sort sorted50000. This indicates that sort1's o-value
+is significantly larger than its omega-value. Since selection sort's o-value and omega-value are equal, the vast difference between
+sort1's o-values and omega-values indicates that sort1 uses bubble sort.
 
-sort2 uses: TODO
+sort2 uses: merge sort
 
-How do you know?: TODO
+How do you know?: As the size of the integer array being sorted increases, the time taken for sort2 to sort the array increases significantly
+slower when compared to the other two programs. 
 
-sort3 uses: TODO
+sort3 uses: selection sort
 
 How do you know?: TODO
