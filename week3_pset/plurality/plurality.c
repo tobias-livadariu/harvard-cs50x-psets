@@ -11,7 +11,7 @@ typedef struct
     int votes;
 } candidate;
 
-void voting(int voteCount, candidate[] names, int numNames);
+void voting(int voteCount, candidate candidates[], int numNames);
 
 int main(int argc, string argv[])
 {
@@ -46,7 +46,7 @@ int main(int argc, string argv[])
     return 0;
 }
 
-void voting(int voteCount, candidate[] candidates, int numNames)
+void voting(int voteCount, candidate candidates[], int numNames)
 {
     for (int i = 0; i < voteCount; i++)
     {
