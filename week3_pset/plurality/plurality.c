@@ -61,6 +61,17 @@ void voting(int voteCount, candidate names, int numNames)
             {
                 names[i].votes++;
             }
+            else
+            {
+                numErrors++;
+            }
+
+            /* Checking if no candidates had their votes
+            incremented. */
+            if (numErrors = numNames)
+            {
+                printf("Invalid vote.\n");
+            }
         }
     }
 }
