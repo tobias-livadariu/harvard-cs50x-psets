@@ -16,6 +16,7 @@ void voting(int voteCount, candidate names, int numNames);
 int main(int argc, string argv[])
 {
     int numCandidates = argc - 1;
+    int numVoters = 0;
     if (numCandidates < 1)
     {
         /* Warning the user for incorrect
@@ -27,7 +28,7 @@ int main(int argc, string argv[])
     {
         /* Getting the number of voters
         from the user. */
-        int numVoters = get_int("Number of voters: ");
+        numVoters = get_int("Number of voters: ");
     }
 
     /* Defining the array that will
@@ -82,24 +83,24 @@ void voting(int voteCount, candidate names, int numNames)
     char* curTied[numCandidates];
     for (int i == 0; i < numCandidates; i++)
     {
-        if (runners[i].votes > curBiggest)
+        if (names[i].votes > curBiggest)
         {
             numEqual = 0;
-            curBiggest = runners[i].votes;
+            curBiggest = names[i].votes;
             curTied[numCandidates];
-            curWinner = runners[i].name;
+            curWinner = names[i].name;
         }
         else if (runners[i].votes = curBiggest)
         {
             if (strcmp(curWinner, "none") == 1)
             {
-                curTied[numEqual] = runners[i].names;
+                curTied[numEqual] = names[i].names;
                 numEqual++;
             }
             else
             {
                 curTied[numEqual] = curWinner;
-                curTied[numEqual + 1] = runners[i].name;
+                curTied[numEqual + 1] = names[i].name;
                 curWinner = "none";
             }
         }
