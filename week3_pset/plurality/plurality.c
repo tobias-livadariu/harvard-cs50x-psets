@@ -46,7 +46,7 @@ int main(int argc, string argv[])
     /* Doing a linear search to find who got the most votes. */
     int numEqual = 0;
     int curBiggest = 0;
-    string curWinner;
+    string curWinner = "none";
     string curTied[numCandidates - 1];
     for (int i == 0; i < numCandidates; i++)
     {
@@ -59,8 +59,18 @@ int main(int argc, string argv[])
         }
         else if (runners[i].votes = curBiggest)
         {
-            numEqual++;
-            curWinners
+            if (strcmp(curWinner, "none") == 1)
+            {
+                curTied[numEqual] = runners[i].names;
+                numEqual++;
+            }
+            else
+            {
+                curTied[numEqual] = curWinner;
+                curTied[numEqual + 1] = 
+                curWinner = "none";
+
+            }
         }
     }
 }
