@@ -42,7 +42,7 @@ int main(int argc, string argv[])
         runners[i].name = argv[i];
     }
 
-    voting(numVoters, runners[], numCandidates);
+    voting(numVoters, runners, numCandidates);
     return 0;
 }
 
