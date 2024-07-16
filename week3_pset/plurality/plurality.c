@@ -1,6 +1,5 @@
 #include <cs50.h>
 #include <stdio.h>
-#include <ctype.h>
 #include <string.h>
 
 /* Defining the datatype structure that will
@@ -57,7 +56,7 @@ void voting(int voteCount, string names, int numNames)
         matches any candidates. */
         for (int i = 0; i < numNames; i++)
         {
-            if (strcmp())
+            if (strcmp(curVote))
         }
     }
 }
