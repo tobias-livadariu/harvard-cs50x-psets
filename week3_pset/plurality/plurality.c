@@ -54,6 +54,7 @@ void voting(int voteCount, string names, int numNames)
 
         /* Seeing if the current vote
         matches any candidates. */
+        
         for (int i = 0; i < numNames; i++)
         {
             if (strcmp(curVote))
