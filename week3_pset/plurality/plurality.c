@@ -43,7 +43,7 @@ int main(int argc, string argv[])
 
     runners[] = voting(numVoters, runners, numCandidates);
 
-    /* Doing a linear search to find who got the most votes. */
+    /* Finding who got the most votes. */
     int numEqual = 0;
     int curBiggest = 0;
     string curWinner = "none";
@@ -54,8 +54,8 @@ int main(int argc, string argv[])
         {
             numEqual = 0;
             curBiggest = runners[i].votes;
-            curWinners[numCandidates];
-            curWinners[0] = runners[i].name;
+            curTied[numCandidates];
+            curWinner = runners[i].name;
         }
         else if (runners[i].votes = curBiggest)
         {
@@ -67,10 +67,18 @@ int main(int argc, string argv[])
             else
             {
                 curTied[numEqual] = curWinner;
-                curTied[numEqual + 1] = 
+                curTied[numEqual + 1] = runners[i].name;
                 curWinner = "none";
-
             }
+        }
+    }
+
+    /* Printing out the winner. */
+    if (strcmp(curWinner, "none") == 1)
+    {
+        for (int i = 0; i < numEqual; i++)
+        {
+            printf("");
         }
     }
 }
