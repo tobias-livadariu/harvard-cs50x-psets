@@ -39,7 +39,7 @@ int main(int argc, string argv[])
     into the program to the runners[] array. */
     for (int i = 0; i < numCandidates; i++)
     {
-        runners[i].name = argv[i];
+        runners[i].name = argv[i + 1];
     }
 
     voting(numVoters, runners, numCandidates);
