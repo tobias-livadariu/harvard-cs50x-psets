@@ -87,7 +87,6 @@ void voting(int voteCount, candidate candidates[], int numNames)
         {
             numEqual = 0;
             curBiggest = candidates[i].votes;
-            curTied[numNames];
             curWinner = candidates[i].name;
         }
         else if (candidates[i].votes == curBiggest)
