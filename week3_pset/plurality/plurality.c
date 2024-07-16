@@ -56,11 +56,11 @@ void voting(int voteCount, candidate candidates[], int numNames)
         /* Seeing if the current vote
         matches any candidates. */
         int numErrors = 0;
-        for (int i = 0; i < numNames; i++)
+        for (int j = 0; j < numNames; j++)
         {
-            if (strcmp(curVote, candidates[i]) == 1)
+            if (strcmp(curVote, candidates[j].name) == 1)
             {
-                candidates[i].votes++;
+                candidates[j].votes++;
             }
             else
             {
@@ -69,7 +69,7 @@ void voting(int voteCount, candidate candidates[], int numNames)
 
             /* Checking if no candidates had their votes
             incremented. */
-            if (numErrors = numNames)
+            if (numErrors == numNames)
             {
                 printf("Invalid vote.\n");
             }
