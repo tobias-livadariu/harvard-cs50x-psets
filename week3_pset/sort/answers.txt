@@ -10,7 +10,8 @@ sort1's o-values and omega-values indicates that sort1 uses bubble sort.
 sort2 uses: merge sort
 
 How do you know?: As the size of the integer array being sorted increases, the time taken for sort2 to sort the array increases exponentially
-slower when compared to the other two programs. This 
+slower when compared to the other two programs. The slower rate at which sort2's time taken to sort arrays of integers of increasing size increases
+indicates that 
 
 sort3 uses: selection sort
 
