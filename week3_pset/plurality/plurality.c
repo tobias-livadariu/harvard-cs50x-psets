@@ -58,7 +58,7 @@ void voting(int voteCount, candidate candidates[], int numNames)
         int numErrors = 0;
         for (int j = 0; j < numNames; j++)
         {
-            if (strcmp(curVote, candidates[j].name) == 1)
+            if (strcmp(curVote, candidates[j].name) == 0)
             {
                 candidates[j].votes++;
             }
@@ -91,7 +91,7 @@ void voting(int voteCount, candidate candidates[], int numNames)
         }
         else if (candidates[i].votes == curBiggest)
         {
-            if (strcmp(curWinner, "none") == 1)
+            if (strcmp(curWinner, "none") == 0)
             {
                 curTied[numEqual] = candidates[i].name;
                 numEqual++;
@@ -106,7 +106,7 @@ void voting(int voteCount, candidate candidates[], int numNames)
     }
 
     /* Printing out the winner. */
-    if (strcmp(curWinner, "none") == 1)
+    if (strcmp(curWinner, "none") == 0)
     {
         for (int i = 0; i < numEqual; i++)
         {
