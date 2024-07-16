@@ -81,7 +81,7 @@ void voting(int voteCount, candidate candidates[], int numNames)
     int curBiggest = 0;
     string curWinner = "none";
     char* curTied[numNames];
-    for (int i == 0; i < numNames; i++)
+    for (int i = 0; i < numNames; i++)
     {
         if (candidates[i].votes > curBiggest)
         {
