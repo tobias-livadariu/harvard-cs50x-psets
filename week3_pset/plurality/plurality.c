@@ -11,7 +11,7 @@ typedef struct
     int votes;
 }candidate;
 
-void voting(int voteCount, string names, int numNames);
+void voting(int voteCount, candidate names, int numNames);
 
 int main(int argc, string argv[])
 {
@@ -41,11 +41,11 @@ int main(int argc, string argv[])
         runners[i].name = argv[i];
     }
 
-    voting(numVoters, argv[], numCandidates);
+    voting(numVoters, runners, numCandidates);
     return 0;
 }
 
-void voting(int voteCount, string names, int numNames)
+void voting(int voteCount, candidate names, int numNames)
 {
     for (int i = 0; i < voteCount; i++)
     {
@@ -54,10 +54,13 @@ void voting(int voteCount, string names, int numNames)
 
         /* Seeing if the current vote
         matches any candidates. */
-        
+        int numErrors = 0;
         for (int i = 0; i < numNames; i++)
         {
-            if (strcmp(curVote))
+            if (strcmp(curVote, names[i]) == 1)
+            {
+                names[i].votes++;
+            }
         }
     }
 }
