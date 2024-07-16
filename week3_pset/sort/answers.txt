@@ -4,15 +4,20 @@ How do you know?: As the size of the integer array being sorted increases, the t
 To sort random10000, sort1 took on average around 0.246 seconds. However, to sort random50000, sort1 took on average around 5.598 seconds.
 This rapid and extreme increase in sorting times indicates that the algorithm used by sort1 is on the order of n^2, so sort1 uses either
 bubble or selection sort. However, sort1 took on average around 0.435 seconds to sort sorted50000. This indicates that sort1's o-value
-is significantly larger than its omega-value. Since selection sort's o-value and omega-value are equal, the vast difference between
-sort1's o-values and omega-values indicates that sort1 uses bubble sort.
+is significantly larger than its omega-value. Since selection sort's o-value and omega-value are n, the vast difference between
+sort1's o-values and omega-values indicates that sort1 uses bubble sort and not selection sort.
 
 sort2 uses: merge sort
 
 How do you know?: As the size of the integer array being sorted increases, the time taken for sort2 to sort the array increases exponentially
 slower when compared to the other two programs. The slower rate at which sort2's time taken to sort arrays of integers of increasing size increases
-indicates that 
+indicates that the algorithm used by sort2 is on the order of nlog(n), indicating that sort2 uses merge sort.
 
 sort3 uses: selection sort
 
-How do you know?: TODO
+How do you know?: As the size of the integer array being sorted increases, the time taken for sort3 to sort the array increases exponentially.
+To sort random10000, sort3 took on average around 0.141 seconds. However, to sort random50000, sort1 took on average around 2.302 seconds.
+This rapid and extreme increase in sorting times indicates that the algorithm used by sort3 is on the order of n^2, so sort3 uses either
+bubble or selection sort. However, sort3 took on average around 2.365 seconds to sort sorted50000, which is roughly equal to the time it took to sort random50000.
+This indicates that sort1's o-value is equal to its omega-value. Since selection sort's o-value and omega-value are equal, sort3's sorting algorithm
+must be selection sort.
