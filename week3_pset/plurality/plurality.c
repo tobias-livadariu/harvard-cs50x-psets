@@ -45,10 +45,22 @@ int main(int argc, string argv[])
 
     /* Doing a linear search to find who got the most votes. */
     int numEqual = 0;
-    int curWinners[numCandidates];
+    int curBiggest = 0;
+    string curWinners[numCandidates];
     for (int i == 0; i < numCandidates; i++)
     {
-        if 
+        if (runners[i].votes > curBiggest)
+        {
+            numEqual = 0;
+            curBiggest = runners[i].votes;
+            curWinners[numCandidates];
+            curWinners[0] = runners[i].name;
+        }
+        else if (runners[i].votes = curBiggest)
+        {
+            numEqual++;
+            curWinners
+        }
     }
 }
 
