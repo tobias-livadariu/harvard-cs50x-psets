@@ -41,39 +41,7 @@ int main(int argc, string argv[])
         runners[i].name = argv[i];
     }
 
-    voting(numVoters, runners, numCandidates);
-    return 0;
-}
-
-void voting(int voteCount, candidate names, int numNames)
-{
-    for (int i = 0; i < voteCount; i++)
-    {
-        /* Getting the current vote. */
-        string curVote = get_string("Vote: ");
-
-        /* Seeing if the current vote
-        matches any candidates. */
-        int numErrors = 0;
-        for (int i = 0; i < numNames; i++)
-        {
-            if (strcmp(curVote, names[i]) == 1)
-            {
-                names[i].votes++;
-            }
-            else
-            {
-                numErrors++;
-            }
-
-            /* Checking if no candidates had their votes
-            incremented. */
-            if (numErrors = numNames)
-            {
-                printf("Invalid vote.\n");
-            }
-        }
-    }
+    runners[] = voting(numVoters, runners, numCandidates);
 
     /* Finding who got the most votes. */
     int numEqual = 0;
@@ -117,4 +85,36 @@ void voting(int voteCount, candidate names, int numNames)
     {
         printf("%s\n", curWinner);
     }
+}
+
+void voting(int voteCount, candidate names, int numNames)
+{
+    for (int i = 0; i < voteCount; i++)
+    {
+        /* Getting the current vote. */
+        string curVote = get_string("Vote: ");
+
+        /* Seeing if the current vote
+        matches any candidates. */
+        int numErrors = 0;
+        for (int i = 0; i < numNames; i++)
+        {
+            if (strcmp(curVote, names[i]) == 1)
+            {
+                names[i].votes++;
+            }
+            else
+            {
+                numErrors++;
+            }
+
+            /* Checking if no candidates had their votes
+            incremented. */
+            if (numErrors = numNames)
+            {
+                printf("Invalid vote.\n");
+            }
+        }
+    }
+    return names[];
 }
