@@ -90,7 +90,7 @@ void voting(int voteCount, candidate candidates[], int numNames)
             curTied[numNames];
             curWinner = candidates[i].name;
         }
-        else if (runners[i].votes = curBiggest)
+        else if (candidates[i].votes = curBiggest)
         {
             if (strcmp(curWinner, "none") == 1)
             {
