@@ -44,7 +44,12 @@ int main(int argc, string argv[])
     runners[] = voting(numVoters, runners, numCandidates);
 
     /* Doing a linear search to find who got the most votes. */
-    for ()
+    int numEqual = 0;
+    int curWinners[numCandidates];
+    for (int i == 0; i < numCandidates; i++)
+    {
+        if 
+    }
 }
 
 void voting(int voteCount, candidate names, int numNames)
