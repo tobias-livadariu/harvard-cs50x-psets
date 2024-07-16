@@ -46,7 +46,7 @@ int main(int argc, string argv[])
     return 0;
 }
 
-void voting(int voteCount, candidate[] names, int numNames)
+void voting(int voteCount, candidate[] candidates, int numNames)
 {
     for (int i = 0; i < voteCount; i++)
     {
@@ -58,9 +58,9 @@ void voting(int voteCount, candidate[] names, int numNames)
         int numErrors = 0;
         for (int i = 0; i < numNames; i++)
         {
-            if (strcmp(curVote, names[i]) == 1)
+            if (strcmp(curVote, candidates[i]) == 1)
             {
-                names[i].votes++;
+                candidates[i].votes++;
             }
             else
             {
@@ -83,24 +83,24 @@ void voting(int voteCount, candidate[] names, int numNames)
     char* curTied[numCandidates];
     for (int i == 0; i < numCandidates; i++)
     {
-        if (names[i].votes > curBiggest)
+        if (candidates[i].votes > curBiggest)
         {
             numEqual = 0;
-            curBiggest = names[i].votes;
+            curBiggest = candidates[i].votes;
             curTied[numCandidates];
-            curWinner = names[i].name;
+            curWinner = candidates[i].name;
         }
         else if (runners[i].votes = curBiggest)
         {
             if (strcmp(curWinner, "none") == 1)
             {
-                curTied[numEqual] = names[i].names;
+                curTied[numEqual] = candidates[i].names;
                 numEqual++;
             }
             else
             {
                 curTied[numEqual] = curWinner;
-                curTied[numEqual + 1] = names[i].name;
+                curTied[numEqual + 1] = candidates[i].name;
                 curWinner = "none";
             }
         }
