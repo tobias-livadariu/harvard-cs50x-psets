@@ -9,7 +9,7 @@ typedef struct
 {
     string name;
     int votes;
-}candidate;
+} candidate;
 
 void voting(int voteCount, candidate names, int numNames);
 
@@ -42,7 +42,7 @@ int main(int argc, string argv[])
         runners[i].name = argv[i];
     }
 
-    voting(numVoters, runners, numCandidates);
+    voting(numVoters, runners[], numCandidates);
     return 0;
 }
 
