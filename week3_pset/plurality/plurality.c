@@ -47,7 +47,7 @@ int main(int argc, string argv[])
     int numEqual = 0;
     int curBiggest = 0;
     string curWinner = "none";
-    string curTied[numCandidates];
+    char* curTied[numCandidates];
     for (int i == 0; i < numCandidates; i++)
     {
         if (runners[i].votes > curBiggest)
@@ -78,8 +78,12 @@ int main(int argc, string argv[])
     {
         for (int i = 0; i < numEqual; i++)
         {
-            printf("");
+            printf("%s\n", curTied[numEqual]);
         }
+    }
+    else
+    {
+        printf("%s\n", curWinner);
     }
 }
 
