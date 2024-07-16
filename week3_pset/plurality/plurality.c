@@ -41,8 +41,10 @@ int main(int argc, string argv[])
         runners[i].name = argv[i];
     }
 
-    voting(numVoters, runners, numCandidates);
-    return 0;
+    runners[] = voting(numVoters, runners, numCandidates);
+
+    /* Doing a linear search to find who got the most votes. */
+    for ()
 }
 
 void voting(int voteCount, candidate names, int numNames)
@@ -74,4 +76,5 @@ void voting(int voteCount, candidate names, int numNames)
             }
         }
     }
+    return names[];
 }
