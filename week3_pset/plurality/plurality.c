@@ -15,7 +15,8 @@ void voting(int voteCount, candidate names, int numNames);
 
 int main(int argc, string argv[])
 {
-    if (argc < 2)
+    int numCandidates = argc - 1;
+    if (numCandidates < 1)
     {
         /* Warning the user for incorrect
         input. */
@@ -24,7 +25,6 @@ int main(int argc, string argv[])
     }
     else
     {
-        int numCandidates = argc - 1;
         /* Getting the number of voters
         from the user. */
         int numVoters = get_int("Number of voters: ");
