@@ -20,7 +20,7 @@ int candidate_count;
 
 // Function prototypes
 bool vote(string name, int numCandidates);
-void print_winner(void);
+void print_winner(int numNames);
 
 int main(int argc, string argv[])
 {
@@ -59,7 +59,7 @@ int main(int argc, string argv[])
     }
 
     // Display winner of election
-    print_winner();
+    print_winner(argc - 1);
 }
 
 // Update vote totals given a new vote
@@ -88,7 +88,7 @@ bool vote(string name, int numCandidates)
 }
 
 // Print the winner (or winners) of the election
-void print_winner(void)
+void print_winner(int numNames)
 {
     /* Finding who got the most votes. */
     int numEqual = 0;
