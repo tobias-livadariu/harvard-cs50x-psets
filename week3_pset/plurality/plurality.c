@@ -111,7 +111,7 @@ void voting(int voteCount, candidate candidates[], int numNames)
     {
         for (int i = 0; i < numEqual; i++)
         {
-            printf("%s\n", curTied[numEqual]);
+            printf("%s\n", curTied[i]);
         }
     }
     else
