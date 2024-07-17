@@ -67,7 +67,7 @@ bool vote(string name)
 {
     for (int i = 0; i < (argc - 1); i++)
     {
-        
+        if (strcmp(candidates[i].name, ))
     }
     return false;
 }
