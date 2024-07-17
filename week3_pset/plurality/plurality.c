@@ -99,8 +99,9 @@ void voting(int voteCount, candidate candidates[], int numNames)
             }
             else
             {
-                curTied[numEqual] = curWinner;
-                curTied[numEqual + 1] = candidates[i].name;
+                curTied[0] = curWinner;
+                curTied[1] = candidates[i].name;
+                numEqual = 2;
                 curWinner = "none";
             }
         }
