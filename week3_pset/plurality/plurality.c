@@ -119,5 +119,19 @@ void print_winner(int numNames)
             }
         }
     }
+
+    /* Printing out the winner. */
+    if (strcmp(curWinner, "none") == 0)
+    {
+        for (int i = 0; i < numEqual; i++)
+        {
+            printf("%s\n", curTied[i]);
+        }
+    }
+    else
+    {
+        printf("%s\n", curWinner);
+    }
+    
     return;
 }
