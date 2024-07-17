@@ -52,14 +52,14 @@ int main(int argc, string argv[])
         string name = get_string("Vote: ");
 
         // Check for invalid vote
-        if (!vote(name, (argc - 1)))
+        if (!vote(name, candidate_count))
         {
             printf("Invalid vote.\n");
         }
     }
 
     // Display winner of election
-    print_winner(argc - 1);
+    print_winner(candidate_count);
 }
 
 // Update vote totals given a new vote
