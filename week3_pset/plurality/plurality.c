@@ -19,8 +19,8 @@ candidate candidates[MAX];
 int candidate_count;
 
 // Function prototypes
-bool vote(string name, int numCandidates);
-void print_winner(int numNames);
+bool vote(string name);
+void print_winner(void);
 
 int main(int argc, string argv[])
 {
@@ -52,21 +52,21 @@ int main(int argc, string argv[])
         string name = get_string("Vote: ");
 
         // Check for invalid vote
-        if (!vote(name, candidate_count))
+        if (!vote(name))
         {
             printf("Invalid vote.\n");
         }
     }
 
     // Display winner of election
-    print_winner(candidate_count);
+    print_winner();
 }
 
 // Update vote totals given a new vote
-bool vote(string name, int numCandidates)
+bool vote(string name)
 {
     int numFails = 0;
-    for (int i = 0; i < numCandidates; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
         if (strcmp(candidates[i].name, name) == 0)
         {
@@ -77,7 +77,7 @@ bool vote(string name, int numCandidates)
             numFails++;
         }
     }
-    if (numFails == numCandidates)
+    if (numFails == candidate_count)
     {
         return false;
     }
@@ -88,14 +88,14 @@ bool vote(string name, int numCandidates)
 }
 
 // Print the winner (or winners) of the election
-void print_winner(int numNames)
+void print_winner(void)
 {
-    /* Finding who got the most votes. */
+        /* Finding who got the most votes. */
     int numEqual = 0;
     int curBiggest = 0;
     string curWinner = "none";
-    char* curTied[numNames];
-    for (int i = 0; i < numNames; i++)
+    char* curTied[candidate_count];
+    for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes > curBiggest)
         {
@@ -132,6 +132,6 @@ void print_winner(int numNames)
     {
         printf("%s\n", curWinner);
     }
-    
+
     return;
 }

@@ -2,81 +2,94 @@
 #include <stdio.h>
 #include <string.h>
 
-/* Defining the datatype structure that will
-be used to store each candidate and their number of
-votes. */
+// Max number of candidates
+#define MAX 9
+
+// Candidates have name and vote count
 typedef struct
 {
     string name;
     int votes;
 } candidate;
 
-void voting(int voteCount, candidate candidates[], int numNames);
+// Array of candidates
+candidate candidates[MAX];
+
+// Number of candidates
+int candidate_count;
+
+// Function prototypes
+bool vote(string name, int numCandidates);
+void print_winner(int numNames);
 
 int main(int argc, string argv[])
 {
-    int numCandidates = argc - 1;
-    int numVoters = 0;
-    if (numCandidates < 1)
+    // Check for invalid usage
+    if (argc < 2)
     {
-        /* Warning the user for incorrect
-        input. */
-        printf("Usage: ./plurality [candidate ...]\n");
+        printf("Usage: plurality [candidate ...]\n");
         return 1;
     }
-    else
+
+    // Populate array of candidates
+    candidate_count = argc - 1;
+    if (candidate_count > MAX)
     {
-        /* Getting the number of voters
-        from the user. */
-        numVoters = get_int("Number of voters: ");
+        printf("Maximum number of candidates is %i\n", MAX);
+        return 2;
+    }
+    for (int i = 0; i < candidate_count; i++)
+    {
+        candidates[i].name = argv[i + 1];
+        candidates[i].votes = 0;
     }
 
-    /* Defining the array that will
-    store the candidates and their number of votes. */
-    candidate runners[numCandidates];
+    int voter_count = get_int("Number of voters: ");
 
-    /* Assigning the runners inputted
-    into the program to the runners[] array. */
-    for (int i = 0; i < numCandidates; i++)
+    // Loop over all voters
+    for (int i = 0; i < voter_count; i++)
     {
-        runners[i].votes = 0;
-        runners[i].name = argv[i + 1];
-    }
+        string name = get_string("Vote: ");
 
-    voting(numVoters, runners, numCandidates);
-    return 0;
-}
-
-void voting(int voteCount, candidate candidates[], int numNames)
-{
-    for (int i = 0; i < voteCount; i++)
-    {
-        /* Getting the current vote. */
-        string curVote = get_string("Vote: ");
-
-        /* Seeing if the current vote
-        matches any candidates. */
-        int numErrors = 0;
-        for (int j = 0; j < numNames; j++)
+        // Check for invalid vote
+        if (!vote(name, candidate_count))
         {
-            if (strcmp(curVote, candidates[j].name) == 0)
-            {
-                candidates[j].votes++;
-            }
-            else
-            {
-                numErrors++;
-            }
-
-            /* Checking if no candidates had their votes
-            incremented. */
-            if (numErrors == numNames)
-            {
-                printf("Invalid vote.\n");
-            }
+            printf("Invalid vote.\n");
         }
     }
 
+    // Display winner of election
+    print_winner(candidate_count);
+}
+
+// Update vote totals given a new vote
+bool vote(string name, int numCandidates)
+{
+    int numFails = 0;
+    for (int i = 0; i < numCandidates; i++)
+    {
+        if (strcmp(candidates[i].name, name) == 0)
+        {
+            candidates[i].votes++;
+        }
+        else
+        {
+            numFails++;
+        }
+    }
+    if (numFails == numCandidates)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+// Print the winner (or winners) of the election
+void print_winner(int numNames)
+{
     /* Finding who got the most votes. */
     int numEqual = 0;
     int curBiggest = 0;
@@ -119,4 +132,6 @@ void voting(int voteCount, candidate candidates[], int numNames)
     {
         printf("%s\n", curWinner);
     }
+    
+    return;
 }
