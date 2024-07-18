@@ -155,6 +155,13 @@ void add_pairs(void)
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
+    /* Initializing a variable to keep track
+    of how many pairs have been sorted. */
+    int numSorted = 0;
+
+    /* Initializing a variable to hold */
+    pair carrier;
+
     /* Making a for loop to iterate through
     all the pairs in the unsorted pairs array. */
     for (int i = 0; i < pair_count; i++)
