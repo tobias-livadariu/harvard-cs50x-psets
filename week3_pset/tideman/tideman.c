@@ -171,7 +171,10 @@ void sort_pairs(void)
         int locBiggestVictory = 0;
         for (int j = numSorted; j < pair_count; j++)
         {
-            if (biggestVictory < (preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j]][]))
+            if (biggestVictory < (preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner]))
+            {
+                
+            }
         }
     }
     return;
