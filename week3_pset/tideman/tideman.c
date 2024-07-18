@@ -31,7 +31,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
-bool lockedCycle(int count);
+bool lockedCycle(int index);
 
 int main(int argc, string argv[])
 {
@@ -217,7 +217,7 @@ void print_winner(void)
 }
 
 // Checking for cycles
-bool lockedCycle(int count)
+bool lockedCycle(int index)
 {
-    
+
 }
