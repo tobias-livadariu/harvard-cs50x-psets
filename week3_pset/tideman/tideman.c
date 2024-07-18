@@ -241,7 +241,7 @@ contains any edge cycles. */
 bool checkCycles(void)
 {
     // Defining an array to hold the pathway taken.
-    int pathway[candidate_count];
+    int pathway[candidate_count] = {0};
     //
     int
 
