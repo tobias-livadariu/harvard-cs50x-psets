@@ -32,6 +32,7 @@ void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
 bool tempLock(int index);
+bool checkCycles(int index);
 
 int main(int argc, string argv[])
 {
@@ -226,7 +227,7 @@ bool tempLock(int index)
     locked[winner][loser] = true;
     bool isCycle = checkCycles();
     locked[winner][loser] = false;
-    if (isCycle())
+    if (isCycle(index))
     {
         return false;
     }
@@ -238,7 +239,7 @@ bool tempLock(int index)
 
 /* Function that checks if the locked[][] 2D array
 contains any edge cycles. */
-bool checkCycles(void)
+bool checkCycles(int index)
 {
     /* Defining an array to hold the start points
     of the paths taken. */
