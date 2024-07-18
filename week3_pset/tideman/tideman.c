@@ -215,3 +215,9 @@ void print_winner(void)
     // TODO
     return;
 }
+
+// Checking for cycles
+bool lockedCycle(int count)
+{
+    
+}
