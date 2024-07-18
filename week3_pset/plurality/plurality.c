@@ -90,11 +90,11 @@ bool vote(string name)
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-        /* Finding who got the most votes. */
+    /* Finding who got the most votes. */
     int numEqual = 0;
     int curBiggest = 0;
     string curWinner = "none";
-    char* curTied[candidate_count];
+    char *curTied[candidate_count];
     for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes > curBiggest)
