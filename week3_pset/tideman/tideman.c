@@ -159,7 +159,8 @@ void sort_pairs(void)
     all the pairs in the unsorted pairs array. */
     for (int i = 0; i < pair_count; i++)
     {
-        
+        int biggestVictory = 0;
+        int locBiggestVictory = 0;
     }
     return;
 }
