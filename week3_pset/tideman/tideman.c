@@ -31,6 +31,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
+bool lockedCycle(int count);
 
 int main(int argc, string argv[])
 {
@@ -200,7 +201,10 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        if (!lockedCycle())
+        if (!lockedCycle(i))
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
     }
     return;
 }
