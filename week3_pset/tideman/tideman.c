@@ -240,6 +240,9 @@ bool tempLock(int index)
 contains any edge cycles. */
 bool checkCycles(void)
 {
-    // TODO
+    // Defining an array to hold the pathway taken.
+    int pathway[candidate_count];
+    // 
+
     return false;
 }
