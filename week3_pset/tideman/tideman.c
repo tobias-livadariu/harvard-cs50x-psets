@@ -250,7 +250,7 @@ bool checkCycles(int index)
     }
     /* Defining an array to hold the upcoming
     destinations of the search. */
-    int destinations[][] =
+    int destinations[][]  =
 
     return false;
 }
