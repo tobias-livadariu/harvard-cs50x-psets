@@ -31,7 +31,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
-bool lockedCycle(int index);
+bool tempLock(int index);
 
 int main(int argc, string argv[])
 {
@@ -201,7 +201,7 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        if (!lockedCycle(i))
+        if (!tempLock(i))
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
@@ -216,8 +216,30 @@ void print_winner(void)
     return;
 }
 
-// Checking for cycles
-bool lockedCycle(int index)
+/* Temporarily locking the index
+to allow for the checkCycles() function
+to check if a cycle has been formed. */
+bool tempLock(int index)
 {
+    int winner = pairs[index].winner;
+    int loser = pairs[index].loser;
+    locked[winner][loser] = true;
+    bool isCycle = checkCycles();
+    locked[winner][loser] = false;
+    if (isCycle == true)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 
+/* Function that checks if the locked[][] 2D array
+contains any edge cycles. */
+bool checkCycles(void)
+{
+    // TODO
+    return false;
 }
