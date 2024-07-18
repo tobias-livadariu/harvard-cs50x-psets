@@ -242,7 +242,8 @@ bool checkCycles(void)
 {
     // Defining an array to hold the pathway taken.
     int pathway[candidate_count];
-    // 
+    //
+    int 
 
     return false;
 }
