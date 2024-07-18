@@ -135,8 +135,12 @@ void add_pairs(void)
         {
             if (preferences[i][j] > preferences[j][i])
             {
-                
+                /* TODO: Check to see if using
+                pair_count here messes up the logic. */
+                pairs[pair_count].winner = i;
+                pairs[pair_count].loser = i;
             }
+            else if (preferences[j][i] > preferences[i][j])
         }
     }
     return;
