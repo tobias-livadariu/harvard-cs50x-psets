@@ -159,7 +159,8 @@ void sort_pairs(void)
     of how many pairs have been sorted. */
     int numSorted = 0;
 
-    /* Initializing a variable to hold */
+    /* Initializing a variable to hold the
+    pair being swapped while swapping is occuring. */
     pair carrier;
 
     /* Making a for loop to iterate through
@@ -168,6 +169,10 @@ void sort_pairs(void)
     {
         int biggestVictory = 0;
         int locBiggestVictory = 0;
+        for (int j = numSorted; j < pair_count; j++)
+        {
+            if (biggestVictory < (preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j]][]))
+        }
     }
     return;
 }
