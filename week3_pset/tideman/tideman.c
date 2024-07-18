@@ -226,7 +226,7 @@ bool tempLock(int index)
     locked[winner][loser] = true;
     bool isCycle = checkCycles();
     locked[winner][loser] = false;
-    if (isCycle == true)
+    if (isCycle())
     {
         return false;
     }
@@ -243,7 +243,7 @@ bool checkCycles(void)
     // Defining an array to hold the pathway taken.
     int pathway[candidate_count];
     //
-    int 
+    int
 
     return false;
 }
