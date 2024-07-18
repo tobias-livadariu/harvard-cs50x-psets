@@ -171,11 +171,26 @@ void sort_pairs(void)
         int locBiggestVictory = 0;
         for (int j = numSorted; j < pair_count; j++)
         {
-            if (biggestVictory < (preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner]))
+            /* Defining a variable to hold the margin
+            at which the current pairs' victor won*/
+            int curVictory = preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner];
+            if (curVictory > biggestVictory)
             {
-                
+                biggestVictory = curVictory;
+                locBiggestVictory = j;
             }
         }
+
+        /* Swapping the biggest victory with the
+        first victory in accordance to the
+        selection sort algorithm. */
+        carrier = pairs[numSorted];
+        pairs[numSorted] = pairs[locBiggestVictory];
+        pairs[locBiggestVictory] = carrier;
+
+        /* Incrementing the variable to keep track
+        of how many pairs were sorted. */
+        numSorted++;
     }
     return;
 }
