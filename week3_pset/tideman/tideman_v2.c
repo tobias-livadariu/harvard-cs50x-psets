@@ -32,7 +32,7 @@ void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
 bool tempLock(int index);
-bool checkCycles(int pathway[], int destinations[]);
+bool checkCycles(int pathway[], int destinations[], int numDestinationsVisited);
 
 int main(int argc, string argv[])
 {
@@ -237,9 +237,9 @@ bool tempLock(int index)
     }
     /* Defining an array variable to hold the
     upcoming candidate destinations of the search. */
-    int maxNumDestinations = 
+    int numDestinationsVisited = 0;
     int destinations[];
-    if (isCycle(pathway, destinations))
+    if (isCycle(pathway, destinations, numDestinationsVisited))
     {
         return false;
     }
@@ -251,7 +251,7 @@ bool tempLock(int index)
 
 /* Function that checks if the locked[][] 2D array
 contains any edge cycles. */
-bool checkCycles(int pathway[], int destinations[])
+bool checkCycles(int pathway[], int destinations[], int numDestinationsVisited)
 {
 
     return false;
