@@ -235,7 +235,7 @@ bool tempLock(int index)
     }
     /* Defining an array variable to hold the
     upcoming candidate destinations of the search. */
-    int destinations[pow(MAX, MAX)] = '\0';
+    int destinations[pow(MAX, MAX)] = {-1};
     int destinations[0] = winner;
     /* Defining a variable to keep track of
     how many destinations have been visited. */
@@ -258,9 +258,9 @@ bool checkCycles(int pathway[], int destinations[], int numDestinationsVisited)
 {
     /* Using a for loop to run through the destinations
     array and search for any locked edges. */
-    for (int i = numDestinationsVisited, curWinner = destinations[i]; curWinner != '\0'; i++)
+    for (int i = numDestinationsVisited, curWinner = destinations[i]; curWinner != -1; i++)
     {
-        
+        for 
     }
     return false;
 }
