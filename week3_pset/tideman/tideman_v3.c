@@ -274,7 +274,10 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
         int pathway[numDestinationsVisited];
         /* Using a loop to fill the pathway[]
         array. */
-        for (int i == 0; )
+        for (int i = 0; i < numDestinationsVisited; i++)
+        {
+            
+        }
     }
 
     /* If the main loop in this function ends,
