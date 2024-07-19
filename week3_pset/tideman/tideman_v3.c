@@ -280,12 +280,22 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
         }
         /* Using a selection sort algorithm to sort
         the pathway[] array in increasing order. */
-        int smallestVal = 0;
+        int smallestVal = MAX;
         int locSmallestVal = 0;
         int intCarrier = 0;
+        int numSorted = 0;
         for (int i = 0; i < numDestinationsVisited; i++)
         {
-            if (pathway[i])
+            for (int j = numSorted; j < numDestinationsVisited; j++)
+            {
+                if (pathway[i] < smallestVal)
+                {
+                smallestVal = pathway[i];
+                locSmallestVal = i;
+                }
+                intCarrier = pathway[numSorted];
+                
+            }
         }
     }
 
