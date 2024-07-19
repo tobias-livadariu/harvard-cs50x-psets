@@ -266,6 +266,15 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
                 destinations[nextDest] = j;
             }
         }
+        /* Incrementing the number of destinations
+        visited. */
+        numDestinationsVisited++;
+        /* Making a copy of the destinations array
+        but only with valid destination IDs. */
+        int pathway[numDestinationsVisited];
+        /* Using a loop to fill the pathway[]
+        array. */
+        for ()
     }
     return false;
 }
