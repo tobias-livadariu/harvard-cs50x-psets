@@ -238,7 +238,8 @@ bool tempLock(int index)
     /* Defining an array variable to hold the
     upcoming candidate destinations of the search. */
     int destinations[];
-    if (isCycle(pathway, destinations))
+    int numDestinations = 0;
+    if (isCycle(pathway, destinations, numDestinations))
     {
         return false;
     }
