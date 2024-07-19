@@ -260,7 +260,13 @@ bool checkCycles(int pathway[], int destinations[], int numDestinationsVisited)
     array and search for any locked edges. */
     for (int i = numDestinationsVisited, curWinner = destinations[i]; curWinner != -1; i++)
     {
-        for 
+        for (int j = 0; j < num_candidates; j++)
+        {
+            if (locked[winner][j] == true)
+            {
+                
+            }
+        }
     }
     return false;
 }
