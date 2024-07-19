@@ -264,9 +264,12 @@ bool checkCycles(int pathway[], int destinations[], int numDestinationsVisited)
         {
             if (locked[winner][j] == true)
             {
-                int nextDest = 0;
-                int k = 0;
-                while (!())
+                int nextDest = numDestinationsVisited;
+                while (destinations[nextDest] != -1)
+                {
+                    nextDest++;
+                }
+                destinations[nextDest] = j;
             }
         }
     }
