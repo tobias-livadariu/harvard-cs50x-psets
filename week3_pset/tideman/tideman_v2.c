@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <math.h>
 
 // Max number of candidates
 #define MAX 9
@@ -225,9 +226,6 @@ bool tempLock(int index)
     int winner = pairs[index].winner;
     int loser = pairs[index].loser;
     locked[winner][loser] = true;
-    bool isCycle = checkCycles();
-    locked[winner][loser] = false;
-
     /* Defining an array to hold the start points
     of the paths taken. */
     int pathway[candidate_count];
@@ -238,13 +236,16 @@ bool tempLock(int index)
     /* Defining an array variable to hold the
     upcoming candidate destinations of the search. */
     int numDestinationsVisited = 0;
+    
     int destinations[];
-    if (isCycle(pathway, destinations, numDestinationsVisited))
+    if (!isCycle(pathway, destinations, numDestinationsVisited))
     {
+        locked[winner][loser] = false;
         return false;
     }
     else
     {
+        locked[winner][loser] = false;
         return true;
     }
 }
