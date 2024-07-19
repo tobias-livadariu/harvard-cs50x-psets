@@ -276,8 +276,11 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
         array. */
         for (int i = 0; i < numDestinationsVisited; i++)
         {
-            
+            pathway[i] = destinations[i];
         }
+        /* Using a selection sort algorithm to sort
+        the pathway[] array in increasing order. */
+        
     }
 
     /* If the main loop in this function ends,
