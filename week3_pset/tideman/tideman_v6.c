@@ -305,7 +305,14 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
         visited. */
         numDestinationsVisited++;
         sizeOfDestinations++;
-        int *destinations = realloc(destinations, sizeof(int) * sizeOfDestinations);
+        int *temp = realloc(destinations, sizeof(int) * sizeOfDestinations);
+        if (temp == NULL)
+        {
+            printf("Memory reallocation failed.\n");
+            free(destinations);
+            return 1;
+        }
+        destinations = temp;
         destinations[sizeOfDestinations - 1] = -1;
         /* Checking if any two subsequent values
         in the pathways[] array are equal, meaning a
@@ -313,11 +320,13 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
         if (numDestinationsVisited > MAX)
         {
             // cycle found!
+            free(destinations);
             return true;
         }
     }
 
     /* If the main loop in this function ends,
     that means a cycle was not found. */
+    free(destinations);
     return false;
 }
