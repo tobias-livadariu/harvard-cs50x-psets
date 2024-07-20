@@ -277,7 +277,7 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
 {
     /* Using a for loop to run through the destinations
     array and search for any locked edges. */
-    for (int i = numDestinationsVisited, curWinner = destinations[i]; curWinner != -1; i++)
+    for (int i = 0, curWinner = destinations[i]; curWinner != -1; i++)
     {
         for (int j = 0; j < candidate_count; j++)
         {
