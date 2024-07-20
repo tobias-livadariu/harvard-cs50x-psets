@@ -276,6 +276,8 @@ bool tempLock(int index)
 contains any edge cycles. */
 bool checkCycles(int destinations[], int numDestinationsVisited)
 {
+    // keeping track of the size of destinations
+    int sizeOfDestinations = MAX + 1;
     /* Using a for loop to run through the destinations
     array and search for any locked edges. */
     for (int i = 0; destinations[i] != -1; i++)
@@ -302,7 +304,8 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
         /* Incrementing the number of destinations
         visited. */
         numDestinationsVisited++;
-        
+        int *destinations = realloc(destinations, sizeof(int) * (MAX + 1 + numDestinationsVisited));
+        for (i = )
         /* Checking if any two subsequent values
         in the pathways[] array are equal, meaning a
         cycle has been found. */
