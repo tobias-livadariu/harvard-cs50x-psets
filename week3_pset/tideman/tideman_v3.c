@@ -224,7 +224,7 @@ void print_winner(void)
             {
                 continue;
             }
-            printf("")
+            printf("%s\n", candidates[i])
         }
     }
     return;
