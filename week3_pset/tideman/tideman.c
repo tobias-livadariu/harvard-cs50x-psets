@@ -204,7 +204,7 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        if (!tempLock(i))
+        if (tempLock(i) == false)
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
@@ -230,7 +230,7 @@ void print_winner(void)
                 break;
             }
         }
-        if (!foundArrow)
+        if (foundArrow == false)
         {
             printf("%s\n", candidates[i]);
             return;
@@ -259,7 +259,7 @@ bool tempLock(int index)
     /* Defining a variable to keep track of
     how many destinations have been visited. */
     int numDestinationsVisited = 0;
-    if (checkCycles(destinations, numDestinationsVisited))
+    if (checkCycles(destinations, numDestinationsVisited) == true)
     {
         locked[winner][loser] = false;
         return true;
