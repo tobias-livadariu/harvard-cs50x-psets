@@ -249,7 +249,7 @@ bool tempLock(int index)
 
     /* Defining an array variable to hold the
     upcoming candidate destinations of the search. */
-    const int MAX_DESTINATION_SIZE = (int) pow(MAX, MAX);
+    const int MAX_DESTINATION_SIZE = (int) 10000;
     int destinations[MAX_DESTINATION_SIZE];
     for (int i = 1; i < MAX_DESTINATION_SIZE; i++)
     {
