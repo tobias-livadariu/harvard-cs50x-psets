@@ -304,8 +304,9 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
         /* Incrementing the number of destinations
         visited. */
         numDestinationsVisited++;
-        int *destinations = realloc(destinations, sizeof(int) * (MAX + 1 + numDestinationsVisited));
-        for (i = )
+        sizeOfDestinations++;
+        int *destinations = realloc(destinations, sizeof(int) * sizeOfDestinations);
+        destinations[]
         /* Checking if any two subsequent values
         in the pathways[] array are equal, meaning a
         cycle has been found. */
