@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 // Max number of candidates
 #define MAX 9
@@ -101,7 +102,7 @@ int main(int argc, string argv[])
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
 {
-    for (int i == 0; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
         if (strcmp(name, candidates[i]) == 0)
         {
@@ -218,16 +219,21 @@ void print_winner(void)
     arrows pointed at them. */
     for (int i = 0; i < candidate_count; i++)
     {
+        bool foundArrow = false;
         for (int j = 0; j < candidate_count; j++)
         {
             if (locked[i][j] == true)
             {
-                continue;
+                foundArrow = true;
+                break;
             }
+        }
+        if (!foundArrow)
+        {
             printf("%s\n", candidates[i])
+            return;
         }
     }
-    return;
 }
 
 /* Temporarily locking the index
