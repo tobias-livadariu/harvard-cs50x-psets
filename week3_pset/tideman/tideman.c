@@ -259,15 +259,15 @@ bool tempLock(int index)
     /* Defining a variable to keep track of
     how many destinations have been visited. */
     int numDestinationsVisited = 0;
-    if (!checkCycles(destinations, numDestinationsVisited))
+    if (checkCycles(destinations, numDestinationsVisited))
     {
         locked[winner][loser] = false;
-        return false;
+        return true;
     }
     else
     {
         locked[winner][loser] = false;
-        return true;
+        return false;
     }
 }
 
