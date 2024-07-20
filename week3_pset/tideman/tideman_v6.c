@@ -177,7 +177,7 @@ void sort_pairs(void)
         for (int j = numSorted; j < pair_count; j++)
         {
             /* Defining a variable to hold the margin
-            at which the current pairs' victor won*/
+            at which the current pairs' victor won. */
             int curVictory = preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner];
             if (curVictory > biggestVictory)
             {
@@ -251,7 +251,7 @@ bool tempLock(int index)
     /* Defining an array variable to hold the
     upcoming candidate destinations of the search. */
     const int MAX_DESTINATION_SIZE = MAX + 1;
-    int destinations[MAX_DESTINATION_SIZE];
+    int *destinations = malloc(sizeof(int) * MAX_DESTINATION_SIZE);
     for (int i = 1; i < MAX_DESTINATION_SIZE; i++)
     {
         destinations[i] = -1;
@@ -302,6 +302,7 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
         /* Incrementing the number of destinations
         visited. */
         numDestinationsVisited++;
+        
         /* Checking if any two subsequent values
         in the pathways[] array are equal, meaning a
         cycle has been found. */
