@@ -284,7 +284,7 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
         {
             printf("%i\n", destinations[k]);
         }
-
+        printf("-------\n");
         for (int j = 0; j < candidate_count; j++)
         {
             if (locked[curWinner][j] == true)
