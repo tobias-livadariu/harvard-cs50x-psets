@@ -133,9 +133,9 @@ void add_pairs(void)
     so it can be easily incremented
     later. */
     pair_count = 0;
-    for (int i == 0; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
-        for (int j == 0; j < candidate_count; j++)
+        for (int j = 0; j < candidate_count; j++)
         {
             if (preferences[i][j] > preferences[j][i])
             {
@@ -230,7 +230,7 @@ void print_winner(void)
         }
         if (!foundArrow)
         {
-            printf("%s\n", candidates[i])
+            printf("%s\n", candidates[i]);
             return;
         }
     }
@@ -247,7 +247,8 @@ bool tempLock(int index)
 
     /* Defining an array variable to hold the
     upcoming candidate destinations of the search. */
-    int destinations[pow(MAX, MAX)] = {-1};
+    int maxDestinationSize = pow(MAX, MAX);
+    int destinations[maxDestinationSize] = {-1};
     int destinations[0] = winner;
     /* Defining a variable to keep track of
     how many destinations have been visited. */
