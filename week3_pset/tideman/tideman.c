@@ -1,6 +1,6 @@
 #include <cs50.h>
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -178,7 +178,8 @@ void sort_pairs(void)
         {
             /* Defining a variable to hold the margin
             at which the current pairs' victor won. */
-            int curVictory = preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner];
+            int curVictory = preferences[pairs[j].winner][pairs[j].loser] -
+                             preferences[pairs[j].loser][pairs[j].winner];
             if (curVictory > biggestVictory)
             {
                 biggestVictory = curVictory;
