@@ -3,7 +3,6 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-
 // Max number of candidates
 #define MAX 9
 
@@ -251,7 +250,7 @@ bool tempLock(int index)
     /* Defining an array variable to hold the
     upcoming candidate destinations of the search. */
     const int MAX_DESTINATION_SIZE = MAX + 1;
-    int *destinations[MAX_DESTINATION_SIZE];
+    int destinations[MAX_DESTINATION_SIZE];
     for (int i = 1; i < MAX_DESTINATION_SIZE; i++)
     {
         destinations[i] = -1;
