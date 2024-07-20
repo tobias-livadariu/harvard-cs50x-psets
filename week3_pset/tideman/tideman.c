@@ -301,45 +301,13 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
         /* Incrementing the number of destinations
         visited. */
         numDestinationsVisited++;
-        /* Making a copy of the destinations array
-        but only with valid destination IDs. */
-        int pathway[numDestinationsVisited];
-        /* Using a loop to fill the pathway[]
-        array. */
-        for (int j = 0; j < numDestinationsVisited; j++)
-        {
-            pathway[j] = destinations[j];
-        }
-        /* Using a selection sort algorithm to sort
-        the pathway[] array in increasing order. */
-        int intCarrier = 0;
-        int numSorted = 0;
-        for (int j = 0; j < numDestinationsVisited; j++)
-        {
-            int smallestVal = MAX;
-            int locSmallestVal = 0;
-            for (int k = numSorted; k < numDestinationsVisited; k++)
-            {
-                if (pathway[j] < smallestVal)
-                {
-                smallestVal = pathway[j];
-                locSmallestVal = j;
-                }
-                intCarrier = pathway[numSorted];
-                pathway[numSorted] = smallestVal;
-                pathway[locSmallestVal] = intCarrier;
-            }
-        }
         /* Checking if any two subsequent values
         in the pathways[] array are equal, meaning a
         cycle has been found. */
-        for (int j = 0; j < (numDestinationsVisited - 1); j++)
+        if (numDestinationsVisited > MAX)
         {
-            if (pathway[j] == pathway[j + 1])
-            {
-                // cycle found!
-                return true;
-            }
+            // cycle found!
+            return true;
         }
     }
 
