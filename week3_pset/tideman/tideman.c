@@ -277,14 +277,15 @@ bool checkCycles(int destinations[], int numDestinationsVisited)
 {
     /* Using a for loop to run through the destinations
     array and search for any locked edges. */
-    for (int i = 0, curWinner = destinations[i]; curWinner != -1; i++)
+    for (int i = 0; destinations[i] != -1; i++)
+    int curWinner = destinations[i];
     {
-        // debugging, delete later
+        /* debugging, delete later
         for (int k = 0; k <= numDestinationsVisited; k++)
         {
             printf("%i\n", destinations[k]);
         }
-        printf("-------\n");
+        printf("------->%i\n", curWinner); */
         for (int j = 0; j < candidate_count; j++)
         {
             if (locked[curWinner][j] == true)
