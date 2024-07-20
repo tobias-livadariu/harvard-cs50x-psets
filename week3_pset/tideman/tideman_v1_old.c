@@ -1,7 +1,5 @@
 #include <cs50.h>
 #include <stdio.h>
-#include <math.h>
-#include <string.h>
 
 // Max number of candidates
 #define MAX 9
@@ -34,7 +32,7 @@ void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
 bool tempLock(int index);
-bool checkCycles(int destinations[], int numDestinationsVisited);
+bool checkCycles(int index);
 
 int main(int argc, string argv[])
 {
@@ -102,7 +100,7 @@ int main(int argc, string argv[])
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
 {
-    for (int i = 0; i < candidate_count; i++)
+    for (int i == 0; i < candidate_count; i++)
     {
         if (strcmp(name, candidates[i]) == 0)
         {
@@ -120,7 +118,7 @@ void record_preferences(int ranks[])
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
-            preferences[ranks[i]][ranks[j]]++;
+            preferences[rank[i]][rank[j]]++;
         }
     }
     return;
@@ -133,9 +131,9 @@ void add_pairs(void)
     so it can be easily incremented
     later. */
     pair_count = 0;
-    for (int i = 0; i < candidate_count; i++)
+    for (int i == 0; i < candidate_count; i++)
     {
-        for (int j = 0; j < candidate_count; j++)
+        for (int j == 0; j < candidate_count; j++)
         {
             if (preferences[i][j] > preferences[j][i])
             {
@@ -215,25 +213,8 @@ void lock_pairs(void)
 // Print the winner of the election
 void print_winner(void)
 {
-    /* Seeing which candidate has no
-    arrows pointed at them. */
-    for (int i = 0; i < candidate_count; i++)
-    {
-        bool foundArrow = false;
-        for (int j = 0; j < candidate_count; j++)
-        {
-            if (locked[i][j] == true)
-            {
-                foundArrow = true;
-                break;
-            }
-        }
-        if (!foundArrow)
-        {
-            printf("%s\n", candidates[i]);
-            return;
-        }
-    }
+    // TODO
+    return;
 }
 
 /* Temporarily locking the index
@@ -244,97 +225,32 @@ bool tempLock(int index)
     int winner = pairs[index].winner;
     int loser = pairs[index].loser;
     locked[winner][loser] = true;
-
-    /* Defining an array variable to hold the
-    upcoming candidate destinations of the search. */
-    const int MAX_DESTINATION_SIZE = (int) pow(MAX, MAX);
-    int destinations[MAX_DESTINATION_SIZE];
-    for (int i = 1; i < MAX_DESTINATION_SIZE; i++)
+    bool isCycle = checkCycles();
+    locked[winner][loser] = false;
+    if (isCycle(index))
     {
-        destinations[i] = -1;
-    }
-    destinations[0] = winner;
-    /* Defining a variable to keep track of
-    how many destinations have been visited. */
-    int numDestinationsVisited = 0;
-    if (!checkCycles(destinations, numDestinationsVisited))
-    {
-        locked[winner][loser] = false;
         return false;
     }
     else
     {
-        locked[winner][loser] = false;
         return true;
     }
 }
 
 /* Function that checks if the locked[][] 2D array
 contains any edge cycles. */
-bool checkCycles(int destinations[], int numDestinationsVisited)
+bool checkCycles(int index)
 {
-    /* Using a for loop to run through the destinations
-    array and search for any locked edges. */
-    for (int i = numDestinationsVisited, curWinner = destinations[i]; curWinner != -1; i++)
+    /* Defining an array to hold the start points
+    of the paths taken. */
+    int pathway[candidate_count];
+    for (int i == 0; i < candidate_count; i++)
     {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            if (locked[curWinner][j] == true)
-            {
-                int nextDest = numDestinationsVisited;
-                while (destinations[nextDest] != -1)
-                {
-                    nextDest++;
-                }
-                destinations[nextDest] = j;
-            }
-        }
-        /* Incrementing the number of destinations
-        visited. */
-        numDestinationsVisited++;
-        /* Making a copy of the destinations array
-        but only with valid destination IDs. */
-        int pathway[numDestinationsVisited];
-        /* Using a loop to fill the pathway[]
-        array. */
-        for (int j = 0; j < numDestinationsVisited; j++)
-        {
-            pathway[j] = destinations[j];
-        }
-        /* Using a selection sort algorithm to sort
-        the pathway[] array in increasing order. */
-        int intCarrier = 0;
-        int numSorted = 0;
-        for (int j = 0; j < numDestinationsVisited; j++)
-        {
-            int smallestVal = MAX;
-            int locSmallestVal = 0;
-            for (int k = numSorted; k < numDestinationsVisited; k++)
-            {
-                if (pathway[j] < smallestVal)
-                {
-                smallestVal = pathway[j];
-                locSmallestVal = j;
-                }
-                intCarrier = pathway[numSorted];
-                pathway[numSorted] = smallestVal;
-                pathway[locSmallestVal] = intCarrier;
-            }
-        }
-        /* Checking if any two subsequent values
-        in the pathways[] array are equal, meaning a
-        cycle has been found. */
-        for (int j = 0; j < (numDestinationsVisited - 1); j++)
-        {
-            if (pathway[j] == pathway[j + 1])
-            {
-                // cycle found!
-                return true;
-            }
-        }
+        pathway[i] = 0;
     }
+    /* Defining an array to hold the upcoming
+    destinations of the search. */
+    int destinations[][]  =
 
-    /* If the main loop in this function ends,
-    that means a cycle was not found. */
     return false;
 }
