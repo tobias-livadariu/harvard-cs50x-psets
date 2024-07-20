@@ -222,7 +222,9 @@ void print_winner(void)
         bool foundArrow = false;
         for (int j = 0; j < candidate_count; j++)
         {
-            if (locked[i][j] == true)
+            /* Checking if candidate j is pointing
+            at candidate i. */
+            if (locked[j][i] == true)
             {
                 foundArrow = true;
                 break;
