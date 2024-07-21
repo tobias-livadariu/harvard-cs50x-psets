@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
     BYTE *header = malloc(sizeof(BYTE) * HEADER_SIZE);
     fread(header, sizeof(BYTE) * HEADER_SIZE, 1, input);
     fwrite(header, sizeof(BYTE) * HEADER_SIZE, 1, output);
+    printf("%s\n", header);
     free(header);
 
     // TODO: Read samples from input file and write updated data to output file
