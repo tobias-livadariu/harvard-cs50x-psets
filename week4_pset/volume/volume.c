@@ -7,7 +7,7 @@
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
 
-// Renaming the uint9_i datatype to BYTE
+// Renaming the uint8_t datatype to BYTE
 typedef uint8_t BYTE;
 
 int main(int argc, char *argv[])
@@ -47,8 +47,9 @@ int main(int argc, char *argv[])
     BYTE *singleRead = malloc(sizeof(BYTE) * 2);
     while (fread(singleRead, sizeof(BYTE) * 2, 1, input) != 0)
     {
-        // *singleRead *= factor;
-        printf("%i\n", *singleRead);
+        printf("before multiply: %i\n", *singleRead);
+        *singleRead *= factor;
+        printf("after multiply: %i\n", *singleRead);
         fwrite(singleRead, sizeof(BYTE) * 2, 1, output);
     }
     free (singleRead);
