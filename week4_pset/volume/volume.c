@@ -45,7 +45,14 @@ int main(int argc, char *argv[])
 
     // TODO: Read samples from input file and write updated data to output file
     BYTE *singleRead = malloc(sizeof(BYTE) * 2)
-    
+    while (fread(singleRead, sizeof(BYTE) * 2, 1, input) != 0)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            singleRead[i] *= factor;
+        }
+        fwrite(singleRead, sizeof(BYTE) * 2, 1, output);
+    }
 
     // Close files
     fclose(input);
