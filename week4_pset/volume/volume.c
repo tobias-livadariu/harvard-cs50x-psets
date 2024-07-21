@@ -6,7 +6,9 @@
 
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
-typedef 
+
+// Renaming the uint9_i datatype to BYTE
+typedef uint8_i BYTE;
 
 int main(int argc, char *argv[])
 {
