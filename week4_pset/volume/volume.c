@@ -8,8 +8,8 @@
 const int HEADER_SIZE = 44;
 
 // Renaming the uint8_t datatype to BYTE
-typedef uint8_t BYTE;
-typedef uint16_t DOUBLE_BYTE;
+typedef int8_t BYTE;
+typedef int16_t DOUBLE_BYTE;
 
 int main(int argc, char *argv[])
 {
