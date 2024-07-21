@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
         *singleRead *= factor;
         fwrite(singleRead, sizeof(BYTE) * 2, 1, output);
     }
+    printf("%i\n", *singleRead);
     free (singleRead);
 
     // Close files
