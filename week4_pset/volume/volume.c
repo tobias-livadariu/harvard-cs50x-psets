@@ -46,12 +46,10 @@ int main(int argc, char *argv[])
 
     // TODO: Read samples from input file and write updated data to output file
     BYTE *singleRead = malloc(sizeof(DOUBLE_BYTE));
-    while (fread(singleRead, sizeof(DOUBLE_BYTE) * 2, 1, input) != 0)
+    while (fread(singleRead, sizeof(DOUBLE_BYTE), 1, input) != 0)
     {
-        printf("before multiply: %i\n", *singleRead);
         *singleRead *= factor;
-        printf("after multiply: %i\n", *singleRead);
-        fwrite(singleRead, sizeof(DOUBLE_BYTE) * 2, 1, output);
+        fwrite(singleRead, sizeof(DOUBLE_BYTE), 1, output);
     }
     free (singleRead);
 
