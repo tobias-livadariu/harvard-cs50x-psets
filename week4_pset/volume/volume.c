@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
         *singleRead = (DOUBLE_BYTE) (*singleRead * factor);
         fwrite(singleRead, sizeof(DOUBLE_BYTE), 1, output);
     }
-    free (singleRead);
+    free(singleRead);
 
     // Close files
     fclose(input);
