@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     free(header);
 
     // TODO: Read samples from input file and write updated data to output file
-    BYTE *singleRead = malloc(sizeof(DOUBLE_BYTE));
+    DOUBLE_BYTE *singleRead = malloc(sizeof(DOUBLE_BYTE));
     while (fread(singleRead, sizeof(DOUBLE_BYTE), 1, input) != 0)
     {
         *singleRead *= factor;
