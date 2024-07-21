@@ -8,7 +8,7 @@
 const int HEADER_SIZE = 44;
 
 // Renaming the uint9_i datatype to BYTE
-typedef uint8_i BYTE;
+typedef uint8_t BYTE;
 
 int main(int argc, char *argv[])
 {
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     free(header);
 
     // TODO: Read samples from input file and write updated data to output file
-    BYTE *singleRead = malloc(sizeof(BYTE) * 2)
+    BYTE *singleRead = malloc(sizeof(BYTE) * 2);
     while (fread(singleRead, sizeof(BYTE) * 2, 1, input) != 0)
     {
         for (int i = 0; i < 2; i++)
@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
         }
         fwrite(singleRead, sizeof(BYTE) * 2, 1, output);
     }
+    free (singleRead);
 
     // Close files
     fclose(input);
