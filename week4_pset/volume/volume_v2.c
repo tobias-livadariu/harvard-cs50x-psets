@@ -47,7 +47,10 @@ int main(int argc, char *argv[])
     BYTE *singleRead = malloc(sizeof(BYTE) * 2);
     while (fread(singleRead, sizeof(BYTE) * 2, 1, input) != 0)
     {
-        singleRead *= factor;
+        for (int i = 0; i < 2; i++)
+        {
+            singleRead[i] *= factor;
+        }
         fwrite(singleRead, sizeof(BYTE) * 2, 1, output);
     }
     free (singleRead);
