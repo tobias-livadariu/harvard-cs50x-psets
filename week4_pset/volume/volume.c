@@ -9,6 +9,7 @@ const int HEADER_SIZE = 44;
 
 // Renaming the uint8_t datatype to BYTE
 typedef uint8_t BYTE;
+typedef uint16_t DOUBLE_BYTE;
 
 int main(int argc, char *argv[])
 {
@@ -44,13 +45,13 @@ int main(int argc, char *argv[])
     free(header);
 
     // TODO: Read samples from input file and write updated data to output file
-    BYTE *singleRead = malloc(sizeof(BYTE) * 2);
-    while (fread(singleRead, sizeof(BYTE) * 2, 1, input) != 0)
+    BYTE *singleRead = malloc(sizeof(DOUBLE_BYTE));
+    while (fread(singleRead, sizeof(DOUBLE_BYTE) * 2, 1, input) != 0)
     {
         printf("before multiply: %i\n", *singleRead);
         *singleRead *= factor;
         printf("after multiply: %i\n", *singleRead);
-        fwrite(singleRead, sizeof(BYTE) * 2, 1, output);
+        fwrite(singleRead, sizeof(DOUBLE_BYTE) * 2, 1, output);
     }
     free (singleRead);
 
