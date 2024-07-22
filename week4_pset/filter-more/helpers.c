@@ -134,6 +134,25 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
+            /* Determining if the pixel lies on
+            the image's border. */
+            if (i == 0 || 1 == (height - 1))
+            {
+                // Assigning black border color values
+                image[i][j].rgbtRed = 0;
+                image[i][j].rgbtGreen = 0;
+                image[i][j].rgbtBlue = 0;
+                continue
+            }
+            else if (j == 0 || j == (width - 1))
+            {
+                // Assigning black border color values
+                image[i][j].rgbtRed = 0;
+                image[i][j].rgbtGreen = 0;
+                image[i][j].rgbtBlue = 0;
+                continue
+            }
+
             /* Defining variables to hold the
             channel values. */
             int multiplierGx = 0;
@@ -147,22 +166,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             int blueGx = 0;
             int blueGy = 0;
             int blue = 0;
-            /* Defining a variable to
-            hold if the pixel is on
-            the border. */
-            bool isBorder = false;
-            if (i == 0 || 1 == (height - 1))
-            {
-                isBorder = true;
-            }
-            else if (j == 0 || j == (width - 1))
-            {
-                isBorder = true;
-            }
-            if (isBorder == true)
-            {
-                
-            }
             for (int k = i - 1; k <= i + 1; k++)
             {
                 // checking if outside bounds
