@@ -147,6 +147,10 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             int blueGx = 0;
             int blueGy = 0;
             int blue = 0;
+            /* Defining a variable to
+            hold if the pixel is on
+            the border. */
+            bool isBorder = false;
             for (int k = i - 1; k <= i + 1; k++)
             {
                 // checking if outside bounds
@@ -160,37 +164,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     if (l < 0 || l >= width)
                     {
                         continue;
-                    }
-                    // setting the Gx absolute value
-                    if ((l != j) && (k != i))
-                    {
-                        multiplierGx = 1;
-                    }
-                    else if ((l != j) && (k == i))
-                    {
-                        multiplierGx = 2;
-                    }
-
-                    // setting the Gx sign
-                    if (l < j)
-                    {
-                        multiplierGx *= -1;
-                    }
-
-                    // setting the Gy absolute value
-                    if ((k != i) && (l != j))
-                    {
-                        multiplierGy = 1;
-                    }
-                    else if ((k != i) && (l == j))
-                    {
-                        multiplierGy = 2;
-                    }
-
-                    // setting the Gy sign
-                    if (k < i)
-                    {
-                        multiplierGy *= -1;
                     }
 
                     /* Setting the values of the
