@@ -199,21 +199,30 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
                     /* Finding the overall color
                     values. */
-                    red = sqrt(pow(redGx, 2) + pow(redGy, 2));
-                    green = sqrt(pow(greenGx, 2) + pow(greenGy, 2));
-                    blue = sqrt(pow(blueGx, 2) + pow(blueGy, 2));
+                    red = (int) sqrt(pow(redGx, 2) + pow(redGy, 2));
+                    green = (int) sqrt(pow(greenGx, 2) + pow(greenGy, 2));
+                    blue = (int) sqrt(pow(blueGx, 2) + pow(blueGy, 2));
 
-                    /* Checking */
+                    /* Checking to see if red, green, and blue
+                    are all within the acceptable value range*/
+                    if (red > 255)
+                    {
+                        red = 255;
+                    }
+                    if (green > 255)
+                    {
+                        green = 255;
+                    }
+                    if (blue > 255)
+                    {
+                        blue = 255;
+                    }
                 }
             }
-            blurredAverageRed /= numToAverage;
-            blurredAverageGreen /= numToAverage;
-            blurredAverageBlue /= numToAverage;
-
-            // Assigning blurred color values
-            image[i][j].rgbtRed = blurredAverageRed;
-            image[i][j].rgbtGreen = blurredAverageGreen;
-            image[i][j].rgbtBlue = blurredAverageBlue;
+            // Assigning edged color values
+            image[i][j].rgbtRed = red;
+            image[i][j].rgbtGreen = green;
+            image[i][j].rgbtBlue = blue;
         }
     }
     free(imageCopy);
