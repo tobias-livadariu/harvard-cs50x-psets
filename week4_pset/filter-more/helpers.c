@@ -155,15 +155,37 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                         continue;
                     }
                     // setting the Gx absolute value
-                    if ((l != j) && )
+                    if ((l != j) && (k != i))
+                    {
+                        multiplierGx = 1;
+                    }
+                    else if ((l != j) && (k == i))
+                    {
+                        multiplierGx = 2;
+                    }
 
                     // setting the Gx sign
+                    if (l < j)
+                    {
+                        multiplierGx *= -1;
+                    }
 
                     // setting the Gy absolute value
+                    if ((k != i) && (l != j))
+                    {
+                        multiplierGy = 1;
+                    }
+                    else if ((k != i) && (l == j))
+                    {
+                        multiplierGy = 2;
+                    }
 
                     // setting the Gy sign
+                    if (k < i)
+                    {
+                        multiplierGy *= -1;
+                    }
 
-                    // setting the Gy value
                     blurredAverageRed += imageCopy[k * width + l].rgbtRed;
                     blurredAverageGreen += imageCopy[k * width + l].rgbtGreen;
                     blurredAverageBlue += imageCopy[k * width + l].rgbtBlue;
