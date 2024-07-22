@@ -129,6 +129,8 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         {
             /* Defining variables to hold the
             channel values. */
+            int multiplierGx = 0;
+            int multiplierGy = 0;
             int RedGx = 0;
             int RedGy = 0;
             int Red = 0;
@@ -152,7 +154,10 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     {
                         continue;
                     }
-                    // setting the Gx value
+                    // setting the Gx absolute value
+                    if ()
+
+                    // setting the Gy value
                     blurredAverageRed += imageCopy[k * width + l].rgbtRed;
                     blurredAverageGreen += imageCopy[k * width + l].rgbtGreen;
                     blurredAverageBlue += imageCopy[k * width + l].rgbtBlue;
