@@ -145,11 +145,18 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 isOnTopEdge = true;
             }
-            else if (1 == (height - 1))
+            else if (i == (height - 1))
             {
                 isOnBottomEdge = true;
             }
-            else if ()
+            if (j == 0)
+            {
+                isOnLeftEdge = true;
+            }
+            else if (j == (width - 1))
+            {
+                isOnRightEdge = true;
+            }
 
             /* Defining variables to hold the
             channel values. */
@@ -168,6 +175,8 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 for (int l = j - 1; l <= j + 1; l++)
                 {
+                    if (isOnTopEdge )
+
                     /* Setting the value of the
                     multipliers. */
                     multiplierGx = kernelGx[k - (i - 1)][l - (j - 1)];
