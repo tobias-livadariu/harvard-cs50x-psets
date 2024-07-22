@@ -135,29 +135,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            /* Determining if the pixel lies on
-            the image's border. */
-            bool isOnTopEdge = false;
-            bool isOnBottomEdge = false;
-            bool isOnLeftEdge = false;
-            bool isOnRightEdge = false;
-            if (i == 0)
-            {
-                isOnTopEdge = true;
-            }
-            else if (i == (height - 1))
-            {
-                isOnBottomEdge = true;
-            }
-            if (j == 0)
-            {
-                isOnLeftEdge = true;
-            }
-            else if (j == (width - 1))
-            {
-                isOnRightEdge = true;
-            }
-
             /* Defining variables to hold the
             channel values. */
             int multiplierGx = 0;
@@ -175,7 +152,14 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 for (int l = j - 1; l <= j + 1; l++)
                 {
-                    if (isOnTopEdge )
+                    /* Determining if the pixel lies on
+                    the image's border. */
+                    if ((k < 0) || (k >= height) || (l < 0) || (l >= width))
+                    {
+                        /* If pixel being accessed
+                        is out of bounds, skip this iteration. */
+                        continue;
+                    }
 
                     /* Setting the value of the
                     multipliers. */
