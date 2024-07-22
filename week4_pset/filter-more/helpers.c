@@ -52,7 +52,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     // Making a temporary copy of the image
-    RGBTRIPLE imageCopy = malloc(sizeof(RBGTRIPLE) * (height * width));
+    RGBTRIPLE *imageCopy = malloc(sizeof(RBGTRIPLE) * (height * width));
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
