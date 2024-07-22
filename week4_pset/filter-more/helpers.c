@@ -112,6 +112,63 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
-    
+    // Making a temporary copy of the image
+    RGBTRIPLE *imageCopy = malloc(sizeof(RGBTRIPLE) * (height * width));
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            imageCopy[i * width + j] = image[i][j];
+        }
+    }
+
+    // Iterating through every pixel in the image
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            /* Defining variables to hold the
+            channel values. */
+            int RedGx = 0;
+            int RedGy = 0;
+            int Red = 0;
+            int GreenGx = 0;
+            int GreenGy = 0;
+            int Green = 0;
+            int BlueGx = 0;
+            int BlueGy = 0;
+            int Blue = 0;
+            for (int k = i - 1; k <= i + 1; k++)
+            {
+                // checking if outside bounds
+                if (k < 0 || k >= height)
+                {
+                    continue;
+                }
+                for (int l = j - 1; l <= j + 1; l++)
+                {
+                    // checking if outside bounds
+                    if (l < 0 || l >= width)
+                    {
+                        continue;
+                    }
+                    // setting the Gx value
+                    blurredAverageRed += imageCopy[k * width + l].rgbtRed;
+                    blurredAverageGreen += imageCopy[k * width + l].rgbtGreen;
+                    blurredAverageBlue += imageCopy[k * width + l].rgbtBlue;
+                    numToAverage++;
+                }
+            }
+            blurredAverageRed /= numToAverage;
+            blurredAverageGreen /= numToAverage;
+            blurredAverageBlue /= numToAverage;
+
+            // Assigning blurred color values
+            image[i][j].rgbtRed = blurredAverageRed;
+            image[i][j].rgbtGreen = blurredAverageGreen;
+            image[i][j].rgbtBlue = blurredAverageBlue;
+        }
+    }
+    free(imageCopy);
     return;
 }
