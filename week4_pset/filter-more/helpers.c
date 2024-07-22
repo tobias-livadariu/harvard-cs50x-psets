@@ -66,10 +66,33 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
+            /* Defining variables to hold the
+            blurred values. */
+            int blurredAverageRed = 0;
+            int blurredAverageGreen = 0;
+            int blurredAverageBlue = 0;
             /* Defining a variable to hold the
-            blurrations. */
-            int blurredAverageRGB = 0;
-            for (int k = i - 1; k < )
+            number of values to average. */
+            int numToAverage = 9;
+            for (int k = i - 1; k <= i + 1; k++)
+            {
+                // checking if outside bounds
+                if (k < 0 || k >= height)
+                {
+                    numToAverage -= 1;
+                    continue;
+                }
+                for (int l = j - 1; l <= j + 1; j++)
+                {
+                    // checking if outside bounds
+                    if (l < 0 || l >= width)
+                    {
+                        numToAverage -= 1;
+                        continue;
+                    }
+                    blurredAverageRed += 
+                }
+            }
         }
     }
 }
