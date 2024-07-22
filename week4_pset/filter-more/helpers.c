@@ -155,6 +155,14 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 isBorder = true;
             }
+            else if (j == 0 || j == (width - 1))
+            {
+                isBorder = true;
+            }
+            if (isBorder == true)
+            {
+                
+            }
             for (int k = i - 1; k <= i + 1; k++)
             {
                 // checking if outside bounds
