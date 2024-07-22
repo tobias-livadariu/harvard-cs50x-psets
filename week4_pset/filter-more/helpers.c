@@ -90,9 +90,19 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                         numToAverage -= 1;
                         continue;
                     }
-                    blurredAverageRed += 
+                    blurredAverageRed += imageCopy[k][l].rgbtRed;
+                    blurredAverageGreen += imageCopy[k][l].rgbtGreen;
+                    blurredAverageBlue += imageCopy[k][l].rgbtBlue;
                 }
             }
+            blurredAverageRed /= numToAverage;
+            blurredAverageGreen /= numToAverage;
+            blurredAverageBlue /= numToAverage;
+
+            // Assigning blurred color values
+            image[i][j].rgbtRed = blurredAverageRed;
+            image[i][j].rgbtGreen = blurredAverageGreen;
+            image[i][j].rgbtBlue = blurredAverageBlue;
         }
     }
 }
