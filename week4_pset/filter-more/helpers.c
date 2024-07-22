@@ -157,6 +157,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     // setting the Gx absolute value
                     if ()
 
+                    // setting the Gx sign
+
+                    // setting the Gy absolute value
+
+                    // setting the Gy sign
+
                     // setting the Gy value
                     blurredAverageRed += imageCopy[k * width + l].rgbtRed;
                     blurredAverageGreen += imageCopy[k * width + l].rgbtGreen;
