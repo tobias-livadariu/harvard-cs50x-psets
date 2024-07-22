@@ -131,15 +131,15 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             channel values. */
             int multiplierGx = 0;
             int multiplierGy = 0;
-            int RedGx = 0;
-            int RedGy = 0;
-            int Red = 0;
-            int GreenGx = 0;
-            int GreenGy = 0;
-            int Green = 0;
-            int BlueGx = 0;
-            int BlueGy = 0;
-            int Blue = 0;
+            int redGx = 0;
+            int redGy = 0;
+            int red = 0;
+            int greenGx = 0;
+            int greenGy = 0;
+            int green = 0;
+            int blueGx = 0;
+            int blueGy = 0;
+            int blue = 0;
             for (int k = i - 1; k <= i + 1; k++)
             {
                 // checking if outside bounds
@@ -186,10 +186,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                         multiplierGy *= -1;
                     }
 
-                    blurredAverageRed += imageCopy[k * width + l].rgbtRed;
-                    blurredAverageGreen += imageCopy[k * width + l].rgbtGreen;
-                    blurredAverageBlue += imageCopy[k * width + l].rgbtBlue;
-                    numToAverage++;
+                    /* Setting the values of the
+                    Gx colors. */
+                    redGx +=
                 }
             }
             blurredAverageRed /= numToAverage;
