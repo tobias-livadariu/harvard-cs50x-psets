@@ -44,12 +44,23 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtBlue = tempContainer[(width - 1) - j].rgbtBlue;
         }
     }
+    free(tempContainer);
     return;
 }
 
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    // Making a temporary copy of the image
+    RGBTRIPLE imageCopy = malloc(sizeof(RBGTRIPLE) * (height * width));
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            imageCopy[i][j] = image[i][j];
+        }
+    }
+
     // Iterating through every pixel in the image
     for (int i = 0; i < height; i++)
     {
