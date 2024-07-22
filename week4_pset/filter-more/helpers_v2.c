@@ -6,10 +6,10 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     // Iterating through every pixel in the image
     for (int i = 0; i < height; i++)
     {
+        // Defining a variable to hold the average of RGB values for each pixel
+        int averageRGB = 0;
         for (int j = 0; j < width; j++)
         {
-            // Defining a variable to hold the average of RGB values for each pixel
-            int averageRGB = 0;
             averageRGB += image[i][j].rgbtRed;
             averageRGB += image[i][j].rgbtGreen;
             averageRGB += image[i][j].rgbtBlue;
