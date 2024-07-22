@@ -157,7 +157,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             top/down edge values. */
             if (i == 0)
             {
-                for (int count = 0; count++; count < 3)
+                for (int count = 0; count < 3; count++)
                 {
                     kernelGx[0][count] = 0;
                     kernelGy[0][count] = 0;
@@ -165,7 +165,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             }
             else if (i == (height - 1))
             {
-                for (int count = 0; count++; count < 3)
+                for (int count = 0; count < 3; count++)
                 {
                     kernelGx[2][count] = 0;
                     kernelGy[2][count] = 0;
@@ -176,18 +176,18 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             left/right edge values. */
             if (j == 0)
             {
-                for (int count = 0; count++; count < 3)
+                for (int count = 0; count < 3; count++)
                 {
-                    kernelGx[0][count] = 0;
-                    kernelGy[0][count] = 0;
+                    kernelGx[count][0] = 0;
+                    kernelGy[count][0] = 0;
                 }
             }
             else if (i == (height - 1))
             {
-                for (int count = 0; count++; count < 3)
+                for (int count = 0; count < 3; count++)
                 {
-                    kernelGx[2][count] = 0;
-                    kernelGy[2][count] = 0;
+                    kernelGx[count][2] = 0;
+                    kernelGy[count][2] = 0;
                 }
             }
 
