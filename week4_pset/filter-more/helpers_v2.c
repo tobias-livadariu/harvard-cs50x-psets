@@ -11,11 +11,12 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             // Defining a variable to hold the average of RGB values for each pixel
-            int averageRGB = 0;
+            float averageRGB = 0.0;
             averageRGB += image[i][j].rgbtRed;
             averageRGB += image[i][j].rgbtGreen;
             averageRGB += image[i][j].rgbtBlue;
             averageRGB /= 3;
+            int intAverageRBG = (int) round(averageRGB);
             image[i][j].rgbtRed = averageRGB;
             image[i][j].rgbtGreen = averageRGB;
             image[i][j].rgbtBlue = averageRGB;
@@ -112,6 +113,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
+    // Defining the 2D kernels array
+    int kernelGx[3][3] = {{-1, 0, 1},
+                        {-2, 0, 2},
+                        {-1, 0, 1}};
+    int kernelGy[3][3] = {{-1, -2, -1},
+                        {0, 0, 0},
+                        {1, 2, 1}};
     // Making a temporary copy of the image
     RGBTRIPLE *imageCopy = malloc(sizeof(RGBTRIPLE) * (height * width));
     for (int i = 0; i < height; i++)
@@ -127,6 +135,25 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
+            /* Determining if the pixel lies on
+            the image's border. */
+            if (i == 0 || 1 == (height - 1))
+            {
+                // Assigning black border color values
+                image[i][j].rgbtRed = 0;
+                image[i][j].rgbtGreen = 0;
+                image[i][j].rgbtBlue = 0;
+                continue;
+            }
+            else if (j == 0 || j == (width - 1))
+            {
+                // Assigning black border color values
+                image[i][j].rgbtRed = 0;
+                image[i][j].rgbtGreen = 0;
+                image[i][j].rgbtBlue = 0;
+                continue;
+            }
+
             /* Defining variables to hold the
             channel values. */
             int multiplierGx = 0;
@@ -142,49 +169,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             int blue = 0;
             for (int k = i - 1; k <= i + 1; k++)
             {
-                // checking if outside bounds
-                if (k < 0 || k >= height)
-                {
-                    continue;
-                }
                 for (int l = j - 1; l <= j + 1; l++)
                 {
-                    // checking if outside bounds
-                    if (l < 0 || l >= width)
-                    {
-                        continue;
-                    }
-                    // setting the Gx absolute value
-                    if ((l != j) && (k != i))
-                    {
-                        multiplierGx = 1;
-                    }
-                    else if ((l != j) && (k == i))
-                    {
-                        multiplierGx = 2;
-                    }
-
-                    // setting the Gx sign
-                    if (l < j)
-                    {
-                        multiplierGx *= -1;
-                    }
-
-                    // setting the Gy absolute value
-                    if ((k != i) && (l != j))
-                    {
-                        multiplierGy = 1;
-                    }
-                    else if ((k != i) && (l == j))
-                    {
-                        multiplierGy = 2;
-                    }
-
-                    // setting the Gy sign
-                    if (k < i)
-                    {
-                        multiplierGy *= -1;
-                    }
+                    /* Setting the value of the
+                    multipliers. */
+                    multiplierGx = kernelGx[k - (i - 1)][l - (j - 1)];
+                    multiplierGy = kernelGy[k - (i - 1)][l - (j - 1)];
 
                     /* Setting the values of the
                     Gx colors. */

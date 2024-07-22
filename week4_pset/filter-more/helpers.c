@@ -113,13 +113,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Defining the 2D kernels array
-    int kernelGx[3][3] = {{-1, 0, 1},
-                        {-2, 0, 2},
-                        {-1, 0, 1}};
-    int kernelGy[3][3] = {{-1, -2, -1},
-                        {0, 0, 0},
-                        {1, 2, 1}};
     // Making a temporary copy of the image
     RGBTRIPLE *imageCopy = malloc(sizeof(RGBTRIPLE) * (height * width));
     for (int i = 0; i < height; i++)
@@ -152,6 +145,18 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 image[i][j].rgbtGreen = 0;
                 image[i][j].rgbtBlue = 0;
                 continue;
+            }
+            // Defining the 2D kernels array
+            int kernelGx[3][3] = {{-1, 0, 1},
+                                {-2, 0, 2},
+                                {-1, 0, 1}};
+            int kernelGy[3][3] = {{-1, -2, -1},
+                                {0, 0, 0},
+                                {1, 2, 1}};
+            if (i == 0)
+            {
+                for (int count = 0; count++; count < 3)
+                kerne
             }
 
             /* Defining variables to hold the
