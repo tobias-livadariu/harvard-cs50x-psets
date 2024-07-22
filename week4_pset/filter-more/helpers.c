@@ -155,7 +155,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                         continue;
                     }
                     // setting the Gx absolute value
-                    if ()
+                    if ((l != j) && )
 
                     // setting the Gx sign
 
