@@ -151,6 +151,10 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             hold if the pixel is on
             the border. */
             bool isBorder = false;
+            if (i == 0 || 1 == (height - 1))
+            {
+                isBorder = true;
+            }
             for (int k = i - 1; k <= i + 1; k++)
             {
                 // checking if outside bounds
