@@ -28,9 +28,12 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     // Iterating through every pixel in the image
     for (int i = 0; i < height; i++)
     {
+        /* Defining a container variable to make the
+        switch easier. */
+        RGBTRIPLE tempContainer[i];
         for (int j = 0; j < width; j++)
         {
-            image[i][j]
+            image[i][j].rbgtRed = tempContainer[i][width - j].rbgtRed
         }
     }
     return;
