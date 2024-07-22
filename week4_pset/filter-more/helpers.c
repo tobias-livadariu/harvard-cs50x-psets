@@ -168,18 +168,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             int blue = 0;
             for (int k = i - 1; k <= i + 1; k++)
             {
-                // checking if outside bounds
-                if (k < 0 || k >= height)
-                {
-                    continue;
-                }
                 for (int l = j - 1; l <= j + 1; l++)
                 {
-                    // checking if outside bounds
-                    if (l < 0 || l >= width)
-                    {
-                        continue;
-                    }
+                    multiplierGx = kernelGx[][]
 
                     /* Setting the values of the
                     Gx colors. */
