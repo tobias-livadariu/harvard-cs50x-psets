@@ -142,7 +142,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 image[i][j].rgbtRed = 0;
                 image[i][j].rgbtGreen = 0;
                 image[i][j].rgbtBlue = 0;
-                continue
+                continue;
             }
             else if (j == 0 || j == (width - 1))
             {
@@ -150,7 +150,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 image[i][j].rgbtRed = 0;
                 image[i][j].rgbtGreen = 0;
                 image[i][j].rgbtBlue = 0;
-                continue
+                continue;
             }
 
             /* Defining variables to hold the
@@ -170,7 +170,10 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 for (int l = j - 1; l <= j + 1; l++)
                 {
-                    multiplierGx = kernelGx[][]
+                    /* Setting the value of the
+                    multipliers. */
+                    multiplierGx = kernelGx[k - (i - 1)][l - (j - 1)];
+                    multiplierGy = kernelGy[k - (i - 1)][l - (j - 1)];
 
                     /* Setting the values of the
                     Gx colors. */
