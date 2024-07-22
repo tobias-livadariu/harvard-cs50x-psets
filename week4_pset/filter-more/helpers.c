@@ -30,7 +30,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     {
         /* Defining a container variable to make the
         switch easier. */
-        RGBTRIPLE tempContainer[i];
+        RGBTRIPLE tempContainer[i] = image[i];
         for (int j = 0; j < width; j++)
         {
             image[i][j].rgbtRed = tempContainer[i][(width - 1) - j].rgbtRed;
