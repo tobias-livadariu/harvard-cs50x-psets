@@ -105,6 +105,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtBlue = blurredAverageBlue;
         }
     }
+    free(imageCopy);
+    return;
 }
 
 // Detect edges
