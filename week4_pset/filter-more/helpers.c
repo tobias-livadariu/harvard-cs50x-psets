@@ -82,7 +82,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     numToAverage -= 1;
                     continue;
                 }
-                for (int l = j - 1; l <= j + 1; j++)
+                for (int l = j - 1; l <= j + 1; l++)
                 {
                     // checking if outside bounds
                     if (l < 0 || l >= width)
