@@ -197,8 +197,13 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     greenGy += multiplierGy * imageCopy[k * width + l].rgbtGreen;
                     blueGy += multiplierGy * imageCopy[k * width + l].rgbtBlue;
 
-                    /* Finding the overal color
+                    /* Finding the overall color
                     values. */
+                    red = sqrt(pow(redGx, 2) + pow(redGy, 2));
+                    green = sqrt(pow(greenGx, 2) + pow(greenGy, 2));
+                    blue = sqrt(pow(blueGx, 2) + pow(blueGy, 2));
+
+                    /* Checking */
                 }
             }
             blurredAverageRed /= numToAverage;
