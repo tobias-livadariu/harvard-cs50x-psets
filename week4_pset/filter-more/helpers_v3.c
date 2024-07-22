@@ -113,13 +113,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Defining the 2D kernels array
-    int kernelGx[3][3] = {{-1, 0, 1},
-                        {-2, 0, 2},
-                        {-1, 0, 1}};
-    int kernelGy[3][3] = {{-1, -2, -1},
-                        {0, 0, 0},
-                        {1, 2, 1}};
     // Making a temporary copy of the image
     RGBTRIPLE *imageCopy = malloc(sizeof(RGBTRIPLE) * (height * width));
     for (int i = 0; i < height; i++)
@@ -137,19 +130,66 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         {
             /* Determining if the pixel lies on
             the image's border. */
-            bool isOnTopEdge = false;
-            bool isOnBottomEdge = false;
-            bool isOnLeftEdge = false;
-            bool isOnRightEdge = false;
+            if (i == 0 || 1 == (height - 1))
+            {
+                // Assigning black border color values
+                image[i][j].rgbtRed = 0;
+                image[i][j].rgbtGreen = 0;
+                image[i][j].rgbtBlue = 0;
+                continue;
+            }
+            else if (j == 0 || j == (width - 1))
+            {
+                // Assigning black border color values
+                image[i][j].rgbtRed = 0;
+                image[i][j].rgbtGreen = 0;
+                image[i][j].rgbtBlue = 0;
+                continue;
+            }
+            // Defining the 2D kernels array
+            int kernelGx[3][3] = {{-1, 0, 1},
+                                {-2, 0, 2},
+                                {-1, 0, 1}};
+            int kernelGy[3][3] = {{-1, -2, -1},
+                                {0, 0, 0},
+                                {1, 2, 1}};
+            /* Adjusting the kernels for
+            top/down edge values. */
             if (i == 0)
             {
-                isOnTopEdge = true;
+                for (int count = 0; count < 3; count++)
+                {
+                    kernelGx[0][count] = 0;
+                    kernelGy[0][count] = 0;
+                }
             }
-            else if (1 == (height - 1))
+            else if (i == (height - 1))
             {
-                isOnBottomEdge = true;
+                for (int count = 0; count < 3; count++)
+                {
+                    kernelGx[2][count] = 0;
+                    kernelGy[2][count] = 0;
+                }
             }
-            else if ()
+
+            /* Adjusting the kernels for
+            left/right edge values. */
+            if (j == 0)
+            {
+                for (int count = 0; count < 3; count++)
+                {
+                    kernelGx[count][0] = 0;
+                    kernelGy[count][0] = 0;
+                }
+            }
+            else if (i == (height - 1))
+            {
+                for (int count = 0; count < 3; count++)
+                {
+                    kernelGx[count][2] = 0;
+                    kernelGy[count][2] = 0;
+                }
+            }
 
             /* Defining variables to hold the
             channel values. */
