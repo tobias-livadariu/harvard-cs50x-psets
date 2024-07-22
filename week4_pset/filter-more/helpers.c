@@ -73,13 +73,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             int blurredAverageBlue = 0;
             /* Defining a variable to hold the
             number of values to average. */
-            int numToAverage = 9;
+            int numToAverage = 0;
             for (int k = i - 1; k <= i + 1; k++)
             {
                 // checking if outside bounds
                 if (k < 0 || k >= height)
                 {
-                    numToAverage -= 1;
                     continue;
                 }
                 for (int l = j - 1; l <= j + 1; l++)
@@ -87,12 +86,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     // checking if outside bounds
                     if (l < 0 || l >= width)
                     {
-                        numToAverage -= 1;
                         continue;
                     }
                     blurredAverageRed += imageCopy[k * width + l].rgbtRed;
                     blurredAverageGreen += imageCopy[k * width + l].rgbtGreen;
                     blurredAverageBlue += imageCopy[k * width + l].rgbtBlue;
+                    numToAverage++;
                 }
             }
             blurredAverageRed /= numToAverage;
@@ -112,5 +111,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
+    
     return;
 }
