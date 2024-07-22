@@ -90,9 +90,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                         numToAverage -= 1;
                         continue;
                     }
-                    blurredAverageRed += imageCopy[i * width + j].rgbtRed;
-                    blurredAverageGreen += imageCopy[i * width + j].rgbtGreen;
-                    blurredAverageBlue += imageCopy[i * width + j].rgbtBlue;
+                    blurredAverageRed += imageCopy[k * width + l].rgbtRed;
+                    blurredAverageGreen += imageCopy[k * width + l].rgbtGreen;
+                    blurredAverageBlue += imageCopy[k * width + l].rgbtBlue;
                 }
             }
             blurredAverageRed /= numToAverage;
