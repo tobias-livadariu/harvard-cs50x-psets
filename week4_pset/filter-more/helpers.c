@@ -153,10 +153,42 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             int kernelGy[3][3] = {{-1, -2, -1},
                                 {0, 0, 0},
                                 {1, 2, 1}};
+            /* Adjusting the kernels for
+            top/down edge values. */
             if (i == 0)
             {
                 for (int count = 0; count++; count < 3)
-                kerne
+                {
+                    kernelGx[0][count] = 0;
+                    kernelGy[0][count] = 0;
+                }
+            }
+            else if (i == (height - 1))
+            {
+                for (int count = 0; count++; count < 3)
+                {
+                    kernelGx[2][count] = 0;
+                    kernelGy[2][count] = 0;
+                }
+            }
+
+            /* Adjusting the kernels for
+            left/right edge values. */
+            if (j == 0)
+            {
+                for (int count = 0; count++; count < 3)
+                {
+                    kernelGx[0][count] = 0;
+                    kernelGy[0][count] = 0;
+                }
+            }
+            else if (i == (height - 1))
+            {
+                for (int count = 0; count++; count < 3)
+                {
+                    kernelGx[2][count] = 0;
+                    kernelGy[2][count] = 0;
+                }
             }
 
             /* Defining variables to hold the
