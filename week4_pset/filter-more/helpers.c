@@ -70,9 +70,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         {
             /* Defining variables to hold the
             blurred values. */
-            int blurredAverageRed = 0;
-            int blurredAverageGreen = 0;
-            int blurredAverageBlue = 0;
+            float blurredAverageRed = 0;
+            float blurredAverageGreen = 0;
+            float blurredAverageBlue = 0;
             /* Defining a variable to hold the
             number of values to average. */
             int numToAverage = 0;
@@ -101,9 +101,13 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             blurredAverageBlue /= numToAverage;
 
             // Assigning blurred color values
-            image[i][j].rgbtRed = blurredAverageRed;
-            image[i][j].rgbtGreen = blurredAverageGreen;
-            image[i][j].rgbtBlue = blurredAverageBlue;
+            int intBlurredAverageRed = (int) round(blurredAverageRed);
+            int intBlurredAverageGreen = (int) round(blurredAverageGreen);
+            int intBlurredAverageBlue = (int) round(blurredAverageBlue);
+
+            image[i][j].rgbtRed = intBlurredAverageRed;
+            image[i][j].rgbtGreen = intBlurredAverageGreen;
+            image[i][j].rgbtBlue = intBlurredAverageBlue;
         }
     }
     free(imageCopy);
