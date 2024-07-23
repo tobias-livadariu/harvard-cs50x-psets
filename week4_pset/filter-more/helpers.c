@@ -145,13 +145,16 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             int multiplierGy = 0;
             int redGx = 0;
             int redGy = 0;
-            int red = 0;
+            float red = 0.0;
+            int intRed = 0;
             int greenGx = 0;
             int greenGy = 0;
-            int green = 0;
+            float green = 0.0;
+            int intGreen = 0;
             int blueGx = 0;
             int blueGy = 0;
-            int blue = 0;
+            float blue = 0.0;
+            int intBlue = 0;
             for (int k = i - 1; k <= i + 1; k++)
             {
                 for (int l = j - 1; l <= j + 1; l++)
@@ -183,30 +186,35 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 
                     /* Finding the overall color
                     values. */
-                    red = (int) sqrt(pow(redGx, 2) + pow(redGy, 2));
-                    green = (int) sqrt(pow(greenGx, 2) + pow(greenGy, 2));
-                    blue = (int) sqrt(pow(blueGx, 2) + pow(blueGy, 2));
+                    red = sqrt(pow(redGx, 2) + pow(redGy, 2));
+                    green = sqrt(pow(greenGx, 2) + pow(greenGy, 2));
+                    blue = sqrt(pow(blueGx, 2) + pow(blueGy, 2));
+
+                    /* Rounding the values. */
+                    intRed = (int) round(red);
+                    intGreen = (int) round(green);
+                    intBlue = (int) round(blue);
 
                     /* Checking to see if red, green, and blue
                     are all within the acceptable value range*/
-                    if (red > 255)
+                    if (intRed > 255)
                     {
-                        red = 255;
+                        intRed = 255;
                     }
-                    if (green > 255)
+                    if (intGreen > 255)
                     {
-                        green = 255;
+                        intGreen = 255;
                     }
-                    if (blue > 255)
+                    if (intBlue > 255)
                     {
-                        blue = 255;
+                        intBlue = 255;
                     }
                 }
             }
             // Assigning edged color values
-            image[i][j].rgbtRed = red;
-            image[i][j].rgbtGreen = green;
-            image[i][j].rgbtBlue = blue;
+            image[i][j].rgbtRed = intRed;
+            image[i][j].rgbtGreen = intGreen;
+            image[i][j].rgbtBlue = intBlue;
         }
     }
     free(imageCopy);
