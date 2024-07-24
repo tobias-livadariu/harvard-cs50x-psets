@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 // Defining a byte datatype
-typedef uint
+typedef uint8_t BYTE;
 
 int main(int argc, char *argv[])
 {
@@ -34,6 +34,10 @@ int main(int argc, char *argv[])
     all the information in the forensic image,
     with an integer buffer to keep track of
     the information being read. */
-    int *intBufferArray = malloc(512 * sizeof());
+    int *intBufferArray = malloc(512 * sizeof(BYTE));
+    while (readf(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
+    {
+        
+    }
 
 }
