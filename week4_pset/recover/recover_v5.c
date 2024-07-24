@@ -6,7 +6,7 @@
 typedef uint8_t BYTE;
 
 // Function prototype
-void recursiveCopying(void)
+bool recursiveCopying(void)
 bool isRecursing = true;
 
 int main(int argc, char *argv[])
@@ -111,7 +111,6 @@ int main(int argc, char *argv[])
 
             /* Writing in the current JPG until a new one is found. */
             isRecursing = recursiveCopying();
-
             }
         }
     }
@@ -167,8 +166,12 @@ bool recursiveCopying(void)
         // writing to the current JPG
         fwrite(intBufferArray, sizeof(BYTE), 512, curImage); // use recursion here. (define a function)
         // reading more information to the buffer
-        fread(intBufferArray, sizeof(BYTE), 512, forensicImage);
+        if (fread(intBufferArray, sizeof(BYTE), 512, forensicImage) == 0)
+        {
+            return false;
+        }
         // using recursion
+        recursiveCopying();
     }
     else if (isRecursing = false)
     {
