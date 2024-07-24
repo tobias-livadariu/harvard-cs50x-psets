@@ -88,7 +88,8 @@ int main(int argc, char *argv[])
         }
         else if (curReadingJPG == true)
         {
-            /* Changing the */
+            /* Setting the name of the
+            JPG file currently being written in. */
             sprintf(curJPGName, "%03i.jpg", numJPGSCopied);
 
             /* Incrementing the
