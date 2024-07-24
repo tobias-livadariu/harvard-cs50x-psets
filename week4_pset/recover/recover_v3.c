@@ -38,7 +38,10 @@ int main(int argc, char *argv[])
     /* Allocating memory for the JPG names. */
     char *curJPGName = malloc(7 * sizeof(char));
 
-    /* Allocating memory */
+    /* Allocating memory for an overload
+    buffer used when a JPG is initially found. */
+    int *intOverloadBufferArray = malloc(512 * sizeof(BYTE));
+    bool isOverloaded = false;
 
     /* Using a while loop to run through
     all the information in the forensic image,
@@ -71,20 +74,32 @@ int main(int argc, char *argv[])
             /* If the loop did not continue to the
             next iteration, that means a JPG has been
             discovered. */
+            for (int i = 0; i < 512; i++)
+            {
+                intOverloadBufferArray[i] = intBufferArray[i];
+            }
+            curReadingJPG = true;
+
+            // TODO
+            // TODO
+            // TODO
+            // COPY THE BELOW TEXT TO THE "TRUE" PART OF THE WHILE LOOP
+
+        }
+        else if (curReadingJPG == true)
+        {
+            /* Changing the */
             sprintf(curJPGName, "%03i.jpg", numJPGSCopied);
+
             /* Incrementing the
             number of JPGS copied. */
             numJPGSCopied++;
+
             /* Opening a file
             to store the next
             JPG being copied. */
             FILE *curImage = fopen(curJPGName, "w");
-            /* Writing the information
-            in the JPG to the file opened. */
-            fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
-        }
-        if (curReadingJPG == true)
-        {
+
             /* If the buffer does not begin with the specified
             header, continue to the next 512 byte block
             and mark that a JPG is not currently being read. */
