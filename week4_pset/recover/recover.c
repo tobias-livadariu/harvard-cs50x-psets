@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
+
+// Defining a byte datatype
+typedef uint
 
 int main(int argc, char *argv[])
 {
@@ -27,6 +31,9 @@ int main(int argc, char *argv[])
     int numJPGSCopied = 0;
 
     /* Using a while loop to run through
-    */
+    all the information in the forensic image,
+    with an integer buffer to keep track of
+    the information being read. */
+    int *intBufferArray = malloc(512 * sizeof());
 
 }

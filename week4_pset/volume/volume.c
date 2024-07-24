@@ -7,7 +7,7 @@
 // Number of bytes in .wav header
 const int HEADER_SIZE = 44;
 
-// Renaming the uint8_t datatype to BYTE
+// Renaming the int8_t datatype to BYTE
 typedef int8_t BYTE;
 typedef int16_t DOUBLE_BYTE;
 
