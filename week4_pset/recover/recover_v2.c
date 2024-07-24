@@ -5,6 +5,9 @@
 // Defining a byte datatype
 typedef uint8_t BYTE;
 
+// Function prototype
+void lookingForJPG(void);
+
 int main(int argc, char *argv[])
 {
     /* Checking if the user inputted
@@ -35,6 +38,8 @@ int main(int argc, char *argv[])
     with an integer buffer to keep track of
     the information being read. */
     int *intBufferArray = malloc(512 * sizeof(BYTE)); //TODO: free this memory!
+    /* Keeping track of if a JPG is currently being read. */
+    bool curReadingJPG = false;
     while (readf(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
     {
         /* If the buffer does not begin with the specified
@@ -70,11 +75,15 @@ int main(int argc, char *argv[])
         FILE *curImage = fopen(curJPGName, "w");
         /* Writing the information
         in the JPG to the file opened. */
-        bool isNewJPGFound = false;
         while (isNewJPGFound = false)
         {
-            
+
         }
     }
+
+}
+
+void lookingForJPG(void)
+{
 
 }
