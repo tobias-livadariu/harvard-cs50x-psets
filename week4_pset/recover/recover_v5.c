@@ -124,6 +124,10 @@ int main(int argc, char *argv[])
     free(intBufferArray);
 
     /* Freeing the memory used for
+    intOverloadBufferArray. */
+    free(intOverloadBufferArray);
+
+    /* Freeing the memory used for
     curJPGName. */
     free(curJPGName);
 
@@ -134,6 +138,8 @@ int main(int argc, char *argv[])
         printf("Error closing forensic image file.\n");
         return 1;
     }
+
+
 
     /* Warning the user if no
     files were able to be recovered. */
