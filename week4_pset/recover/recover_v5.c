@@ -111,6 +111,10 @@ int main(int argc, char *argv[])
 
             /* Writing in the current JPG until a new one is found. */
             isRecursing = recursiveCopying();
+            if (isRecursing == false)
+            {
+                continue;
+            }
             }
         }
     }
