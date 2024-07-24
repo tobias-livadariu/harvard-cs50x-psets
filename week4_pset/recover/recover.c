@@ -21,7 +21,12 @@ int main(int argc, char *argv[])
         Check the inputted forensic image address for errors.\n");
         return 1;
     }
-    /*  */
-    int numFilesCopied = 0;
+    /* Initializing an integer to keep
+    track of the number of files copied
+    to assist with naming the recovered JPGS. */
+    int numJPGSCopied = 0;
+
+    /* Using a while loop to run through
+    */
 
 }
