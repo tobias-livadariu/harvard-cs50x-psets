@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     int *intBufferArray = malloc(512 * sizeof(BYTE)); //TODO: free this memory!
     while (readf(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
     {
-
+        if (intBufferArray[0] ==
     }
 
 }
