@@ -64,7 +64,13 @@ int main(int argc, char *argv[])
         /* Incrementing the
         number of JPGS copied. */
         numJPGSCopied++;
-        
+        /* Opening a file
+        to store the next
+        JPG being copied. */
+        FILE *curImage = fopen(curJPGName, "w");
+        /* Writing the information
+        in the JPG to the file opened. */
+        fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
     }
 
 }
