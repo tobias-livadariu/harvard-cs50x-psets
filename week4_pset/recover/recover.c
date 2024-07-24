@@ -70,7 +70,27 @@ int main(int argc, char *argv[])
         FILE *curImage = fopen(curJPGName, "w");
         /* Writing the information
         in the JPG to the file opened. */
-        fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
+        bool isNewJPGFound = false;
+        while (isNewJPGFound = false)
+        {
+            fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
+                    if (intBufferArray[0] != 0xff)
+                {
+                    continue;
+                }
+                else if (intBufferArray[1] != 0xd8)
+                {
+                    continue;
+                }
+                else if (intBufferArray[2] != 0xff)
+                {
+                    continue;
+                }
+                else if ((intBufferArray[3] & 0xf0) != 0xe0)
+                {
+                    continue;
+                }
+        }
     }
 
 }
