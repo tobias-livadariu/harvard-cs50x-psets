@@ -113,7 +113,8 @@ int main(int argc, char *argv[])
             isRecursing = recursiveCopying();
             if (isRecursing == false)
             {
-                continue;
+                fclose(curImage);
+                isRecursing = true;
             }
             }
         }
