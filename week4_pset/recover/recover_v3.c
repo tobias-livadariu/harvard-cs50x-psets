@@ -94,12 +94,15 @@ int main(int argc, char *argv[])
             JPG being copied. */
             FILE *curImage = fopen(curJPGName, "w");
 
-            /* Writing the overload buffer */
+            /* Writing the overload buffer into the
+            current opened JPG image. */
             fwrite(intOverloadBufferArray, sizeof(BYTE), 512, curImage);
 
+            /* Writing in the current JPG until a new one is found. */
             while (curReadingJPG == true)
             {
-
+                fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
+                
             }
 
             /* If the buffer does not begin with the specified
