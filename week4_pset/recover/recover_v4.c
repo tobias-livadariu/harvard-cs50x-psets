@@ -128,7 +128,11 @@ int main(int argc, char *argv[])
 
             if (curReadingJPG = true)
             {
+                // writing to the current JPG
                 fwrite(intBufferArray, sizeof(BYTE), 512, curImage); // use recursion here. (define a function)
+                // reading more information to the buffer
+                fread(intBufferArray, sizeof(BYTE), 512, forensicImage);
+                // use recursion here (define a function)
             }
             else if (curReadingJPG = false)
             {
