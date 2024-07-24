@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     /* Opening the forensic image for reading,
     and warning the user if it was unable to
     be opened.*/
-    FILE *forensicImage = openf(argv[1], "r");
+    FILE *forensicImage = openf(argv[1], "r"); //TODO: close this file!
     if (forensicImage == NULL)
     {
         printf("Unable to open forensic image for reading!\n
@@ -34,10 +34,10 @@ int main(int argc, char *argv[])
     all the information in the forensic image,
     with an integer buffer to keep track of
     the information being read. */
-    int *intBufferArray = malloc(512 * sizeof(BYTE));
+    int *intBufferArray = malloc(512 * sizeof(BYTE)); //TODO: free this memory!
     while (readf(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
     {
-        
+
     }
 
 }
