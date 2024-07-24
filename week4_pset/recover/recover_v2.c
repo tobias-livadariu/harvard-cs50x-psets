@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
         --> note that exactly one command-line argument must be used\n");
         return 1;
     }
+
     /* Opening the forensic image for reading,
     and warning the user if it was unable to
     be opened.*/
@@ -25,6 +26,7 @@ int main(int argc, char *argv[])
         Check the inputted forensic image address for errors.\n");
         return 1;
     }
+
     /* Initializing an integer to keep
     track of the number of files copied
     to assist with naming the recovered JPGS. */
@@ -34,11 +36,14 @@ int main(int argc, char *argv[])
     all the information in the forensic image,
     with an integer buffer to keep track of
     the information being read. */
-    int *intBufferArray = malloc(512 * sizeof(BYTE)); //TODO: free this memory!
+    int *intBufferArray = malloc(512 * sizeof(BYTE));
+
     /* Keeping track of if a JPG is currently being read. */
     bool curReadingJPG = false;
+
     /* Allocating memory for the JPG names. */
-    char *curJPGName = malloc(7 * sizeof(char)); //free curJPGName
+    char *curJPGName = malloc(7 * sizeof(char));
+
     while (readf(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
     {
         if (curReadingJPG == false)
@@ -111,6 +116,14 @@ int main(int argc, char *argv[])
             fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
         }
     }
+
+    /* Freeing the memory used for
+    intBufferArray. */
+    free(intBufferArray);
+
+    /* Freeing the memory used for
+    curJPGName. */
+    free(curJPGName);
 
     /* Warning the user if no
     files were able to be recovered. */
