@@ -59,7 +59,8 @@ int main(int argc, char *argv[])
         /* If the loop did not continue to the
         next iteration, that means a JPG has been
         discovered. */
-        
+        char *curJPGName = malloc(7 * sizeof(char)); //free curJPGName
+        sprintf(curJPGName)
     }
 
 }
