@@ -44,45 +44,42 @@ int main(int argc, char *argv[])
     {
         if (curReadingJPG == false)
         {
-            
-        }
-        /* If the buffer does not begin with the specified
-        header, continue to the next 512 byte block. */
-        if (intBufferArray[0] != 0xff)
-        {
-            continue;
-        }
-        else if (intBufferArray[1] != 0xd8)
-        {
-            continue;
-        }
-        else if (intBufferArray[2] != 0xff)
-        {
-            continue;
-        }
-        else if ((intBufferArray[3] & 0xf0) != 0xe0)
-        {
-            continue;
+            /* If the buffer does not begin with the specified
+            header, continue to the next 512 byte block. */
+            if (intBufferArray[0] != 0xff)
+            {
+                continue;
+            }
+            else if (intBufferArray[1] != 0xd8)
+            {
+                continue;
+            }
+            else if (intBufferArray[2] != 0xff)
+            {
+                continue;
+            }
+            else if ((intBufferArray[3] & 0xf0) != 0xe0)
+            {
+                continue;
+            }
+
+            /* If the loop did not continue to the
+            next iteration, that means a JPG has been
+            discovered. */
+            char *curJPGName = malloc(7 * sizeof(char)); //free curJPGName
+            sprintf(curJPGName, "%03i.jpg", numJPGSCopied);
+            /* Incrementing the
+            number of JPGS copied. */
+            numJPGSCopied++;
+            /* Opening a file
+            to store the next
+            JPG being copied. */
+            FILE *curImage = fopen(curJPGName, "w");
+            /* Writing the information
+            in the JPG to the file opened. */
+            fwrite(intBufferArray, sizeof(BYTE), 512, );
         }
 
-        /* If the loop did not continue to the
-        next iteration, that means a JPG has been
-        discovered. */
-        char *curJPGName = malloc(7 * sizeof(char)); //free curJPGName
-        sprintf(curJPGName, "%03i.jpg", numJPGSCopied);
-        /* Incrementing the
-        number of JPGS copied. */
-        numJPGSCopied++;
-        /* Opening a file
-        to store the next
-        JPG being copied. */
-        FILE *curImage = fopen(curJPGName, "w");
-        /* Writing the information
-        in the JPG to the file opened. */
-        while (isNewJPGFound = false)
-        {
-
-        }
     }
 
 }
