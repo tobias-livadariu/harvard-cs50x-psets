@@ -1,4 +1,4 @@
-#include <stdio.h>
+\#include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 
@@ -140,8 +140,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-
-
     /* Warning the user if no
     files were able to be recovered. */
     if (numJPGSCopied == 0)
@@ -186,6 +184,6 @@ bool recursiveCopying(void)
     }
     else if (isRecursing = false)
     {
-        return true;
+        return false;
     }
 }
