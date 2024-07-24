@@ -110,23 +110,19 @@ int main(int argc, char *argv[])
             and mark that a JPG is not currently being read. */
             if (intBufferArray[0] != 0xff)
             {
-                curReadingJPG = false;
-                continue;
+                break;
             }
             else if (intBufferArray[1] != 0xd8)
             {
-                curReadingJPG = false
-                continue;
+                break;
             }
             else if (intBufferArray[2] != 0xff)
             {
-                curReadingJPG = false
-                continue;
+                break;
             }
             else if ((intBufferArray[3] & 0xf0) != 0xe0)
             {
-                curReadingJPG = false
-                continue;
+                break;
             }
 
             /* If the above
