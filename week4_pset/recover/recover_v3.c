@@ -103,7 +103,6 @@ int main(int argc, char *argv[])
             {
                 fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
 
-                if (fread()
             }
 
             /* If the buffer does not begin with the specified
