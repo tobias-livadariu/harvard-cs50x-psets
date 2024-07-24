@@ -60,7 +60,11 @@ int main(int argc, char *argv[])
         next iteration, that means a JPG has been
         discovered. */
         char *curJPGName = malloc(7 * sizeof(char)); //free curJPGName
-        sprintf(curJPGName)
+        sprintf(curJPGName, "%03i.jpg", numJPGSCopied);
+        /* Incrementing the
+        number of JPGS copied. */
+        numJPGSCopied++;
+        
     }
 
 }
