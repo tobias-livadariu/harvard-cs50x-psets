@@ -37,7 +37,29 @@ int main(int argc, char *argv[])
     int *intBufferArray = malloc(512 * sizeof(BYTE)); //TODO: free this memory!
     while (readf(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
     {
-        if (intBufferArray[0] ==
+        /* If the buffer does not begin with the specified
+        header, continue to the next 512 byte block. */
+        if (intBufferArray[0] != 0xff)
+        {
+            continue;
+        }
+        else if (intBufferArray[1] != 0xd8)
+        {
+            continue;
+        }
+        else if (intBufferArray[2] != 0xff)
+        {
+            continue;
+        }
+        else if ((intBufferArray[3] & 0xf0) != 0xe0)
+        {
+            continue;
+        }
+
+        /* If the loop did not continue to the
+        next iteration, that means a JPG has been
+        discovered. */
+        
     }
 
 }
