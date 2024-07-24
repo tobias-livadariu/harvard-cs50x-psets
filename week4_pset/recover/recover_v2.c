@@ -114,6 +114,8 @@ int main(int argc, char *argv[])
             being copied. */
             FILE *curImage = fopen(curJPGName, "w");
             fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
+
+            /* Closing the JPG file */
         }
     }
 
@@ -124,6 +126,14 @@ int main(int argc, char *argv[])
     /* Freeing the memory used for
     curJPGName. */
     free(curJPGName);
+
+    /* Closing the main forensic image
+    file. */
+    if (fclose(forensicImage) != 0)
+    {
+        printf("Error closing forensic image file.\n");
+        return 1;
+    }
 
     /* Warning the user if no
     files were able to be recovered. */
