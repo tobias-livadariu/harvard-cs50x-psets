@@ -42,6 +42,10 @@ int main(int argc, char *argv[])
     bool curReadingJPG = false;
     while (readf(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
     {
+        if (curReadingJPG == false)
+        {
+            
+        }
         /* If the buffer does not begin with the specified
         header, continue to the next 512 byte block. */
         if (intBufferArray[0] != 0xff)
