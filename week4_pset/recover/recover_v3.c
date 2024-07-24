@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
     /* Allocating memory for an overload
     buffer used when a JPG is initially found. */
     int *intOverloadBufferArray = malloc(512 * sizeof(BYTE));
-    bool isOverloaded = false;
 
     /* Using a while loop to run through
     all the information in the forensic image,
@@ -79,12 +78,6 @@ int main(int argc, char *argv[])
                 intOverloadBufferArray[i] = intBufferArray[i];
             }
             curReadingJPG = true;
-
-            // TODO
-            // TODO
-            // TODO
-            // COPY THE BELOW TEXT TO THE "TRUE" PART OF THE WHILE LOOP
-
         }
         else if (curReadingJPG == true)
         {
@@ -100,6 +93,14 @@ int main(int argc, char *argv[])
             to store the next
             JPG being copied. */
             FILE *curImage = fopen(curJPGName, "w");
+
+            /* Writing the overload buffer */
+            fwrite(intOverloadBufferArray, sizeof(BYTE), 512, curImage);
+
+            while (curReadingJPG == true)
+            {
+
+            }
 
             /* If the buffer does not begin with the specified
             header, continue to the next 512 byte block
