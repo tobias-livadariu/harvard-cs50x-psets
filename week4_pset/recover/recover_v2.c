@@ -5,9 +5,6 @@
 // Defining a byte datatype
 typedef uint8_t BYTE;
 
-// Function prototype
-void lookingForJPG(void);
-
 int main(int argc, char *argv[])
 {
     /* Checking if the user inputted
@@ -40,6 +37,8 @@ int main(int argc, char *argv[])
     int *intBufferArray = malloc(512 * sizeof(BYTE)); //TODO: free this memory!
     /* Keeping track of if a JPG is currently being read. */
     bool curReadingJPG = false;
+    /* Allocating memory for the JPG names. */
+    char *curJPGName = malloc(7 * sizeof(char)); //free curJPGName
     while (readf(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
     {
         if (curReadingJPG == false)
@@ -66,7 +65,6 @@ int main(int argc, char *argv[])
             /* If the loop did not continue to the
             next iteration, that means a JPG has been
             discovered. */
-            char *curJPGName = malloc(7 * sizeof(char)); //free curJPGName
             sprintf(curJPGName, "%03i.jpg", numJPGSCopied);
             /* Incrementing the
             number of JPGS copied. */
@@ -77,14 +75,47 @@ int main(int argc, char *argv[])
             FILE *curImage = fopen(curJPGName, "w");
             /* Writing the information
             in the JPG to the file opened. */
-            fwrite(intBufferArray, sizeof(BYTE), 512, );
+            fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
         }
+        if (curReadingJPG == true)
+        {
+            /* If the buffer does not begin with the specified
+            header, continue to the next 512 byte block
+            and mark that a JPG is not currently being read. */
+            if (intBufferArray[0] != 0xff)
+            {
+                curReadingJPG = false;
+                continue;
+            }
+            else if (intBufferArray[1] != 0xd8)
+            {
+                curReadingJPG = false
+                continue;
+            }
+            else if (intBufferArray[2] != 0xff)
+            {
+                curReadingJPG = false
+                continue;
+            }
+            else if ((intBufferArray[3] & 0xf0) != 0xe0)
+            {
+                curReadingJPG = false
+                continue;
+            }
 
+            /* If the above
+            conditional block was
+            not triggered, the JPG must continue
+            being copied. */
+            FILE *curImage = fopen(curJPGName, "w");
+            fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
+        }
     }
 
-}
-
-void lookingForJPG(void)
-{
-
+    /* Warning the user if no
+    files were able to be recovered. */
+    if (numJPGSCopied == 0)
+    {
+        printf("No JPGS were able to be recovered from the forensic image.\n");
+    }
 }
