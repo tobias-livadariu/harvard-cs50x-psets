@@ -106,29 +106,35 @@ int main(int argc, char *argv[])
             }
 
             /* Writing in the current JPG until a new one is found. */
-            while (curReadingJPG == true)
+            /* If the buffer does not begin with the specified
+            header, continue to the next 512 byte block
+            and mark that a JPG is not currently being read. */
+            if (intBufferArray[0] != 0xff)
             {
-                /* If the buffer does not begin with the specified
-                header, continue to the next 512 byte block
-                and mark that a JPG is not currently being read. */
-                if (intBufferArray[0] != 0xff)
-                {
-                    curReadingJPG = false;
-                }
-                else if (intBufferArray[1] != 0xd8)
-                {
-                    curReadingJPG = false;
-                }
-                else if (intBufferArray[2] != 0xff)
-                {
-                    curReadingJPG = false;
-                }
-                else if ((intBufferArray[3] & 0xf0) != 0xe0)
-                {
-                    break;
-                }
+                curReadingJPG = false;
+            }
+            else if (intBufferArray[1] != 0xd8)
+            {
+                curReadingJPG = false;
+            }
+            else if (intBufferArray[2] != 0xff)
+            {
+                curReadingJPG = false;
+            }
+            else if ((intBufferArray[3] & 0xf0) != 0xe0)
+            {
+                curReadingJPG = false;
+            }
 
-                fwrite(intBufferArray, sizeof(BYTE), 512, curImage);
+            if (curReadingJPG = true)
+            {
+                fwrite(intBufferArray, sizeof(BYTE), 512, curImage); // use recursion here. (define a function)
+            }
+            else if (curReadingJPG = false)
+            {
+                curReadingJPG = true;
+            }
+
             }
         }
     }
