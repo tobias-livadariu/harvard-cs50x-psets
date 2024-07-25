@@ -1,13 +1,14 @@
 #include <cs50.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 // Defining a byte datatype
 typedef uint8_t BYTE;
 
 // Function prototype
-bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BYTE *overloadBufferArray, bool *isOverloaded);
+bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage,
+                      BYTE *overloadBufferArray, bool *isOverloaded);
 
 int main(int argc, char *argv[])
 {
@@ -58,8 +59,8 @@ int main(int argc, char *argv[])
         {
             /* If the buffer does not begin with the specified
             header, continue to the next 512 byte block. */
-            if (bufferArray[0] != 0xff || bufferArray[1] != 0xd8 ||
-            bufferArray[2] != 0xff || (bufferArray[3] & 0xf0) != 0xe0)
+            if (bufferArray[0] != 0xff || bufferArray[1] != 0xd8 || bufferArray[2] != 0xff ||
+                (bufferArray[3] & 0xf0) != 0xe0)
             {
                 continue;
             }
@@ -95,7 +96,8 @@ int main(int argc, char *argv[])
             }
 
             /* Writing in the current JPG until a new one is found. */
-            if (recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, &isOverloaded) == false)
+            if (recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray,
+                                 &isOverloaded) == false)
             {
                 fclose(curImage);
                 /* Incrementing the
@@ -133,11 +135,12 @@ int main(int argc, char *argv[])
     }
 }
 
-bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BYTE *overloadBufferArray, bool *isOverloaded)
+bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage,
+                      BYTE *overloadBufferArray, bool *isOverloaded)
 {
     /* Checking if a new JPG has been found. */
-    if (bufferArray[0] != 0xff || bufferArray[1] != 0xd8 ||
-    bufferArray[2] != 0xff || (bufferArray[3] & 0xf0) != 0xe0)
+    if (bufferArray[0] != 0xff || bufferArray[1] != 0xd8 || bufferArray[2] != 0xff ||
+        (bufferArray[3] & 0xf0) != 0xe0)
     {
         // writing to the current JPG
         fwrite(bufferArray, sizeof(BYTE), 512, curImage);
@@ -149,7 +152,8 @@ bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BY
         }
 
         // using recursion
-        return recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, isOverloaded);
+        return recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray,
+                                isOverloaded);
     }
     else
     {
