@@ -106,7 +106,6 @@ int main(int argc, char *argv[])
                 fclose(curImage);
                 isRecursing = true;
             }
-            }
         }
     }
 
