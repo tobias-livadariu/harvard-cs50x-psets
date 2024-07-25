@@ -136,9 +136,7 @@ int main(int argc, char *argv[])
 
 bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BYTE *overloadBufferArray, bool isOverloaded)
 {
-    /* If the buffer does not begin with the specified
-    header, continue to the next 512 byte block
-    and mark that a JPG is not currently being read. */
+    /* Checking if a new JPG has been found. */
     if (bufferArray[0] != 0xff || bufferArray[1] != 0xd8 ||
     bufferArray[2] != 0xff || (bufferArray[3] & 0xf0) != 0xe0)
     {
