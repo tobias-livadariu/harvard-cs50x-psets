@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
             }
 
             /* Writing in the current JPG until a new one is found. */
-            isRecursing = recursiveCopying();
+            isRecursing = recursiveCopying(intBufferArray);
             if (isRecursing == false)
             {
                 fclose(curImage);
@@ -149,7 +149,7 @@ int main(int argc, char *argv[])
     }
 }
 
-bool recursiveCopying(void)
+bool recursiveCopying(int *intBufferArray)
 {
     /* If the buffer does not begin with the specified
     header, continue to the next 512 byte block
@@ -181,7 +181,7 @@ bool recursiveCopying(void)
             return false;
         }
         // using recursion
-        recursiveCopying();
+        recursiveCopying(intBufferArray);
     }
     else if (isRecursing = false)
     {
