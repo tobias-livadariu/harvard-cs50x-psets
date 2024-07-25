@@ -99,8 +99,7 @@ int main(int argc, char *argv[])
             }
 
             /* Writing in the current JPG until a new one is found. */
-            curReadingJPG = recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, isOverloaded);
-            if (curReadingJPG == false)
+            if (recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, isOverloaded) == false)
             {
                 fclose(curImage);
             }
