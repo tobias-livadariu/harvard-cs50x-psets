@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
             }
 
             /* Writing in the current JPG until a new one is found. */
-            return isRecursing = recursiveCopying(intBufferArray, curImage, forensicImage);
+            isRecursing = recursiveCopying(intBufferArray, curImage, forensicImage);
             if (isRecursing == false)
             {
                 fclose(curImage);
