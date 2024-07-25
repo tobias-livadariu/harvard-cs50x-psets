@@ -145,18 +145,20 @@ bool recursiveCopying(int *intBufferArray, FILE *curImage, FILE *forensicImage)
     if (intBufferArray[0] != 0xff || intBufferArray[1] != 0xd8 ||
     intBufferArray[2] != 0xff || (intBufferArray[3] & 0xf0) != 0xe0)
     {
-        return false;
+        // writing to the current JPG
+        fwrite(intBufferArray, sizeof(BYTE), 512, curImage); // use recursion here. (define a function)
+
+        // reading more information to the buffer
+        if (fread(intBufferArray, sizeof(BYTE), 512, forensicImage) == 0)
+        {
+            return false;
+        }
+
+        // using recursion
+        return recursiveCopying(intBufferArray, curImage, forensicImage);
     }
-
-    // writing to the current JPG
-    fwrite(intBufferArray, sizeof(BYTE), 512, curImage); // use recursion here. (define a function)
-
-    // reading more information to the buffer
-    if (fread(intBufferArray, sizeof(BYTE), 512, forensicImage) == 0)
+    else
     {
         return false;
     }
-
-    // using recursion
-    return recursiveCopying(intBufferArray, curImage, forensicImage);
 }
