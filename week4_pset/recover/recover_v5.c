@@ -158,5 +158,5 @@ bool recursiveCopying(int *intBufferArray, FILE *curImage, FILE *forensicImage)
     }
 
     // using recursion
-    recursiveCopying(intBufferArray, curImage, forensicImage);
+    return recursiveCopying(intBufferArray, curImage, forensicImage);
 }
