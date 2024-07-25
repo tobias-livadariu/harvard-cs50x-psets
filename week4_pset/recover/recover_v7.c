@@ -152,7 +152,7 @@ bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BY
         }
 
         // using recursion
-        return recursiveCopying(bufferArray, curImage, forensicImage);
+        return recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, isOverloaded);
     }
     else
     {
@@ -161,9 +161,9 @@ bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BY
         array. */
         for (int i = 0; i < 512; i++)
         {
-            overloadedBufferArray[i] = bufferArray[i];
-            isOverloaded = true;
+            overloadBufferArray[i] = bufferArray[i];
         }
+        isOverloaded = true;
         return false;
     }
 }
