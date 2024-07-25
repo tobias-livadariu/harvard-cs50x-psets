@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
             {
                 continue;
             }
-
+            printf("Passed through buffering.\n");
             /* If the loop did not continue to the
             next iteration, that means a JPG has been
             discovered. */
