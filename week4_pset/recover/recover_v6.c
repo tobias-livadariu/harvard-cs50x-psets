@@ -1,4 +1,4 @@
-#include <cs50.h> // NOTE THAT THIS IS A MODIFIED VERSION AND IT MIGHT CONTAIN LOGICAL ERRORS
+#include <cs50.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
