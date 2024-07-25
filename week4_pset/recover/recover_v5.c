@@ -7,7 +7,7 @@
 typedef uint8_t BYTE;
 
 // Function prototype
-bool recursiveCopying(void);
+bool recursiveCopying(int *intBufferArray);
 bool isRecursing = true;
 
 int main(int argc, char *argv[])
