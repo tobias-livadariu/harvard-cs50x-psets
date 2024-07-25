@@ -146,7 +146,7 @@ bool recursiveCopying(int *intBufferArray, FILE *curImage, FILE *forensicImage)
     if (intBufferArray[0] != 0xff || intBufferArray[1] != 0xd8 ||
     intBufferArray[2] != 0xff || (intBufferArray[3] & 0xf0) != 0xe0)
     {
-        continue;
+        isRecursing = false;
     }
 
     if (isRecursing == true)
