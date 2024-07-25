@@ -171,7 +171,7 @@ bool recursiveCopying(int *intBufferArray, FILE *curImage, FILE *forensicImage)
         isRecursing = false;
     }
 
-    if (isRecursing = true)
+    if (isRecursing == true)
     {
         // writing to the current JPG
         fwrite(intBufferArray, sizeof(BYTE), 512, curImage); // use recursion here. (define a function)
@@ -183,7 +183,7 @@ bool recursiveCopying(int *intBufferArray, FILE *curImage, FILE *forensicImage)
         // using recursion
         recursiveCopying(intBufferArray, curImage, forensicImage);
     }
-    else if (isRecursing = false)
+    else if (isRecursing == false)
     {
         return false;
     }
