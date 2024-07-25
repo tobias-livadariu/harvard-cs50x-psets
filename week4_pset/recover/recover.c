@@ -85,10 +85,6 @@ int main(int argc, char *argv[])
             JPG being copied. */
             FILE *curImage = fopen(curJPGName, "w");
 
-            /* Incrementing the
-            number of JPGS copied. */
-            numJPGSCopied++;
-
             /* Writing the overload buffer into the
             current opened JPG image if an overload
             buffer exists. */
@@ -102,6 +98,10 @@ int main(int argc, char *argv[])
             if (recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, isOverloaded) == false)
             {
                 fclose(curImage);
+
+                /* Incrementing the
+                number of JPGS copied. */
+                numJPGSCopied++;
             }
         }
     }
