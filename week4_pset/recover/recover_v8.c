@@ -160,8 +160,6 @@ bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BY
         {
             overloadBufferArray[i] = bufferArray[i];
         }
-        /* Reading more information to the byte buffer. */
-        fread(bufferArray, sizeof(BYTE), 512, forensicImage);
         isOverloaded = true;
         return false;
     }
