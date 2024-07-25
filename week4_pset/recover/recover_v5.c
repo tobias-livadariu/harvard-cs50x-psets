@@ -59,19 +59,8 @@ int main(int argc, char *argv[])
         {
             /* If the buffer does not begin with the specified
             header, continue to the next 512 byte block. */
-            if (intBufferArray[0] != 0xff)
-            {
-                continue;
-            }
-            else if (intBufferArray[1] != 0xd8)
-            {
-                continue;
-            }
-            else if (intBufferArray[2] != 0xff)
-            {
-                continue;
-            }
-            else if ((intBufferArray[3] & 0xf0) != 0xe0)
+            if (intBufferArray[0] != 0xff || intBufferArray[1] != 0xd8 ||
+            intBufferArray[2] != 0xff || (intBufferArray[3] & 0xf0) != 0xe0)
             {
                 continue;
             }
@@ -154,21 +143,10 @@ bool recursiveCopying(int *intBufferArray, FILE *curImage, FILE *forensicImage)
     /* If the buffer does not begin with the specified
     header, continue to the next 512 byte block
     and mark that a JPG is not currently being read. */
-    if (intBufferArray[0] != 0xff)
+    if (intBufferArray[0] != 0xff || intBufferArray[1] != 0xd8 ||
+    intBufferArray[2] != 0xff || (intBufferArray[3] & 0xf0) != 0xe0)
     {
-        isRecursing = false;
-    }
-    else if (intBufferArray[1] != 0xd8)
-    {
-        isRecursing = false;
-    }
-    else if (intBufferArray[2] != 0xff)
-    {
-        isRecursing = false;
-    }
-    else if ((intBufferArray[3] & 0xf0) != 0xe0)
-    {
-        isRecursing = false;
+        continue;
     }
 
     if (isRecursing == true)
