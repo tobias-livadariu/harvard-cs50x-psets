@@ -16,17 +16,18 @@ int main(int argc, char *argv[])
     the correct number of command-line arguments. */
     if (argc != 2)
     {
-        printf("Usage: ./recover [forensic image]\n--> note that exactly one command-line argument must be used\n");
+        printf("Usage: ./recover [forensic image]\n\
+        --> note that exactly one command-line argument must be used\n");
         return 1;
     }
 
     /* Opening the forensic image for reading,
     and warning the user if it was unable to
     be opened.*/
-    FILE *forensicImage = fopen(argv[1], "r"); //TODO: close this file!
+    FILE *forensicImage = fopen(argv[1], "r");
     if (forensicImage == NULL)
     {
-        printf("Unable to open forensic image for reading!\n
+        printf("Unable to open forensic image for reading!\n\
         Check the inputted forensic image address for errors.\n");
         return 1;
     }
@@ -52,7 +53,7 @@ int main(int argc, char *argv[])
     with an integer buffer to keep track of
     the information being read. */
     int *intBufferArray = malloc(512 * sizeof(BYTE));
-    while (readf(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
+    while (fread(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
     {
         if (curReadingJPG == false)
         {
