@@ -98,6 +98,7 @@ int main(int argc, char *argv[])
             if (recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, isOverloaded) == false)
             {
                 fclose(curImage);
+                printf("%b\n")
                 /* Incrementing the
                 number of JPGS copied. */
                 numJPGSCopied++;
