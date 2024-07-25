@@ -80,14 +80,14 @@ int main(int argc, char *argv[])
             JPG file currently being written in. */
             sprintf(curJPGName, "%03i.jpg", numJPGSCopied);
 
-            /* Incrementing the
-            number of JPGS copied. */
-            numJPGSCopied++;
-
             /* Opening a file
             to store the next
             JPG being copied. */
             FILE *curImage = fopen(curJPGName, "w");
+
+            /* Incrementing the
+            number of JPGS copied. */
+            numJPGSCopied++;
 
             /* Writing the overload buffer into the
             current opened JPG image if an overload
