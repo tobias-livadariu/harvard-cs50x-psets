@@ -7,7 +7,7 @@
 typedef uint8_t BYTE;
 
 // Function prototype
-bool recursiveCopying(int *intBufferArray);
+bool recursiveCopying(int *intBufferArray, FILE *curImage, FILE *forensicImage);
 bool isRecursing = true;
 
 int main(int argc, char *argv[])
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
             }
 
             /* Writing in the current JPG until a new one is found. */
-            isRecursing = recursiveCopying(intBufferArray);
+            isRecursing = recursiveCopying(intBufferArray, curImage, forensicImage);
             if (isRecursing == false)
             {
                 fclose(curImage);
@@ -149,7 +149,7 @@ int main(int argc, char *argv[])
     }
 }
 
-bool recursiveCopying(int *intBufferArray)
+bool recursiveCopying(int *intBufferArray, FILE *curImage, FILE *forensicImage)
 {
     /* If the buffer does not begin with the specified
     header, continue to the next 512 byte block
@@ -181,7 +181,7 @@ bool recursiveCopying(int *intBufferArray)
             return false;
         }
         // using recursion
-        recursiveCopying(intBufferArray);
+        recursiveCopying(intBufferArray, curImage, forensicImage);
     }
     else if (isRecursing = false)
     {
