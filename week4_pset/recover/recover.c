@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     bool curReadingJPG = false;
 
     /* Allocating memory for the JPG names. */
-    char *curJPGName = malloc(7 * sizeof(char));
+    char *curJPGName = malloc(8 * sizeof(char));
 
     /* Allocating memory for an overload
     buffer used when a JPG is initially found. */
