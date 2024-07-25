@@ -1,4 +1,4 @@
-#include <cs50.h>
+#include <cs50.h> // NOTE THAT THIS IS A MODIFIED VERSION AND IT MIGHT CONTAIN LOGICAL ERRORS
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -7,8 +7,7 @@
 typedef uint8_t BYTE;
 
 // Function prototype
-bool recursiveCopying(int *intBufferArray, FILE *curImage, FILE *forensicImage);
-bool isRecursing = true;
+bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage);
 
 int main(int argc, char *argv[])
 {
@@ -45,22 +44,22 @@ int main(int argc, char *argv[])
 
     /* Allocating memory for an overload
     buffer used when a JPG is initially found. */
-    int *intOverloadBufferArray = malloc(512 * sizeof(BYTE));
+    BYTE *overloadBufferArray = malloc(512 * sizeof(BYTE));
     bool isOverloaded = false;
 
     /* Using a while loop to run through
     all the information in the forensic image,
     with an integer buffer to keep track of
     the information being read. */
-    int *intBufferArray = malloc(512 * sizeof(BYTE));
-    while (fread(intBufferArray, sizeof(BYTE), 512, forensicImage) != 0)
+    BYTE *bufferArray = malloc(512 * sizeof(BYTE));
+    while (fread(bufferArray, sizeof(BYTE), 512, forensicImage) != 0)
     {
         if (curReadingJPG == false)
         {
             /* If the buffer does not begin with the specified
             header, continue to the next 512 byte block. */
-            if (intBufferArray[0] != 0xff || intBufferArray[1] != 0xd8 ||
-            intBufferArray[2] != 0xff || (intBufferArray[3] & 0xf0) != 0xe0)
+            if (bufferArray[0] != 0xff || bufferArray[1] != 0xd8 ||
+            bufferArray[2] != 0xff || (bufferArray[3] & 0xf0) != 0xe0)
             {
                 continue;
             }
@@ -70,7 +69,7 @@ int main(int argc, char *argv[])
             discovered. */
             for (int i = 0; i < 512; i++)
             {
-                intOverloadBufferArray[i] = intBufferArray[i];
+                overloadBufferArray[i] = bufferArray[i];
             }
             curReadingJPG = true;
             isOverloaded = true;
@@ -95,27 +94,26 @@ int main(int argc, char *argv[])
             buffer exists. */
             if (isOverloaded == true)
             {
-                fwrite(intOverloadBufferArray, sizeof(BYTE), 512, curImage);
+                fwrite(overloadBufferArray, sizeof(BYTE), 512, curImage);
                 isOverloaded = false;
             }
 
             /* Writing in the current JPG until a new one is found. */
-            isRecursing = recursiveCopying(intBufferArray, curImage, forensicImage);
-            if (isRecursing == false)
+            curReadingJPG = recursiveCopying(bufferArray, curImage, forensicImage);
+            if (curReadingJPG == false)
             {
                 fclose(curImage);
-                isRecursing = true;
             }
         }
     }
 
     /* Freeing the memory used for
-    intBufferArray. */
-    free(intBufferArray);
+    bufferArray. */
+    free(bufferArray);
 
     /* Freeing the memory used for
-    intOverloadBufferArray. */
-    free(intOverloadBufferArray);
+    overloadBufferArray. */
+    free(overloadBufferArray);
 
     /* Freeing the memory used for
     curJPGName. */
@@ -137,25 +135,25 @@ int main(int argc, char *argv[])
     }
 }
 
-bool recursiveCopying(int *intBufferArray, FILE *curImage, FILE *forensicImage)
+bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage)
 {
     /* If the buffer does not begin with the specified
     header, continue to the next 512 byte block
     and mark that a JPG is not currently being read. */
-    if (intBufferArray[0] != 0xff || intBufferArray[1] != 0xd8 ||
-    intBufferArray[2] != 0xff || (intBufferArray[3] & 0xf0) != 0xe0)
+    if (bufferArray[0] != 0xff || bufferArray[1] != 0xd8 ||
+    bufferArray[2] != 0xff || (bufferArray[3] & 0xf0) != 0xe0)
     {
         // writing to the current JPG
-        fwrite(intBufferArray, sizeof(BYTE), 512, curImage); // use recursion here. (define a function)
+        fwrite(bufferArray, sizeof(BYTE), 512, curImage); // use recursion here. (define a function)
 
         // reading more information to the buffer
-        if (fread(intBufferArray, sizeof(BYTE), 512, forensicImage) == 0)
+        if (fread(bufferArray, sizeof(BYTE), 512, forensicImage) == 0)
         {
             return false;
         }
 
         // using recursion
-        return recursiveCopying(intBufferArray, curImage, forensicImage);
+        return recursiveCopying(bufferArray, curImage, forensicImage);
     }
     else
     {
