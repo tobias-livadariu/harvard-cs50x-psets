@@ -7,7 +7,7 @@
 typedef uint8_t BYTE;
 
 // Function prototype
-bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BYTE *overloadBufferArray, bool isOverloaded);
+bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BYTE *overloadBufferArray, bool *isOverloaded);
 
 int main(int argc, char *argv[])
 {
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
             }
 
             /* Writing in the current JPG until a new one is found. */
-            if (recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, isOverloaded) == false)
+            if (recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, &isOverloaded) == false)
             {
                 fclose(curImage);
                 /* Incrementing the
@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
     }
 }
 
-bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BYTE *overloadBufferArray, bool isOverloaded)
+bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BYTE *overloadBufferArray, bool *isOverloaded)
 {
     /* Checking if a new JPG has been found. */
     if (bufferArray[0] != 0xff || bufferArray[1] != 0xd8 ||
@@ -160,7 +160,7 @@ bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BY
         {
             overloadBufferArray[i] = bufferArray[i];
         }
-        isOverloaded = true;
+        *isOverloaded = true;
         return false;
     }
 }
