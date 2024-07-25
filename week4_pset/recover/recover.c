@@ -141,7 +141,7 @@ bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BY
     bufferArray[2] != 0xff || (bufferArray[3] & 0xf0) != 0xe0)
     {
         // writing to the current JPG
-        fwrite(bufferArray, sizeof(BYTE), 512, curImage); // use recursion here. (define a function)
+        fwrite(bufferArray, sizeof(BYTE), 512, curImage);
 
         // reading more information to the buffer
         if (fread(bufferArray, sizeof(BYTE), 512, forensicImage) == 0)
