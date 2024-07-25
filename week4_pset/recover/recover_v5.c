@@ -1,4 +1,5 @@
-\#include <stdio.h>
+#include <cs50.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 
@@ -6,7 +7,7 @@
 typedef uint8_t BYTE;
 
 // Function prototype
-bool recursiveCopying(void)
+bool recursiveCopying(void);
 bool isRecursing = true;
 
 int main(int argc, char *argv[])
