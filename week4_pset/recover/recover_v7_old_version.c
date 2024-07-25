@@ -7,7 +7,7 @@
 typedef uint8_t BYTE;
 
 // Function prototype
-bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BYTE *overloadBufferArray, bool isOverloaded);
+bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage);
 
 int main(int argc, char *argv[])
 {
@@ -99,7 +99,8 @@ int main(int argc, char *argv[])
             }
 
             /* Writing in the current JPG until a new one is found. */
-            if (recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, isOverloaded) == false)
+            curReadingJPG = recursiveCopying(bufferArray, curImage, forensicImage);
+            if (curReadingJPG == false)
             {
                 fclose(curImage);
             }
@@ -134,7 +135,7 @@ int main(int argc, char *argv[])
     }
 }
 
-bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BYTE *overloadBufferArray, bool isOverloaded)
+bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage)
 {
     /* If the buffer does not begin with the specified
     header, continue to the next 512 byte block
@@ -152,18 +153,10 @@ bool recursiveCopying(BYTE *bufferArray, FILE *curImage, FILE *forensicImage, BY
         }
 
         // using recursion
-        return recursiveCopying(bufferArray, curImage, forensicImage, overloadBufferArray, isOverloaded);
+        return recursiveCopying(bufferArray, curImage, forensicImage);
     }
     else
     {
-        /* Copying the first 512 bytes of the
-        next found JPG into the overloaded buffer
-        array. */
-        for (int i = 0; i < 512; i++)
-        {
-            overloadBufferArray[i] = bufferArray[i];
-        }
-        isOverloaded = true;
         return false;
     }
 }
