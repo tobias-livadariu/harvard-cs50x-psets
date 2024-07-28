@@ -70,15 +70,20 @@ person *create_family(int generations)
     }
 
     // TODO: Return newly created person
-    return NULL;
+    return *new_person;
 }
 
 // Free `p` and all ancestors of `p`.
 void free_family(person *p)
 {
     // TODO: Handle base case
+    if (p->parents[0] == NULL)
+    {
+        free(p);
+    }
 
     // TODO: Free parents recursively
+    else if (p->)
 
     // TODO: Free child
 }
