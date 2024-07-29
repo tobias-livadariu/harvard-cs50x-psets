@@ -40,7 +40,7 @@ bool check(const char *word)
         is pointing too. */
         if (strcasecmp(runner->word, word) == 0)
         {
-            return true
+            return true;
         }
     }
 
