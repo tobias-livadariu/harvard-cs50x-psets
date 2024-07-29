@@ -49,7 +49,7 @@ bool load(const char *dictionary)
     /* Defining a string that will hold each individual
     word from the dictionary. */
     char *curWord = "empty";
-    FILE dictionary = fopen();
+    FILE *dictionary = fopen(dictionary, "r");
     return false;
 }
 
