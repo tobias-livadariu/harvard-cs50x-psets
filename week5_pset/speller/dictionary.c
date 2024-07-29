@@ -48,7 +48,7 @@ bool load(const char *dictionary)
     }
     /* Defining a string that will hold each individual
     word from the dictionary. */
-    char *curWord = malloc(sizeof(char) * N);
+    char *curWord = malloc(sizeof(char) * N); // REMEMBER TO FREE curWord!!!!!!!!!!!!!!!!!!!!!!!!!
     FILE *openDictionary = fopen(dictionary, "r");
     if (openDictionary == NULL)
     {
@@ -65,19 +65,23 @@ bool load(const char *dictionary)
 
         /* Creating a temporary node variable
         to help form the linked list. */
-        node *n = malloc
+        node *n = malloc(sizeof(node)); // REMEMBER TO FREE n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        strcpy(n->word, curWord);
+        n->next = NULL;
 
         /* Handling the base case of if
         no collisions have occured in the
         current word's bucket. */
         if (table[curHashValue] == NULL)
         {
-
+            table[curHashValue] = n;
         }
         else
         {
-
+            n->next = table[curHashValue];
+            table = n;
         }
+        free(n)
     }
 }
 
