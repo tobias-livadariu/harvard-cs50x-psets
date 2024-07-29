@@ -31,11 +31,13 @@ bool check(const char *word)
     int hashValue = hash(word);
 
     /* Using a for loop and node pointer
-    to run through the linked list and check
-     */
-    node *runner = table[hashValue];
-
-    for ()
+    to run through the linked list at the
+    word's hash value and check for matches. */
+    for (node *runner = table[hashValue]; node != NULL; node = node->next)
+    {
+        /* Checking if the*/
+        if (strcasecmp(node->word, word) == true)
+    }
     return false;
 }
 
