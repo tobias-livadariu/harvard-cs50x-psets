@@ -33,12 +33,20 @@ bool check(const char *word)
     /* Using a for loop and node pointer
     to run through the linked list at the
     word's hash value and check for matches. */
-    for (node *runner = table[hashValue]; node != NULL; node = node->next)
+    for (node *runner = table[hashValue]; runner != NULL; runner = runner->next)
     {
         /* Checking if the word being spellchecked is
-        the same as the word in the node*/
-        if (strcasecmp(node->word, word) == 0)
+        the same as the word that the runner node pointer
+        is pointing too. */
+        if (strcasecmp(runner->word, word) == 0)
+        {
+            return true
+        }
     }
+
+    /* If the runner has gone through the entire linked list and not found
+    a match, that means the word being spell checked was not in the
+    dictionary used. */
     return false;
 }
 
