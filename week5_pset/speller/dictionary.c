@@ -59,7 +59,22 @@ bool load(const char *dictionary)
     hash table. */
     while (fscanf(openDictionary, "%s", curWord) != EOF)
     {
+        /* Saving the hash value for the
+        current word in a variable. */
         int curHashValue = hash(curWord);
+
+        /* Handling the base case of if
+        no collisions have occured in the
+        current word's bucket. */
+        if (table[curHashValue] == NULL)
+        {
+            
+        }
+        else
+        {
+            /* Creating a temporary node variable
+            to form the  */
+        }
     }
 }
 
