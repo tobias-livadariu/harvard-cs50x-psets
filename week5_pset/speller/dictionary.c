@@ -48,9 +48,19 @@ bool load(const char *dictionary)
     }
     /* Defining a string that will hold each individual
     word from the dictionary. */
-    char *curWord = "empty";
+    char *curWord;
     FILE *openDictionary = fopen(dictionary, "r");
-    return false;
+    if (openDictionary == NULL)
+    {
+        return false;
+    }
+    /* Iterating over every string in the
+    dictionary file and loading them to the
+    hash table. */
+    while (fscanf(openDictionary, "%s", curWord) != EOF)
+    {
+        int curHashValue = hash(curWord);
+    }
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
