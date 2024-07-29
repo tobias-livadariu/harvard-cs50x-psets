@@ -129,9 +129,12 @@ bool unload(void)
     {
         /* Running through every element in each
         linked list with another for loop. */
-        for (node *runner = table[i]; runner != NULL; runner = runner->next)
+        for (node *runner = table[i], *tmp = table[i]; runner != NULL; runner = tmp)
         {
-            
+            /* Holding the next element in the tmp
+            variable. */
+            tmp = runner->next;
+            free(runner);
         }
     }
     return false;
