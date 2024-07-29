@@ -18,11 +18,6 @@ const unsigned int N = 26;
 // Hash table
 node *table[N];
 
-/* Defining a variable to hold the
-number of loaded words into the hash
-table. */
-int numLoaded = 0;
-
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
@@ -40,13 +35,7 @@ unsigned int hash(const char *word)
 // Loads dictionary into memory, returning true if successful, else false
 bool load(const char *dictionary)
 {
-    /* Changing all pointer values in the node table
-    array to be false. */
-    for (int i = 0; i < N; i++)
-    {
-        table[i] = NULL;
-    }
-    
+    // TODO
     return false;
 }
 
