@@ -52,8 +52,14 @@ bool load(const char *dictionary)
     FILE *openDictionary = fopen(dictionary, "r");
     if (openDictionary == NULL)
     {
+        free(curWord);
         return false;
     }
+
+    /* Allocating memory for the temporary node that will be
+    used to form the linked list. */
+    node *n = malloc(sizeof(node)); // REMEMBER TO FREE n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     /* Iterating over every string in the
     dictionary file and loading them to the
     hash table. */
@@ -63,9 +69,8 @@ bool load(const char *dictionary)
         current word in a variable. */
         int curHashValue = hash(curWord);
 
-        /* Creating a temporary node variable
-        to help form the linked list. */
-        node *n = malloc(sizeof(node)); // REMEMBER TO FREE n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        /* Assigning values to the temporary node
+        based on curWord. */
         strcpy(n->word, curWord);
         n->next = NULL;
 
@@ -81,8 +86,16 @@ bool load(const char *dictionary)
             n->next = table[curHashValue];
             table = n;
         }
-        free(n)
+
+        /* Incrementing numLoaded to keep
+        track of the additional word that
+        been loaded into the hash table. */
+        nunLoaded++;
     }
+
+    // Freeing variables used in this
+    free(curWord);
+    free(n);
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
