@@ -4,7 +4,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
+#include <strings.h>
 
 #include "dictionary.h"
 
@@ -104,13 +105,13 @@ bool load(const char *dictionary)
         else
         {
             n->next = table[curHashValue];
-            table = n;
+            table[curHashValue] = n;
         }
 
         /* Incrementing numLoaded to keep
         track of the additional word that
         been loaded into the hash table. */
-        nunLoaded++;
+        numLoaded++;
     }
 
     // Freeing variables used in this
