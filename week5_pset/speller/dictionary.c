@@ -48,7 +48,7 @@ bool load(const char *dictionary)
     }
     /* Defining a string that will hold each individual
     word from the dictionary. */
-    char *curWord;
+    char *curWord = malloc(sizeof(char) * N);
     FILE *openDictionary = fopen(dictionary, "r");
     if (openDictionary == NULL)
     {
@@ -63,17 +63,20 @@ bool load(const char *dictionary)
         current word in a variable. */
         int curHashValue = hash(curWord);
 
+        /* Creating a temporary node variable
+        to help form the linked list. */
+        node *n = malloc
+
         /* Handling the base case of if
         no collisions have occured in the
         current word's bucket. */
         if (table[curHashValue] == NULL)
         {
-            
+
         }
         else
         {
-            /* Creating a temporary node variable
-            to form the  */
+
         }
     }
 }
