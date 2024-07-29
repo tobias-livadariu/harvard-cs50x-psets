@@ -116,6 +116,7 @@ bool load(const char *dictionary)
 
     // Freeing variables used in this
     free(curWord);
+    fclose(openDictionary);
 
     /* If the function reaches this point,
     that means the load function concluded successfully. */
