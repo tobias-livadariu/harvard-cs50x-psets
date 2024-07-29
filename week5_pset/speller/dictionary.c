@@ -26,8 +26,16 @@ int numLoaded = 0;
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
+    /* Getting the hash value of the
+    current word being spell checked. */
     int hashValue = hash(word);
-    
+
+    /* Using a for loop and node pointer
+    to run through the linked list and check
+     */
+    node *runner = table[hashValue];
+
+    for ()
     return false;
 }
 
