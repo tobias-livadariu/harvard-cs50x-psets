@@ -35,8 +35,9 @@ bool check(const char *word)
     word's hash value and check for matches. */
     for (node *runner = table[hashValue]; node != NULL; node = node->next)
     {
-        /* Checking if the*/
-        if (strcasecmp(node->word, word) == true)
+        /* Checking if the word being spellchecked is
+        the same as the word in the node*/
+        if (strcasecmp(node->word, word) == 0)
     }
     return false;
 }
