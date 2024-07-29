@@ -123,6 +123,16 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
-    // TODO
+    /* Running through every linked list
+    in the hash table with a for loop. */
+    for (int i = 0; i < N; i++)
+    {
+        /* Running through every element in each
+        linked list with another for loop. */
+        for (node *runner = table[i]; runner != NULL; runner = runner->next)
+        {
+            
+        }
+    }
     return false;
 }
