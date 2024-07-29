@@ -46,6 +46,9 @@ bool load(const char *dictionary)
     {
         table[i] = NULL;
     }
+    /* Defining a string that will hold each individual
+    word from the dictionary. */
+    char *curWord = "empty";
     
     return false;
 }
