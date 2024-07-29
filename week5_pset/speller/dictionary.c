@@ -118,7 +118,7 @@ bool load(const char *dictionary)
     free(curWord);
 
     /* If the function reaches this point,
-     */
+    that means the load function concluded successfully. */
     return true;
 }
 
