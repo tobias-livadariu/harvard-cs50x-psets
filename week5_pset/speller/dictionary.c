@@ -48,7 +48,7 @@ bool load(const char *dictionary)
     }
     /* Defining a string that will hold each individual
     word from the dictionary. */
-    char *curWord = malloc(sizeof(char) * N); // REMEMBER TO FREE curWord!!!!!!!!!!!!!!!!!!!!!!!!!
+    char *curWord = malloc(sizeof(char) * LENGTH);
     FILE *openDictionary = fopen(dictionary, "r");
     if (openDictionary == NULL)
     {
@@ -58,7 +58,7 @@ bool load(const char *dictionary)
 
     /* Allocating memory for the temporary node that will be
     used to form the linked list. */
-    node *n = malloc(sizeof(node)); // REMEMBER TO FREE n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    node *n = malloc(sizeof(node));
 
     /* Iterating over every string in the
     dictionary file and loading them to the
