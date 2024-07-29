@@ -116,6 +116,10 @@ bool load(const char *dictionary)
 
     // Freeing variables used in this
     free(curWord);
+
+    /* If the function reaches this point,
+     */
+    return true;
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
