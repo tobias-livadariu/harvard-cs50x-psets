@@ -72,7 +72,7 @@ bool load(const char *dictionary)
     }
     /* Defining a string that will hold each individual
     word from the dictionary. */
-    char *curWord = malloc(sizeof(char) * LENGTH);
+    char *curWord = malloc(sizeof(char) * (LENGTH + 1));
     FILE *openDictionary = fopen(dictionary, "r");
     if (openDictionary == NULL)
     {
