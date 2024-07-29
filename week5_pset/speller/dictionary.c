@@ -56,10 +56,6 @@ bool load(const char *dictionary)
         return false;
     }
 
-    /* Allocating memory for the temporary node that will be
-    used to form the linked list. */
-    node *n = malloc(sizeof(node));
-
     /* Iterating over every string in the
     dictionary file and loading them to the
     hash table. */
@@ -69,8 +65,9 @@ bool load(const char *dictionary)
         current word in a variable. */
         int curHashValue = hash(curWord);
 
-        /* Assigning values to the temporary node
-        based on curWord. */
+        /* Allocating memory for the temporary node that will be
+        used to form the linked list. */
+        node *n = malloc(sizeof(node));
         strcpy(n->word, curWord);
         n->next = NULL;
 
