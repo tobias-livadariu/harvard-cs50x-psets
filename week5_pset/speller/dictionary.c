@@ -145,5 +145,5 @@ bool unload(void)
             free(runner);
         }
     }
-    return false;
+    return true;
 }
