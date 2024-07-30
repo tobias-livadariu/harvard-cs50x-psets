@@ -71,7 +71,7 @@ unsigned int hash(const char *word)
         {
             break;
         }
-        else if (curChar == ''')
+        else if (curChar == '\'')
         {
             continue;
         }
