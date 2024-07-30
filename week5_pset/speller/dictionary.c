@@ -66,7 +66,7 @@ unsigned int hash(const char *word)
     /* Using a for loop to iterate
     over the first four characters
     of the word. */
-    for (int i = 0, max = 4; i < max; i++)
+    for (int i = 0, max = 3; i <= max; i++)
     {
         char curChar = word[i];
         if (curChar == '\0')
@@ -82,8 +82,14 @@ unsigned int hash(const char *word)
         store the necessary value from the
         current character to add to the hash
         value. */
-        int valueAdding = ('a' - tolower(curChar)) * pow();
+        int valueAdding = ('a' - tolower(curChar)) * pow(26, max - i);
+
+        /* Incrementing hashValue. */
+        hashValue += valueAdding;
     }
+
+    /* Returning hashValue. */
+    return hashValue;
 }
 
 // Loads dictionary into memory, returning true if successful, else false
