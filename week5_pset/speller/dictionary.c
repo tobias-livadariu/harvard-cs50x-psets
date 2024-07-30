@@ -66,7 +66,14 @@ unsigned int hash(const char *word)
     of the word. */
     for (int i = 0; i < 4; i++)
     {
-        if (word[i])
+        if (word[i] == '\0')
+        {
+            break;
+        }
+
+        /* Initializing a variable to
+        store the */
+        int valueAdding =
     }
 }
 
