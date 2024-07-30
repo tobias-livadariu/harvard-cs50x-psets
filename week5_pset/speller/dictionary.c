@@ -17,7 +17,7 @@ typedef struct node
 } node;
 
 // TODO: Choose number of buckets in hash table
-const unsigned int N = 65535;
+const unsigned int N = 109225;
 
 // Hash table
 node *table[N];
@@ -80,7 +80,7 @@ unsigned int hash(const char *word)
         store the necessary value from the
         current character to add to the hash
         value. */
-        int valueAdding = 
+        int valueAdding = ('A' - toupper(curChar)) * pow();
     }
 }
 
