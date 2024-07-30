@@ -81,7 +81,7 @@ unsigned int hash(const char *word)
         store the necessary value from the
         current character to add to the hash
         value. */
-        int valueAdding = ('a' - tolower(curChar)) * pow(26, max - i);
+        int valueAdding = (tolower(curChar) - 'a') * pow(26, max - i);
 
         /* Incrementing hashValue. */
         hashValue += valueAdding;
