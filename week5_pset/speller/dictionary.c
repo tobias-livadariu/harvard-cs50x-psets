@@ -60,7 +60,14 @@ unsigned int hash(const char *word)
     /* Initializing a variable to hold
     the hash value. */
     int hashValue = 0;
-    
+
+    /* Using a for loop to iterate
+    over the first four characters
+    of the word. */
+    for (int i = 0; i < 4; i++)
+    {
+        if (word[i])
+    }
 }
 
 // Loads dictionary into memory, returning true if successful, else false
