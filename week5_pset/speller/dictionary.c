@@ -64,15 +64,22 @@ unsigned int hash(const char *word)
     /* Using a for loop to iterate
     over the first four characters
     of the word. */
-    for (int i = 0; i < 4; i++)
+    for (int i = 0, max = 4; i < max; i++)
     {
-        if (word[i] == '\0')
+        char curChar = word[i];
+        if (curChar == '\0')
         {
             break;
         }
+        else if (curChar == ''')
+        {
+            continue;
+        }
 
         /* Initializing a variable to
-        store the */
+        store the necessary value from the
+        current character to add to the hash
+        value. */
         int valueAdding =
     }
 }
