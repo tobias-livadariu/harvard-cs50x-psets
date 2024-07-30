@@ -73,14 +73,14 @@ unsigned int hash(const char *word)
         }
         else if (curChar == '\'')
         {
-            continue;
+            curChar = 'z';
         }
 
         /* Initializing a variable to
         store the necessary value from the
         current character to add to the hash
         value. */
-        int valueAdding =
+        int valueAdding = 
     }
 }
 
