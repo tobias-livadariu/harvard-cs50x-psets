@@ -22,5 +22,7 @@ def isValid(number):
 # type of a card number.
 def cardType(number):
     strNumber = str(number)
-    firstTwoDigits = strNumber
-    if (len(strNumber) == 15) and (number % 10 )
+    firstTwoDigits = strNumber[:2]
+    if (len(strNumber) == 15) and (firstTwoDigits == "34" or firstTwoDigits == "37"):
+        return "AMEX"
+    elif ()
