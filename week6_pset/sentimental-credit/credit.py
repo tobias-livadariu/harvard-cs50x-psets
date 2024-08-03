@@ -1,3 +1,5 @@
+from cs50 import get_int
+
 # Defining a function that will
 # be used to determine if an inputted
 # credit card is valid.
@@ -23,6 +25,24 @@ def isValid(number):
 def cardType(number):
     strNumber = str(number)
     firstTwoDigits = strNumber[:2]
-    if (len(strNumber) == 15) and (firstTwoDigits == "34" or firstTwoDigits == "37"):
+    firstTwoDigits = int(firstTwoDigits)
+    if (len(strNumber) == 15) and (firstTwoDigits == 34 or firstTwoDigits == 37):
         return "AMEX"
-    elif ()
+    elif (len(strNumber) == 16) and (firstTwoDigits > 50 and firstTwoDigits < 56):
+        return "MASTERCARD"
+    elif (len(strNumber) == 13 or len(strNumber) == 16) and (strNumber[0] == "4"):
+        return "VISA"
+    else:
+        return "INVALID"
+
+# Getting user input and
+# running the functions defined
+# above.
+def main():
+    cardNumber = get_int("Number: ")
+    isValidNum = isValid(cardNumber)
+    if isValidNum == False:
+        printf("INVALID")
+        return 1
+    userCardType = cardType(cardNumber)
+    printf(userCardType)
