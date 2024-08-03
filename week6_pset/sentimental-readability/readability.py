@@ -7,7 +7,7 @@ userStr = get_string("Text: ")
 # input and determining
 # the number of words, letters,
 # and sentances.
-numWords = 0
+numWords = 1
 numLetters = 0
 numSentances = 0
 for c in userStr:
