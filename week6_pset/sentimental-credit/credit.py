@@ -22,5 +22,5 @@ def isValid(number):
 # type of a card number.
 def cardType(number):
     strNumber = str(number)
-    firstTwoDigits = 
+    firstTwoDigits = strNumber
     if (len(strNumber) == 15) and (number % 10 )
