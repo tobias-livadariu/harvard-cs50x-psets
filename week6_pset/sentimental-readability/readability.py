@@ -25,11 +25,7 @@ S = numSentances * (100 / numWords)
 index = 0.0588 * L - 0.296 * S - 15.8
 
 # Rounding the index.
-decimal = index - int(index)
-if (decimal >= 0.5):
-    index = int(index) + 1
-else:
-    index = int(index)
+index = round(index)
 
 if index < 1:
     print("Before Grade 1")
