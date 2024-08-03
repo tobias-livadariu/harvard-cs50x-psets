@@ -12,5 +12,10 @@ def isValid(number)
         digitSum += (int(strNumber[i] * 2))
 
     # Finding if the digit sum is valid.
-    if digitSum % 0 ==  
+    if digitSum % 10 == 0:
+        return True
+    else:
+        return False
+
+def cardType(number)
 
