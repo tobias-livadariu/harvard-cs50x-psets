@@ -1,7 +1,7 @@
 # Defining a function that will
 # be used to determine if an inputted
-# credit card is valid
-def isValid(number)
+# credit card is valid.
+def isValid(number):
     # Calculating the digit sum.
     strNumber = str(number)
     strNumber = strNumber[::-1]
@@ -17,5 +17,9 @@ def isValid(number)
     else:
         return False
 
-def cardType(number)
-
+# Defining a function that will
+# be used to determine the
+# type of a card number.
+def cardType(number):
+    strNumber = str(number)
+    if 
