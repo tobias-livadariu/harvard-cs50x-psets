@@ -14,6 +14,7 @@ def isValid(number):
         numAdding = int(strNumber[i]) * 2
         if numAdding > 9:
             digitSum += numAdding % 10
+            digitSum += (numAdding - (numAdding % 10)) // 10
 
     # Finding if the digit sum is valid.
     if digitSum % 10 == 0:
