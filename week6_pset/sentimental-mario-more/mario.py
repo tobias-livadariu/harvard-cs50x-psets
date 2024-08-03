@@ -17,7 +17,7 @@ while True:
 # the pyramid.
 for i in range(1, height + 1):
     numSpaces = height - i
-    print(" " * numSpaces, end = "")
-    print("#" * i, end = "")
-    print("  ", end = "")
+    print(" " * numSpaces, end="")
+    print("#" * i, end="")
+    print("  ", end="")
     print("#" * i)
