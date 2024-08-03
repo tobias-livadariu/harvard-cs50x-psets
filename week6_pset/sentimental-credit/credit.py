@@ -15,6 +15,8 @@ def isValid(number):
         if numAdding > 9:
             digitSum += numAdding % 10
             digitSum += (numAdding - (numAdding % 10)) // 10
+        else:
+            digitSum += numAdding
 
     # Finding if the digit sum is valid.
     if digitSum % 10 == 0:
