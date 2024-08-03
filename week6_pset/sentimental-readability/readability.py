@@ -13,5 +13,7 @@ numSentances = 0
 for c in userStr:
     if (c >= "a" and c <= "z") or (c >= "A" and c <= "Z"):
         numLetters += 1
-    if c == ".":
-        numSentances
+    elif c == "." or c == "!" or c == "?":
+        numSentances += 1
+    elif c == " ":
+        numWords += 1
