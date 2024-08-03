@@ -3,6 +3,8 @@ from cs50 import get_int
 # Defining a function that will
 # be used to determine if an inputted
 # credit card is valid.
+
+
 def isValid(number):
     # Calculating the digit sum.
     strNumber = str(number)
@@ -27,6 +29,8 @@ def isValid(number):
 # Defining a function that will
 # be used to determine the
 # type of a card number.
+
+
 def cardType(number):
     strNumber = str(number)
     firstTwoDigits = strNumber[:2]
@@ -43,6 +47,8 @@ def cardType(number):
 # Getting user input and
 # running the functions defined
 # above.
+
+
 def main():
     cardNumber = get_int("Number: ")
     isValidNum = isValid(cardNumber)
@@ -51,5 +57,6 @@ def main():
         return 1
     userCardType = cardType(cardNumber)
     print(userCardType)
+
 
 main()
