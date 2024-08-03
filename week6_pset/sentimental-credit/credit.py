@@ -42,7 +42,9 @@ def main():
     cardNumber = get_int("Number: ")
     isValidNum = isValid(cardNumber)
     if isValidNum == False:
-        printf("INVALID")
+        print("INVALID")
         return 1
     userCardType = cardType(cardNumber)
-    printf(userCardType)
+    print(userCardType)
+
+main()
