@@ -10,11 +10,12 @@ def main():
         return
 
     # Read database file into a variable.
-    csvFile = open(sys.argv[1])
-    database = csv.DictReader(csvFile)
+    with open(sys.argv[1], "r") as file:
+        database = csv.DictReader(file)
 
     # Read DNA sequence file into a variable.
-    dnaSequence = open(sys.argv[2], "r")
+    with open(sys.argv[2], "r") as file:
+        dnaSequence = file.read()
 
     # Find longest match of each STR in DNA sequence.
     strCounts = {}
@@ -32,13 +33,12 @@ def main():
             curSTR = database.fieldnames[i]
             if row[curSTR] != strCounts[curSTR]:
                 matches += 1
-        if matches == len(database.fieldnames) - 1
+        if matches == len(database.fieldnames) - 1:
             print(row["name"])
             isFound = True
     if isFound == False:
         print("No match")
 
-    dnaSequence.close()
     return
 
 
