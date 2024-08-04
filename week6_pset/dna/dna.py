@@ -35,7 +35,7 @@ def main():
     if isFound == False:
         print("No match")
 
-    close(dnaSequence)
+    dnaSequence.close()
     return
 
 
