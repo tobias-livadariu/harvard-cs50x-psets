@@ -6,7 +6,8 @@ def main():
     # Check for command-line usage.
     commandLineArgs = sys.argv
     if (len(commandLineArgs) != 3):
-        print("Usage: python dna.py [csv file containing STR counts] [txt file contianing the DNA sequence]")
+        print(
+            "Usage: python dna.py [csv file containing STR counts] [txt file contianing the DNA sequence]")
         return
 
     # Read database file into a variable.
