@@ -3,14 +3,17 @@ import sys
 
 
 def main():
-    # TODO: Check for command-line usage
+    # Check for command-line usage.
     commandLineArgs = sys.argv
     if (len(commandLineArgs) != 3):
         printf("Usage: python dna.py [csv file containing STR counts] [txt file contianing the DNA sequence]")
+        return 1
 
     # TODO: Read database file into a variable
+    database = csv.DictReader(sys.argv[1])
 
     # TODO: Read DNA sequence file into a variable
+    dnaSequence = open(sys.argv[2])
 
     # TODO: Find longest match of each STR in DNA sequence
 
