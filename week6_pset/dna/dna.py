@@ -25,8 +25,8 @@ def main():
 
     # TODO: Check database for matching profiles
     isFound = False
-    matches = 0
     for row in database:
+        matches = 0
         if isFound == True:
             break
         for key in database[0].keys():
@@ -37,7 +37,6 @@ def main():
         if matches == len(database[0]) - 1:
             print(row["name"])
             isFound = True
-        matches = 0
     if isFound == False:
         print("No match")
 
