@@ -3,10 +3,8 @@ import sys
 
 
 def main():
+
     # TODO: Check for command-line usage
-    commandLineArgs = sys.argv
-    if (len(commandLineArgs) != 3):
-        printf("Usage: python dna.py [] []")
 
     # TODO: Read database file into a variable
 
