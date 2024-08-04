@@ -22,7 +22,10 @@ def main():
         strCounts[curSTR] = longest_match(dnaSequence, curSTR)
 
     # TODO: Check database for matching profiles
-    
+    for row in database:
+        for i in range(1, len(database.fieldnames)):
+            curSTR = database.fieldnames[i]
+            if row[curSTR] != 
 
     close(dnaSequence)
     return
