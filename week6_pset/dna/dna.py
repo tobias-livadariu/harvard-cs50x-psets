@@ -9,17 +9,20 @@ def main():
         printf("Usage: python dna.py [csv file containing STR counts] [txt file contianing the DNA sequence]")
         return
 
-    # TODO: Read database file into a variable
+    # Read database file into a variable.
     database = csv.DictReader(sys.argv[1])
 
-    # TODO: Read DNA sequence file into a variable
-    dnaSequence = open(sys.argv[2])
+    # Read DNA sequence file into a variable.
+    dnaSequence = open(sys.argv[2], "r")
 
-    # TODO: Find longest match of each STR in DNA sequence
+    # Find longest match of each STR in DNA sequence.
     strCounts = {}
-    for i in range(1, len(database.fieldnames))
+    for i in range(1, len(database.fieldnames)):
+        curSTR = database.fieldnames[i]
+        strCounts[curSTR] = longest_match(dnaSequence, curSTR)
 
     # TODO: Check database for matching profiles
+    
 
     close(dnaSequence)
     return
