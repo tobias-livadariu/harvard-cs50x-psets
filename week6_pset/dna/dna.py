@@ -11,7 +11,7 @@ def main():
 
     # Read database file into a variable.
     with open(commandLineArgs[1], "r") as file:
-        database = csv.DictReader(file)
+        database = list(csv.DictReader(file))
 
     # Read DNA sequence file into a variable.
     with open(commandLineArgs[2], "r") as file:
@@ -19,9 +19,9 @@ def main():
 
     # Find longest match of each STR in DNA sequence.
     strCounts = {}
-    for i in range(1, len(database.fieldnames)):
-        curSTR = database.fieldnames[i]
-        strCounts[curSTR] = longest_match(dnaSequence, curSTR)
+    for key in database[0].keys:
+        if key != "name":
+            strCounts[key] = longest_match(dnaSequence, key)
 
     # TODO: Check database for matching profiles
     isFound = False
