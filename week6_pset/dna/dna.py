@@ -17,7 +17,7 @@ def main():
 
     # TODO: Find longest match of each STR in DNA sequence
     strCounts = {}
-    
+    for i in range(1, len(database.fieldnames))
 
     # TODO: Check database for matching profiles
 
