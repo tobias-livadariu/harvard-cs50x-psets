@@ -10,11 +10,11 @@ def main():
         return
 
     # Read database file into a variable.
-    with open(sys.argv[1], "r") as file:
+    with open(commandLineArgs[1], "r") as file:
         database = csv.DictReader(file)
 
     # Read DNA sequence file into a variable.
-    with open(sys.argv[2], "r") as file:
+    with open(commandLineArgs[2], "r") as file:
         dnaSequence = file.read()
 
     # Find longest match of each STR in DNA sequence.
