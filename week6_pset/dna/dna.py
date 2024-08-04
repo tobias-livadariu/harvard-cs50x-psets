@@ -7,7 +7,7 @@ def main():
     commandLineArgs = sys.argv
     if (len(commandLineArgs) != 3):
         printf("Usage: python dna.py [csv file containing STR counts] [txt file contianing the DNA sequence]")
-        return 1
+        return
 
     # TODO: Read database file into a variable
     database = csv.DictReader(sys.argv[1])
@@ -16,9 +16,12 @@ def main():
     dnaSequence = open(sys.argv[2])
 
     # TODO: Find longest match of each STR in DNA sequence
+    strCounts = {}
+    
 
     # TODO: Check database for matching profiles
 
+    close(dnaSequence)
     return
 
 
