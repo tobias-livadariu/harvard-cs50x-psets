@@ -197,4 +197,11 @@ id in (
 -- Sadly it seems like I still have four suspects.
 -- To narrow the suspect list down to a single suspect, I will compare it to the flights
 -- database for people that flew out of fiftyville the day after the crime.
+
+-- Finding the name of the airport.
 SELECT * FROM airports LIMIT 50;
+-- It looks like Fiftyville's airport can be accessed through city = "Fiftyville".
+
+-- Comparing the suspect list to the individuals who flew out of Fiftyville the
+-- day after the robbery.
+SELECT 
