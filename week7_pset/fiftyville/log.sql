@@ -96,7 +96,7 @@ The thief then asked the person on the other end of the phone to purchase the fl
 -- (adding one extra minute to be safe).
 -- They were also seen withdrawing money from an ATM on Legget Street earlier that morning.
 
--- Also, the theif flew out of the country the next day, so I need to look for plane tickets
+-- Also, the theif flew out of the country the next day ON THE EARLIEST FLIGHT, so I need to look for plane tickets
 -- on the day of July 29, 2023.
 
 -- Finally, the theif's accomplice bought the ticket, so I need to see who bought a ticket on either
@@ -180,7 +180,7 @@ SELECT * FROM airports LIMIT 50;
 -- It looks like Fiftyville's airport can be accessed through city = "Fiftyville".
 
 -- Comparing the current suspect list to the individuals who flew out of Fiftyville the
--- day after the robbery.
+-- day after the robbery on the earliest flight.
 SELECT id, name, passport_number FROM people
 WHERE license_plate in (
     SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26
@@ -196,7 +196,7 @@ passport_number in (
     SELECT passport_number FROM passengers WHERE flight_id in (
         SELECT id FROM flights WHERE year = 2023 AND month = 7 AND day = 29 AND origin_airport_id = (
             SELECT id FROM airports WHERE city = "Fiftyville"
-        )
+        ) ORDER BY minute ASC LIMIT 1
     )
 );
 -- Here is the output:
@@ -204,15 +204,14 @@ passport_number in (
 +--------+-------+-----------------+
 |   id   | name  | passport_number |
 +--------+-------+-----------------+
-| 467400 | Luca  | 8496433585      |
 | 514354 | Diana | 3592750733      |
-| 686048 | Bruce | 5773159633      |
 +--------+-------+-----------------+
 */
--- Sadly there are STILL three suspects.
--- I know the suspect called their accomplice between minutes 15 and 26
--- for less than a minute as they were leaving the bakery.
--- I will use this information to narrow the list down further.
+-- Diana is the only remaining suspect!
+-- That means she stole the duck!
+
+-- Now I will have to figure out who she called that morning
+-- to find her accomplice.
 SELECT * FROM phone_calls LIMIT 50;
 -- Looks like there is a caller and receiver section for numbers,
 -- and a duration section in seconds
