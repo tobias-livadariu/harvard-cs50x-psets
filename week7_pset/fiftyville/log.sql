@@ -351,3 +351,5 @@ JOIN people ON people.phone_number = phone_calls.caller WHERE year = 2023 AND mo
 */
 -- Both made phone calls of a possible length for the culprit, so we have not gleaned any new information.
 
+/* After re-reading the interviews and information given, I think the
+*/
