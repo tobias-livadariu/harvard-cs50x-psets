@@ -350,32 +350,4 @@ JOIN people ON people.phone_number = phone_calls.caller WHERE year = 2023 AND mo
 +-------+----------+
 */
 -- Both made phone calls of a possible length for the culprit, so we have not gleaned any new information.
-
 /*
-After re-reading the interviews and information given, I think the theif was picked up by the accomplice at the bakery!
-This means that the liscence plate of the car that drove off wouldn't be the theif's, but instead their accomplice!
-That would be the person who RECIEVED the call the day of the theiving.
-I will use this information to adjust my prompt.
-*/
-SELECT id, name, passport_number, license_plate FROM people
-WHERE phone_number IN (
-    SELECT caller FROM phone_calls WHERE year = 2023 AND month = 7 AND day = 28 AND duration <= 60 AND receiver IN (
-        SELECT phone_number FROM people WHERE license_plate IN (
-            SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26
-        )
-    )
-)
-AND
-id IN (
-    SELECT person_id FROM bank_accounts WHERE account_number IN (
-        SELECT account_number FROM atm_transactions WHERE year = 2023 AND month = 7 AND day = 28 AND transaction_type = "withdraw" AND atm_location = "Leggett Street"
-    )
-)
-AND
-passport_number IN (
-    SELECT passport_number FROM passengers WHERE flight_id IN (
-        SELECT id FROM flights WHERE year = 2023 AND month = 7 AND day = 29 AND origin_airport_id = (
-            SELECT id FROM airports WHERE city = "Fiftyville"
-        )
-    )
-);
