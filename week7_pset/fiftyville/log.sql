@@ -151,7 +151,7 @@ Since all of the log activities were exits, all liscence plates are suspects. */
 
 -- To remind, a suspect saw the thief withdrawing money from an ATM on Legget Street
 -- earlier in the morning before the robbery took place.
--- I will query through the 
+-- I will query the atm_transactions table to find the 
 
 /* Next, I will try to compare the list of suspect liscence plates to the list of liscence plates
 to cars that left the country the next day. This might not be possible, as I have not examined the
