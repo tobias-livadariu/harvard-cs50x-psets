@@ -196,7 +196,7 @@ passport_number in (
     SELECT passport_number FROM passengers WHERE flight_id in (
         SELECT id FROM flights WHERE year = 2023 AND month = 7 AND day = 29 AND origin_airport_id = (
             SELECT id FROM airports WHERE city = "Fiftyville"
-        ) ORDER BY minute ASC LIMIT 1
+        ) ORDER BY hour, minute ASC LIMIT 1
     )
 );
 -- Here is the output:
@@ -204,11 +204,11 @@ passport_number in (
 +--------+-------+-----------------+
 |   id   | name  | passport_number |
 +--------+-------+-----------------+
-| 514354 | Diana | 3592750733      |
+| 467400 | Luca  | 8496433585      |
+| 686048 | Bruce | 5773159633      |
 +--------+-------+-----------------+
 */
--- Diana is the only remaining suspect!
--- That means she stole the duck!
+-- Still have two suspects
 
 -- Now I will have to figure out who she called that morning
 -- to find her accomplice.
