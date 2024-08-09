@@ -222,3 +222,15 @@ passport_number in (
         )
     )
 );
+-- Here is the output:
+/*
++--------+-------+-----------------+
+|   id   | name  | passport_number |
++--------+-------+-----------------+
+| 467400 | Luca  | 8496433585      |
+| 514354 | Diana | 3592750733      |
+| 686048 | Bruce | 5773159633      |
++--------+-------+-----------------+
+*/
+-- Sadly there are STILL three suspects.
+-- I know the suspect 
