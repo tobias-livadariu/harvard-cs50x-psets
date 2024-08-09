@@ -210,8 +210,10 @@ passport_number in (
 */
 -- Still have two suspects
 
--- Now I will have to figure out who she called that morning
--- to find her accomplice.
+-- Sadly there are still two suspects.
+-- I know the suspect called their accomplice between minutes 15 and 26
+-- for less than a minute as they were leaving the bakery.
+-- I will use this information to narrow the list down further.
 SELECT * FROM phone_calls LIMIT 50;
 -- Looks like there is a caller and receiver section for numbers,
 -- and a duration section in seconds
