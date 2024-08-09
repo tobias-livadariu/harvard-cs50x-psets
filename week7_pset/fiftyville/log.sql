@@ -303,5 +303,30 @@ SELECT day, hour, minute FROM bakery_security_logs WHERE license_plate = "322W7J
 */
 
 -- Finding Bruce's time of arrival/departure from the bakery.
-SELECT day, hour, minute FROM bakery_security_logs WHERE license_plate = "322W7JE" AND year = 2023 AND day = 28 AND activity = "entrance";
-SELECT day, hour, minute FROM bakery_security_logs WHERE license_plate = "322W7JE" AND year = 2023 AND day = 28 AND activity = "exit";
+SELECT day, hour, minute FROM bakery_security_logs WHERE license_plate = "94KL13X" AND year = 2023 AND day = 28 AND activity = "entrance";
+/* Arrival:
++-----+------+--------+
+| day | hour | minute |
++-----+------+--------+
+| 28  | 8    | 23     |
++-----+------+--------+
+*/
+
+SELECT day, hour, minute FROM bakery_security_logs WHERE license_plate = "94KL13X" AND year = 2023 AND day = 28 AND activity = "exit";
+/* Departure:
++-----+------+--------+
+| day | hour | minute |
++-----+------+--------+
+| 28  | 10   | 18     |
++-----+------+--------+
+*/
+
+/*
+From this information, it seems more likely that Bruce would be the culprit than Diana, because Bruce
+left the bakery much closer to the original time of the crime of 10:15 am, and it wouldn't
+make sense for the theif to stay too long in the bakery.
+*/
+
+-- Now, let's analyze call times.
+-- Diana:
+SELECT caller FROM phone_calls WHERE year = 2023 AND month = 7 AND day = 28 AND duration <= 60
