@@ -241,7 +241,7 @@ SELECT * FROM phone_calls LIMIT 50;
 -- and a duration section in seconds
 
 -- Making the (hopefully) final query.
-SELECT id, name, passport_number FROM people
+SELECT id, name, passport_number, license_plate FROM people
 WHERE license_plate in (
     SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26
 )
@@ -267,12 +267,12 @@ id in (
 );
 -- Output:
 /*
-+--------+-------+-----------------+
-|   id   | name  | passport_number |
-+--------+-------+-----------------+
-| 514354 | Diana | 3592750733      |
-| 686048 | Bruce | 5773159633      |
-+--------+-------+-----------------+
++--------+-------+-----------------+---------------+
+|   id   | name  | passport_number | license_plate |
++--------+-------+-----------------+---------------+
+| 514354 | Diana | 3592750733      | 322W7JE       |
+| 686048 | Bruce | 5773159633      | 94KL13X       |
++--------+-------+-----------------+---------------+
 */
 -- I have two final suspects. I will need to find one more piece of infomation
 -- to remove one of them.
@@ -284,4 +284,4 @@ to try and determine which one is more likely to be the thief.
 */
 
 -- Finding Diana's time of arrival/departure from the bakery.
-SELECT day, hour, minute FROM bakery_security_logs WHERE 
+SELECT day, hour, minute FROM bakery_security_logs WHERE license_plate = "322W7JE" AND day = 27 AND hour = 10;
