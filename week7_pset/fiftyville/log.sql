@@ -181,7 +181,7 @@ SELECT * FROM airports LIMIT 50;
 
 -- Comparing the current suspect list to the individuals who flew out of Fiftyville the
 -- day after the robbery on the earliest flight.
-SELECT id, name, passport_number FROM people
+SELECT id, name, passport_number, license_plate FROM people
 WHERE license_plate in (
     SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26
 )
@@ -201,12 +201,12 @@ passport_number in (
 );
 -- Here is the output:
 /*
-+--------+-------+-----------------+
-|   id   | name  | passport_number |
-+--------+-------+-----------------+
-| 467400 | Luca  | 8496433585      |
-| 686048 | Bruce | 5773159633      |
-+--------+-------+-----------------+
++--------+-------+-----------------+---------------+
+|   id   | name  | passport_number | license_plate |
++--------+-------+-----------------+---------------+
+| 467400 | Luca  | 8496433585      | 4328GD8       |
+| 686048 | Bruce | 5773159633      | 94KL13X       |
++--------+-------+-----------------+---------------+
 */
 
 -- Sadly there are still two suspects.
@@ -217,8 +217,7 @@ SELECT * FROM phone_calls LIMIT 50;
 -- Looks like there is a caller and receiver section for numbers,
 -- and a duration section in seconds
 
--- Checking to see that Diana did in fact call someone that morning,
--- and their call lasted less than a minute.
+-- Making the (hopefully) final query.
 SELECT id, name, passport_number, license_plate FROM people
 WHERE license_plate in (
     SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26
@@ -234,7 +233,7 @@ passport_number in (
     SELECT passport_number FROM passengers WHERE flight_id in (
         SELECT id FROM flights WHERE year = 2023 AND month = 7 AND day = 29 AND origin_airport_id = (
             SELECT id FROM airports WHERE city = "Fiftyville"
-        ) ORDER BY minute ASC LIMIT 1
+        ) ORDER BY hour, minute ASC LIMIT 1
     )
 )
 AND
@@ -248,45 +247,45 @@ id in (
 +--------+-------+-----------------+---------------+
 |   id   | name  | passport_number | license_plate |
 +--------+-------+-----------------+---------------+
-| 514354 | Diana | 3592750733      | 322W7JE       |
+| 686048 | Bruce | 5773159633      | 94KL13X       |
 +--------+-------+-----------------+---------------+
 */
--- Diana is infact the theif.
+-- Bruce is in fact the theif.
 
--- Querying for the person that Diana called that morning.
+-- Querying for the person that Bruce called that morning.
 SELECT name FROM people WHERE phone_number IN (
     SELECT receiver FROM phone_calls WHERE caller IN (
-        SELECT phone_number FROM people WHERE license_plate = "322W7JE"
+        SELECT phone_number FROM people WHERE license_plate = "94KL13X"
     )
     AND year = 2023 AND month = 7 AND day = 28 AND duration <= 60
 );
 -- Output:
 /*
-+--------+
-|  name  |
-+--------+
-| Philip |
-+--------+
++-------+
+| name  |
++-------+
+| Robin |
++-------+
 */
--- Therefore, it can be concluded that Philip was the accomplice to Diana.
+-- Therefore, it can be concluded that Robin was the accomplice to Bruce.
 
 -- Last, I will have to query for the city that the theif escaped to.
 SELECT city FROM airports WHERE id IN (
     SELECT destination_airport_id FROM flights WHERE year = 2023 AND month = 7 AND day = 29 AND origin_airport_id = (
         SELECT id FROM airports WHERE city = "Fiftyville"
-    ) ORDER BY minute ASC LIMIT 1
+    ) ORDER BY hour, minute ASC LIMIT 1
 );
 /*
-+--------+
-|  city  |
-+--------+
-| Boston |
-+--------+
++---------------+
+|     city      |
++---------------+
+| New York City |
++---------------+
 */
--- Therefore, it can be confluded that Diana escaped to Boston.
+-- Therefore, it can be confluded that Bruce escaped to New York City.
 
 /*
-So, the theif is Diana,
-she escaped to Boston,
-and her accomplice was Philip.
+So, the theif is Bruce,
+he escaped to New York City,
+and her accomplice was Robin.
 */
