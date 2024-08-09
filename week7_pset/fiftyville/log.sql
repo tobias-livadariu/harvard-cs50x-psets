@@ -66,14 +66,15 @@ SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 A
 SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 15;
 SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 15;
 
--- Nothing came up, so I decided to keep trying incrementing the minute by 1 until something was found.
-SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 16;
-SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 16;
+-- Nothing came up, so I decided to keep trying incrementing the minute by 1 until an exit was found.
+SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 18;
+SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 18;
 /*
 +----------+
 | activity |
 +----------+
-| entrance |
+| exit     |
+| exit     |
 +----------+
 */
 -- Activity log.
@@ -82,12 +83,13 @@ SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 A
 +---------------+
 | license_plate |
 +---------------+
-| 13FNH73       |
+| 94KL13X       |
+| 6P58WS2       |
 +---------------+
 */
 -- Liscence plate log.
 -- Maybe the theif stole the duck from its owner at the bakery, and then drove away immediately after.
--- If this is true, that would mean the liscence plate of 13FNH73 is the theif's.
+-- If this is true, that would mean the liscence plate of 94KL13X or 6P58WS2 is the theif's.
 -- There doesn't seem to be a liscence plate table so I will move on to interviews.
 
 -- Querying for the transcripts and names of the interviewed people for all interviews
