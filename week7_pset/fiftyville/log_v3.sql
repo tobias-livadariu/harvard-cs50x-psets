@@ -65,7 +65,7 @@ SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 A
 -- Next, I will repeat the activity and liscence log queries including the minute at which the crime occured.
 SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 15;
 SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 15;
-SELECT * FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 15;
+SELECT * FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 16;
 
 -- Nothing came up, so I decided to keep trying incrementing the minute by 1 until an exit was found.
 SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 18;
