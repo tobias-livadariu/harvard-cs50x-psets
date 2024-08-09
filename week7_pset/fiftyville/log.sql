@@ -117,23 +117,9 @@ The thief then asked the person on the other end of the phone to purchase the fl
 -- To find all possible liscence plates of the theif, I will have to further analyze the bakery's
 -- security logs and liscence plate logs for all cars leaving the premises from minutes of 15 - 26.
 -- Note that I already queried for 16 minutes, but I will include that result here as well for convinence.
-SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26;
-SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26;
+SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26 AND activity = "exit";
 -- 8 exits
 /*
-+----------+
-| activity |
-+----------+
-| exit     |
-| exit     |
-| exit     |
-| exit     |
-| exit     |
-| exit     |
-| exit     |
-| exit     |
-+----------+
-
 +---------------+
 | license_plate |
 +---------------+
@@ -147,6 +133,7 @@ SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 A
 | 0NTHK55       |
 +---------------+
 */
+-- Note that adding the minute of 26 did nothing
 
 /* Our suspect's possible liscense plates are shown above.
 Since all of the log activities were exits, all liscence plates are suspects. */
