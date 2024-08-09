@@ -67,3 +67,5 @@ SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND da
 SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 15;
 
 -- Nothing came up, so I decided to keep trying incrementing the minute by 1 until something was found.
+SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 16;
+SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 16;
