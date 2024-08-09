@@ -271,5 +271,21 @@ SELECT name FROM people WHERE phone_number IN (
 
 -- Last, I will have to query for the city that the theif escaped to.
 SELECT city FROM airports WHERE id IN (
-    SELECT destination_airport_id 
-)
+    SELECT destination_airport_id FROM flights WHERE year = 2023 AND month = 7 AND day = 29 AND origin_airport_id = (
+        SELECT id FROM airports WHERE city = "Fiftyville"
+    ) ORDER BY minute ASC LIMIT 1
+);
+/*
++--------+
+|  city  |
++--------+
+| Boston |
++--------+
+*/
+-- Therefore, it can be confluded that Diana escaped to Boston.
+
+/*
+So, the theif is Diana,
+she escaped to Boston,
+and her accomplice was Philip.
+*/
