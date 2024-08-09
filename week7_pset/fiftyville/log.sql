@@ -104,6 +104,7 @@ The thief then asked the person on the other end of the phone to purchase the fl
 
 -- From this, I learned that the theif left the bakery within ten minutes after the duck was stolen, so from minutes of 15 - 26
 -- (adding one extra minute to be safe).
+-- They were also seen withdrawing money from an ATM on Legget Street earlier that morning.
 
 -- Also, the theif flew out of the country the next day, so I need to look for plane tickets
 -- on the day of July 29, 2023.
@@ -115,3 +116,43 @@ The thief then asked the person on the other end of the phone to purchase the fl
 -- security logs and liscence plate logs for all cars leaving the premises from minutes of 15 - 26.
 -- Note that I already queried for 16 minutes, but I will include that result here as well for convinence.
 SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26;
+SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26;
+-- 8 exits
+/*
++----------+
+| activity |
++----------+
+| exit     |
+| exit     |
+| exit     |
+| exit     |
+| exit     |
+| exit     |
+| exit     |
+| exit     |
++----------+
+
++---------------+
+| license_plate |
++---------------+
+| 5P2BI95       |
+| 94KL13X       |
+| 6P58WS2       |
+| 4328GD8       |
+| G412CB7       |
+| L93JTIZ       |
+| 322W7JE       |
+| 0NTHK55       |
++---------------+
+*/
+
+/* Our suspect's possible liscense plates are shown above.
+Since all of the log activities were exits, all liscence plates are suspects. */
+
+-- To remind, a suspect saw the thief withdrawing money from an ATM on Legget Street
+-- earlier in the morning before the robbery took place.
+-- I will query through the 
+
+/* Next, I will try to compare the list of suspect liscence plates to the list of liscence plates
+to cars that left the country the next day. This might not be possible, as I have not examined the
+schema*/
