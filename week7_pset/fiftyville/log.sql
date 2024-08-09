@@ -258,4 +258,11 @@ passport_number in (
             SELECT id FROM airports WHERE city = "Fiftyville"
         )
     )
-);
+)
+AND
+id in (
+    SELECT id FROM people WHERE phone_number IN (
+        SELECT caller 
+    )
+)
+;
