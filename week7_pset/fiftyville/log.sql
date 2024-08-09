@@ -216,7 +216,8 @@ SELECT * FROM phone_calls LIMIT 50;
 -- Looks like there is a caller and receiver section for numbers,
 -- and a duration section in seconds
 
--- Making the (hopefully) final query.
+-- Checking to see that Diana did in fact call someone that morning,
+-- and their call lasted less than a minute.
 SELECT id, name, passport_number, license_plate FROM people
 WHERE license_plate in (
     SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26
@@ -232,7 +233,7 @@ passport_number in (
     SELECT passport_number FROM passengers WHERE flight_id in (
         SELECT id FROM flights WHERE year = 2023 AND month = 7 AND day = 29 AND origin_airport_id = (
             SELECT id FROM airports WHERE city = "Fiftyville"
-        )
+        ) ORDER BY minute ASC LIMIT 1
     )
 )
 AND
@@ -247,7 +248,6 @@ id in (
 |   id   | name  | passport_number | license_plate |
 +--------+-------+-----------------+---------------+
 | 514354 | Diana | 3592750733      | 322W7JE       |
-| 686048 | Bruce | 5773159633      | 94KL13X       |
 +--------+-------+-----------------+---------------+
 */
 -- I have two final suspects. I will need to find one more piece of infomation
