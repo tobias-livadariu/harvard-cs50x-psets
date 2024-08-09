@@ -183,6 +183,19 @@ id in (
         SELECT account_number FROM atm_transactions WHERE year = 2023 AND month = 7 AND day = 28 AND transaction_type = "withdraw" AND atm_location = "Leggett Street"
     )
 );
+-- Here is the output:
+/*
++--------+-------+-----------------+
+|   id   | name  | passport_number |
++--------+-------+-----------------+
+| 396669 | Iman  | 7049073643      |
+| 467400 | Luca  | 8496433585      |
+| 514354 | Diana | 3592750733      |
+| 686048 | Bruce | 5773159633      |
++--------+-------+-----------------+
+*/
+-- Sadly it seems like I still have four suspects.
+
 
 /* Next, I will try to compare the list of suspect liscence plates to the list of liscence plates
 to cars that left the country the next day. This might not be possible, as I have not examined the
