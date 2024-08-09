@@ -284,4 +284,4 @@ to try and determine which one is more likely to be the thief.
 */
 
 -- Finding Diana's time of arrival/departure from the bakery.
-SELECT 
+SELECT day, hour, minute FROM bakery_security_logs WHERE 
