@@ -276,3 +276,12 @@ id in (
 */
 -- I have two final suspects. I will need to find one more piece of infomation
 -- to remove one of them.
+
+/*
+I will analyze the time of arrival/departure of both suspects to the bakery,
+and also the length of the phone call they made that day,
+to try and determine which one is more likely to be the thief.
+*/
+
+-- Finding Diana's time of arrival/departure from the bakery.
+SELECT 
