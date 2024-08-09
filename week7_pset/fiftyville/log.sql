@@ -329,4 +329,25 @@ make sense for the theif to stay too long in the bakery.
 
 -- Now, let's analyze call times.
 -- Diana:
-SELECT caller FROM phone_calls WHERE year = 2023 AND month = 7 AND day = 28 AND duration <= 60
+SELECT name, duration FROM phone_calls
+JOIN people ON people.phone_number = phone_calls.caller WHERE year = 2023 AND month = 7 AND day = 28 AND duration <= 60 AND name = "Diana";
+/*
++-------+----------+
+| name  | duration |
++-------+----------+
+| Diana | 49       |
++-------+----------+
+*/
+
+-- Bruce:
+SELECT name, duration FROM phone_calls
+JOIN people ON people.phone_number = phone_calls.caller WHERE year = 2023 AND month = 7 AND day = 28 AND duration <= 60 AND name = "Bruce";
+/*
++-------+----------+
+| name  | duration |
++-------+----------+
+| Bruce | 45       |
++-------+----------+
+*/
+-- Both made phone calls of a possible length for the culprit, so we have not gleaned any new information.
+
