@@ -233,4 +233,29 @@ passport_number in (
 +--------+-------+-----------------+
 */
 -- Sadly there are STILL three suspects.
--- I know the suspect 
+-- I know the suspect called their accomplice between minutes 15 and 26
+-- for less than a minute as they were leaving the bakery.
+-- I will use this information to narrow the list down further.
+SELECT * FROM phone_calls LIMIT 50;
+-- Looks like there is a caller and receiver section for numbers,
+-- and a duration section in seconds
+
+-- Making the (hopefully) final query.
+SELECT id, name, passport_number FROM people
+WHERE license_plate in (
+    SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26
+)
+AND
+id in (
+    SELECT person_id FROM bank_accounts WHERE account_number in (
+        SELECT account_number FROM atm_transactions WHERE year = 2023 AND month = 7 AND day = 28 AND transaction_type = "withdraw" AND atm_location = "Leggett Street"
+    )
+)
+AND
+passport_number in (
+    SELECT passport_number FROM passengers WHERE flight_id in (
+        SELECT id FROM flights WHERE year = 2023 AND month = 7 AND day = 29 AND origin_airport_id = (
+            SELECT id FROM airports WHERE city = "Fiftyville"
+        )
+    )
+);
