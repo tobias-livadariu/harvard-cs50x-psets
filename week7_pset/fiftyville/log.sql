@@ -208,7 +208,6 @@ passport_number in (
 | 686048 | Bruce | 5773159633      |
 +--------+-------+-----------------+
 */
--- Still have two suspects
 
 -- Sadly there are still two suspects.
 -- I know the suspect called their accomplice between minutes 15 and 26
