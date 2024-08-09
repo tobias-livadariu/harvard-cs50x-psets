@@ -14,4 +14,5 @@ SELECT description FROM crime_scene_reports WHERE year = 2023 AND month = 7 AND 
 -- Interviews were conducted today with three witnesses who were present at the time – each of their interview transcripts mentions the bakery.
 -- Since all witnesses mentioned the bakery, I will look through the backery_security_logs table next.
 
-
+-- Querying through bakery security looks on the day when the theft took place.
+SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28;
