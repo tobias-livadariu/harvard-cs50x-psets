@@ -202,6 +202,21 @@ id in (
 SELECT * FROM airports LIMIT 50;
 -- It looks like Fiftyville's airport can be accessed through city = "Fiftyville".
 
--- Comparing the suspect list to the individuals who flew out of Fiftyville the
+-- Comparing the current suspect list to the individuals who flew out of Fiftyville the
 -- day after the robbery.
-SELECT 
+SELECT id, name, passport_number FROM people
+WHERE license_plate in (
+    SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26
+)
+AND
+id in (
+    SELECT person_id FROM bank_accounts WHERE account_number in (
+        SELECT account_number FROM atm_transactions WHERE year = 2023 AND month = 7 AND day = 28 AND transaction_type = "withdraw" AND atm_location = "Leggett Street"
+    )
+)
+AND
+passport_number in (
+    SELECT passport_number FROM passengers WHERE flight_id in (
+        
+    )
+);
