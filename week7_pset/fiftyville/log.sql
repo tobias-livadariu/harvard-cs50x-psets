@@ -105,4 +105,14 @@ The thief then asked the person on the other end of the phone to purchase the fl
 -- From this, I learned that the theif left the bakery within ten minutes after the duck was stolen, so from minutes of 15 - 26
 -- (adding one extra minute to be safe).
 
--- Also, the theif left the 
+-- Also, the theif flew out of the country the next day, so I need to look for plane tickets
+-- on the day of July 29, 2023.
+
+-- Finally, the theif's accomplice bought the ticket, so I need to see who bought a ticket on either
+-- July 29, 2023 or July 28, 2023 for a flight on July 29, 2023 to find the accomplice.
+
+-- To find all possible liscence plates of the theif, I will have to further analyze the bakery's
+-- security logs and liscence plate logs for all cars leaving the premises from minutes of 15 - 26.
+-- Note that I already queried for 16 and found a possible liscence plate.
+SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 17;
+SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 17;
