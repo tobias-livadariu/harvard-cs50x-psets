@@ -252,5 +252,24 @@ id in (
 */
 -- Diana is infact the theif.
 
--- Finding the person that Diana called that morning.
-SELECT 
+-- Querying for the person that Diana called that morning.
+SELECT name FROM people WHERE phone_number IN (
+    SELECT receiver FROM phone_calls WHERE caller IN (
+        SELECT phone_number FROM people WHERE license_plate = "322W7JE"
+    )
+    AND year = 2023 AND month = 7 AND day = 28 AND duration <= 60
+);
+-- Output:
+/*
++--------+
+|  name  |
++--------+
+| Philip |
++--------+
+*/
+-- Therefore, it can be concluded that Philip was the accomplice to Diana.
+
+-- Last, I will have to query for the city that the theif escaped to.
+SELECT city FROM airports WHERE id IN (
+    SELECT destination_airport_id 
+)
