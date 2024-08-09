@@ -39,3 +39,4 @@ SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND da
 -- The resulting activity log, not sure if this is very useful.
 
 -- Querying through bakery security looks on the day when the theft took place, including the hour of 10am when the theft took place.
+SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10;
