@@ -262,6 +262,17 @@ passport_number in (
 AND
 id in (
     SELECT id FROM people WHERE phone_number IN (
-        SELECT caller FROM phone_calls WHERE year = 2023 AND month = 7 AND day = 28 AND duration < 60
+        SELECT caller FROM phone_calls WHERE year = 2023 AND month = 7 AND day = 28 AND duration <= 60
     )
 );
+-- Output:
+/*
++--------+-------+-----------------+
+|   id   | name  | passport_number |
++--------+-------+-----------------+
+| 514354 | Diana | 3592750733      |
+| 686048 | Bruce | 5773159633      |
++--------+-------+-----------------+
+*/
+-- I have two final suspects. I will need to find one more piece of infomation
+-- to remove one of them.
