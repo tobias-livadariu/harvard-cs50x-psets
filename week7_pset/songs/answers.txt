@@ -1,0 +1,24 @@
+Background Information: "Spotify Wrapped is a feature presenting Spotify users’ 100 most played songs from the past year.
+In 2021, Spotify Wrapped calculated an 'Audio Aura' for each user, a 'reading of [their] two most prominent moods as dictated by [their] top songs and artists of the year.'
+Suppose Spotify determines an audio aura by looking at the average energy, valence, and danceability of a person’s top 100 songs from the past year.
+In answers.txt, reflect on the following questions:"
+
+Question 1: "If songs.db contains the top 100 songs of one listener from 2018, how would you characterize their audio aura?"
+Answer 1: If songs.db contains the top 100 songs of one listener from 2018, then one way I could characterize their audio aura would be
+by using SQL prompts to take the mean value of the database's energy, valence, and danceability values for all songs. Then, I would compare
+the numerical mean values to a database containing standardized energy, valence, and danceability value for different moods (eg. happy, sad, etc).
+From this database, I would pick the top two moods that most closely match the user's evaluated mean values, and display them to the user,
+along with a percent score of how closely they match those two moods.
+
+Question 2: "Hypothesize about why the way you’ve calculated this aura might not be very representative of the listener.
+What better ways of calculating this aura would you propose?"
+Answer 2: The way I've calculated the user's audio aura might not be very representative of the listener for two reasons.
+First of all, mean values are very susceptable to data fluctuations, meaning if a user listened to seven songs with extremely large
+energy scores, while the other 98 songs had average energy scores, it could skew the mean calculation for energy and make it seem
+like the user listens to very energic songs, while they primarily do not. Also, certain categories might be underrepresented in Spotify's
+musical catalogue. For example, it is possible that one year most songs have a very high danceability value, while most have a low valence level.
+This could cause a user that listens primarily to songs with signifiantly higher valence than most other songs to still not have valence properly affect
+their mood. To fix this, I would instead take the median of the energy, valence, and danceability values across the user's top 100 songs, and then use the median
+to calculate the z-score of the energy, valence, and danceability values for each user when compared to the median of the energy, valence, and danceability
+values across all users. I would then evaluate the user's moods by comparign the z-score to a table of standardized z-scores for each mood, and seeing which two ones
+the user most closely matches.
