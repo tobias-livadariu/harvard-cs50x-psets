@@ -153,7 +153,7 @@ Since all of the log activities were exits, all liscence plates are suspects. */
 -- earlier in the morning before the robbery took place.
 -- I will query the atm_transactions table to try and find the bank account number,
 -- which can be used to find the culprit's name in the people table.
-SELECT account_number FROM atm_transactions WHERE year = 2023 AND month = 7 AND day = 28 AND transaction_type = "withdraw" AND atm_location = "Legget Street";
+SELECT account_number, atm_location FROM atm_transactions WHERE year = 2023 AND month = 7 AND day = 28 AND transaction_type = "withdraw" AND atm_location = "Legget Street";
 
 /* Next, I will try to compare the list of suspect liscence plates to the list of liscence plates
 to cars that left the country the next day. This might not be possible, as I have not examined the
