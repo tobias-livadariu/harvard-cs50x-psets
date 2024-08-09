@@ -174,9 +174,15 @@ SELECT account_number FROM atm_transactions WHERE year = 2023 AND month = 7 AND 
 -- and the list of suspect liscence_plates in the people database to find the culprit's
 -- name.
 SELECT id, name passport_number FROM people
-WHERE liscence_place in ()
+WHERE liscence_place in (
+    SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26;
+)
 AND
-
+and id in (
+    SELECT person_id FROM bank_accounts WHERE account_number in (
+        
+    )
+);
 
 /* Next, I will try to compare the list of suspect liscence plates to the list of liscence plates
 to cars that left the country the next day. This might not be possible, as I have not examined the
