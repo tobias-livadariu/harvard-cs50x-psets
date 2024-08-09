@@ -8,4 +8,4 @@
 
 -- Querying the crime_scene_reports table for information on the crime.
 
-SELECT description FROM crime_scene_reports WHERE year = 2023
+SELECT description FROM crime_scene_reports WHERE year = 2023 AND month = 7 AND day = 28;
