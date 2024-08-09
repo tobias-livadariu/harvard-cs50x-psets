@@ -69,3 +69,25 @@ SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 A
 -- Nothing came up, so I decided to keep trying incrementing the minute by 1 until something was found.
 SELECT activity FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 16;
 SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute = 16;
+/*
++----------+
+| activity |
++----------+
+| entrance |
++----------+
+*/
+-- Activity log.
+
+/*
++---------------+
+| license_plate |
++---------------+
+| 13FNH73       |
++---------------+
+*/
+-- Liscence plate log.
+-- Maybe the theif stole the duck from its owner at the bakery, and then drove away immediately after.
+-- If this is true, that would mean the liscence plate of 13FNH73 is the theif's.
+-- There doesn't seem to be a liscence plate table so I will move on to interviews.
+
+-- Querying for the transcript of all interviews that 
