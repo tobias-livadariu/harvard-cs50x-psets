@@ -90,4 +90,6 @@ SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 A
 -- If this is true, that would mean the liscence plate of 13FNH73 is the theif's.
 -- There doesn't seem to be a liscence plate table so I will move on to interviews.
 
--- Querying for the transcript of all interviews that 
+-- Querying for the transcripts and names of the interviewed people for all interviews
+-- that were taken on the day that the duck was stolen.
+SELECT name, transcript FROM interviews WHERE year = 2023 AND month = 7 AND day = 28;
