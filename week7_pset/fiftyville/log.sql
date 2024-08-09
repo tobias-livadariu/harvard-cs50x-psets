@@ -173,14 +173,14 @@ SELECT account_number FROM atm_transactions WHERE year = 2023 AND month = 7 AND 
 -- Now, I must find the intersection between the list of suspect account_numbers
 -- and the list of suspect liscence_plates in the people database to find the culprit's
 -- name.
-SELECT id, name passport_number FROM people
-WHERE liscence_place in (
-    SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26;
+SELECT id, name, passport_number FROM people
+WHERE license_plate in (
+    SELECT license_plate FROM bakery_security_logs WHERE year = 2023 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 26
 )
 AND
-and id in (
+id in (
     SELECT person_id FROM bank_accounts WHERE account_number in (
-        
+        SELECT account_number FROM atm_transactions WHERE year = 2023 AND month = 7 AND day = 28 AND transaction_type = "withdraw" AND atm_location = "Leggett Street"
     )
 );
 
