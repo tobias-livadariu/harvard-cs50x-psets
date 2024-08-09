@@ -195,7 +195,7 @@ id in (
 +--------+-------+-----------------+
 */
 -- Sadly it seems like I still have four suspects.
-
+-- To narrow the suspect list down to a single suspect, I will compare it to the 
 
 /* Next, I will try to compare the list of suspect liscence plates to the list of liscence plates
 to cars that left the country the next day. This might not be possible, as I have not examined the
