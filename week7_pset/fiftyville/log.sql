@@ -217,6 +217,8 @@ id in (
 AND
 passport_number in (
     SELECT passport_number FROM passengers WHERE flight_id in (
-        
+        SELECT id FROM flights WHERE year = 2023 AND month = 7 AND day = 29 AND origin_airport_id = (
+            SELECT id FROM airports WHERE city = "Fiftyville"
+        )
     )
 );
