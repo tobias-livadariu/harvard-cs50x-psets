@@ -284,4 +284,4 @@ to try and determine which one is more likely to be the thief.
 */
 
 -- Finding Diana's time of arrival/departure from the bakery.
-SELECT day, hour, minute FROM bakery_security_logs WHERE license_plate = "322W7JE" AND year = 2023 AND day = 27 AND hour = 10;
+SELECT day, hour, minute FROM bakery_security_logs WHERE license_plate = "322W7JE" AND year = 2023 AND day = 28 AND hour = 10;
