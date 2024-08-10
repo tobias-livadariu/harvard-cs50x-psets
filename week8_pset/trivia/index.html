@@ -15,17 +15,17 @@
                 /* Defining a function to process when the user clicks on a button. */
                 function buttonClick(id)
                 {
-                    if (id == 'rightAnswer')
+                    if (id === 'rightAnswer')
                     {
                         let buttonClicked = document.getElementById(id);
                         paragraph1.textContent = "Correct!";
                         paragraph1.style.color = 'green';
                         buttonClicked.style.backgroundColor = 'green';
                     }
-                    else if (id == 'submitPart2')
+                    else if (id === 'submitPart2')
                     {
                         let textAnswer = input.value.trim();
-                        if (textAnswer == "1.9")
+                        if (textAnswer === "1.9")
                         {
                             paragraph2.textContent = "Correct!";
                             paragraph2.style.color = 'green';
@@ -50,7 +50,7 @@
                 /* Adding event handlers for every button in buttons. */
                 for (let button of buttons) {
                     button.addEventListener('click', function(event) {
-                        if (event.target.id == 'submitPart2')
+                        if (event.target.id === 'submitPart2')
                         {
                             event.preventDefault();
                         }
