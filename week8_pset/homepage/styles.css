@@ -11,7 +11,9 @@
 .anchor-list-background
 {
     background-color: rgb(203, 226, 181);
-    padding: 20px;
+    padding: 25px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .anchor-list-unselected
