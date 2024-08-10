@@ -9,10 +9,10 @@ function buttonClick(id)
     id = '#' + id;
     if (id == '#rightAnswer')
     {
-        let button = document.querySelector(id);
+        let buttonClicked = document.querySelector(id);
         paragraph1.textContent = "Correct!";
         paragraph1.style.color = 'green';
-        button.style.color = 'green';
+        buttonClicked.style.color = 'green';
     }
     else if (id == 'submitPart2')
     {
@@ -32,11 +32,11 @@ function buttonClick(id)
     }
     else
     {
-        let button = document.querySelector(id);
+        let buttonClicked = document.querySelector(id);
         paragraph1.textContent = "Incorrect";
         paragraph1.style.color = 'red';
-        button.style.color = 'red';
+        buttonClicked.style.color = 'red';
     }
 }
 
-
+/* Adding event handlers for every button in buttons. */
