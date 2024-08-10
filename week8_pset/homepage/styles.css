@@ -6,19 +6,20 @@
 .anchor-list-background-color
 {
     background-color = rbg(11, 65, 227)
+    text-align = center;
 }
 
 .anchor-list-unselected
 {
-
+    text-color = rbg(0, 0, 0)
 }
 
 .anchor-list-unselected:hover
 {
-
+    text-color = rbg(0, 0, 0)
 }
 
 .anchor-list-selected
 {
-
+    text-color = rbg(0, 0, 0)
 }
