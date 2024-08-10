@@ -1,21 +1,21 @@
 .main-background-color
 {
-    background-color = rgb(11, 159, 227);
+    background-color: rgb(11, 159, 227);
 }
 
 .center
 {
-    text-align = center;
+    text-align: center;
 }
 
 .anchor-list-background-color
 {
-    background-color = rbg(11, 65, 227);
+    background-color: rgb(11, 65, 227);
 }
 
 .anchor-list-unselected
 {
-    text-color = rbg(0, 0, 0);
+    color: rgb(0, 0, 0);
     padding: 20px;
     border-radius: 15px;
     text-decoration: none;
@@ -23,14 +23,14 @@
 
 .anchor-list-unselected:hover
 {
-    background-color = rbg(11, 25, 227)
+    background-color: rgb(11, 25, 227)
     text-decoration: underline;
 }
 
 .anchor-list-selected
 {
-    text-color = rbg(0, 0, 0);
-    background-color = rbg(11, 25, 227);
+    color: rgb(0, 0, 0);
+    background-color: rgb(11, 25, 227);
     padding: 20px;
     border-radius: 15px;
     text-decoration: none;
