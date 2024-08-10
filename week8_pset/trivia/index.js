@@ -3,5 +3,10 @@ let form = document.querySelector('form');
 
 function incorrectButtonClick(id)
 {
-    
+
+}
+
+function correctButtonClick(id)
+{
+
 }
