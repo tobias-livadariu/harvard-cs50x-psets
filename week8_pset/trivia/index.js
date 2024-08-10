@@ -1,5 +1,6 @@
 let buttons = document.querySelectorAll('button');
-let form = document.querySelector('form');
+let input = document.querySelector('#inputPart2');
+let paragraph = document.querySelector('#part1Paragraph')
 
 /* Defining a function to process when the user clicks on a button. */
 function buttonClick(id)
@@ -7,18 +8,22 @@ function buttonClick(id)
     id = '#' + id;
     if (id == '#rightAnswer')
     {
-        let paragraph1 = document.querySelector('#part1Paragraph');
         let button = document.querySelector(id);
-        paragraph1.textContent = "Correct!";
-        paragraph1.style.color = 'green';
+        paragraph.textContent = "Correct!";
+        paragraph.style.color = 'green';
+        button.style.color = 'green';
+    }
+    else if (id == 'submitPart2')
+    {
+        let 
     }
     else
     {
-        let paragraph1 = document.querySelector('#part1Paragraph');
         let button = document.querySelector(id);
-        paragraph1.textContent = "Incorrect";
-        paragraph1.style.color = 'red';
+        paragraph.textContent = "Incorrect";
+        paragraph.style.color = 'red';
+        button.style.color = 'red';
     }
 }
 
-function formSubmit()
+
