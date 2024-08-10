@@ -5,7 +5,7 @@
 
 .anchor-list-background-color
 {
-    background-color
+    background-color = rbg(11, 65, 227)
 }
 
 .anchor-list-unselected
@@ -13,7 +13,10 @@
 
 }
 
-.anchor-list-unselected
+.anchor-list-unselected:hover
+{
+
+}
 
 .anchor-list-selected
 {
