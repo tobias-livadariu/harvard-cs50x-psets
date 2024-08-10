@@ -14,7 +14,7 @@ function buttonClick(id)
         paragraph1.style.color = 'green';
         buttonClicked.style.color = 'green';
     }
-    else if (id == 'submitPart2')
+    else if (id == '#submitPart2')
     {
         let textAnswer = input.value;
         if (textAnswer == "1.9")
@@ -40,3 +40,7 @@ function buttonClick(id)
 }
 
 /* Adding event handlers for every button in buttons. */
+for (button of buttons)
+{
+    button.addEventListener('click', buttonClick(button.id));
+}
