@@ -21,7 +21,7 @@
                         let buttonClicked = document.querySelector(id);
                         paragraph1.textContent = "Correct!";
                         paragraph1.style.color = 'green';
-                        buttonClicked.style.color = 'green';
+                        buttonClicked.style.backgroundColor = 'green';
                     }
                     else if (id == '#submitPart2')
                     {
@@ -31,13 +31,13 @@
                         {
                             paragraph2.textContent = "Correct!";
                             paragraph2.style.color = 'green';
-                            input.style.color = 'green';
+                            input.style.backgroundColor = 'green';
                         }
                         else
                         {
                             paragraph2.textContent = "Incorrect";
                             paragraph2.style.color = 'red';
-                            input.style.color = 'red';
+                            input.style.backgroundColor = 'red';
                         }
                     }
                     else
@@ -45,7 +45,7 @@
                         let buttonClicked = document.querySelector(id);
                         paragraph1.textContent = "Incorrect";
                         paragraph1.style.color = 'red';
-                        buttonClicked.style.color = 'red';
+                        buttonClicked.style.backgroundColor = 'red';
                     }
                 }
 
