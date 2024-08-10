@@ -9,21 +9,20 @@
             document.addEventListener('DOMContentLoaded', function() {
                 let buttons = document.querySelectorAll('button');
                 let input = document.querySelector('#inputPart2');
-                let paragraph1 = document.querySelector('#part1Paragraph')
-                let paragraph2 = document.querySelector('#part2Paragraph')
+                let paragraph1 = document.getElementById('part1Paragraph')
+                let paragraph2 = document.getElementById('part2Paragraph')
 
                 /* Defining a function to process when the user clicks on a button. */
                 function buttonClick(id)
                 {
-                    id = '#' + id;
-                    if (id == '#rightAnswer')
+                    if (id == 'rightAnswer')
                     {
-                        let buttonClicked = document.querySelector(id);
+                        let buttonClicked = document.getElementById(id);
                         paragraph1.textContent = "Correct!";
                         paragraph1.style.color = 'green';
                         buttonClicked.style.backgroundColor = 'green';
                     }
-                    else if (id == '#submitPart2')
+                    else if (id == 'submitPart2')
                     {
                         event.preventDefault();
                         let textAnswer = input.value.trim();
@@ -42,7 +41,7 @@
                     }
                     else
                     {
-                        let buttonClicked = document.querySelector(id);
+                        let buttonClicked = document.getElementById(id);
                         paragraph1.textContent = "Incorrect";
                         paragraph1.style.color = 'red';
                         buttonClicked.style.backgroundColor = 'red';
