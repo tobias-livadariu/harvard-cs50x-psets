@@ -1,6 +1,7 @@
 let buttons = document.querySelectorAll('button');
 let input = document.querySelector('#inputPart2');
-let paragraph = document.querySelector('#part1Paragraph')
+let paragraph1 = document.querySelector('#part1Paragraph')
+let paragraph2 = document.querySelector('#part2Paragraph')
 
 /* Defining a function to process when the user clicks on a button. */
 function buttonClick(id)
@@ -9,19 +10,23 @@ function buttonClick(id)
     if (id == '#rightAnswer')
     {
         let button = document.querySelector(id);
-        paragraph.textContent = "Correct!";
-        paragraph.style.color = 'green';
+        paragraph1.textContent = "Correct!";
+        paragraph1.style.color = 'green';
         button.style.color = 'green';
     }
     else if (id == 'submitPart2')
     {
-        let textAnswer = input.value
+        let textAnswer = input.value;
+        if (textAnswer == "1.9")
+        {
+
+        }
     }
     else
     {
         let button = document.querySelector(id);
-        paragraph.textContent = "Incorrect";
-        paragraph.style.color = 'red';
+        paragraph1.textContent = "Incorrect";
+        paragraph1.style.color = 'red';
         button.style.color = 'red';
     }
 }
