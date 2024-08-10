@@ -1,4 +1,21 @@
-.main_background_color
+.main-background-color
 {
-    background-color = 
+    background-color = rgb(11, 159, 227)
+}
+
+.anchor-list-background-color
+{
+    background-color
+}
+
+.anchor-list-unselected
+{
+
+}
+
+.anchor-list-unselected
+
+.anchor-list-selected
+{
+
 }
