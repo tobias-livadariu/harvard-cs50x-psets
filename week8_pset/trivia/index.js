@@ -19,7 +19,15 @@ function buttonClick(id)
         let textAnswer = input.value;
         if (textAnswer == "1.9")
         {
-
+            paragraph2.textContent = "Correct!";
+            paragraph2.style.color = 'green';
+            input.style.color = 'green';
+        }
+        else
+        {
+            paragraph2.textContent = "Incorrect";
+            paragraph2.style.color = 'red';
+            input.style.color = 'red';
         }
     }
     else
