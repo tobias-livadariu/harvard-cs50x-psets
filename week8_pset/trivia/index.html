@@ -25,7 +25,8 @@
                     }
                     else if (id == '#submitPart2')
                     {
-                        let textAnswer = input.value;
+                        event.preventDefault();
+                        let textAnswer = input.value.trim();
                         if (textAnswer == "1.9")
                         {
                             paragraph2.textContent = "Correct!";
