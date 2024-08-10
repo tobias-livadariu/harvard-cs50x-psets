@@ -1,8 +1,10 @@
 let buttons = document.querySelectorAll('button');
 let form = document.querySelector('form');
 
+/* Defining a function to process when the user clicks on a button. */
 function buttonClick(id)
 {
+    id = '#' + id;
     if (id == '#rightAnswer')
     {
         let paragraph1 = document.querySelector('#part1Paragraph');
@@ -19,4 +21,4 @@ function buttonClick(id)
     }
 }
 
-function
+function formSubmit()
