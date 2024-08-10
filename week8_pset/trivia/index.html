@@ -50,9 +50,10 @@
                 }
 
                 /* Adding event handlers for every button in buttons. */
-                for (button of buttons)
-                {
-                    button.addEventListener('click', buttonClick(button.id));
+                for (let button of buttons) {
+                    button.AddEventListener('click', function(event) {
+                        buttonClick(event.target.id);
+                    })
                 }
             });
         </script>
