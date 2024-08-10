@@ -15,7 +15,7 @@ function buttonClick(id)
     }
     else if (id == 'submitPart2')
     {
-        let 
+        let textAnswer = input.value
     }
     else
     {
