@@ -34,6 +34,11 @@
     text-decoration: none;
 }
 
+.anchor-list-unselected:hover
+{
+    color: rgb(0, 123, 255);
+}
+
 .anchor-list-selected
 {
     color: rgb(0, 0, 0);
@@ -41,4 +46,9 @@
     padding: 10px;
     border-radius: 5px;
     text-decoration: none;
+}
+
+.anchor-list-selected:hover
+{
+    color: rgb(0, 123, 255);
 }
