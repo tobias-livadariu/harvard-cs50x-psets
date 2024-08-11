@@ -13,7 +13,7 @@ as well as a brief (one-sentence) description of how you chose to use JavaScript
     - 8. <div>
     - 9. <a>
     - 10. <button>
-    - 11. <image>
+    - 11. <img>
     - And many more!
 
 2. 5 distinct CSS properties used in my homepage:
