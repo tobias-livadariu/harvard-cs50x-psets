@@ -30,4 +30,4 @@ as well as a brief (one-sentence) description of how you chose to use JavaScript
     - The button and image it generates are present in the footer of each page of the website.
 
 4. A brief description of how I chose to use Bootstrap.
-    - I used bootstrap to stylize the horizontal rule, image, and button present at the footer of each page.
+    - I used bootstrap to stylize the image and button presented at the footer of each page.
