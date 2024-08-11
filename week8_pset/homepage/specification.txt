@@ -3,12 +3,26 @@ Here are the requirements given for the "specification.txt" file:
 as well as a brief (one-sentence) description of how you chose to use JavaScript and Bootstrap."
 
 1. 10 distinct HTML tags (other than <html>, <head>, <body>, and <title>) used in my homepage:
-
+    - 1.
+    - 2.
+    - 3.
+    - 4.
+    - 5.
+    - 6.
+    - 7.
+    - 8.
+    - 9.
+    - 10.
 
 2. 5 distinct CSS properties used in my homepage:
-
+    - 1.
+    - 2.
+    - 3.
+    - 4.
+    - 5.
 
 3. A brief description of how I chose to use JavaScript.
-
+    - I used JavaScript to make a button that randomly shows an image of a cute dog to the user.
+    - The button and image it generates are present in the footer 
 
 4. A brief description of how I chose to use Bootstrap.
