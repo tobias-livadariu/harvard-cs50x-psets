@@ -56,5 +56,6 @@
 hr
 {
     height: 100px;
+    background-color: rgb(0, 0, 0);
     border: 0;
 }
