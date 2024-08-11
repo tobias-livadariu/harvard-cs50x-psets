@@ -53,10 +53,17 @@
     color: rgb(0, 123, 255);
 }
 
+.spacer
+{
+    
+}
+
 hr
 {
     height: 6px;
     background-color: rgb(158, 181, 136);
     border: 0;
     opacity: 1;
+    margin-top: 7px;
+    margin-bottom: 7px;
 }
