@@ -31,3 +31,4 @@ as well as a brief (one-sentence) description of how you chose to use JavaScript
 
 4. A brief description of how I chose to use Bootstrap.
     - I used bootstrap to stylize the image and button presented at the footer of each page.
+    - Bootstrap was also used to stylize various lists and a table.
