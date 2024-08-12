@@ -22,9 +22,6 @@ function imageSwitcher()
     /* Defining a variable to hold the new image address string. */
     let imageAddress = "imgs/dog_image_" + imageChosen + ".png";
     dogImage.src = imageAddress;
-
-    let pDebugger = document.getElementById('debug_text');
-    pDebugger.textContent = imageAddress;
 }
 
 // Putting the dog button in a variable
