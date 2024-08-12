@@ -24,9 +24,15 @@ function imageSwitcher()
     dogImage.src = imageAddress;
 }
 
-let 
+// Putting the dog button in a variable
+let dogButton = document.getElementById('dog_button');
 
 // Randomizing the image when the document is loaded.
-document.getElementById('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     imageSwitcher();
 });
+
+// Randomizing the image whenever the button is pressed.
+dogButton.addEventListener('click', function() {
+    imageSwitcher();
+})
