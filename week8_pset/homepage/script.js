@@ -24,4 +24,9 @@ function imageSwitcher()
     dogImage.src = imageAddress;
 }
 
-document.getElementById('DOM')
+let 
+
+// Randomizing the image when the document is loaded.
+document.getElementById('DOMContentLoaded', function() {
+    imageSwitcher();
+});
