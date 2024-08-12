@@ -20,5 +20,8 @@ function imageSwitcher()
     }
 
     /* Defining a variable to hold the new image address string. */
-    let imageAddress = "imgs/dog_image_" + imageChosen;
+    let imageAddress = "imgs/dog_image_" + imageChosen + ".png";
+    dogImage.src = imageAddress;
 }
+
+document.getElementById('DOM')
