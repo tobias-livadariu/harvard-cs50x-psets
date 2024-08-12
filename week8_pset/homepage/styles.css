@@ -73,6 +73,11 @@
     margin-bottom: 11px;
 }
 
+.p-initializer-spacer
+{
+    margin-top: 16px;
+}
+
 .boldish
 {
     font-weight: 600;
