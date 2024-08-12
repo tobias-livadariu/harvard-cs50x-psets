@@ -10,7 +10,7 @@ function imageSwitcher()
     while (true)
     {
         /* Randomizing the imageChosen value to be between 1 and 5. */
-        let newImageChosen = Math.floor(Math.random() * 5) + 1;
+        let newImageChosen = Math.floor(Math.random() * 4) + 1;
 
         if (newImageChosen != imageChosen)
         {
