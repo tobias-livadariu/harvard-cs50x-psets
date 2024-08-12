@@ -61,6 +61,12 @@
     display: inline-block;
 }
 
+.spacer
+{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
 hr
 {
     height: 6px;
