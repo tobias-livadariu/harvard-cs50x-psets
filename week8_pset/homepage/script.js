@@ -1,5 +1,5 @@
-/* Setting the imageChosen variable to 0. */
-let imageChosen = 0;
+/* Predefining the imageChosen variable. */
+let imageChosen = -1;
 
 /* Defining the imageSwitcher function. */
 function imageSwitcher()
@@ -7,9 +7,18 @@ function imageSwitcher()
     /* Defining a variable through which the dog image can be accessed. */
     let dogImage = document.getElementById('dog_image');
 
-    /* Randomizing the imageChosen value to be between 1 and 5. */
-    imageChosen = Math.floor(Math.random() * 5) + 1;
+    while (true)
+    {
+        /* Randomizing the imageChosen value to be between 1 and 5. */
+        let newImageChosen = Math.floor(Math.random() * 5) + 1;
+
+        if (newImageChosen != imageChosen)
+        {
+            imageChosen = newImageChosen;
+            break;
+        }
+    }
 
     /* Defining a variable to hold the new image address string. */
-    let imageAddress = 
+    let imageAddress = "imgs/dog_image_" + imageChosen;
 }
