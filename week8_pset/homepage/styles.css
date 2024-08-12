@@ -67,6 +67,11 @@
     margin-bottom: 12px;
 }
 
+.spacer_top
+{
+    margin-top: 12px;
+}
+
 hr
 {
     height: 6px;
