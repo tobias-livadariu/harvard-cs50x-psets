@@ -67,9 +67,10 @@
     margin-bottom: 12px;
 }
 
-.spacer-top
+.paragraph-spacer-top
 {
     margin-top: 12px;
+    margin-bottom: 16px;
 }
 
 hr
