@@ -92,3 +92,8 @@ p
 {
     font-size: 22px;
 }
+
+ul
+{
+    list-style-position: inside;
+}
