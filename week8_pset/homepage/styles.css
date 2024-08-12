@@ -73,6 +73,11 @@
     margin-bottom: 11px;
 }
 
+.boldish
+{
+    font-weight: 600;
+}
+
 hr
 {
     height: 6px;
