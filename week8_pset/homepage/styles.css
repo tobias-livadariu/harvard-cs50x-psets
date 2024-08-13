@@ -105,6 +105,11 @@
     border: 2px solid #333;
 }
 
+.paragraph-spacer-bottom
+{
+    margin-bottom: 16px;
+}
+
 hr
 {
     height: 6px;
@@ -147,5 +152,4 @@ ol
 {
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 
 }
