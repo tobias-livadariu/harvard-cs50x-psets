@@ -100,7 +100,7 @@
     border: 2px solid #333;
 }
 
-.table-border td, .table-border tr
+.table-border td, .table-border tr, .table-border th
 {
     border: 2px solid #333;
 }
