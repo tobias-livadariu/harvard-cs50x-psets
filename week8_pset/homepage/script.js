@@ -35,4 +35,4 @@ document.addEventListener('DOMContentLoaded', function() {
 // Randomizing the image whenever the button is pressed.
 dogButton.addEventListener('click', function() {
     imageSwitcher();
-})
+});
