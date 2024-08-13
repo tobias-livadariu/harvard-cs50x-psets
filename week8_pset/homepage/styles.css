@@ -103,3 +103,8 @@ ul
     list-style-position: inside;
     font-size: 18px;
 }
+
+table
+{
+    font-size: 18px;
+}
