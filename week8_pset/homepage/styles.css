@@ -143,6 +143,11 @@ body
     padding: 0;
 }
 
+table
+{
+    background-color: rgb();
+}
+
 html
 {
     overflow-y: scroll;
