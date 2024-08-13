@@ -110,6 +110,16 @@
     margin-bottom: 16px;
 }
 
+.custom-list-bg
+{
+    background-color: rgb(231, 251, 230);
+}
+
+.custom-list-bg li
+{
+    background-color: inherit;
+}
+
 hr
 {
     height: 6px;
