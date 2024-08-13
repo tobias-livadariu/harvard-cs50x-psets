@@ -83,6 +83,23 @@
     font-weight: 600;
 }
 
+.table-wrapper
+{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.table-border
+{
+    border-collapse: collapse;
+    border: 2px solid #333;
+}
+
+.table-border td, .table-border tr
+{
+    border: 2px solid #333;
+}
+
 hr
 {
     height: 6px;
