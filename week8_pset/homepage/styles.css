@@ -78,6 +78,11 @@
     margin-top: 16px;
 }
 
+.footer-spacer
+{
+    margin-top: 12px;
+}
+
 .boldish
 {
     font-weight: 600;
