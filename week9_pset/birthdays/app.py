@@ -54,7 +54,7 @@ def index():
 def failure():
     return render_template("failure.html")
 
-@app.route("/remove" methods=["POST"])
+@app.route("/remove", methods=["POST"])
 def remove():
     id = request.form.get("id")
     db.execute("DELETE FROM birthdays where id=?", id)
