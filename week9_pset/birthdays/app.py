@@ -31,7 +31,7 @@ def index():
         month = request.form.get("month")
         day = request.form.get("day")
         # Validating the user's input server-side.
-        if (name == "") or (not month) or (not day):
+        if (not name) or (not month) or (not day):
             return redirect("/failure")
 
         # Adding the user's input to the database.
