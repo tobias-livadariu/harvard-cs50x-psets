@@ -27,6 +27,15 @@ def index():
     if request.method == "POST":
 
         # TODO: Add the user's entry into the database
+        name = request.form.get("name")
+        month = request.form.get("month")
+        day = request.form.get("day")
+        # Validating the user's input server-side.
+        if (not name) or (not month) or (not day):
+            return redirect("/failure")
+
+        # Adding the user's input to the database.
+        db.execute("INSERT INTO birthdays (name, month, day) VALUES (?, ?, ?)", name, month, day)
 
         return redirect("/")
 
@@ -36,4 +45,6 @@ def index():
 
         return render_template("index.html")
 
-
+@app.route("/failure")
+def failure():
+    return render_template("layout/failure.html")
