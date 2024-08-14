@@ -57,5 +57,5 @@ def failure():
 @app.route("/remove" methods=["POST"])
 def remove():
     id = request.form.get("id")
-    db.execute("DELETE FROM birthdays ", id)
+    db.execute("DELETE FROM birthdays where id=?", id)
     return redirect("/")
