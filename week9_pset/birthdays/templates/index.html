@@ -30,6 +30,12 @@
             </thead>
             <tbody>
                 <!-- TODO: Loop through the database entries to display them in this table -->
+                 {% for birthday in birthdays %}
+                    <tr>
+                        <th>{{ birthday["name"] }}</th>
+                        <th>{{ birthday["month"] }}/{{ birthday["day"] }}</th>
+                    </tr>
+                 {% endfor %}
             </tbody>
         </table>
     </div>
