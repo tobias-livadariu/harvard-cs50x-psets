@@ -53,3 +53,9 @@ def index():
 @app.route("/failure")
 def failure():
     return render_template("failure.html")
+
+@app.route("/remove")
+def remove():
+    id = request.form.get("id")
+    db.execute("DROP * FROM birthdays WHEN id=?", id)
+    return redirect("/")
