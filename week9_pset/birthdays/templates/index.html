@@ -34,11 +34,13 @@
                     <tr>
                         <td>{{ birthday["name"] }}</td>
                         <td>
-                            {{ birthday["month"] }}/{{ birthday["day"] }}
-                            <form action="/remove" method="post" style="display: inline;">
-                                <input name="id" type="hidden" value="{{ birthday['id'] }}">
-                                <button type="submit">Remove Birthday</button>
-                            </form>
+                            <span style="display: inline;">
+                                {{ birthday["month"] }}/{{ birthday["day"] }}
+                                <form action="/remove" method="post">
+                                    <input name="id" type="hidden" value="{{ birthday['id'] }}">
+                                    <button type="submit">Remove Birthday</button>
+                                </form>
+                            </span>
                         </td>
                     </tr>
                  {% endfor %}
