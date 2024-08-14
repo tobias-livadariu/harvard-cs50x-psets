@@ -32,14 +32,14 @@
                 <!-- TODO: Loop through the database entries to display them in this table -->
                  {% for birthday in birthdays %}
                     <tr>
-                        <th>{{ birthday["name"] }}</th>
-                        <th>
+                        <td>{{ birthday["name"] }}</td>
+                        <td>
                             {{ birthday["month"] }}/{{ birthday["day"] }}
-                            <form action="/remove" method="post">
+                            <form action="/remove" method="post" style="display: inline;">
                                 <input name="id" type="hidden" value="{{ birthday['id'] }}">
                                 <button type="submit">Remove Birthday</button>
                             </form>
-                        </th>
+                        </td>
                     </tr>
                  {% endfor %}
             </tbody>
