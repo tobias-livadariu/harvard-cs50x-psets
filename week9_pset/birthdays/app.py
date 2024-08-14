@@ -52,4 +52,4 @@ def index():
 
 @app.route("/failure")
 def failure():
-    return render_template("layout/failure.html")
+    return render_template("templates/failure.html")
