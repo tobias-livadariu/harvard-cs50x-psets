@@ -33,11 +33,13 @@
                  {% for birthday in birthdays %}
                     <tr>
                         <th>{{ birthday["name"] }}</th>
-                        <th>{{ birthday["month"] }}/{{ birthday["day"] }}</th>
-                        <form action="/remove" method="post">
-                            <input name="id" type="hidden" value="{{ birthday['id'] }}">
-                            <button type="submit">Remove Birthday</button>
-                        </form>
+                        <th>
+                            {{ birthday["month"] }}/{{ birthday["day"] }}
+                            <form action="/remove" method="post">
+                                <input name="id" type="hidden" value="{{ birthday['id'] }}">
+                                <button type="submit">Remove Birthday</button>
+                            </form>
+                        </th>
                     </tr>
                  {% endfor %}
             </tbody>
