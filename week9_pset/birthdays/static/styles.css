@@ -39,7 +39,7 @@ body {
 
 .index-form {
     width: 20%;
-    
+    display: inline-block;
 }
 
 h1 {

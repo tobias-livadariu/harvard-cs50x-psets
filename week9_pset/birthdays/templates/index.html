@@ -35,7 +35,7 @@
                         <td>{{ birthday["name"] }}</td>
                         <td>
                             {{ birthday["month"] }}/{{ birthday["day"] }}
-                            <form action="/remove" method="post">
+                            <form action="/remove" method="post" class="index-form">
                                 <input name="id" type="hidden" value="{{ birthday['id'] }}">
                                 <button type="submit">Remove Birthday</button>
                             </form>
