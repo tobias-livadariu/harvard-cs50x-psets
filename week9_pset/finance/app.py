@@ -52,7 +52,10 @@ def buy():
         price = lookup(symbol)
         if not price:
             return apology("The stock symbol you inputted does not exist! Please try a different stock symbol.")
-
+        userBal = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
+        totalCost = shares * price
+        if userBal < totalCost:
+            return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal} USD.")
 
 @app.route("/history")
 @login_required
