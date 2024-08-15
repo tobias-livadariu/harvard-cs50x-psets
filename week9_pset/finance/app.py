@@ -136,7 +136,10 @@ def register():
         except:
             return apology("Sorry, the username you have selected is already taken! Please choose a different username.")
 
-        # Redirecting the user if 
+        # Logging the user in and redirecting them if they were added successfully
+        # to the database.
+        session["user_id"] = db.execute("SELECT id FROM users WHERE (username = ?) AND (hash = ?)", username, passwordHash)
+        
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
