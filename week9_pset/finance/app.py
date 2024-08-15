@@ -47,9 +47,11 @@ def buy():
         shares = request.form.get("shares")
         if not symbol:
             return apology("You did not input a stock symbol! Next time, please input a valid stock symbol.")
-        if shares > 1 or shares :
-            return apology("When choosing the number of shares you would like to purchase, please use a positive integer")
+        if (not isinstance(shares, int)) or shares < 1:
+            return apology("When choosing the number of shares you would like to purchase, please use a positive integer.")
         price = lookup(symbol)
+        if not price:
+            return apology("The stock symbol you inputed does not exist! Please try a different stock symbol.")
 
 
 @app.route("/history")
