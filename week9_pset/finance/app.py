@@ -136,6 +136,8 @@ def register():
         except:
             return apology("Sorry, the username you have selected is already taken! Please choose a different username.")
 
+        # Redirecting the user if 
+
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
