@@ -51,7 +51,7 @@ def buy():
             return apology("When choosing the number of shares you would like to purchase, please use a positive integer.")
         price = lookup(symbol)
         if not price:
-            return apology("The stock symbol you inputed does not exist! Please try a different stock symbol.")
+            return apology("The stock symbol you inputted does not exist! Please try a different stock symbol.")
 
 
 @app.route("/history")
