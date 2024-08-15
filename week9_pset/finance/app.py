@@ -57,7 +57,9 @@ def buy():
         if userBal < totalCost:
             return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal} USD.")
 
-
+CREATE TABLE STOCKS (
+    us
+)
 
 @app.route("/history")
 @login_required
