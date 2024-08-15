@@ -42,6 +42,10 @@ body {
     display: inline-block;
 }
 
+.birthday-td {
+    width: 40%;
+}
+
 h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 48px;
