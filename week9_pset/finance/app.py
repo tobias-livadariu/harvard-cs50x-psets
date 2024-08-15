@@ -140,7 +140,8 @@ def register():
         # to the database.
         session["user_id"] = db.execute("SELECT id FROM users WHERE (username = ?) AND (hash = ?)", username, passwordHash)
         return redirect("/quote")
-    """If the page was not accessed """
+    """If the register page was accessed via "get", displaying it to the user."""
+    return template_render("register.html")
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
