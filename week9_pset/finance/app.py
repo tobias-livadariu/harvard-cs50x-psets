@@ -125,6 +125,8 @@ def register():
             return apology("You must confirm your password in the \"Confirm Password\" box!")
         if password != confirmPassword:
             return apology("Your original password and confirmation password did not match!")
+        # Generating an incrypted hash of the password.
+        passwordHash = generate_password_hash(password)
 
         # Inserting into the users table, and checking if the username was duplicated.
         try:
