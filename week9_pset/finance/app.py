@@ -62,7 +62,7 @@ CREATE TABLE STOCKS (
     stock_symbol TEXT,
     stock_count INTEGER,
     PRIMARY KEY (user_id, stock_symbol),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 @app.route("/history")
