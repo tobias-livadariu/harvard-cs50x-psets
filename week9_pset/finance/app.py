@@ -129,8 +129,12 @@ def register():
         passwordHash = generate_password_hash(password)
 
         # Inserting into the users table, and checking if the username was duplicated.
+        # This works because, if the username was duplicated, trying to insert into the
+        # table with that username will throw an error.
         try:
-            db.execute("INSERT INTO users ")
+            db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, passwordHash)
+        except:
+            return apology("Sorry, the username you have selected is already taken! Please choose a different username.")
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
