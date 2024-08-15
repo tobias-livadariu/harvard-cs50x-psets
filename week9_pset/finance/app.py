@@ -139,7 +139,8 @@ def register():
         # Logging the user in and redirecting them if they were added successfully
         # to the database.
         session["user_id"] = db.execute("SELECT id FROM users WHERE (username = ?) AND (hash = ?)", username, passwordHash)
-        return redirect()
+        return redirect("/quote")
+    """If the page was not accessed """
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
