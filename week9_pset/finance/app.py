@@ -108,7 +108,8 @@ def quote():
     """Get stock quote."""
     symbol = request.form.get("symbol")
     quote = lookup(symbol)
-    if quote
+    if not quote:
+        return apology("The stock symbol you quoted does not exist! Please try a different stock symbol.")
 
 
 @app.route("/register", methods=["GET", "POST"])

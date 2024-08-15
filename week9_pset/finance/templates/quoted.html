@@ -5,6 +5,6 @@
 {% endblock %}
 
 {% block main %}
-    <h2>You have requested a stock quote for {{ symbol }}.</h2>
-    <p>The price for a single share of that stock is {{ price }}.</p>
+    <h2>You have requested a stock quote for {{ quote["symbol"] }}.</h2>
+    <p>The price for a single share of that stock is {{ quote["price"] }}.</p>
 {% endblock %}
