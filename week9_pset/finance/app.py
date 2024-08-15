@@ -61,6 +61,7 @@ CREATE TABLE STOCKS (
     user_id INTEGER,
     stock_symbol TEXT,
     stock_count INTEGER,
+    PRIMARY KEY (user_id, stock_symbol),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
