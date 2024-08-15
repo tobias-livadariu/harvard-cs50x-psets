@@ -139,7 +139,7 @@ def register():
         # Logging the user in and redirecting them if they were added successfully
         # to the database.
         session["user_id"] = db.execute("SELECT id FROM users WHERE (username = ?) AND (hash = ?)", username, passwordHash)
-        return redirect("/quote")
+        return redirect("/quote") #TODO: check if this is necessary
     """If the register page was accessed via "get", displaying it to the user."""
     return template_render("register.html")
 
