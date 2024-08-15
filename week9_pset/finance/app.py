@@ -106,11 +106,15 @@ def logout():
 @login_required
 def quote():
     """Get stock quote."""
-    symbol = request.form.get("symbol")
-    quote = lookup(symbol)
-    if not quote:
-        return apology("The stock symbol you quoted does not exist! Please try a different stock symbol.")
+    if request.method == "post":
+        symbol = request.form.get("symbol")
+        quote = lookup(symbol)
+        if not quote:
+            return apology("The stock symbol you quoted does not exist! Please try a different stock symbol.")
+        return render_template("quoted.html", quote=quote)
 
+    """If the page was requested via get, rendering it."""
+    return render_template("quote.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
