@@ -58,7 +58,10 @@ def buy():
             return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal} USD.")
 
 CREATE TABLE STOCKS (
-    us
+    user_id INTEGER
+    stock_symbol TEXT
+    stock_count INTEGER
+    FOREIGN KEY (user_id)
 )
 
 @app.route("/history")
