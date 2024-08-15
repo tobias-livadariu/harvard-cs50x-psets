@@ -116,6 +116,7 @@ def register():
         username = request.form.get("username")
         password = request.form.get("password")
         confirmPassword = request.form.get("confirmPassword")
+        """Checking if the user's input is valid."""
         if not username:
             return apology("You must choose a username!")
         if not password:
@@ -124,7 +125,10 @@ def register():
             return apology("You must confirm your password in the \"Confirm Password\" box!")
         if password != confirmPassword:
             return apology("Your original password and confirmation password did not match!")
-        if username in db.execute("SELECT username FROM ")
+
+        # Inserting into the users table, and checking if the username was duplicated.
+        try:
+            db.execute("INSERT INTO users ")
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
