@@ -56,6 +56,7 @@ def buy():
         totalCost = shares * price
         if userBal < totalCost:
             return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal} USD.")
+        
 
 @app.route("/history")
 @login_required
