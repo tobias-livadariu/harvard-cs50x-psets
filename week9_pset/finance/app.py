@@ -57,14 +57,6 @@ def buy():
         if userBal < totalCost:
             return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal} USD.")
 
-CREATE TABLE STOCKS (
-    user_id INTEGER,
-    stock_symbol TEXT,
-    stock_count INTEGER,
-    PRIMARY KEY (user_id, stock_symbol),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
-
 @app.route("/history")
 @login_required
 def history():
