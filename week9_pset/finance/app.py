@@ -255,6 +255,12 @@ def sell():
         # Removing the entry from the stocks table if the user sold all of their shares.
         db.execute("DELETE FROM stocks WHERE stock_count = 0 AND user_id = ? AND stock_symbol = ?", session["user_id"], symbol)
 
+        # Determining the date of transaction.
+        
+
+        # Inserting the completed transaction into the histories table.
+        db.execute("INSERT INTO HISTORIES (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (?, ?, ?, ?, ?, ?)", )
+
         # Redirecting the user back to the homepage.
         return redirect("/")
     return render_template("sell.html", stocks=stocks)
