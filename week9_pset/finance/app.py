@@ -61,7 +61,7 @@ def index():
 @login_required
 def buy():
     """If the route was requested via post, buy shares of stock."""
-    if request.method == "post":
+    if request.method == "POST":
         symbol = request.form.get("symbol")
         shares = request.form.get("shares")
         if not symbol:
@@ -145,7 +145,7 @@ def logout():
 @login_required
 def quote():
     """Get stock quote."""
-    if request.method == "post":
+    if request.method == "POST":
         symbol = request.form.get("symbol")
         quote = lookup(symbol)
         if not quote:
@@ -196,7 +196,7 @@ def sell():
     stocks = db.execute("SELECT stock_symbol FROM stocks WHERE user_id = ?", session["user_id"])
 
     """Sell shares of stock"""
-    if request.method == "post":
+    if request.method == "POST":
         symbol = request.form.get("symbol")
         shares = request.form.get("shares")
         if not symbol:
