@@ -165,12 +165,16 @@ def register():
         """Checking if the user's input is valid."""
         if not username:
             return apology("You must choose a username!")
+
         if not password:
             return apology("You must choose a password!")
+
         if not confirmPassword:
             return apology("You must confirm your password in the \"Confirm Password\" box!")
+
         if password != confirmPassword:
             return apology("Your original password and confirmation password did not match!")
+        
         # Generating an incrypted hash of the password.
         passwordHash = generate_password_hash(password)
 
