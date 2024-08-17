@@ -98,7 +98,18 @@ def buy():
             numStocks = numStocksPacked[0]["stock_count"]
             db.execute("UPDATE stocks SET stock_count = stock_count + ? WHERE user_id = ? AND stock_symbol = ?", shares, session["user_id"], symbol)
         db.execute("UPDATE users SET cash = ? WHERE id = ?", (userBal - totalCost), session["user_id"])
+
+        # Determining the date of transaction.
+        currentDate = datetime.now()
+        dateFormatted = currentDate.strftime("%Y/%m/%d")
+
+        # Inserting the completed transaction into the histories table.
+        db.execute("INSERT INTO histories (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (?, ?, ?, ?, ?, ?)", session["user_id"], symbol, price["price"], shares, "Sell", dateFormatted)
+
+        # Redirecting the user.
         return redirect("/")
+
+    # If the page was accessed via "get", rendering the buy.html template.
     return render_template("buy.html")
 
 @app.route("/history")
