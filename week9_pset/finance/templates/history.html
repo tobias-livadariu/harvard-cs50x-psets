@@ -5,19 +5,19 @@
 {% endblock %}
 
 {% block main %}
-    <h2>Index of all owned shares:</h2>
+    <h2>History of all transactions:</h2>
     <table>
         <thead>
-            <th>Symbol</th>
-            <th>Shares</th>
+            <th>Stock Symbol</th>
             <th>Price</th>
-            <th>TOTAL</th>
+            <th>Number of Shares</th>
+            <th>Type of Transaction</th>
         </thead>
-        {% for stock in stocks %}
+        {% for history in histories %}
             <tr>
-                <td>stock["stock_symbol"]</td>
-                <td>stock["stock_count"]</td>
-                <td>f'${price["stock_symbol"]}'</td>
+                <td>history["stock_symbol"]</td>
+                <td>f'${history["stock_price"]}'</td>
+                <td>history</td>
                 <td>f'${price["stock_symbol"] * stock["stock_count"]}'</td>
             </tr>
         {% endfor %}
