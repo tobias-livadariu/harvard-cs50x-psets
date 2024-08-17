@@ -58,6 +58,7 @@ def buy():
             return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal} USD.")
         db.execute("INSERT INTO stocks (user_id, stock_symbol, stock_count) VALUES (?, ?, ?)", session["user_id"], symbol, shares)
         db.execute("UPDATE users SET cash = ? WHERE id = ?", (userBal - totalCost), session["user_id"])
+        return redirect()
 
 @app.route("/history")
 @login_required
