@@ -213,9 +213,8 @@ def sell():
             if symbol == stock["stock_symbol"]:
                 break
             numFailures += 1
-        if
-
-
+        if numFailures == len(stocks):
+            return apology("Please select a stock symbol that you own!")
 
         userBal = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
         totalCost = shares * price
