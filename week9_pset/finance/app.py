@@ -209,13 +209,9 @@ def sell():
             return apology("The stock symbol you inputted does not exist! Please try a different stock symbol.")
 
         # checking if the symbol that the user inputted is a stock that they own.
-        numFailures = 0
-        for stock in stocks:
-            if symbol == stock["stock_symbol"]:
-                break
-            numFailures += 1
-        if numFailures == len(stocks):
-            return apology("Please select a stock symbol that you own!")
+        userStock = db.execute("SELECT stock_count FROM stocks WHERE user_id = ? AND stock_symbol = ?", session["user_id"], symbol)
+        if not userStock or userStock[0]["stock_count"] < shares:
+            return apology("You either do not own this stock or do not have enough shares to sell.")
 
         # Completing the sale
         totalSale = shares * price["price"]
