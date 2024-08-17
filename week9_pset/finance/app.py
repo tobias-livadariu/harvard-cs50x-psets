@@ -53,7 +53,7 @@ def index():
     for stock in stocks:
         # Getting the current price for the stock
         stockSymbol = stock["stock_symbol"]
-        price[stockSymbol] = lookup(stockSymbol)
+        price[stockSymbol] = lookup(stockSymbol)["price"]
 
         # Adding the value of the stock to totalBal
         totalBal += price[stockSymbol] * stock["stock_count"]
