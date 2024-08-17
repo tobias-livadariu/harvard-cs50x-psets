@@ -207,10 +207,15 @@ def sell():
         if not price:
             return apology("The stock symbol you inputted does not exist! Please try a different stock symbol.")
 
+        # checking if the symbol that the user inputted is a stock that they own.
+        numFailures = 0
         for stock in stocks:
             if symbol == stock["stock_symbol"]:
                 break
-            
+            numFailures += 1
+        if
+
+
 
         userBal = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
         totalCost = shares * price
