@@ -147,6 +147,9 @@ def quote():
     """Get stock quote."""
     if request.method == "POST":
         symbol = request.form.get("symbol")
+        if not symbol:
+            return apology("When getting a quote, you must input the symbol of the stock being quoted!")
+
         quote = lookup(symbol)
         if not quote:
             return apology("The stock symbol you quoted does not exist! Please try a different stock symbol.")
