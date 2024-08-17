@@ -198,7 +198,13 @@ def sell():
     """Sell shares of stock"""
     if request.method == "POST":
         symbol = request.form.get("symbol")
-        shares = float(request.form.get("shares"))
+        shares = request.form.get("shares")
+
+        try:
+            shares = float(shares)
+        except:
+            return apology("You must return a numeric value for your number of shares!")
+
         if not symbol:
             return apology("You did not input a stock symbol! Next time, please input a valid stock symbol.")
         if (shares - int(shares)) != 0 or shares < 1:
