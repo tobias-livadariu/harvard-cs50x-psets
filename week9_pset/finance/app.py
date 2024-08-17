@@ -36,7 +36,7 @@ def after_request(response):
 
 @app.route("/")
 @login_required
-def indx():e
+def index():
     """Show portfolio of stocks"""
     stocks = db.execute("SELECT stock_symbol, stock_count FROM stocks WHERE user_id = ?", session["user_id"])
     price = {}
