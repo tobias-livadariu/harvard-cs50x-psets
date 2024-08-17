@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <h2>Index of all owned shares:</h2>
+    <table>
+        <thead>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>TOTAL</th>
+        </thead>
+        {% for stock in stocks %}
+            <tr>
+                <td>stock["stock_symbol"]</td>
+                <td>stock["stock_count"]</td>
+            </tr>
+    </table>
+{% endblock %}
