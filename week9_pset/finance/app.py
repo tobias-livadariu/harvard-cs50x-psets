@@ -230,7 +230,7 @@ def sell():
 
         try:
             shares = float(shares)
-        except:
+        except ValueError:
             return apology("You must return a numeric value for your number of shares!")
 
         if not symbol:
