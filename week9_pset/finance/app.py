@@ -85,12 +85,14 @@ def buy():
 
         totalCost = shares * price["price"]
         if userBal < totalCost:
-            return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal} USD.")
-        
-        numStocks = db.execute("SELECT stock_count FROM stocks WHERE stock_symbol = ? AND user_id = ?", symbol, session["user_id"])
-        if not numStocks:
+            return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal.2f} USD.")
+
+        # Getting the user's cash balance and unextracting it.
+        numStocksPacked = db.execute("SELECT stock_count FROM stocks WHERE stock_symbol = ? AND user_id = ?", symbol, session["user_id"])
+        if not numStocksPacked:
             db.execute("INSERT INTO stocks (user_id, stock_symbol, stock_count) VALUES (?, ?, ?)", session["user_id"], symbol, shares)
         else:
+            numStocks = numStocksPacked[0]["stock_count"]
             db.execute("UPDATE stocks SET stock_count = ? WHERE user_id = ? AND stock_symbol = ?", numStocks + shares, session["user_id"], symbol)
         db.execute("UPDATE users SET cash = ? WHERE id = ?", (userBal - totalCost), session["user_id"])
         return redirect("/")
