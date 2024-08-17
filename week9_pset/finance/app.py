@@ -256,10 +256,11 @@ def sell():
         db.execute("DELETE FROM stocks WHERE stock_count = 0 AND user_id = ? AND stock_symbol = ?", session["user_id"], symbol)
 
         # Determining the date of transaction.
-        
+        currentDate = datetime.now()
+        dateFormatted = currentDate.strftime("%Y/%m/%d")
 
         # Inserting the completed transaction into the histories table.
-        db.execute("INSERT INTO HISTORIES (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (?, ?, ?, ?, ?, ?)", )
+        db.execute("INSERT INTO HISTORIES (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (session['user_id'], symbol, price, shares, 'Sale', dateFormatted)", )
 
         # Redirecting the user back to the homepage.
         return redirect("/")
