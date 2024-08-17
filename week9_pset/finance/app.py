@@ -82,6 +82,8 @@ def buy():
         if not price:
             return apology("The stock symbol you inputted does not exist! Please try a different stock symbol.")
 
+        print(price) # error checking
+
         # Getting the user's cash balance and extracting it
         userBalPacked = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
         userBal = userBalPacked[0]["cash"]
