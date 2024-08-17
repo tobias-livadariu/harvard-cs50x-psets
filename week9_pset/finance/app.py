@@ -218,7 +218,7 @@ def sell():
             return apology("Please select a stock symbol that you own!")
 
         # Completing the sale
-        totalSale = shares * price
+        totalSale = shares * price["price"]
         db.execute("UPDATE stocks SET stock_count = stock_count - ? WHERE user_id = ? AND stock_symbol = ?", shares, session["user_id"], symbol)
         db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", totalSale, session["user_id"])
         return redirect("/")
