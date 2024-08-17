@@ -193,7 +193,7 @@ def register():
 @login_required
 def sell():
     # Getting all the shares that the user owns
-    shares = db.execute("SELECT stock_symbol FROM ")
+    stocks = db.execute("SELECT stock_symbol FROM stocks WHERE user_id = ?", session["user_id"])
 
     """Sell shares of stock"""
     if request.method == "post":
@@ -217,4 +217,4 @@ def sell():
             db.execute("UPDATE stocks SET stock_count = ? WHERE user_id = ? AND stock_symbol = ?", numStocks + shares, session["user_id"], symbol)
         db.execute("UPDATE users SET cash = ? WHERE id = ?", (userBal - totalCost), session["user_id"])
         return redirect("/")
-    return render_template("sell.html", symbols=symbols) # TODO: get all symbols
+    return render_template("sell.html", stocks=stocks)

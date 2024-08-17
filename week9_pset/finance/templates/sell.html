@@ -10,8 +10,8 @@
         <div class="mb-3">
             <select name="symbol">
                 <option disabled selected value="">Symbol</option>
-                {% for symbol in symbols %}
-                    <option>{{ symbol }}</option>
+                {% for stock in stocks %}
+                    <option>{{ share["stock_symbol"] }}</option>
                 {% endfor %}
             </select>
         </div>
