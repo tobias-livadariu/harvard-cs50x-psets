@@ -24,8 +24,14 @@
         <tr>
             <td></td>
             <td></td>
-            <td><span class="bold">Cash</span> ${{cash}}</td>
-            <td><span class="bold">TOTAL</span> ${{totalBal}}</td>
+            <td class="bold">Cash</td>
+            <td>{{cash | usd}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="bold">TOTAL</td>
+            <td>{{totalBal | usd}}</td>
         </tr>
     </table>
 {% endblock %}
