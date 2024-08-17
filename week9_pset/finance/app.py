@@ -216,15 +216,9 @@ def sell():
         if numFailures == len(stocks):
             return apology("Please select a stock symbol that you own!")
 
-        userBal = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
-        totalCost = shares * price
-        if userBal < totalCost:
-            return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal} USD.")
-        numStocks = db.execute("SELECT stock_count FROM stocks WHERE stock_symbol = ? AND user_id = ?", symbol, session["user_id"])
-        if not numStocks:
-            db.execute("INSERT INTO stocks (user_id, stock_symbol, stock_count) VALUES (?, ?, ?)", session["user_id"], symbol, shares)
-        else:
-            db.execute("UPDATE stocks SET stock_count = ? WHERE user_id = ? AND stock_symbol = ?", numStocks + shares, session["user_id"], symbol)
-        db.execute("UPDATE users SET cash = ? WHERE id = ?", (userBal - totalCost), session["user_id"])
+        # Completing the sale
+        totalSale = shares * price
+        db.execute("UPDATE stocks SET stock_count = stock_count - ? WHERE user_id = ? AND stock_symbol = ?", shares, session["user_id"], symbol)
+        db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", totalSale, session["user_id"])
         return redirect("/")
     return render_template("sell.html", stocks=stocks)
