@@ -12,13 +12,15 @@
             <th>Price</th>
             <th>Number of Shares</th>
             <th>Type of Transaction</th>
+            <th>Transaction Date (yyyy/mm/dd)</th>
         </thead>
         {% for history in histories %}
             <tr>
                 <td>history["stock_symbol"]</td>
                 <td>f'${history["stock_price"]}'</td>
                 <td>history["stock_count"]</td>
-                <td>f'${price["stock_symbol"] * stock["stock_count"]}'</td>
+                <td>history["transaction_type"]</td>
+                <td>history["transaction_date"]</td>
             </tr>
         {% endfor %}
         <tr>
