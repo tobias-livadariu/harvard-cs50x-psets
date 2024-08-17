@@ -37,7 +37,15 @@ def index():
     """Show portfolio of stocks"""
     stocks = db.execute("SELECT stock_symbol, stock_count FROM stocks WHERE user_id = ?", session["user_id"])
     price = {}
-    cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
+    # Getting the cash value from the database as an array of dictionaries
+    cashRow = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
+
+    # Extracting the cash value from cashRow
+    if cashRow:
+        cash = cashRow[0]["cash"]
+    else:
+        cash = 0
+
     totalBal = cash
     for stock in stocks:
         # Getting the current price for the stock
@@ -45,7 +53,7 @@ def index():
         price[stockSymbol] = lookup(stockSymbol)
 
         # Adding the value of the stock to totalBal
-        totalBal += price[stockSymbol] * stock[stock_count]
+        totalBal += price[stockSymbol] * stock["stock_count"]
     return render_template("index.html", stocks=stocks, cash=cash, price=price, totalBal=totalBal)
 
 
