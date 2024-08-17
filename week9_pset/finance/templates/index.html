@@ -17,8 +17,8 @@
             <tr>
                 <td>stock["stock_symbol"]</td>
                 <td>stock["stock_count"]</td>
-                <td>f'${price["stock_symbol"]:.2f}'</td>
-                <td>f'${(price["stock_symbol"] * stock["stock_count"]):.2f}'</td>
+                <td>f'${price["stock_symbol"] | usd}'</td>
+                <td>f'${(price["stock_symbol"] * stock["stock_count"] | usd}'</td>
             </tr>
         {% endfor %}
         <tr>
