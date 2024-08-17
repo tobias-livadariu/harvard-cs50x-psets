@@ -36,7 +36,7 @@ def after_request(response):
 
 @app.route("/")
 @login_required
-def index():
+def indx():e
     """Show portfolio of stocks"""
     stocks = db.execute("SELECT stock_symbol, stock_count FROM stocks WHERE user_id = ?", session["user_id"])
     price = {}
@@ -57,6 +57,8 @@ def index():
 
         # Adding the value of the stock to totalBal
         totalBal += price[stockSymbol] * stock["stock_count"]
+    print(price[stock["stock_symbol"]]["price"])
+    print(type(price[stock["stock_symbol"]]["price"]))
     return render_template("index.html", stocks=stocks, cash=cash, price=price, totalBal=totalBal)
 
 
