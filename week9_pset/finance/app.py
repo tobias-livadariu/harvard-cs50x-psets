@@ -198,11 +198,12 @@ def sell():
     """Sell shares of stock"""
     if request.method == "POST":
         symbol = request.form.get("symbol")
-        shares = request.form.get("shares")
+        shares = float(request.form.get("shares"))
         if not symbol:
             return apology("You did not input a stock symbol! Next time, please input a valid stock symbol.")
-        if (not isinstance(shares, int)) or shares < 1:
+        if (shares - int(shares)) != 0 or shares < 1:
             return apology("When choosing the number of shares you would like to purchase, please use a positive integer.")
+        shares = int(shares)
         price = lookup(symbol)
         if not price:
             return apology("The stock symbol you inputted does not exist! Please try a different stock symbol.")
