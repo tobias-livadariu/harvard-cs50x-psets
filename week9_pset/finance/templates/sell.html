@@ -9,6 +9,7 @@
     <form action="/buy" method="post">
         <div class="mb-3">
             <select name="symbol">
+                <option disabled selected value="">Symbol</option>
                 {% for symbol in symbols %}
                     <option>{{ symbol }}</option>
                 {% endfor %}
