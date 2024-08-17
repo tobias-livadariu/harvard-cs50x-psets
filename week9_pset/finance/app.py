@@ -41,10 +41,8 @@ def index():
     totalBal = cash
     for stock in stocks:
         price[stock["stock_symbol"]] = lookup(stock["stock_symbol"])
-        totalBal += price[stock["stock_symbol"]] * stocks[]
-    cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
-    totalBal = cash
-    for
+        totalBal += price[stock["stock_symbol"]] * stocks[stock_count]
+    return render_template("index.html" stock)
 
 
 @app.route("/buy", methods=["GET", "POST"])
