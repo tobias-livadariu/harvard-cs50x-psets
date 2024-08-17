@@ -116,6 +116,7 @@ def buy():
 @login_required
 def history():
     """Show history of transactions"""
+    histories = db.execute()
     return render_template("history.html", histories=histories)
 
 
@@ -214,7 +215,7 @@ def register():
         # table with that username will throw an error.
         try:
             db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, passwordHash)
-        except sqlite3.IntegrityError:
+        except:
             return apology("Sorry, the username you have selected is already taken! Please choose a different username.")
 
         # Logging the user in and redirecting them if they were added successfully
