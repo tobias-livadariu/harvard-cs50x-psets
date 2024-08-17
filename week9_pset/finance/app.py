@@ -57,8 +57,10 @@ def index():
 
         # Adding the value of the stock to totalBal
         totalBal += price[stockSymbol] * stock["stock_count"]
-    print(price[stock["stock_symbol"]]["price"])
-    print(type(price[stock["stock_symbol"]]["price"]))
+    print(type(price[stock["stock_symbol"]]))
+    print(price[stock["stock_symbol"]])
+    # print(type(price[stock["stock_symbol"]]["price"]))
+    # print(price[stock["stock_symbol"]]["price"])
     return render_template("index.html", stocks=stocks, cash=cash, price=price, totalBal=totalBal)
 
 
