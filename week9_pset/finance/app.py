@@ -36,7 +36,9 @@ def after_request(response):
 def index():
     """Show portfolio of stocks"""
     stocks = db.execute("SELECT * FROM stocks WHERE user_id = ?", session["user_id"])
-    
+    price = {}
+    for stock in stocks:
+        price[stock["stock_symbol"]] = 
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
