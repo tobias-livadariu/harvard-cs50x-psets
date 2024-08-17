@@ -224,7 +224,8 @@ def sell():
         db.execute("UPDATE stocks SET stock_count = stock_count - ? WHERE user_id = ? AND stock_symbol = ?", shares, session["user_id"], symbol)
         db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", totalSale, session["user_id"])
 
-        # Removing 
+        # Removing the entry from the stocks table if the user sold all of their shares.
+        db.execute("DELETE FROM stocks WHERE stock_count = 0")
 
         # Redirecting the user back to the homepage.
         return redirect("/")
