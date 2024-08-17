@@ -35,10 +35,17 @@ def after_request(response):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    stocks = db.execute("SELECT * FROM stocks WHERE user_id = ?", session["user_id"])
+    stocks = db.execute("SELECT stock_symbol, stock_count FROM stocks WHERE user_id = ?", session["user_id"])
     price = {}
+    cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
+    totalBal = cash
     for stock in stocks:
-        price[stock["stock_symbol"]] = 
+        price[stock["stock_symbol"]] = lookup(stock["stock_symbol"])
+        totalBal += price[stock["stock_symbol"]] * stocks[]
+    cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
+    totalBal = cash
+    for
+
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
