@@ -40,8 +40,12 @@ def index():
     cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
     totalBal = cash
     for stock in stocks:
-        price[stock["stock_symbol"]] = lookup(stock["stock_symbol"])
-        totalBal += price[stock["stock_symbol"]] * stocks[stock_count]
+        # Getting the current price for the stock
+        stockSymbol = stock["stock_symbol"]
+        price[stockSymbol] = lookup(stockSymbol)
+
+        # Adding the value of the stock to totalBal
+        totalBal += price[stockSymbol] * stock[stock_count]
     return render_template("index.html", stocks=stocks, cash=cash, price=price, totalBal=totalBal)
 
 
