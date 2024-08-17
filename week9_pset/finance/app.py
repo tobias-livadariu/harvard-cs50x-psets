@@ -219,9 +219,13 @@ def sell():
         if not userStock or userStock[0]["stock_count"] < shares:
             return apology("You either do not own this stock or do not have enough shares to sell.")
 
-        # Completing the sale
+        # Completing the sale.
         totalSale = shares * price["price"]
         db.execute("UPDATE stocks SET stock_count = stock_count - ? WHERE user_id = ? AND stock_symbol = ?", shares, session["user_id"], symbol)
         db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", totalSale, session["user_id"])
+
+        
+
+        # Redirecting the user back to the homepage.
         return redirect("/")
     return render_template("sell.html", stocks=stocks)
