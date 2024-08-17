@@ -174,7 +174,7 @@ def register():
 
         if password != confirmPassword:
             return apology("Your original password and confirmation password did not match!")
-        
+
         # Generating an incrypted hash of the password.
         passwordHash = generate_password_hash(password)
 
@@ -191,8 +191,11 @@ def register():
         sessionPacked = db.execute("SELECT id FROM users WHERE (username = ?) AND (hash = ?)", username, passwordHash)
         session["user_id"] = sessionPacked[0]["id"]
 
+        # Redirecting the user
+        return redirect("/")
+
     """If the register page was accessed via "get", displaying it to the user."""
-    return template_render("register.html")
+    return render_template("register.html")
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
