@@ -258,3 +258,13 @@ def sell():
         # Redirecting the user back to the homepage.
         return redirect("/")
     return render_template("sell.html", stocks=stocks)
+
+CREATE TABLE histories (
+    user_id INTEGER,
+    stock_symbol TEXT,
+    transaction_price NUMBER,
+    stock_count INTEGER,
+    transaction_type TEXT,
+    transaction_date TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
