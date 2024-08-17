@@ -203,7 +203,7 @@ def register():
         # table with that username will throw an error.
         try:
             db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, passwordHash)
-        except:
+        except sqlite3.IntegrityError:
             return apology("Sorry, the username you have selected is already taken! Please choose a different username.")
 
         # Logging the user in and redirecting them if they were added successfully
