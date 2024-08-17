@@ -8,8 +8,11 @@
     <h2>Sell shares:</h2>
     <form action="/buy" method="post">
         <div class="mb-3">
-            
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="symbol" placeholder="Stock symbol" type="text">
+            <select name="symbol">
+                {% for symbol in symbols %}
+                    <option>{{ symbol }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="mb-3">
             <input class="form-control mx-auto w-auto" name="shares" placeholder="Number of shares to sell" type="number">
