@@ -64,17 +64,29 @@ def buy():
     if request.method == "POST":
         symbol = request.form.get("symbol")
         shares = request.form.get("shares")
+
+        try:
+            shares = float(shares)
+        except:
+            return apology("You must return a numeric value for your number of shares!")
+
         if not symbol:
             return apology("You did not input a stock symbol! Next time, please input a valid stock symbol.")
-        if (not isinstance(shares, int)) or shares < 1:
+        if (shares - int(shares)) != 0 or shares < 1:
             return apology("When choosing the number of shares you would like to purchase, please use a positive integer.")
+        shares = int(shares)
         price = lookup(symbol)
         if not price:
             return apology("The stock symbol you inputted does not exist! Please try a different stock symbol.")
-        userBal = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
-        totalCost = shares * price
+
+        # Getting the user's cash balance and unextracting it
+        userBalPacked = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
+        userBal = userBalPacked[0]["cash"]
+
+        totalCost = shares * price["price"]
         if userBal < totalCost:
             return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal} USD.")
+        
         numStocks = db.execute("SELECT stock_count FROM stocks WHERE stock_symbol = ? AND user_id = ?", symbol, session["user_id"])
         if not numStocks:
             db.execute("INSERT INTO stocks (user_id, stock_symbol, stock_count) VALUES (?, ?, ?)", session["user_id"], symbol, shares)

@@ -17,15 +17,15 @@
             <tr>
                 <td>stock["stock_symbol"]</td>
                 <td>stock["stock_count"]</td>
-                <td>price["stock_symbol"]</td>
-                <td>price["stock_symbol"] * stock["stock_count"]</td>
+                <td>f'${price["stock_symbol"]}'</td>
+                <td>f'${price["stock_symbol"] * stock["stock_count"]}'</td>
             </tr>
         {% endfor %}
         <tr>
             <td></td>
             <td></td>
-            <td><span class="bold">Cash</span> {{cash}}</td>
-            <td><span class="bold">TOTAL</span> {{totalBal}}</td>
+            <td><span class="bold">Cash</span> ${{cash}}</td>
+            <td><span class="bold">TOTAL</span> ${{totalBal}}</td>
         </tr>
     </table>
 {% endblock %}
