@@ -42,7 +42,7 @@ def index():
     for stock in stocks:
         price[stock["stock_symbol"]] = lookup(stock["stock_symbol"])
         totalBal += price[stock["stock_symbol"]] * stocks[stock_count]
-    return render_template("index.html" stock)
+    return render_template("index.html", stocks=stocks, cash=cash, price=price, totalBal=totalBal)
 
 
 @app.route("/buy", methods=["GET", "POST"])
