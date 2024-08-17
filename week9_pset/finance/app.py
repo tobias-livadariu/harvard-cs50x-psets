@@ -260,7 +260,7 @@ def sell():
         dateFormatted = currentDate.strftime("%Y/%m/%d")
 
         # Inserting the completed transaction into the histories table.
-        db.execute("INSERT INTO HISTORIES (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (session['user_id'], symbol, price, shares, 'Sale', dateFormatted)", )
+        db.execute("INSERT INTO histories (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (?, ?, ?, ?, ?, ?)", session["user_id"], symbol, price["price"], shares, "Sell", dateFormatted)
 
         # Redirecting the user back to the homepage.
         return redirect("/")
