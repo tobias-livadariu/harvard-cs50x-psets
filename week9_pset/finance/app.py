@@ -192,5 +192,29 @@ def register():
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
+    # Getting all the shares that the user owns
+    shares = db.execute("SELECT stock_symbol FROM ")
+
     """Sell shares of stock"""
-    return apology("TODO")
+    if request.method == "post":
+        symbol = request.form.get("symbol")
+        shares = request.form.get("shares")
+        if not symbol:
+            return apology("You did not input a stock symbol! Next time, please input a valid stock symbol.")
+        if (not isinstance(shares, int)) or shares < 1:
+            return apology("When choosing the number of shares you would like to purchase, please use a positive integer.")
+        price = lookup(symbol)
+        if not price:
+            return apology("The stock symbol you inputted does not exist! Please try a different stock symbol.")
+        userBal = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
+        totalCost = shares * price
+        if userBal < totalCost:
+            return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal} USD.")
+        numStocks = db.execute("SELECT stock_count FROM stocks WHERE stock_symbol = ? AND user_id = ?", symbol, session["user_id"])
+        if not numStocks:
+            db.execute("INSERT INTO stocks (user_id, stock_symbol, stock_count) VALUES (?, ?, ?)", session["user_id"], symbol, shares)
+        else:
+            db.execute("UPDATE stocks SET stock_count = ? WHERE user_id = ? AND stock_symbol = ?", numStocks + shares, session["user_id"], symbol)
+        db.execute("UPDATE users SET cash = ? WHERE id = ?", (userBal - totalCost), session["user_id"])
+        return redirect("/")
+    return render_template("sell.html", symbols=symbols) # TODO: get all symbols
