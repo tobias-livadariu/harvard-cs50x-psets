@@ -79,15 +79,15 @@ def buy():
         if not price:
             return apology("The stock symbol you inputted does not exist! Please try a different stock symbol.")
 
-        # Getting the user's cash balance and unextracting it
+        # Getting the user's cash balance and extracting it
         userBalPacked = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
         userBal = userBalPacked[0]["cash"]
 
         totalCost = shares * price["price"]
         if userBal < totalCost:
-            return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal.2f} USD.")
+            return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal:.2f} USD.")
 
-        # Getting the user's cash balance and unextracting it.
+        # Getting the user's cash balance and extracting it.
         numStocksPacked = db.execute("SELECT stock_count FROM stocks WHERE stock_symbol = ? AND user_id = ?", symbol, session["user_id"])
         if not numStocksPacked:
             db.execute("INSERT INTO stocks (user_id, stock_symbol, stock_count) VALUES (?, ?, ?)", session["user_id"], symbol, shares)
