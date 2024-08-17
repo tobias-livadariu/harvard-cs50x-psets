@@ -193,7 +193,7 @@ def register():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        confirmPassword = request.form.get("confirmPassword")
+        confirmation = request.form.get("confirmation")
         """Checking if the user's input is valid."""
         if not username:
             return apology("You must choose a username!")
@@ -201,10 +201,10 @@ def register():
         if not password:
             return apology("You must choose a password!")
 
-        if not confirmPassword:
+        if not confirmation:
             return apology("You must confirm your password in the \"Confirm Password\" box!")
 
-        if password != confirmPassword:
+        if password != confirmation:
             return apology("Your original password and confirmation password did not match!")
 
         # Generating an incrypted hash of the password.
