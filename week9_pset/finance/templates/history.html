@@ -16,11 +16,11 @@
         </thead>
         {% for history in histories %}
             <tr>
-                <td>history["stock_symbol"]</td>
-                <td>f'${history["transaction_price"] | usd}'</td>
-                <td>history["stock_count"]</td>
-                <td>history["transaction_type"]</td>
-                <td>history["transaction_date"]</td>
+                <td>{{ history["stock_symbol"] }}</td>
+                <td>{{ history["transaction_price"] | usd }}</td>
+                <td>{{ history["stock_count"] }}</td>
+                <td>{{ history["transaction_type"] }}</td>
+                <td>{{ history["transaction_date"] }}</td>
             </tr>
         {% endfor %}
     </table>
