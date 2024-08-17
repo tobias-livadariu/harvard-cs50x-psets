@@ -70,7 +70,7 @@ def buy():
 
         try:
             shares = float(shares)
-        except:
+        except ValueError:
             return apology("You must return a numeric value for your number of shares!")
 
         if not symbol:
@@ -90,7 +90,7 @@ def buy():
         if userBal < totalCost:
             return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal:.2f} USD.")
 
-        # Getting the user's cash balance and extracting it.
+        # Getting the number of stocks currently owned by the user and extracting it
         numStocksPacked = db.execute("SELECT stock_count FROM stocks WHERE stock_symbol = ? AND user_id = ?", symbol, session["user_id"])
         if not numStocksPacked:
             db.execute("INSERT INTO stocks (user_id, stock_symbol, stock_count) VALUES (?, ?, ?)", session["user_id"], symbol, shares)
@@ -104,7 +104,7 @@ def buy():
         dateFormatted = currentDate.strftime("%Y/%m/%d")
 
         # Inserting the completed transaction into the histories table.
-        db.execute("INSERT INTO histories (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (?, ?, ?, ?, ?, ?)", session["user_id"], symbol, price["price"], shares, "Sell", dateFormatted)
+        db.execute("INSERT INTO histories (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (?, ?, ?, ?, ?, ?)", session["user_id"], symbol, price["price"], shares, "Buy", dateFormatted)
 
         # Redirecting the user.
         return redirect("/")
@@ -116,7 +116,7 @@ def buy():
 @login_required
 def history():
     """Show history of transactions"""
-    return apology("TODO")
+    return render_template("history.html" histories=histories)
 
 
 @app.route("/login", methods=["GET", "POST"])
