@@ -51,7 +51,7 @@ def index():
 
     # Returning a special layout to the user if they own no stocks
     if not stocks:
-        return render_template("empty_index.html", )
+        return render_template("empty_index.html", cash=cash)
 
     totalBal = cash
     for stock in stocks:
