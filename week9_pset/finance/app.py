@@ -49,6 +49,10 @@ def index():
     else:
         cash = 0
 
+    # Returning a special layout to the user if they own no stocks
+    if not stocks:
+        return render_template("empty_index.html", )
+
     totalBal = cash
     for stock in stocks:
         # Getting the current price for the stock
