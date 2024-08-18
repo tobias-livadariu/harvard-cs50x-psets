@@ -38,7 +38,8 @@ def after_request(response):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    stocks = db.execute("SELECT stock_symbol, stock_count FROM stocks WHERE user_id = ?", session["user_id"])
+    stocks = db.execute(
+        "SELECT stock_symbol, stock_count FROM stocks WHERE user_id = ?", session["user_id"])
     price = {}
     # Getting the cash value from the database as an array of dictionaries
     cashRow = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
@@ -95,20 +96,25 @@ def buy():
             return apology(f"You cannot afford that transaction! Remember, your current balance is ${userBal:.2f} USD.")
 
         # Getting the number of stocks currently owned by the user and extracting it
-        numStocksPacked = db.execute("SELECT stock_count FROM stocks WHERE stock_symbol = ? AND user_id = ?", symbol, session["user_id"])
+        numStocksPacked = db.execute(
+            "SELECT stock_count FROM stocks WHERE stock_symbol = ? AND user_id = ?", symbol, session["user_id"])
         if not numStocksPacked:
-            db.execute("INSERT INTO stocks (user_id, stock_symbol, stock_count) VALUES (?, ?, ?)", session["user_id"], symbol, shares)
+            db.execute("INSERT INTO stocks (user_id, stock_symbol, stock_count) VALUES (?, ?, ?)",
+                       session["user_id"], symbol, shares)
         else:
             numStocks = numStocksPacked[0]["stock_count"]
-            db.execute("UPDATE stocks SET stock_count = stock_count + ? WHERE user_id = ? AND stock_symbol = ?", shares, session["user_id"], symbol)
-        db.execute("UPDATE users SET cash = ? WHERE id = ?", (userBal - totalCost), session["user_id"])
+            db.execute("UPDATE stocks SET stock_count = stock_count + ? WHERE user_id = ? AND stock_symbol = ?",
+                       shares, session["user_id"], symbol)
+        db.execute("UPDATE users SET cash = ? WHERE id = ?",
+                   (userBal - totalCost), session["user_id"])
 
         # Determining the date of transaction.
         currentDate = datetime.now()
         dateFormatted = currentDate.strftime("%Y/%m/%d")
 
         # Inserting the completed transaction into the histories table.
-        db.execute("INSERT INTO histories (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (?, ?, ?, ?, ?, ?)", session["user_id"], symbol, price["price"], shares, "Buy", dateFormatted)
+        db.execute("INSERT INTO histories (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (?, ?, ?, ?, ?, ?)",
+                   session["user_id"], symbol, price["price"], shares, "Buy", dateFormatted)
 
         # Redirecting the user.
         return redirect("/")
@@ -116,11 +122,13 @@ def buy():
     # If the page was accessed via "get", rendering the buy.html template.
     return render_template("buy.html")
 
+
 @app.route("/history")
 @login_required
 def history():
     """Show history of transactions"""
-    histories = db.execute("SELECT stock_symbol, transaction_price, stock_count, transaction_type, transaction_date FROM histories WHERE user_id = ? ORDER BY transaction_date DESC", session["user_id"])
+    histories = db.execute(
+        "SELECT stock_symbol, transaction_price, stock_count, transaction_type, transaction_date FROM histories WHERE user_id = ? ORDER BY transaction_date DESC", session["user_id"])
     if not histories:
         return render_template("empty_history.html")
     return render_template("history.html", histories=histories)
@@ -193,6 +201,7 @@ def quote():
     """If the page was requested via get, rendering it."""
     return render_template("quote.html")
 
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
@@ -226,7 +235,8 @@ def register():
 
         # Logging the user in and redirecting them if they were added successfully
         # to the database.
-        sessionPacked = db.execute("SELECT id FROM users WHERE (username = ?) AND (hash = ?)", username, passwordHash)
+        sessionPacked = db.execute(
+            "SELECT id FROM users WHERE (username = ?) AND (hash = ?)", username, passwordHash)
         session["user_id"] = sessionPacked[0]["id"]
 
         # Redirecting the user
@@ -234,6 +244,7 @@ def register():
 
     """If the register page was accessed via "get", displaying it to the user."""
     return render_template("register.html")
+
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
@@ -261,24 +272,28 @@ def sell():
             return apology("The stock symbol you inputted does not exist! Please try a different stock symbol.")
 
         # checking if the symbol that the user inputted is a stock that they own.
-        userStock = db.execute("SELECT stock_count FROM stocks WHERE user_id = ? AND stock_symbol = ?", session["user_id"], symbol)
+        userStock = db.execute(
+            "SELECT stock_count FROM stocks WHERE user_id = ? AND stock_symbol = ?", session["user_id"], symbol)
         if not userStock or userStock[0]["stock_count"] < shares:
             return apology("You either do not own this stock or do not have enough shares to sell.")
 
         # Completing the sale.
         totalSale = shares * price["price"]
-        db.execute("UPDATE stocks SET stock_count = stock_count - ? WHERE user_id = ? AND stock_symbol = ?", shares, session["user_id"], symbol)
+        db.execute("UPDATE stocks SET stock_count = stock_count - ? WHERE user_id = ? AND stock_symbol = ?",
+                   shares, session["user_id"], symbol)
         db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", totalSale, session["user_id"])
 
         # Removing the entry from the stocks table if the user sold all of their shares.
-        db.execute("DELETE FROM stocks WHERE stock_count = 0 AND user_id = ? AND stock_symbol = ?", session["user_id"], symbol)
+        db.execute("DELETE FROM stocks WHERE stock_count = 0 AND user_id = ? AND stock_symbol = ?",
+                   session["user_id"], symbol)
 
         # Determining the date of transaction.
         currentDate = datetime.now()
         dateFormatted = currentDate.strftime("%Y/%m/%d")
 
         # Inserting the completed transaction into the histories table.
-        db.execute("INSERT INTO histories (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (?, ?, ?, ?, ?, ?)", session["user_id"], symbol, price["price"], shares, "Sell", dateFormatted)
+        db.execute("INSERT INTO histories (user_id, stock_symbol, transaction_price, stock_count, transaction_type, transaction_date) VALUES (?, ?, ?, ?, ?, ?)",
+                   session["user_id"], symbol, price["price"], shares, "Sell", dateFormatted)
 
         # Redirecting the user back to the homepage.
         return redirect("/")
