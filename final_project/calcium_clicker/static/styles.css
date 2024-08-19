@@ -52,4 +52,14 @@ Finance.*/
     margin-bottom: 14px;
 }
 
-/* Coloring the
+/* Giving the webpage a dark mode coloring */
+nav
+{
+    background-color: #17202a;
+}
+
+body
+{
+    background-color: #1c2833;
+    color: #e0e0e0;
+}
