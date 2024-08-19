@@ -30,7 +30,12 @@ nav .navbar-brand .slate-gray
 
 nav .navbar-brand .midnight-blue
 {
-    color: #34495e;
+    color: #2c3e50;
+}
+
+nav .navbar-brand .steel-blue
+{
+    color: #4a69bd;
 }
 
 /* Note that the two classes "bold"
