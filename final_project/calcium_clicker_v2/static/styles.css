@@ -45,7 +45,6 @@ nav .navbar-brand .steel-blue
 /* Suggestion from ChatGPT for
 styling my title text. */
 .thicker-lighter-text {
-    font-weight: 500; /* Use a mid-range font weight */
     text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor; /* Add subtle shadow for thickness */
 }
 
