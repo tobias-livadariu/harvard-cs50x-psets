@@ -55,6 +55,8 @@ nav
     background-color:#e0e0e0;
     color: #1c2833;
     border: none;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 body
