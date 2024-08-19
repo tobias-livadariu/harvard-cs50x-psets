@@ -1,3 +1,10 @@
+nav
+{
+    background-color:#e0e0e0;
+    color: #1c2833;
+    border: none;
+}
+
 /* Note that the below style for the nav bar
 was taken from Finance's css file. */
 nav .navbar-brand
@@ -44,19 +51,17 @@ Finance.*/
     font-weight: 600;
 }
 
+.boldish
+{
+    font-weight: 500;
+}
+
 .bottom-margin
 {
     margin-bottom: 14px;
 }
 
-/* Giving the webpage a dark mode coloring */
-nav
-{
-    background-color:#e0e0e0;
-    color: #1c2833;
-    border: none;
-}
-
+/* Giving the webpage a dark mode coloring. */
 .padding
 {
     padding-top: 0.5rem;
