@@ -13,7 +13,7 @@ CREATE UNIQUE INDEX username ON users (username);
 """Note that the libraries imported below were taken
 from the Finance pset."""
 from cs50 import SQL
-from flask import Flask, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
