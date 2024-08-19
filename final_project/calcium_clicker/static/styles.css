@@ -1,3 +1,15 @@
+/* Note that the below style for the nav bar
+was taken from Finance's css file. */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Note that the below colors for
+the nav bar were taken from ChatGPT's
+color suggestions. */
+
+
 /* Note that the two classes "bold"
 and "bottom-margin" were taken from
 my additions to the css file in
