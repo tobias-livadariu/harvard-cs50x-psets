@@ -42,9 +42,16 @@ nav .navbar-brand .steel-blue
     color: #4a69bd;
 }
 
-.small-navbar-coloring li
+/* Styling the smaller navbar links. */
+.navbar-nav .nav-link
 {
-    color: #1c2833;
+    color: #0a3d62;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover
+{
+    color: #084d89;
 }
 
 /* Note that the two classes "bold"
