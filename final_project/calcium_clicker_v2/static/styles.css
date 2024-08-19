@@ -42,12 +42,6 @@ nav .navbar-brand .steel-blue
     color: #4a69bd;
 }
 
-/* Suggestion from ChatGPT for
-styling my title text. */
-.thicker-lighter-text {
-    text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor; /* Add subtle shadow for thickness */
-}
-
 /* Note that the two classes "bold"
 and "bottom-margin" were taken from
 my additions to the css file in
@@ -67,13 +61,18 @@ Finance.*/
     margin-bottom: 14px;
 }
 
-/* Giving the webpage a dark mode coloring. */
 .padding
 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
 
+.center
+{
+    text-align: center;
+}
+
+/* Giving the webpage a dark mode coloring. */
 body
 {
     background-color: #1c2833;
