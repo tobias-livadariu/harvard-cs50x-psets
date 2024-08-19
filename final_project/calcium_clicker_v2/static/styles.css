@@ -35,12 +35,6 @@ nav .navbar-brand .steel-blue
     color: #4a69bd;
 }
 
-nav .navbar-color
-{
-    background-color: #17202a !important;
-    color: #e0e0e0 !important;
-}
-
 /* Note that the two classes "bold"
 and "bottom-margin" were taken from
 my additions to the css file in
@@ -65,4 +59,11 @@ body
 {
     background-color: #1c2833;
     color: #e0e0e0;
+}
+
+nav .navbar-color
+{
+    background-color: #17202a;
+    color: #e0e0e0;
+    border: none;
 }
