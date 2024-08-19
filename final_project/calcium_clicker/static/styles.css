@@ -18,6 +18,21 @@ nav .navbar-brand .bright-blue
     color: #0a3d62;
 }
 
+nav .navbar-brand .charcoal-black
+{
+    color: #2c3e50;
+}
+
+nav .navbar-brand .slate-gray
+{
+    color: #34495e;
+}
+
+nav .navbar-brand .midnight-blue
+{
+    color: #34495e;
+}
+
 /* Note that the two classes "bold"
 and "bottom-margin" were taken from
 my additions to the css file in
