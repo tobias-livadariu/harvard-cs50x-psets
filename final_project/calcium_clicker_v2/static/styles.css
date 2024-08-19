@@ -1,6 +1,6 @@
 nav
 {
-    background-color:#e0e0e0;
+    background-color:#f0f0f0;
     color: #1c2833;
     border: none;
 }
@@ -9,7 +9,7 @@ nav
 was taken from Finance's css file. */
 nav .navbar-brand
 {
-    font-size: xx-large;
+    font-size: 2.2rem;
 }
 
 nav .navbar-brand .deep-blue
