@@ -45,9 +45,15 @@
                     <span class="charcoal-black">e</span>
                     <span class="slate-gray">r</span>
                 </a>
+                <!-- This "hamburger" button was taken from Finance.
+                 It allows the user to show or collapse the elements
+                 in the div below it. -->
                 <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <!-- The div below has links to all elements of the webpage,
+                 and it can be collapsed with the above hamburger button.
+                 Note that it was taken from Finance's distro code.-->
                 <div class="collapse navbar-collapse" id="navbar">
                     {% if session["user_id"] %}
                         <ul class="navbar-nav me-auto mt-2">
