@@ -1,4 +1,16 @@
-"""Note that the libraries imported from lines 2 - 5 were taken
+"""Note that the following sqlite3 table creation prompt
+was heavily inspired by the 'users' table used in Finance.
+
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    username TEXT NOT NULL,
+    hash TEXT NOT NULL
+);
+CREATE TABLE sqlite_sequence(name,seq);
+CREATE UNIQUE INDEX username ON users (username);
+"""
+
+"""Note that the libraries imported below were taken
 from the Finance pset."""
 from cs50 import SQL
 from flask import Flask, redirect, render_template, request, session
