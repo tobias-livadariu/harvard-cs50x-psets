@@ -22,13 +22,23 @@ from helpers import apology, login_required, lookup, usd
 # Configuring the flask application
 app = Flask(__name__)
 
+"""The three blocks of code below were taken from Finance in the
+week 9 pset.
+
+The purpose of the first block is to allow Flask to use server-side sessions
+rather than cookies on the client side, helping to support user sessions
+such as logging in and out.
+
+The purpose of the second block (more like a single line) is to link the
+calcium_clicker.db sqlite3 database to the db variable in the app
+"""
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///finance.db")
+db = SQL("sqlite:///calcium_clicker.db")
 
 @app.after_request
 def after_request(response):
