@@ -5,9 +5,12 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
-/* Note that the below colors for
-the nav bar were taken from ChatGPT's
-color suggestions. */
+nav .block-color
+{
+    background-color: #17202a;
+    color: #e0e0e0;
+}
+
 nav .navbar-brand .deep-blue
 {
     color: #0a3d62;
