@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <h2>History of all transactions:</h2>
+    <table class="table">
+        <thead>
+            <th>Stock Symbol</th>
+            <th>Price</th>
+            <th>Number of Shares</th>
+            <th>Type of Transaction</th>
+            <th>Transaction Date (yyyy/mm/dd)</th>
+        </thead>
+        {% for history in histories %}
+            <tr>
+                <td>{{ history["stock_symbol"] }}</td>
+                <td>{{ history["transaction_price"] | usd }}</td>
+                <td>{{ history["stock_count"] }}</td>
+                <td>{{ history["transaction_type"] }}</td>
+                <td>{{ history["transaction_date"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

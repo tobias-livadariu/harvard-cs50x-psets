@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <h2>You have requested a stock quote for {{ quote["symbol"] }}.</h2>
+    <p>The price for a single share of that stock is {{ quote["price"] | usd}}.</p>
+{% endblock %}
