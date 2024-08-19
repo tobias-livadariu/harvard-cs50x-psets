@@ -55,8 +55,12 @@ nav
     background-color:#e0e0e0;
     color: #1c2833;
     border: none;
-    padding-top: 0.55rem !important;
-    padding-bottom: 0.55rem !important;
+}
+
+.padding
+{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 body
