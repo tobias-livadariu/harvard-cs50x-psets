@@ -30,7 +30,10 @@ rather than cookies on the client side, helping to support user sessions
 such as logging in and out.
 
 The purpose of the second block (more like a single line) is to link the
-calcium_clicker.db sqlite3 database to the db variable in the app
+calcium_clicker.db sqlite3 database to the db variable using the cs50 library,
+allowing sqlite3 prompts to be run directly within the app.py file.
+
+The purpose of the third block is to 
 """
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
