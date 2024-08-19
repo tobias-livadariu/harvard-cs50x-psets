@@ -52,18 +52,13 @@ Finance.*/
 /* Giving the webpage a dark mode coloring */
 nav
 {
-    background-color: #17202a;
+    background-color:#e0e0e0;
+    color: #1c2833;
+    border: none;
 }
 
 body
 {
     background-color: #1c2833;
     color: #e0e0e0;
-}
-
-nav .navbar-color
-{
-    background-color: #17202a;
-    color: #e0e0e0;
-    border: none;
 }
