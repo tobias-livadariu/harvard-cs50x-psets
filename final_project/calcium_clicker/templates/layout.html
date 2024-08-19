@@ -76,7 +76,7 @@
 
         <!-- Below is a block of code used to display flashed messages to the user.
          Note that it was copied from Finance in week 9's pset. -->
-        {% if get_flashed_messages() %}
+        {% if get_flashed_messages() %} <!-- TODO: either find a way to incorperate this function into Calcium Clicker, or remove it along with the flash import from flask. -->
             <header>
                 <div class="alert alert-primary mb-0 text-center" role="alert">
                     {{ get_flashed_messages() | join(" ") }}
@@ -84,6 +84,7 @@
             </header>
         {% endif %}
 
+        <!-- Here is where the -->
         <main class="container py-5 text-center">
             {% block main %}{% endblock %}
         </main>
