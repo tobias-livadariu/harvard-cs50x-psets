@@ -33,7 +33,10 @@ The purpose of the second block (more like a single line) is to link the
 calcium_clicker.db sqlite3 database to the db variable using the cs50 library,
 allowing sqlite3 prompts to be run directly within the app.py file.
 
-The purpose of the third block is to 
+The purpose of the third block is to ensure that user responses in my
+web app are not cached in their browser. This is important because
+information in my app changes very quickly, and I need to ensure that users
+always see the most up-to-date information.
 """
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
@@ -53,34 +56,9 @@ def after_request(response):
 
 
 @app.route("/")
-@login_required
+@login_required #NOTE: the @login_required decorator was taken from Finance
 def index():
-    """Show portfolio of stocks"""
-    stocks = db.execute(
-        "SELECT stock_symbol, stock_count FROM stocks WHERE user_id = ?", session["user_id"])
-    price = {}
-    # Getting the cash value from the database as an array of dictionaries
-    cashRow = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
-
-    # Extracting the cash value from cashRow
-    if cashRow:
-        cash = cashRow[0]["cash"]
-    else:
-        cash = 0
-
-    # Returning a special layout to the user if they own no stocks
-    if not stocks:
-        return render_template("empty_index.html", cash=cash, totalBal=cash)
-
-    totalBal = cash
-    for stock in stocks:
-        # Getting the current price for the stock
-        stockSymbol = stock["stock_symbol"]
-        price[stockSymbol] = lookup(stockSymbol)["price"]
-
-        # Adding the value of the stock to totalBal
-        totalBal += price[stockSymbol] * stock["stock_count"]
-    return render_template("index.html", stocks=stocks, cash=cash, price=price, totalBal=totalBal)
+    """TODO: make the main page"""
 
 
 @app.route("/buy", methods=["GET", "POST"])
