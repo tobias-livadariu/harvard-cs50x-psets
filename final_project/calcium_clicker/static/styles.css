@@ -5,12 +5,6 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
-nav .block-color
-{
-    background-color: #17202a;
-    color: #e0e0e0;
-}
-
 nav .navbar-brand .deep-blue
 {
     color: #0a3d62;
@@ -58,11 +52,11 @@ Finance.*/
 /* Giving the webpage a dark mode coloring */
 nav
 {
-    background-color: #17202a;
+    background-color: #17202a !important;
 }
 
 body
 {
     background-color: #1c2833;
-    color: #e0e0e0;
+    color: #e0e0e0 !important;
 }
