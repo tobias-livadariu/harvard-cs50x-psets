@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block main %}
+    <!-- NOTE: this html page was inspired from the apology page in Finance. However, the meme
+     was changed to be a skeleton instead of a cat to better fit the theme of Calcium Clicker-->
+    <!-- Memegen was used to generate top and bottom text: https://memegen.link/ -->
+    <!-- The image was obtained from this imgur link: https://imgur.com/gallery/patiently-waiting-skeleton-DNsXXq9 -->
+    <img alt="{{ top }}" class="border img-fluid" src="https://api.memegen.link/images/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?background=https://i.imgur.com/DNsXXq9.png&width=400" title="{{ top }}">
+{% endblock %}
