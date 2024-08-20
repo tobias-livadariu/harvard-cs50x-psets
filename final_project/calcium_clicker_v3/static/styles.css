@@ -56,8 +56,13 @@ nav .navbar-brand .steel-blue
 
 .navbar-major
 {
-    
+    width: 50%;
 }
+
+/* .navbar-minor
+{
+    width: 25%;
+} */
 
 /* Note that the two classes "bold"
 and "bottom-margin" were taken from
