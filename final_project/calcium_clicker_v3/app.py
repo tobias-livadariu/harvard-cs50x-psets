@@ -83,6 +83,8 @@ def ressurect():
     db.execute("UPDATE users SET skeletonCount = skeletonCount + 1 WHERE id = ?", session["user_id"])
     # Fetching the updating skeleton count
     skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
+    skeletonCount = skeletonCountRow[0]["skeletonCount"]
+    
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
