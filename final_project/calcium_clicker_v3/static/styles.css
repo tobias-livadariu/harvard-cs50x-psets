@@ -112,7 +112,7 @@ Finance.*/
 in the main page. */
 .from-left-1st
 {
-    width: 20%;
+    display: inline-block;
 }
 
 /* Giving the webpage a dark mode coloring. */
