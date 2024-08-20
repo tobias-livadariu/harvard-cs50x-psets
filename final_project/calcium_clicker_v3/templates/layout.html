@@ -85,7 +85,7 @@
         <!-- Here is where the layout.html template can be accessed by other files
          through Jinja. Note that ChatGPT helped with the Jinja logic for the bootstrap
          classes. -->
-         <main class="{% if current_endpoint != 'index' %}container py-5 text-center{% endif %}">
+         <main class="{% if request.path != '/' %}container py-5 text-center{% endif %}">
             {% block main %}{% endblock %}
         </main>
 
