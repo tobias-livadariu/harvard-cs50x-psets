@@ -108,6 +108,13 @@ Finance.*/
     padding-bottom: 0.5rem;
 }
 
+/* Tweaking with the width of text blocks/sections
+in the main page. */
+.from-left-1st
+{
+    width: 20%;
+}
+
 /* Giving the webpage a dark mode coloring. */
 body
 {
