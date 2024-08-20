@@ -28,7 +28,7 @@
         <!-- Note that some of this nav's bootstrap css classes were taken from Finance. -->
         <!-- Also note that -->
         <nav class="navbar navbar-expand-md padding">
-            <div class="container-fluid">
+            <div class="container-fluid navbar-major">
                 <a class="navbar-brand" href="/">
                     <span class="deep-blue">C</span>
                     <span class="bright-blue">a</span>
@@ -57,7 +57,7 @@
                  Note that it was taken from Finance's distro code.
                  Note that it displays different elements depending
                  on if the user is logged in or not. -->
-                <div class="collapse navbar-collapse" id="navbar">
+                <div class="collapse navbar-collapse navbar-minor" id="navbar">
                     {% if session["user_id"] %}
                         <ul class="navbar-nav me-auto mt-2">
                             <li class="nav-item"><a class="nav-link" href="/">Placeholder</a></li> <!-- TODO: add more anchor elements to different pages after you create them -->
