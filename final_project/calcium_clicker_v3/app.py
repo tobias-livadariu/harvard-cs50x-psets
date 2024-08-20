@@ -63,7 +63,9 @@ def index():
     if request.method == "POST":
         action = request.form["action"]
         if action == "resurrect":
-            db.execute("")
+            db.execute("UPDATE users SET skeletonCount = skeletonCount + 1 WHERE id = ?", session["user_id"])
+
+        
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
