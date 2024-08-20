@@ -56,7 +56,7 @@ def after_request(response):
     return response
 
 
-@app.route("/", methods=["GET")
+@app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
 def index():
     # If the user accessed this route through post, then they clicked a button
