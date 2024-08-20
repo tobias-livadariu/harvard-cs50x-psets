@@ -8,5 +8,7 @@
     <h1>Skeletons in Army: <span id="skeleton-count">{{ skeletonCount }}</span></h1>
     <button onclick="digUpSkeleton()">Dig Up Skeleton</button>
 
-    <!--Linki-->
+    <!-- Linking external scripts -->
+    <!-- Note that I got the url_for() function from ChatGPT's suggestions -->
+    <script src="{{ url_for('static', filename='js/digUpSkeletons.js') }}"></script>
 {% endblock %}
