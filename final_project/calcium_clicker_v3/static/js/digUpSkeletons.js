@@ -1,5 +1,5 @@
 // Note ChatGPT helped me develop this function.
-function digUpSkeleton() {
+function digUpSkeletons() {
     fetch('/resurrect', {
         method: 'POST',
     })
