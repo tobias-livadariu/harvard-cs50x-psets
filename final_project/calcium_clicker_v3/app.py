@@ -56,7 +56,7 @@ def after_request(response):
     return response
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET")
 @login_required #NOTE: the @login_required decorator was taken from Finance
 def index():
     # If the user accessed this route through post, then they clicked a button
@@ -72,6 +72,17 @@ def index():
     skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
     skeletonCount = skeletonCountRow[0]["skeletonCount"]
     return render_template("index.html", skeletonCount=skeletonCount)
+
+"""Updating the skeleton count asyncronously through AJAX without
+visually refreshing the webpage. Note that the code below is my own,
+but ChatGPT gave me the idea to use AJAX."""
+@app.route("/resurrect", methods=["POST"])
+@login_required
+def ressurect():
+    # Updating the skeleton count
+    db.execute("UPDATE users SET skeletonCount = skeletonCount + 1 WHERE id = ?", session["user_id"])
+    # Fetching the updating skeleton count
+    skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
