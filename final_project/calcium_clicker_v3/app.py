@@ -60,6 +60,7 @@ def after_request(response):
 def index():
     # If the user accessed this route through post, then they clicked a button
     if request.method == "POST":
+        action = request.form["action"]
         
 
 """NOTE: the login route was taken from my work in Finance."""
