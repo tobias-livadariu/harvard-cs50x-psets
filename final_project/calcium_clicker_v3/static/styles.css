@@ -65,7 +65,10 @@ vertically centering the minor navbar. */
 
 .navbar .navbar-major
 {
-    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%);
 }
 
 .navbar .navbar-minor
