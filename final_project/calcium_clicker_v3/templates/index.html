@@ -5,8 +5,6 @@
 {% endblock %}
 
 {% block main %}
-    <h2>Skeletons in Army: {{ skeletonCount }}</h2>
-    <form action="/resurrect" method="post">
-        <button type="submit" name="action" value="resurrect">Dig up Skeleton</button>
-    </form>
+    <h1>Skeletons in Army: <span id="skeleton-count">{{ skeletonCount }}</span></h1>
+    <button onclick="digUpSkeleton()">Dig Up Skeleton</button>
 {% endblock %}
