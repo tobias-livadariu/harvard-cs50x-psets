@@ -59,15 +59,6 @@ def after_request(response):
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
 def index():
-    # If the user accessed this route through post, then they clicked a button
-    if request.method == "POST":
-        action = request.form["action"]
-        if action == "resurrect-new-skeleton":
-            db.execute("UPDATE users SET skeletonCount = skeletonCount + 1 WHERE id = ?", session["user_id"])
-
-        # Redirecting the user to the homepage after all actions have been checked
-        return redirect("/")
-
     # If the homepage was accessed via get, rendering it.
     skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
     skeletonCount = skeletonCountRow[0]["skeletonCount"]
