@@ -83,9 +83,9 @@
         {% endif %}
 
         <!-- Here is where the layout.html template can be accessed by other files
-         through Jinja. Note that the classes for this tag were obtained from
-         Finance's distro code. -->
-        <main class="container py-5 text-center">
+         through Jinja. Note that ChatGPT helped with the Jinja logic for the bootstrap
+         classes. -->
+         <main class="{% if current_template == 'index.html' %}{% else %}container py-5 text-center{% endif %}">
             {% block main %}{% endblock %}
         </main>
 
