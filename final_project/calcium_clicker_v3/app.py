@@ -14,7 +14,7 @@ CREATE UNIQUE INDEX username ON users (username);
 """Note that the libraries imported below were taken
 from the Finance pset."""
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, jsonify
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -84,7 +84,8 @@ def ressurect():
     # Fetching the updating skeleton count
     skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
     skeletonCount = skeletonCountRow[0]["skeletonCount"]
-    
+    # Returning the updated skeleton count as JSON
+    return jsonify({"skeletonCount": skeletonCount})
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
