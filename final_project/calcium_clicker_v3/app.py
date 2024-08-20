@@ -59,7 +59,8 @@ def after_request(response):
 @login_required #NOTE: the @login_required decorator was taken from Finance
 def index():
     # If the user accessed this route through post, then they clicked a button
-    
+    if request.method == "POST":
+        
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
