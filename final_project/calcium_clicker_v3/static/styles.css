@@ -63,6 +63,11 @@ vertically centering the minor navbar. */
     width: 100%
 }
 
+/* The use of the transform: translate(-50%, -50%);
+was ChatGPT's idea. This absolutely brilliant solution
+offsets the element by half of its width and height,
+perfectly aligning it in the center of the webpage
+no matter what. */
 .navbar .navbar-major
 {
     position: absolute;
