@@ -55,10 +55,11 @@ def after_request(response):
     return response
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
 def index():
-    """TODO: make the main page"""
+    # If the user accessed this route through post, then they clicked a button
+    
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
