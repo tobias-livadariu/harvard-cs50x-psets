@@ -65,7 +65,13 @@ def index():
         if action == "resurrect":
             db.execute("UPDATE users SET skeletonCount = skeletonCount + 1 WHERE id = ?", session["user_id"])
 
-        
+        # Redrirecting the user to the homepage after all actions have been checked
+        return redirect("/")
+
+    # If the homepage was accessed via get, rendering it.
+    skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
+    skeletonCount = skeletonCount[0]["skeletonCount"]
+    return render_template("index.html", skeletonCount=skeletonCount)
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
