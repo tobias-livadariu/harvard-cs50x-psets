@@ -4,7 +4,8 @@ was heavily inspired by the 'users' table used in Finance.
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     username TEXT NOT NULL,
-    hash TEXT NOT NULL
+    hash TEXT NOT NULL,
+    skeletonCount INTEGER NOT NULL DEFAULT 0
 );
 CREATE TABLE sqlite_sequence(name,seq);
 CREATE UNIQUE INDEX username ON users (username);
@@ -61,15 +62,6 @@ def index():
     # If the user accessed this route through post, then they clicked a button
     if request.method == "POST":
         action = request.form["action"]
-
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    username TEXT NOT NULL,
-    hash TEXT NOT NULL,
-    skeletonCount INTEGER NOT NULL DEFAULT 0
-);
-CREATE TABLE sqlite_sequence(name,seq);
-CREATE UNIQUE INDEX username ON users (username);
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
