@@ -78,7 +78,9 @@ no matter what. */
 
 .navbar .navbar-minor
 {
-
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* Note that the two classes "bold"

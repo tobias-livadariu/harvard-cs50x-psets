@@ -57,16 +57,16 @@
                  Note that it was taken from Finance's distro code.
                  Note that it displays different elements depending
                  on if the user is logged in or not. -->
-                <div class="collapse navbar-collapse navbar-minor" id="navbar">
+                <div class="collapse navbar-collapse" id="navbar">
                     {% if session["user_id"] %}
-                        <ul class="navbar-nav me-auto mt-2">
+                        <ul class="navbar-nav me-auto mt-2 navbar-minor">
                             <li class="nav-item"><a class="nav-link" href="/">Placeholder</a></li> <!-- TODO: add more anchor elements to different pages after you create them -->
                         </ul>
-                        <ul class="navbar-nav ms-auto mt-2">
+                        <ul class="navbar-nav ms-auto mt-2 navbar-minor">
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                         </ul>
                     {% else %}
-                        <ul class="navbar-nav ms-auto mt-2">
+                        <ul class="navbar-nav ms-auto mt-2 navbar-minor">
                             <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                             <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
                         </ul>
