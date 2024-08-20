@@ -62,15 +62,15 @@ def index():
     # If the user accessed this route through post, then they clicked a button
     if request.method == "POST":
         action = request.form["action"]
-        if action == "resurrect":
+        if action == "resurrect-new-skeleton":
             db.execute("UPDATE users SET skeletonCount = skeletonCount + 1 WHERE id = ?", session["user_id"])
 
-        # Redrirecting the user to the homepage after all actions have been checked
+        # Redirecting the user to the homepage after all actions have been checked
         return redirect("/")
 
     # If the homepage was accessed via get, rendering it.
     skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
-    skeletonCount = skeletonCount[0]["skeletonCount"]
+    skeletonCount = skeletonCountRow[0]["skeletonCount"]
     return render_template("index.html", skeletonCount=skeletonCount)
 
 """NOTE: the login route was taken from my work in Finance."""
