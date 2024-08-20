@@ -76,12 +76,12 @@ no matter what. */
     transform: translate(-50%, -50%);
 }
 
-.navbar .navbar-minor
+/* .navbar .navbar-minor
 {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-}
+} */
 
 /* Note that the two classes "bold"
 and "bottom-margin" were taken from
