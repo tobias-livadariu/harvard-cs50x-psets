@@ -54,14 +54,23 @@ nav .navbar-brand .steel-blue
     color: #1279ba;
 }
 
-.navbar-major
+/* Horizontally centering the major navbar in the webpage and
+vertically centering the minor navbar. */
+
+.navbar
 {
-    width: 50%;
+    position: relative;
+    width: 100%
 }
 
-.navbar-minor
+.navbar .navbar-major
 {
-    width: 25%;
+    
+}
+
+.navbar .navbar-minor
+{
+
 }
 
 /* Note that the two classes "bold"
