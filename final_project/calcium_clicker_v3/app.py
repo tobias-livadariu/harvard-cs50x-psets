@@ -62,18 +62,6 @@ def after_request(response):
 shovels = ["Wooden", "Stone", "Iron", "Gold", "Diamond", "Mythril", "Adamantite", "Runeite", "Dragon", "Infernal", "Super"]
 maxShovel = len(shovels) - 1
 
-@app.route("/", methods=["GET"])
-@login_required #NOTE: the @login_required decorator was taken from Finance
-def index():
-    # If the homepage was accessed via get, rendering it.
-    # Getting the current skeleton count
-    skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
-    skeletonCount = skeletonCountRow[0]["skeletonCount"]
-    # Getting the total skeleton count
-    totalSkeletonsRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
-    totalSkeletons = totalSkeletonsRow[0]["totalSkeletons"]
-    return render_template("index.html", skeletonCount=skeletonCount, totalSkeletons=totalSkeletons)
-
 """Updating the skeleton count asyncronously through AJAX without
 visually refreshing the webpage. Note that the code below is my own,
 but ChatGPT gave me the idea to use AJAX."""
@@ -101,6 +89,23 @@ def buyAutodigger():
 @login_required
 def buyShovel():
     #TODO: implement
+
+@app.route("/determineStats", methods=["GET"])
+@login_required
+def determineStats():
+    #TODO: implement
+
+@app.route("/", methods=["GET"])
+@login_required #NOTE: the @login_required decorator was taken from Finance
+def index():
+    # If the homepage was accessed via get, rendering it.
+    # Getting the current skeleton count
+    skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
+    skeletonCount = skeletonCountRow[0]["skeletonCount"]
+    # Getting the total skeleton count
+    totalSkeletonsRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
+    totalSkeletons = totalSkeletonsRow[0]["totalSkeletons"]
+    return render_template("index.html", skeletonCount=skeletonCount, totalSkeletons=totalSkeletons)
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])

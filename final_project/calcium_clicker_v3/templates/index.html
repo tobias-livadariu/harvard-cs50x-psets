@@ -26,7 +26,7 @@
                 <p>Number of autodiggers: {{ numAutodiggers }} ({{ numAutodiggers }} skeletons per second)</p>
                 <button class="btn btn-primary rounded-0 shadow-lg {% if curShovel == maxShovel %}btn-dark{% endif %}"
                 onclick="buyShovel()"
-                {% if curShovel == maxShovel %}disabled{% endif %}>
+                {% if curShovel == maxShovel %}disabled{% endif %}> <!--TODOL see if the red equal sign is actually a problem-->
                     {% if curShovel != maxShovel %}
                         Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost }} skeletons)
                     {% else %}
