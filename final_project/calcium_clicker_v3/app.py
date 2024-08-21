@@ -79,6 +79,10 @@ maxShovel = len(shovels) - 1
 def calculateShovelCost(curShovel, baseCost, multiplier):
     return int(baseCost * (multiplier ** (curShovel ** 2)))
 
+# Defining a function to calculate the cost of buying the next autodigger
+# Note that, like with the calculateShovelCost function, ChatGPT gave me ideas for this one
+def calculateAutodiggerCost()
+
 """Updating the skeleton count asyncronously through AJAX without
 visually refreshing the webpage. Note that the code below is my own,
 but ChatGPT gave me the idea to use AJAX."""
