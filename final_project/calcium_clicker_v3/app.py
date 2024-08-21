@@ -84,6 +84,13 @@ def resurrect():
     # Returning the updated skeleton count as JSON
     return jsonify({"skeletonCount": skeletonCount})
 
+"""Updating the number of autodiggers that the user has
+through AJAX."""
+
+
+"""Updating the user's shovel through AJAX."""
+
+
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
 def login():
