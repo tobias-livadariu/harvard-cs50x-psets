@@ -9,6 +9,7 @@
         <!-- Generating the first block of functions. -->
         <div class="m-2 from-top-1st">
             <h2>Skeletons in Army: <span id="skeleton-count">{{ skeletonCount }}</span></h2>
+            <h2>Skeletons in Army: <span id="skeleton-count">{{ skeletonCount }}</span></h2>
             <button class="btn btn-primary rounded-0 shadow-lg" onclick="digUpSkeletons()">Dig Up More</button>
             {% if skeletonCount > 9 %}
                 <p>Skeletons per click: {{ skeletonsPerClick }}</p>
@@ -22,10 +23,10 @@
             <div class="m-2 from-top-2nd">
                 <h3>Simple Upgrades</h3>
                 <p>Number of </p>
-                <button class="btn btn-primary rounded-0 shadow-lg" onclick="buyAutodigger()">Buy Autodigger (cost: {autodiggerCost} skeletons)</button>
+                <button class="btn btn-primary rounded-0 shadow-lg" onclick="buyAutodigger()">Buy Autodigger (cost: {{ autodiggerCost }} skeletons)</button>
                 <p>Number of autodiggers: {{ numAutodiggers }} ({{ numAutodiggers }} skeletons per second)</p>
-                <button class="btn btn-primary rounded-0 shadow-lg" onclick="buyShovel()">Forge a {{ shovels[curShovel + 1] }} shovel (cost: {shovelCost} skeletons)</button>
-                <p>Current shovel: shovels[curShovel] ({{ 10**(curShovel) }} skeletons per dig)</p>
+                <button class="btn btn-primary rounded-0 shadow-lg" onclick="buyShovel()">Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost }} skeletons)</button>
+                <p>Current shovel: {{ shovels[curShovel] }} ({{ 10**(curShovel) }} skeletons per dig)</p>
             </div>
         {% endif %}
     </div>
