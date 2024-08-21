@@ -18,7 +18,11 @@ CREATE TABLE simple_upgrades (
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 CREATE TABLE stats (
-    
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    user_id INTEGER,
+    skeletonsPerClick INTEGER NOT NULL DEFAULT 1,
+    skeletonsPerSecond INTEGER NOT NULL DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 """
 
