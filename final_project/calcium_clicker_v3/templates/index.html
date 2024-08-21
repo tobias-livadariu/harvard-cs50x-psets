@@ -24,7 +24,10 @@
                 <h3>Simple Upgrades</h3>
                 <button class="btn btn-primary rounded-0 shadow-lg" onclick="buyAutodigger()">Buy Autodigger (cost: {{ autodiggerCost }} skeletons)</button>
                 <p>Number of autodiggers: {{ numAutodiggers }} ({{ numAutodiggers }} skeletons per second)</p>
-                <button class="btn btn-primary rounded-0 shadow-lg" onclick="buyShovel()">Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost }} skeletons)</button>
+                <button class="btn btn-primary rounded-0 shadow-lg {% if curShovel == maxShovel %}btn-dark{% endif %} onclick=buyShovel() {% if curShovel == maxShovel %}disabled{% endif %}"></button>
+                    {% if  %}
+                        Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost }} skeletons)
+                </button>
                 <p>Current shovel: {{ shovels[curShovel] }} ({{ 10**(curShovel) }} skeletons per dig)</p>
             </div>
             <hr class="w-100 mx-auto">
