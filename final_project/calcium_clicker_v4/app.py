@@ -175,7 +175,7 @@ def index():
     skeletonsPerSecond = stats["skeletonsPerSecond"]
 
     return render_template("index.html", skeletonCount=skeletonCount, totalSkeletons=totalSkeletons, curShovel=curShovel, shovelCost=shovelCost, numAutodiggers=numAutodiggers,
-                           autodiggerCost=autodiggerCost, skeletonsPerClick=skeletonsPerClick, skeletonsPerSecond=skeletonsPerSecond)
+                           autodiggerCost=autodiggerCost, skeletonsPerClick=skeletonsPerClick, skeletonsPerSecond=skeletonsPerSecond, shovels=shovels, maxShovel=maxShovel)
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
