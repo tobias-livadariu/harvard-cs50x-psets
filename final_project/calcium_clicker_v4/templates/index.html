@@ -28,7 +28,7 @@
                 onclick="buyShovel()"
                 {% if curShovel == maxShovel %}disabled{% endif %}> <!--TODO: see if the red equal sign is actually a problem -->
                     {% if curShovel != maxShovel %}
-                        Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost }} skeletons)
+                        Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost }} skeletons) <!-- The shovels are annoying but just pass more stuff into the jsonify function in the buy shovels route-->
                     {% else %}
                         Your shovel is max level!
                     {% endif %}
