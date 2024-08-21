@@ -57,7 +57,8 @@ def after_request(response):
     return response
 
 # Defining the list of shovels that the user can buy
-shovels = ["Wooden", "Stone", "Iron", "Gold", "Diamond", "Mythril", "Adamantite", ]
+shovels = ["Wooden", "Stone", "Iron", "Gold", "Diamond", "Mythril", "Adamantite", "Runeite", "Dragon", "Infernal", "Super"]
+maxShovel = len(shovels) - 1
 
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
