@@ -23,7 +23,7 @@
                 <h3>Simple Upgrades</h3>
                 <p>Number of </p>
                 <button class="btn btn-primary rounded-0 shadow-lg" onclick="buySkeletons()">Buy an Autodigger (cost: {autodiggerCost} skeletons)</button>
-                <p>Number of autodiggers: {}</p>
+                <p>Number of autodiggers: {{ numAutodiggers }} (generate {{ numAutodiggers }} skeletons per second)</p>
                 <button class="btn btn-primary rounded-0 shadow-lg" onclick="buyShovel()">Forge a {{ shovels[curShovel + 1] }} shovel (cost: {shovelCost} skeletons)</button>
             </div>
         {% endif %}
