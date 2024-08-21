@@ -74,6 +74,11 @@ def after_request(response):
 shovels = ["Wooden", "Stone", "Iron", "Gold", "Diamond", "Mythril", "Adamantite", "Runeite", "Dragon", "Infernal", "Super"]
 maxShovel = len(shovels) - 1
 
+# Defining a function to calculate the cost of buying the next tier of shovel
+# Note that ChatGPT gave me ideas for how this function should look
+def calculateShovelCost(curShovel, baseCost, multiplier):
+    return int(baseCost * (multiplier ** (curShovel ** 2)))
+
 """Updating the skeleton count asyncronously through AJAX without
 visually refreshing the webpage. Note that the code below is my own,
 but ChatGPT gave me the idea to use AJAX."""
@@ -112,7 +117,7 @@ def buyShovel():
     curShovelRow = db.execute("SELECT curShovel FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     curShovel = curShovelRow[0]["curShovel"]
     # Determining the updated cost for a new shovel
-    shovelCost = 100 ** 
+    shovelCost = calculateShovelCost(curShovel=curShovel, baseCost=100, multiplier=1.5)
     # Returning the updated shovel count and cost as JSON
     return jsonify({"curShovel": curShovel})
 
