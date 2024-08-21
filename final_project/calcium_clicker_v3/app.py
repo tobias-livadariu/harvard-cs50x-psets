@@ -10,18 +10,20 @@ CREATE TABLE users (
 );
 CREATE TABLE sqlite_sequence(name,seq);
 CREATE UNIQUE INDEX username ON users (username);
-CREATE TABLE simple_upgrades (
-    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    user_id INTEGER NOT NULL,
-    curShovel INTEGER NOT NULL DEFAULT 0,
-    numAutodiggers INTEGER NOT NULL DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
 CREATE TABLE stats (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     user_id INTEGER NOT NULL,
     skeletonsPerClick INTEGER NOT NULL DEFAULT 1,
     skeletonsPerSecond INTEGER NOT NULL DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+CREATE TABLE simple_upgrades (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    user_id INTEGER NOT NULL,
+    curShovel INTEGER NOT NULL DEFAULT 0,
+    shovelCost INTEGER NOT NULL DEFAULT 100,
+    numAutodiggers INTEGER NOT NULL DEFAULT 0,
+
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 """
@@ -110,7 +112,7 @@ def buyAutodigger():
     numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
     # Determining the updated cost for a new autodigger
-    shovelCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, bastCost=10, multiplier=0.05, exponent=2)
+    shovelCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
     # Returning the updated autodigger count as JSON
     return jsonify({"numAutodiggers": numAutodiggers, "shovelCost": shovelCost})
 
