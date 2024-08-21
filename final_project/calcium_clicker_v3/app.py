@@ -90,9 +90,9 @@ def buyAutodigger():
 def buyShovel():
     #TODO: implement
 
-@app.route("/determineStats", methods=["GET"])
+@app.route("/refreshStats", methods=["GET"])
 @login_required
-def determineStats():
+def refreshStats():
     #TODO: implement
 
 @app.route("/", methods=["GET"])
