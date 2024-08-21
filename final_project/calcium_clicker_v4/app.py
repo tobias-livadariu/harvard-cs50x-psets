@@ -154,13 +154,11 @@ def refreshStats():
 def index():
     # If the homepage was accessed via get, rendering it.
 
-    # Getting the current skeleton count
-    skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
-    skeletonCount = skeletonCountRow[0]["skeletonCount"]
-
-    # Getting the total skeleton count
-    totalSkeletonsRow = db.execute("SELECT totalSkeletons FROM users WHERE id = ?", session["user_id"])
-    totalSkeletons = totalSkeletonsRow[0]["totalSkeletons"]
+    # Getting the current and total skeleton counts
+    usersRow = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])
+    users = usersRow[0]
+    skeletonCount = users["skeletonCount"]
+    totalSkeletons = users["totalSkeletons"]
 
     # Getting the current autodigger count, shovel level, and price for the next simple upgrades
     simpleUpgradesRow = db.execute("SELECT curShovel, shovelCost, numAutodiggers, autodiggerCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])
