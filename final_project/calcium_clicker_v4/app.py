@@ -138,10 +138,13 @@ def refreshStats():
     # Refreshing the value in skeletonsPerClick and skeletonsPerSecond
     curShovelRow = db.execute("SELECT curShovel FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     curShovel = curShovelRow[0]["curShovel"]
+
     numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
+
     skeletonsPerClick = 10 ** curShovel
     skeletonsPerSecond = numAutodiggers
+
     db.execute("UPDATE stats SET skeletonsPerClick = ?, skeletonsPerSecond = ? WHERE user_id = ?", skeletonsPerClick, skeletonsPerSecond, session["user_id"])
     # Returning the updated values as JSON
     return jsonify({"skeletonsPerClick": skeletonsPerClick, "skeletonsPerSecond": skeletonsPerSecond})
