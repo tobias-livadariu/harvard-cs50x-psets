@@ -56,6 +56,8 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+# Defining the list of shovels that the user can buy
+shovels = ["Wooden", "Stone", "Iron", "Gold", "Diamond", "Mythril", "Adamantite", ]
 
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
@@ -92,7 +94,6 @@ def buyAutodigger():
     #TODO: implement
 
 """Updating the user's shovel through AJAX."""
-
 @app.route("/buyShovel", methods=["POST"])
 @login_required
 def buyShovel():
