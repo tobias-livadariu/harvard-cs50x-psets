@@ -107,12 +107,12 @@ def buyAutodigger():
 @login_required
 def buyShovel():
     # Updating the user's shovel level
-    db.execute("UPDATE simple_upgrades SET curShovel = numAutodiggers + 1 WHERE user_id = ?", session["user_id"])
-    # Fetching the updated autodigger count
-    numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
-    numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
+    db.execute("UPDATE simple_upgrades SET curShovel = curShovel + 1 WHERE user_id = ?", session["user_id"])
+    # Fetching the updated shovel level
+    curShovelRow = db.execute("SELECT curShovel FROM simple_upgrades WHERE user_id = ?", session["user_id"])
+    curShovel = curShovelRow[0]["numAutodiggers"]
     # Returning the updated autodigger count as JSON
-    return jsonify({"numAutodiggers": numAutodiggers})
+    return jsonify({"curShovel": curShovel})
 
 @app.route("/refreshStats", methods=["GET"])
 @login_required
