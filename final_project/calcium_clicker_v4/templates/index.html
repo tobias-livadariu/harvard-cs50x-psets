@@ -12,8 +12,8 @@
             <h3>Total Resurrected: <span id="total-skeletons">{{ totalSkeletons }}</span></h3>
             <button class="btn btn-primary rounded-0 shadow-lg" onclick="digUpSkeletons()">Dig Up More</button>
             {% if totalSkeletons > 9 %}
-                <p>Skeletons per click: {{ skeletonsPerClick }}</p>
-                <p>Skeletons per second: {{ skeletonsPerSecond }}</p>
+                <p>Skeletons per click: <span id="skeletons-per-click">{{ skeletonsPerClick }}</span></p>
+                <p>Skeletons per second: <span id="skeletons-per-second">{{ skeletonsPerSecond }}</span></p>
             {% endif %}
         </div>
         <hr class="w-100 mx-auto">
@@ -22,8 +22,8 @@
         {% if totalSkeletons > 9 %}
             <div class="m-2 from-top-2nd">
                 <h3>Simple Upgrades</h3>
-                <button class="btn btn-primary rounded-0 shadow-lg btn-sm" onclick="buyAutodigger()">Buy Autodigger (cost: {{ autodiggerCost }} skeletons)</button>
-                <p>Number of autodiggers: {{ numAutodiggers }}</p>
+                <button class="btn btn-primary rounded-0 shadow-lg btn-sm" onclick="buyAutodigger()">Buy Autodigger (cost: <span id="autodigger-cost">{{ autodiggerCost }}</span> skeletons)</button>
+                <p>Number of autodiggers: <span id="num-autodigger">{{ numAutodiggers }}</span></p>
                 <button class="btn btn-primary rounded-0 shadow-lg btn-sm {% if curShovel == maxShovel %}btn-dark{% endif %}"
                 onclick="buyShovel()"
                 {% if curShovel == maxShovel %}disabled{% endif %}> <!--TODO: see if the red equal sign is actually a problem -->
@@ -33,7 +33,7 @@
                         Your shovel is max level!
                     {% endif %}
                 </button>
-                <p>Current shovel: {{ shovels[curShovel] }} ({{ 10**(curShovel) }} skeletons per dig)</p>
+                <p id>Current shovel: {{ shovels[curShovel] }} ({{ 10**(curShovel) }} skeletons per dig)</p>
             </div>
             <hr class="w-100 mx-auto">
         {% endif %}
