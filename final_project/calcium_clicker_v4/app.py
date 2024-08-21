@@ -159,7 +159,7 @@ def index():
     skeletonCount = skeletonCountRow[0]["skeletonCount"]
 
     # Getting the total skeleton count
-    totalSkeletonsRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
+    totalSkeletonsRow = db.execute("SELECT totalSkeletons FROM users WHERE id = ?", session["user_id"])
     totalSkeletons = totalSkeletonsRow[0]["totalSkeletons"]
 
     # Getting the current autodigger count, shovel level, and price for the next simple upgrades
@@ -171,9 +171,13 @@ def index():
     autodiggerCost = simpleUpgrades["autodiggerCost"]
 
     # Getting the current skeletons per click and skeletons per second
-    statsRow = db.execute("SELECT skeletonsPerClick, skeletonsPerSecond FROM stats WHERE ")
+    statsRow = db.execute("SELECT skeletonsPerClick, skeletonsPerSecond FROM stats WHERE user_id = ?", session["user_id"])
+    stats = statsRow[0]
+    skeletonsPerClick = stats["skeletonsPerClick"]
+    skeletonsPerSecond = stats["skeletonsPerSecond"]
 
-    return render_template("index.html", skeletonCount=skeletonCount, totalSkeletons=totalSkeletons)
+    return render_template("index.html", skeletonCount=skeletonCount, totalSkeletons=totalSkeletons, curShovel=curShovel, shovelCost=shovelCost, numAutodiggers=numAutodiggers,
+                           autodiggerCost=autodiggerCost, skeletonsPerClick=skeletonsPerClick, skeletonsPerSecond=skeletonsPerSecond)
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
