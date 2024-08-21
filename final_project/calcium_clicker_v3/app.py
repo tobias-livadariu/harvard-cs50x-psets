@@ -70,9 +70,10 @@ visually refreshing the webpage. Note that the code below is my own,
 but ChatGPT gave me the idea to use AJAX."""
 @app.route("/resurrect", methods=["POST"])
 @login_required
-def ressurect():
-    # Updating the skeleton count
+def resurrect():
+    # Updating the skeleton count and total skeleton count
     db.execute("UPDATE users SET skeletonCount = skeletonCount + 1 WHERE id = ?", session["user_id"])
+    db.execute("UPDATE users SET totalSkeletons = totalSkeletons + 1 WHERE id = ?", session["user_id"])
     # Fetching the updating skeleton count
     skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
     skeletonCount = skeletonCountRow[0]["skeletonCount"]
