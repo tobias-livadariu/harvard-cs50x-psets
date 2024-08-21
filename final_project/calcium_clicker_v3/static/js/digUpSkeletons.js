@@ -6,5 +6,6 @@ function digUpSkeletons() {
     .then(response => response.json())
     .then(data => {
         document.getElementById('skeleton-count').textContent = data.skeletonCount;
+        document.getElementById('total-skeletons').textContent = data.totalSkeletons;
     });
 }
