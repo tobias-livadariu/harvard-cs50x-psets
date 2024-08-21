@@ -143,6 +143,8 @@ def refreshStats():
     skeletonsPerClick = 10 ** curShovel
     skeletonsPerSecond = numAutodiggers
     db.execute("UPDATE stats SET (skeletonsPerClick, skeletonsPerSecond) VALUES (?, ?)", skeletonsPerClick, skeletonsPerSecond)
+    # Returning the updated values as JSON
+    return jsonify({"skeletonsPerClick": skeletonsPerClick, "skeletonsPerSecond": skeletonsPerSecond})
 
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
