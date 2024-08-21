@@ -141,7 +141,8 @@ def refreshStats():
     numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
     skeletonsPerClick = 10 ** curShovel
-    skeletonsPerSecond = 
+    skeletonsPerSecond = numAutodiggers
+    db.execute("UPDATE stats SET ()")
 
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
