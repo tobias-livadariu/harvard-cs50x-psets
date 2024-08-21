@@ -119,7 +119,7 @@ def buyShovel():
     # Determining the updated cost for a new shovel
     shovelCost = calculateShovelCost(curShovel=curShovel, baseCost=100, multiplier=1.5)
     # Returning the updated shovel count and cost as JSON
-    return jsonify({"curShovel": curShovel})
+    return jsonify({"curShovel": curShovel, "shovelCost": shovelCost})
 
 @app.route("/refreshStats", methods=["GET"])
 @login_required
