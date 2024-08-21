@@ -25,7 +25,7 @@
                 <button class="btn btn-primary rounded-0 shadow-lg" onclick="buyAutodigger()">Buy Autodigger (cost: {autodiggerCost} skeletons)</button>
                 <p>Number of autodiggers: {{ numAutodiggers }} ({{ numAutodiggers }} skeletons per second)</p>
                 <button class="btn btn-primary rounded-0 shadow-lg" onclick="buyShovel()">Forge a {{ shovels[curShovel + 1] }} shovel (cost: {shovelCost} skeletons)</button>
-                <p>Current shovel: shovels[curShovel] ()</p>
+                <p>Current shovel: shovels[curShovel] ({{ 10**(curShovel) }} skeletons per dig)</p>
             </div>
         {% endif %}
     </div>
