@@ -113,7 +113,7 @@ def buyAutodigger():
     numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
     # Determining the updated cost for a new autodigger
     autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
-    db.execute("UPDATE simple_upgrades SET autodiggerCost = ? WHERE id = ?", autodiggerCost, session["user_id"])
+    db.execute("UPDATE simple_upgrades SET autodiggerCost = ? WHERE user_id = ?", autodiggerCost, session["user_id"])
     # Returning the updated autodigger count as JSON
     return jsonify({"numAutodiggers": numAutodiggers, "autodiggerCost": autodiggerCost})
 
@@ -128,7 +128,7 @@ def buyShovel():
     curShovel = curShovelRow[0]["curShovel"]
     # Determining the updated cost for a new shovel
     shovelCost = calculateShovelCost(curShovel=curShovel, baseCost=100, multiplier=1.5)
-    db.execute("UPDATE simple_upgrades SET shovelCost = ? WHERE id = ?", shovelCost, session["user_id"])
+    db.execute("UPDATE simple_upgrades SET shovelCost = ? WHERE user_id = ?", shovelCost, session["user_id"])
     # Returning the updated shovel count and cost as JSON
     return jsonify({"curShovel": curShovel, "shovelCost": shovelCost})
 
