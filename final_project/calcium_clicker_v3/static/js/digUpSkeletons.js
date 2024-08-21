@@ -1,6 +1,6 @@
 // Note ChatGPT helped me develop this function.
 function digUpSkeletons() {
-    fetch('/resurrect', {
+    fetch('/digUpSkeletons', {
         method: 'POST',
     })
     .then(response => response.json())

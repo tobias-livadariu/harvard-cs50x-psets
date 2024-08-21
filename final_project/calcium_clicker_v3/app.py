@@ -72,9 +72,9 @@ def index():
 """Updating the skeleton count asyncronously through AJAX without
 visually refreshing the webpage. Note that the code below is my own,
 but ChatGPT gave me the idea to use AJAX."""
-@app.route("/resurrect", methods=["POST"])
+@app.route("/digUpSkeletons", methods=["POST"])
 @login_required
-def resurrect():
+def digUpSkeletons():
     # Updating the skeleton count and total skeleton count
     db.execute("UPDATE users SET skeletonCount = skeletonCount + 1 WHERE id = ?", session["user_id"])
     db.execute("UPDATE users SET totalSkeletons = totalSkeletons + 1 WHERE id = ?", session["user_id"])
@@ -86,10 +86,17 @@ def resurrect():
 
 """Updating the number of autodiggers that the user has
 through AJAX."""
-
+@app.route("/buyAutodigger", methods=["POST"])
+@login_required
+def buyAutodigger():
+    #TODO: implement
 
 """Updating the user's shovel through AJAX."""
 
+@app.route("/buyShovel", methods=["POST"])
+@login_required
+def buyShovel():
+    #TODO: implement
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
