@@ -1,5 +1,5 @@
-"""Note that the following sqlite3 table creation prompt
-was heavily inspired by the 'users' table used in Finance.
+"""Note that the following sqlite3 table creation prompts
+were inspired by the tables used in Finance.
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -12,17 +12,17 @@ CREATE TABLE sqlite_sequence(name,seq);
 CREATE UNIQUE INDEX username ON users (username);
 CREATE TABLE simple_upgrades (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    user_id INTEGER,
+    user_id INTEGER NOT NULL,
     curShovel INTEGER NOT NULL DEFAULT 0,
     numAutodiggers INTEGER NOT NULL DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 CREATE TABLE stats (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    user_id INTEGER,
+    user_id INTEGER NOT NULL,
     skeletonsPerClick INTEGER NOT NULL DEFAULT 1,
     skeletonsPerSecond INTEGER NOT NULL DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 """
 
@@ -94,13 +94,25 @@ through AJAX."""
 @app.route("/buyAutodigger", methods=["POST"])
 @login_required
 def buyAutodigger():
-    #TODO: implement
+    # Updating the autodigger count
+    db.execute("UPDATE simple_upgrades SET numAutodiggers = numAutodiggers + 1 WHERE user_id = ?", session["user_id"])
+    # Fetching the updated autodigger count
+    numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
+    numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
+    # Returning the updated autodigger count as JSON
+    return jsonify({"numAutodiggers": numAutodiggers})
 
 """Updating the user's shovel through AJAX."""
 @app.route("/buyShovel", methods=["POST"])
 @login_required
 def buyShovel():
-    #TODO: implement
+    # Updating the user's shovel level
+    db.execute("UPDATE simple_upgrades SET curShovel = numAutodiggers + 1 WHERE user_id = ?", session["user_id"])
+    # Fetching the updated autodigger count
+    numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
+    numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
+    # Returning the updated autodigger count as JSON
+    return jsonify({"numAutodiggers": numAutodiggers})
 
 @app.route("/refreshStats", methods=["GET"])
 @login_required

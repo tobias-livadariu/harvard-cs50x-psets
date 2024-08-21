@@ -23,7 +23,7 @@
             <div class="m-2 from-top-2nd">
                 <h3>Simple Upgrades</h3>
                 <button class="btn btn-primary rounded-0 shadow-lg" onclick="buyAutodigger()">Buy Autodigger (cost: {{ autodiggerCost }} skeletons)</button>
-                <p>Number of autodiggers: {{ numAutodiggers }} ({{ numAutodiggers }} skeletons per second)</p>
+                <p>Number of autodiggers: {{ numAutodiggers }}</p>
                 <button class="btn btn-primary rounded-0 shadow-lg {% if curShovel == maxShovel %}btn-dark{% endif %}"
                 onclick="buyShovel()"
                 {% if curShovel == maxShovel %}disabled{% endif %}> <!--TODOL see if the red equal sign is actually a problem-->
