@@ -171,7 +171,7 @@ def index():
     autodiggerCost = simpleUpgrades["autodiggerCost"]
 
     # Getting the current skeletons per click and skeletons per second
-    statsRow = db.execute(SELECT skeletonsPerClick, skeletonsPerSecond FROM stats )
+    statsRow = db.execute("SELECT skeletonsPerClick, skeletonsPerSecond FROM stats WHERE ")
 
     return render_template("index.html", skeletonCount=skeletonCount, totalSkeletons=totalSkeletons)
 
