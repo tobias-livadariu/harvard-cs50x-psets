@@ -153,12 +153,26 @@ def refreshStats():
 @login_required #NOTE: the @login_required decorator was taken from Finance
 def index():
     # If the homepage was accessed via get, rendering it.
+
     # Getting the current skeleton count
     skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
     skeletonCount = skeletonCountRow[0]["skeletonCount"]
+
     # Getting the total skeleton count
     totalSkeletonsRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
     totalSkeletons = totalSkeletonsRow[0]["totalSkeletons"]
+
+    # Getting the current autodigger count, shovel level, and price for the next simple upgrades
+    simpleUpgradesRow = db.execute("SELECT curShovel, shovelCost, numAutodiggers, autodiggerCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])
+    simpleUpgrades = simpleUpgradesRow[0]
+    curShovel = simpleUpgrades["curShovel"]
+    shovelCost = simpleUpgrades["shovelCost"]
+    numAutodiggers = simpleUpgrades["numAutodiggers"]
+    autodiggerCost = simpleUpgrades["autodiggerCost"]
+
+    # Getting the current skeletons per click and skeletons per second
+    statsRow = db.execute(SELECT skeletonsPerClick, skeletonsPerSecond FROM stats )
+
     return render_template("index.html", skeletonCount=skeletonCount, totalSkeletons=totalSkeletons)
 
 """NOTE: the login route was taken from my work in Finance."""
