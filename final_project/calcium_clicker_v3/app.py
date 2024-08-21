@@ -14,9 +14,12 @@ CREATE TABLE simple_upgrades (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     user_id INTEGER,
     curShovel INTEGER NOT NULL DEFAULT 0,
+    numAutodiggers INTEGER NOT NULL DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+);
+CREATE TABLE stats (
     
 );
-CREATE TABLE stats ::todo
 """
 
 """Note that the libraries imported below were taken
