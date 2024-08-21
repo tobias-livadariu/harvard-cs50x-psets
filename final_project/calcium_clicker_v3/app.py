@@ -23,7 +23,7 @@ CREATE TABLE simple_upgrades (
     curShovel INTEGER NOT NULL DEFAULT 0,
     shovelCost INTEGER NOT NULL DEFAULT 100,
     numAutodiggers INTEGER NOT NULL DEFAULT 0,
-
+    autodiggerCost INTEGER NOT NULL DEFAULT 10,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 """
@@ -112,9 +112,9 @@ def buyAutodigger():
     numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
     # Determining the updated cost for a new autodigger
-    shovelCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
+    autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
     # Returning the updated autodigger count as JSON
-    return jsonify({"numAutodiggers": numAutodiggers, "shovelCost": shovelCost})
+    return jsonify({"numAutodiggers": numAutodiggers, "autodiggerCost": autodiggerCost})
 
 """Updating the user's shovel through AJAX."""
 @app.route("/buyShovel", methods=["POST"])
