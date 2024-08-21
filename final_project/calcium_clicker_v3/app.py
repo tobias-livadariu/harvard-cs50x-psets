@@ -81,7 +81,8 @@ def calculateShovelCost(curShovel, baseCost, multiplier):
 
 # Defining a function to calculate the cost of buying the next autodigger
 # Note that, like with the calculateShovelCost function, ChatGPT gave me ideas for this one
-def calculateAutodiggerCost()
+def calculateAutodiggerCost(numAutodiggers, baseCost, multiplier, exponent):
+    return int(baseCost * (1 + multiplier * numAutodiggers) ** exponent)
 
 """Updating the skeleton count asyncronously through AJAX without
 visually refreshing the webpage. Note that the code below is my own,
@@ -108,8 +109,10 @@ def buyAutodigger():
     # Fetching the updated autodigger count
     numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
+    # Determining the updated cost for a new autodigger
+    shovelCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, bastCost=10, multiplier=0.05, exponent=2)
     # Returning the updated autodigger count as JSON
-    return jsonify({"numAutodiggers": numAutodiggers})
+    return jsonify({"numAutodiggers": numAutodiggers, "shovelCost": shovelCost})
 
 """Updating the user's shovel through AJAX."""
 @app.route("/buyShovel", methods=["POST"])
