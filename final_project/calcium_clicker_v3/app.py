@@ -128,16 +128,20 @@ def buyShovel():
     curShovel = curShovelRow[0]["curShovel"]
     # Determining the updated cost for a new shovel
     shovelCost = calculateShovelCost(curShovel=curShovel, baseCost=100, multiplier=1.5)
+    db.execute("UPDATE simple_upgrades SET shovelCost = ? WHERE id = ?", shovelCost, session["user_id"])
     # Returning the updated shovel count and cost as JSON
     return jsonify({"curShovel": curShovel, "shovelCost": shovelCost})
 
 @app.route("/refreshStats", methods=["GET"])
 @login_required
 def refreshStats():
-    # Refreshing the value in skeletonsPerClick
+    # Refreshing the value in skeletonsPerClick and skeletonsPerSecond
     curShovelRow = db.execute("SELECT curShovel FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     curShovel = curShovelRow[0]["curShovel"]
+    numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
+    numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
     skeletonsPerClick = 10 ** curShovel
+    skeletonsPerSecond = 
 
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
