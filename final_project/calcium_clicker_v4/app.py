@@ -142,7 +142,7 @@ def refreshStats():
     numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
     skeletonsPerClick = 10 ** curShovel
     skeletonsPerSecond = numAutodiggers
-    db.execute("UPDATE stats SET (skeletonsPerClick, skeletonsPerSecond) VALUES (?, ?)", skeletonsPerClick, skeletonsPerSecond)
+    db.execute("UPDATE stats SET skeletonsPerClick = ?, skeletonsPerSecond = ? WHERE user_id = ?", skeletonsPerClick, skeletonsPerSecond, session["user_id"])
     # Returning the updated values as JSON
     return jsonify({"skeletonsPerClick": skeletonsPerClick, "skeletonsPerSecond": skeletonsPerSecond})
 
