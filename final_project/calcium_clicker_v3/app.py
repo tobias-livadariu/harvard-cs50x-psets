@@ -110,7 +110,7 @@ def buyShovel():
     db.execute("UPDATE simple_upgrades SET curShovel = curShovel + 1 WHERE user_id = ?", session["user_id"])
     # Fetching the updated shovel level
     curShovelRow = db.execute("SELECT curShovel FROM simple_upgrades WHERE user_id = ?", session["user_id"])
-    curShovel = curShovelRow[0]["numAutodiggers"]
+    curShovel = curShovelRow[0]["curShovel"]
     # Returning the updated autodigger count as JSON
     return jsonify({"curShovel": curShovel})
 
