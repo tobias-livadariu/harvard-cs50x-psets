@@ -10,7 +10,9 @@ CREATE TABLE users (
 );
 CREATE TABLE sqlite_sequence(name,seq);
 CREATE UNIQUE INDEX username ON users (username);
-CREATE TABLE simple_upgrades ::todo
+CREATE TABLE simple_upgrades (
+    user_id INTEGER
+);
 CREATE TABLE stats ::todo
 """
 
