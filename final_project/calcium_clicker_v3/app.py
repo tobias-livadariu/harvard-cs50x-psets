@@ -113,7 +113,7 @@ def buyAutodigger():
     numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
     # Determining the updated cost for a new autodigger
     autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
-    db.execute("UPDATE simple_upgrades SET ")
+    db.execute("UPDATE simple_upgrades SET autodiggerCost = ? WHERE id = ?", autodiggerCost, session["user_id"])
     # Returning the updated autodigger count as JSON
     return jsonify({"numAutodiggers": numAutodiggers, "autodiggerCost": autodiggerCost})
 
