@@ -175,6 +175,11 @@ def updateStats():
     # Returning the updated values as JSON
     return jsonify({"skeletonsPerClick": skeletonsPerClick, "skeletonsPerSecond": skeletonsPerSecond})
 
+@app.route("/autoincrementSkeletons", methods=["POST"])
+@login_required
+def autoincrementSkeletons:
+    # TODO:
+
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
 def index():
