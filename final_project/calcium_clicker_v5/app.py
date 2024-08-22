@@ -92,6 +92,8 @@ but ChatGPT gave me the idea to use AJAX."""
 @app.route("/digUpSkeletons", methods=["POST"])
 @login_required
 def digUpSkeletons():
+    # Getting the user's current skeletons per click from the stats table
+    skeletonsPerClick = db.execute("SELECT skeletonsPerClick FROM stats WHERE id = ?", session["user_id"])
     # Updating the skeleton count and total skeleton count
     db.execute("UPDATE users SET skeletonCount = skeletonCount + 1 WHERE id = ?", session["user_id"])
     db.execute("UPDATE users SET totalSkeletons = totalSkeletons + 1 WHERE id = ?", session["user_id"])
