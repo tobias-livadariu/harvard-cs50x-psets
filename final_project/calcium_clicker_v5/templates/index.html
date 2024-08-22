@@ -41,7 +41,7 @@
         <!-- Generating the third block of functions (the first rituals) -->
          {% if totalSkeletons > 499 %}
             <div class="m-2 from-top-2nd">
-                <h3>The First Rituals</h3>
+                <h3>Rituals</h3>
             </div>
             <hr class="w-100 mx-auto">
          {% endif %}
@@ -52,5 +52,6 @@
     <script src="{{ url_for('static', filename='js/digUpSkeletons.js') }}"></script>
     <script src="{{ url_for('static', filename='js/buyAutodigger.js') }}"></script>
     <script src="{{ url_for('static', filename='js/buyShovel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/autoincrementSkeletons.js') }}"></script>
 
 {% endblock %}
