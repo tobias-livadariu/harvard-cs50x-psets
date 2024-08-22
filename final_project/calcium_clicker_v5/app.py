@@ -108,6 +108,10 @@ through AJAX."""
 @app.route("/buyAutodigger", methods=["POST"])
 @login_required
 def buyAutodigger():
+    # Checking if the user can afford an autodigger
+    autodiggerCost = db.execute("SELECT autodiggerCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]["autodiggerCost"]
+    skeletonCount = db.execute("SELECT ")
+
     # Updating the autodigger count
     db.execute("UPDATE simple_upgrades SET numAutodiggers = numAutodiggers + 1 WHERE user_id = ?", session["user_id"])
     # Fetching the updated autodigger count
