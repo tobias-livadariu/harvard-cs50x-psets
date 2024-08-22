@@ -12,8 +12,15 @@ function buyShovel() {
 
         if (curShovel < maxShovel) {
             shovelButton.textContent = "Forge a ${shovels[curShovel + 1]} shovel (cost: ${shovelCost} skeletons)";
+            // Remove dark class and enable the button (this is not necessary, but I am writing it for clarity)
+            shovelButton.classList.remove('btn-dark');
+            shovelButton.removeAttribute('disabled');
         } else {
+            // Change the text content in the button to indicate that it is maxed
             shovelButton.textContent = "Your shovel is max level!";
+            // Add the dark class to the button and disable it
+            shovelButton.classList.add("btn-dark");
+            shovelButton.setAttribute("disabled", "true")
         }
     });
 }
