@@ -130,7 +130,7 @@ def buyShovel():
     shovelCost = calculateShovelCost(curShovel=curShovel, baseCost=100, multiplier=1.5)
     db.execute("UPDATE simple_upgrades SET shovelCost = ? WHERE user_id = ?", shovelCost, session["user_id"])
     # Returning the updated shovel count and cost as JSON
-    return jsonify({"curShovel": curShovel, "shovelCost": shovelCost})
+    return jsonify({"curShovel": curShovel, "shovelCost": shovelCost, "shovels": shovels, "maxShovel": maxShovel})
 
 @app.route("/refreshStats", methods=["POST"])
 @login_required
