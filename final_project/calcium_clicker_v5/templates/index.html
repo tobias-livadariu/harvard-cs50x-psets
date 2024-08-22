@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <div class="from-left-1st">
+        <!-- Generating the first block of functions (the main display) -->
+        <div class="m-2 from-top-1st">
+            <h2>Skeletons in Army: <span id="skeleton-count">{{ skeletonCount }}</span></h2>
+            <h3>Total Resurrected: <span id="total-skeletons">{{ totalSkeletons }}</span></h3>
+            <button class="btn btn-primary rounded-0 shadow-lg" onclick="digUpSkeletons()">Dig Up More</button>
+            {% if totalSkeletons > 9 %}
+                <p>Skeletons per click: <span id="skeletons-per-click">{{ skeletonsPerClick }}</span></p>
+                <p>Skeletons per second: <span id="skeletons-per-second">{{ skeletonsPerSecond }}</span></p>
+            {% endif %}
+        </div>
+        <hr class="w-100 mx-auto">
+
+        <!-- Generating the second block of functions (the simple upgrades) -->
+        {% if totalSkeletons > 9 %}
+            <div class="m-2 from-top-2nd">
+                <h3>Simple Upgrades</h3>
+                <button class="btn btn-primary rounded-0 shadow-lg btn-sm" onclick="buyAutodigger()">Buy Autodigger (cost: <span id="autodigger-cost">{{ autodiggerCost }}</span> skeletons)</button>
+                <p>Number of autodiggers: <span id="num-autodigger">{{ numAutodiggers }}</span></p>
+                <button id="shovel-button" class="btn btn-primary rounded-0 shadow-lg btn-sm {% if curShovel == maxShovel %}btn-dark{% endif %}"
+                onclick="buyShovel()"
+                {% if curShovel == maxShovel %}disabled{% endif %}> <!--TODO: see if the red equal sign is actually a problem -->
+                    {% if curShovel != maxShovel %}
+                        Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost }} skeletons) <!-- The shovels are annoying but just pass more stuff into the jsonify function in the buy shovels route-->
+                    {% else %}
+                        Your shovel is max level!
+                    {% endif %}
+                </button>
+                <p id>Current shovel: {{ shovels[curShovel] }} ({{ 10**(curShovel) }} skeletons per dig)</p>
+            </div>
+            <hr class="w-100 mx-auto">
+        {% endif %}
+
+        <!-- Generating the third block of functions (the first rituals) -->
+         {% if totalSkeletons > 499 %}
+            <div class="m-2 from-top-2nd">
+                <h3>The First Rituals</h3>
+            </div>
+            <hr class="w-100 mx-auto">
+         {% endif %}
+    </div>
+
+    <!-- Linking external scripts -->
+    <!-- Note that I got the url_for() function from ChatGPT's suggestions -->
+    <script src="{{ url_for('static', filename='js/digUpSkeletons.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/buyAutodigger.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/buyShovel.js') }}"></script>
+
+{% endblock %}
