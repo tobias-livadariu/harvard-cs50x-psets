@@ -1,10 +1,11 @@
 function buyShovel() {
-    fetch('/buyShovel', {
-        method: 'POST',
+    // Fetching the /buyShovel route
+    fetch("/buyShovel", {
+        method: "POST",
     })
     .then(response => response.json())
     .then(data => {
-        let shovelButton = document.getElementById('shovel-button');
+        let shovelButton = document.getElementById("shovel-button");
         let curShovel = data.curShovel;
         let maxShovel = data.maxShovel;
         let shovels = data.shovels;
@@ -23,4 +24,9 @@ function buyShovel() {
             shovelButton.setAttribute("disabled", "true")
         }
     });
+
+    // Fetching the /updateStats route
+    fetch("/updateStats", {
+        method: "POST"
+    })
 }

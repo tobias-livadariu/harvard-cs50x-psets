@@ -132,9 +132,9 @@ def buyShovel():
     # Returning the updated shovel count and cost as JSON
     return jsonify({"curShovel": curShovel, "shovelCost": shovelCost, "shovels": shovels, "maxShovel": maxShovel})
 
-@app.route("/refreshStats", methods=["POST"])
+@app.route("/updateStats", methods=["POST"])
 @login_required
-def refreshStats():
+def updateStats():
     # Refreshing the value in skeletonsPerClick and skeletonsPerSecond
     curShovelRow = db.execute("SELECT curShovel FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     curShovel = curShovelRow[0]["curShovel"]
