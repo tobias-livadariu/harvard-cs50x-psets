@@ -136,7 +136,7 @@ def buyAutodigger():
 @login_required
 def buyShovel():
     # Checking if the user can afford a shovel upgrade
-    shovelCost = db.execute("SELECT shovelCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]["autodiggerCost"]
+    shovelCost = db.execute("SELECT shovelCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]["shovelCost"]
     skeletonCount = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])[0]["skeletonCount"]
     if skeletonCount < shovelCost:
         # Returning False so that the program knows that the transaction failed
