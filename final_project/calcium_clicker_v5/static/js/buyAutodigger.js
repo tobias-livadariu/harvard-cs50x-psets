@@ -6,7 +6,7 @@ function buyAutodigger() {
     .then(response => response.json())
     .then(data => {
         // Checking if the transaction was succesful
-        if data.wasSuccessful == False {
+        if (data.wasSuccessful == false) {
             return;
         }
 
