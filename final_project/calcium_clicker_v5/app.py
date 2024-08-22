@@ -115,7 +115,10 @@ def buyAutodigger():
         # Returning False so that the program knows that the transaction failed
         return jasonify({"wasSuccessful": False})
 
-    
+    # If the transaction was succesful, updating the user's skeletonCount
+    db.execute("UPDATE users SET skeletonCount = skeletonCount - ? WHERE id = ?", autodiggerCost, session["user_id"])
+    # Getting the new skeleteonCount
+    skeletonCount = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session("user_id"))[0]["skeletonCount"]
 
     # Updating the autodigger count
     db.execute("UPDATE simple_upgrades SET numAutodiggers = numAutodiggers + 1 WHERE user_id = ?", session["user_id"])
@@ -126,7 +129,7 @@ def buyAutodigger():
     autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
     db.execute("UPDATE simple_upgrades SET autodiggerCost = ? WHERE user_id = ?", autodiggerCost, session["user_id"])
     # Returning the updated autodigger values as JSON
-    return jsonify({"wasSuccessful": False, "numAutodiggers": numAutodiggers, "autodiggerCost": autodiggerCost})
+    return jsonify({"wasSuccessful": False, "numAutodiggers": numAutodiggers, "autodiggerCost": autodiggerCost, "skeletonCount": skeletonCount})
 
 """Updating the user's shovel through AJAX."""
 @app.route("/buyShovel", methods=["POST"])
