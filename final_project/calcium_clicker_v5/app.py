@@ -110,7 +110,12 @@ through AJAX."""
 def buyAutodigger():
     # Checking if the user can afford an autodigger
     autodiggerCost = db.execute("SELECT autodiggerCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]["autodiggerCost"]
-    skeletonCount = db.execute("SELECT ")
+    skeletonCount = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session("user_id"))[0]["skeletonCount"]
+    if skeletonCount < autodiggerCost:
+        # Returning False so that the program knows that the transaction failed
+        return jasonify({"wasSuccessful": False})
+
+    
 
     # Updating the autodigger count
     db.execute("UPDATE simple_upgrades SET numAutodiggers = numAutodiggers + 1 WHERE user_id = ?", session["user_id"])
@@ -120,8 +125,8 @@ def buyAutodigger():
     # Determining the updated cost for a new autodigger
     autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
     db.execute("UPDATE simple_upgrades SET autodiggerCost = ? WHERE user_id = ?", autodiggerCost, session["user_id"])
-    # Returning the updated autodigger count as JSON
-    return jsonify({"numAutodiggers": numAutodiggers, "autodiggerCost": autodiggerCost})
+    # Returning the updated autodigger values as JSON
+    return jsonify({"wasSuccessful": False, "numAutodiggers": numAutodiggers, "autodiggerCost": autodiggerCost})
 
 """Updating the user's shovel through AJAX."""
 @app.route("/buyShovel", methods=["POST"])
