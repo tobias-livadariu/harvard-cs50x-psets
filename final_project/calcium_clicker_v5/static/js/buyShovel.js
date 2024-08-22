@@ -25,12 +25,13 @@ function buyShovel() {
         }
     });
 
-    // Fetching the /updateStats route
+    // Fetching the /updateStats route and updating the user's stats
     fetch("/updateStats", {
         method: "POST"
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById("")
+        document.getElementById("skeletons-per-click").textContent = data.skeletonsPerClick
+        document.getElementById("skeletons-per-second").textContent = data.skeletonsPerSecond
     });
 }
