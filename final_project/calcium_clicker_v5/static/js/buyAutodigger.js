@@ -17,7 +17,7 @@ function buyAutodigger() {
 
     // Fetching the /updateStats route and updating the user's stats
     fetch("/updateStats", {
-        method: "POST"
+        method: "POST",
     })
     .then(response => response.json())
     .then(data => {
