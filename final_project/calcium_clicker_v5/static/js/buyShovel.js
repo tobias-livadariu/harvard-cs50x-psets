@@ -4,15 +4,16 @@ function buyShovel() {
     })
     .then(response => response.json())
     .then(data => {
-        shovelButton = document.getElementById('shovel-button')
-        curShovel = data.curShovel
-        maxShovel = data.maxShovel
-        shovels = data.shovels
-        shovelCost = data.shovelCost
+        let shovelButton = document.getElementById('shovel-button');
+        let curShovel = data.curShovel;
+        let maxShovel = data.maxShovel;
+        let shovels = data.shovels;
+        let shovelCost = data.shovelCost;
 
-        if (curShovel < maxShovel)
-        {
-            shovelButton.textContent = "Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost }} skeletons)"
+        if (curShovel < maxShovel) {
+            shovelButton.textContent = "Forge a ${shovels[curShovel + 1]} shovel (cost: ${shovelCost} skeletons)";
+        } else {
+            shovelButton.textContent = "Your shovel is max level!";
         }
     });
 }
