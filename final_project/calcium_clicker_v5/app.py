@@ -93,10 +93,10 @@ but ChatGPT gave me the idea to use AJAX."""
 @login_required
 def digUpSkeletons():
     # Getting the user's current skeletons per click from the stats table
-    skeletonsPerClick = db.execute("SELECT skeletonsPerClick FROM stats WHERE id = ?", session["user_id"])
+    skeletonsPerClick = db.execute("SELECT skeletonsPerClick FROM stats WHERE user_id = ?", session["user_id"])[0]["skeletonsPerClick"]
     # Updating the skeleton count and total skeleton count
-    db.execute("UPDATE users SET skeletonCount = skeletonCount + 1 WHERE id = ?", session["user_id"])
-    db.execute("UPDATE users SET totalSkeletons = totalSkeletons + 1 WHERE id = ?", session["user_id"])
+    db.execute("UPDATE users SET skeletonCount = skeletonCount + ? WHERE id = ?", skeletonsPerClick, session["user_id"])
+    db.execute("UPDATE users SET totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerClick, session["user_id"])
     # Fetching the updating skeleton count
     skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
     skeletonCount = skeletonCountRow[0]["skeletonCount"]
