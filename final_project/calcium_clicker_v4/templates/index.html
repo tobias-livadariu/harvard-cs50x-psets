@@ -24,7 +24,7 @@
                 <h3>Simple Upgrades</h3>
                 <button class="btn btn-primary rounded-0 shadow-lg btn-sm" onclick="buyAutodigger()">Buy Autodigger (cost: <span id="autodigger-cost">{{ autodiggerCost }}</span> skeletons)</button>
                 <p>Number of autodiggers: <span id="num-autodigger">{{ numAutodiggers }}</span></p>
-                <button class="btn btn-primary rounded-0 shadow-lg btn-sm {% if curShovel == maxShovel %}btn-dark{% endif %}"
+                <button id="shovel-button" class="btn btn-primary rounded-0 shadow-lg btn-sm {% if curShovel == maxShovel %}btn-dark{% endif %}"
                 onclick="buyShovel()"
                 {% if curShovel == maxShovel %}disabled{% endif %}> <!--TODO: see if the red equal sign is actually a problem -->
                     {% if curShovel != maxShovel %}
