@@ -135,6 +135,18 @@ def buyAutodigger():
 @app.route("/buyShovel", methods=["POST"])
 @login_required
 def buyShovel():
+    # Checking if the user can afford a shovel upgrade
+    autodiggerCost = db.execute("SELECT autodiggerCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]["autodiggerCost"]
+    skeletonCount = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])[0]["skeletonCount"]
+    if skeletonCount < autodiggerCost:
+        # Returning False so that the program knows that the transaction failed
+        return jsonify({"wasSuccessful": False})
+
+    # If the transaction was succesful, updating the user's skeletonCount
+    db.execute("UPDATE users SET skeletonCount = skeletonCount - ? WHERE id = ?", autodiggerCost, session["user_id"])
+    # Getting the new skeleteonCount
+    skeletonCount = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])[0]["skeletonCount"]
+
     # Updating the user's shovel level
     db.execute("UPDATE simple_upgrades SET curShovel = curShovel + 1 WHERE user_id = ?", session["user_id"])
     # Fetching the updated shovel level
