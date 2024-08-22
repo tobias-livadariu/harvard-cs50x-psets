@@ -1,4 +1,4 @@
-function buyShovel() {
+function buyAutodigger() {
     // Fetching the /buyAutodigger route
     fetch("/buyAutodigger", {
         method: "POST",
