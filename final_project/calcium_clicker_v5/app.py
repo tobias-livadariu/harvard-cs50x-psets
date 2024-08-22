@@ -136,14 +136,14 @@ def buyAutodigger():
 @login_required
 def buyShovel():
     # Checking if the user can afford a shovel upgrade
-    autodiggerCost = db.execute("SELECT autodiggerCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]["autodiggerCost"]
+    shovelCost = db.execute("SELECT shovelCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]["autodiggerCost"]
     skeletonCount = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])[0]["skeletonCount"]
-    if skeletonCount < autodiggerCost:
+    if skeletonCount < shovelCost:
         # Returning False so that the program knows that the transaction failed
         return jsonify({"wasSuccessful": False})
 
     # If the transaction was succesful, updating the user's skeletonCount
-    db.execute("UPDATE users SET skeletonCount = skeletonCount - ? WHERE id = ?", autodiggerCost, session["user_id"])
+    db.execute("UPDATE users SET skeletonCount = skeletonCount - ? WHERE id = ?", shovelCost, session["user_id"])
     # Getting the new skeleteonCount
     skeletonCount = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])[0]["skeletonCount"]
 
@@ -155,8 +155,8 @@ def buyShovel():
     # Determining the updated cost for a new shovel
     shovelCost = calculateShovelCost(curShovel=curShovel, baseCost=100, multiplier=1.5)
     db.execute("UPDATE simple_upgrades SET shovelCost = ? WHERE user_id = ?", shovelCost, session["user_id"])
-    # Returning the updated shovel count and cost as JSON
-    return jsonify({"curShovel": curShovel, "shovelCost": shovelCost, "shovels": shovels, "maxShovel": maxShovel})
+    # Returning the updated shovel values as JSON
+    return jsonify({"wasSuccessful": True, "curShovel": curShovel, "shovelCost": shovelCost, "shovels": shovels, "maxShovel": maxShovel, "skeletonCount": skeletonCount})
 
 @app.route("/updateStats", methods=["POST"])
 @login_required
