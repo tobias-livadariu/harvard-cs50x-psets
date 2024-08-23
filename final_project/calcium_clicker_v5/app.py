@@ -304,8 +304,8 @@ def register():
         session["user_id"] = sessionPacked[0]["id"]
 
         # Inserting a row into every table in the database for the new user
-        db.execute("INSERT INTO stats (user_id) VALUES (?)", user_id)
-        db.execute("INSERT INTO simple_upgrades (user_id) VALUES (?)", user_id)
+        db.execute("INSERT INTO stats (user_id) VALUES (?)", session["user_id"])
+        db.execute("INSERT INTO simple_upgrades (user_id) VALUES (?)", session["user_id"])
 
         # Redirecting the user
         return redirect("/")
