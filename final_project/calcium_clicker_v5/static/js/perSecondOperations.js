@@ -14,30 +14,25 @@ function perSecondOperations() {
         })
         .then(response => response.json())
         .then(data => {
-            gainPerInterval = data.skeletonsPerSecond
+            gainPerInterval = data.skeletonsPerSecond / (1000 / interval);
         })
+        // Catching any error in the process of fetching initial per-second gain from the server
+        .catch(error => console.error("Error fetching per-second gain:", error));
     }
 
+    // Initial fetch
+    fetchPerSecondGain();
 
-    fetch("/updatePerSecond", {
-        method: "POST",
-    })
-    .then(response => response.json())
-    .then(data => {
-        gainPerInterval = data.skeletonsPerSecond / (1000 / interval);
-
-        // Continuously update the skeleton count smoothly
-        setInterval(() => {
-            let skeletonCount = document.getElementById("skeleton-count");
-            let currentSkeletonCount = parseFloat(skeletonCount.textContent);
-            currentSkeletonCount += gainPerInterval;
-            // Rounding the textContent in the "skeleton-count" element down to ensure
-            // that it remains a float.
-            skeletonCount.textContent = Math.floor(currentSkeletonCount);
-        }, interval); // Update every 50ms
-    })
-    // Catching any error in the process of fetching initial per-second gain from the server
-    .catch(error => console.error("Error fetching per-second gain:", error));
+    // Continuously update the skeleton count smoothly
+    setInterval(() => {
+        let skeletonCountElement = document.getElementById("skeleton-count");
+        let totalSkeletonsElement = document.getElementById("total-skeletons");
+        let currentSkeletonCount = parseFloat(skeletonCount.textContent);
+        currentSkeletonCount += gainPerInterval;
+        // Rounding the textContent in the "skeleton-count" element down to ensure
+        // that it remains a float.
+        skeletonCount.textContent = Math.floor(currentSkeletonCount);
+    }, interval); // Update every 50ms
 }
 
 // Start the smooth per-second updates
