@@ -2,7 +2,8 @@
 function updatePerSecondSmoothly() {
     /* The idea in this function is to update the visual skeleton count that the user sees
     in intervals less than a second, so there is a more continuous visual gain in skeleton count,
-    while still  */
+    while still only updating the user's server-side skeleton count once per second to minimize
+    strain on the server. */
     const interval = 50; // Update every 50ms (0.05 seconds)
     let gainPerInterval;
 
