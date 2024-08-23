@@ -124,8 +124,8 @@ def buyAutodigger():
     # Updating the autodigger count
     db.execute("UPDATE simple_upgrades SET numAutodiggers = numAutodiggers + 1 WHERE user_id = ?", session["user_id"])
     # Fetching the updated autodigger count
-    numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
-    numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
+    numAutodiggers = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]["numAutodiggers"]
+
     # Determining the updated cost for a new autodigger
     autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
     db.execute("UPDATE simple_upgrades SET autodiggerCost = ? WHERE user_id = ?", autodiggerCost, session["user_id"])
@@ -169,7 +169,7 @@ def updateStats():
     numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
 
-    skeletonsPerClick = 2 ** curShovel
+    skeletonsPerClick = 10 ** curShovel
     skeletonsPerSecond = numAutodiggers
 
     db.execute("UPDATE stats SET skeletonsPerClick = ?, skeletonsPerSecond = ? WHERE user_id = ?", skeletonsPerClick, skeletonsPerSecond, session["user_id"])
