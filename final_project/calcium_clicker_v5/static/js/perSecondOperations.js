@@ -7,7 +7,18 @@ function perSecondOperations() {
     const interval = 50; // Update every 50ms (0.05 seconds)
     let gainPerInterval; // Pre-initializing the gainPerInterval variable
 
-    // Fetching the initial per-second gain from the server
+    // Defining a function to fetch the per-second gain from the server.
+    function fetchPerSecondGain() {
+        fetch("/perSecondOperations", {
+            method: "POST",
+        })
+        .then(response => response.json())
+        .then(data => {
+            gainPerInterval = data.skeletonsPerSecond
+        })
+    }
+
+
     fetch("/updatePerSecond", {
         method: "POST",
     })
