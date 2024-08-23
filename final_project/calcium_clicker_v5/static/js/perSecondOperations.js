@@ -42,4 +42,4 @@ function perSecondOperations() {
 }
 
 // Start the smooth per-second updates
-updatePerSecond();
+perSecondOperations();
