@@ -101,7 +101,7 @@ def digUpSkeletons():
     skeletonCountRow = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])
     skeletonCount = skeletonCountRow[0]["skeletonCount"]
     # Returning the updated skeleton count as JSON
-    return jsonify({"skeletonCount": skeletonCount})
+    return jsonify({"skeletonCount": skeletonCount, "totalSkeletons": totalSkeletons})
 
 """Updating the number of autodiggers that the user has
 through AJAX."""
