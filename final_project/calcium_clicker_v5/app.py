@@ -182,7 +182,7 @@ def perSecondOperations():
     skeletonsPerSecond = db.execute("SELECT skeletonsPerSecond FROM stats WHERE id = ?", session["user_id"])[0]["skeletonsPerSecond"]
 
     # Updating the skeletonCount and totalSkeletons variables
-    
+    db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])
 
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
