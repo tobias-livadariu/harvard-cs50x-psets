@@ -10,10 +10,10 @@
         <div class="m-2 from-top-1st">
             <h2>Skeletons in Army: <span id="skeleton-count">{{ skeletonCount }}</span></h2>
             <button class="btn btn-primary rounded-0 shadow-lg" onclick="digUpSkeletons()">Dig Up More</button>
-            <h4>Total Resurrected: <span id="total-skeletons">{{ totalSkeletons }}</span></h4>
+            <h4 class="mt-2 mb-3">Total Resurrected: <span id="total-skeletons">{{ totalSkeletons }}</span></h4>
             {% if totalSkeletons > 9 %}
-                <p>Skeletons per click: <span id="skeletons-per-click">{{ skeletonsPerClick }}</span></p>
-                <p>Skeletons per second: <span id="skeletons-per-second">{{ skeletonsPerSecond }}</span></p>
+                <p class="mb-1">Skeletons per click: <span id="skeletons-per-click">{{ skeletonsPerClick }}</span></p>
+                <p class="mb-1">Skeletons per second: <span id="skeletons-per-second">{{ skeletonsPerSecond }}</span></p>
             {% endif %}
         </div>
         <hr class="w-100 mx-auto">
