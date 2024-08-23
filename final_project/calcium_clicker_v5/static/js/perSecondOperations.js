@@ -6,7 +6,7 @@ function perSecondOperations() {
     strain on the server. */
     const interval = 50; // Update every 50ms (0.05 seconds)
     let skeletonGainPerInterval; // Pre-initializing the skeletonGainPerInterval variable
-    let accumulatedGain = 0; // To accumulate fractional gains
+    let accumulatedSkeletonGain = 0; // To accumulate fractional gains in skeleton count
 
     // Defining a function to fetch the per-second gain from the server.
     function fetchPerSecondGain() {
@@ -30,6 +30,18 @@ function perSecondOperations() {
         let totalSkeletonsElement = document.getElementById("total-skeletons");
         let currentSkeletonCount = parseFloat(skeletonCountElement.textContent);
         let totalSkeletonCount = parseFloat(totalSkeletonsElement.textContent);
+
+        // Accumulate the gain
+        accumulatedSkeletonGain += skeletonGainPerInterval;
+
+        // Only update the display when at least 1 full skeleton is gained
+        if (accumulatedGain >= 1) {
+            // Calculate the integer part of accumulatedGain
+            let increment = math.floor(accumulatedGain);
+            currentSkeletonCount += increment;
+            totalSkeletonCount += increment;
+            accumulatedGain -= increment; // Subtract the integer part, keeping the remainder
+        }
 
         currentSkeletonCount += skeletonGainPerInterval;
         totalSkeletonCount += skeletonGainPerInterval;
