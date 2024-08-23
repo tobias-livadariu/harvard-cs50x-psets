@@ -27,7 +27,8 @@ function perSecondOperations() {
     setInterval(() => {
         let skeletonCountElement = document.getElementById("skeleton-count");
         let totalSkeletonsElement = document.getElementById("total-skeletons");
-        let currentSkeletonCount = parseFloat(skeletonCount.textContent);
+        let currentSkeletonCount = parseFloat(skeletonCountElement.textContent);
+        let totalSkeletonCount = parseFloat(totalSkeletonsElement.textContent);
         currentSkeletonCount += skeletonGainPerInterval;
         // Rounding the textContent in the "skeleton-count" element down to ensure
         // that it remains a float.
