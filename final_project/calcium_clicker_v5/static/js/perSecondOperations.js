@@ -28,8 +28,8 @@ function perSecondOperations() {
     setInterval(() => {
         let skeletonCountElement = document.getElementById("skeleton-count");
         let totalSkeletonsElement = document.getElementById("total-skeletons");
-        let currentSkeletonCount = parseFloat(skeletonCountElement.textContent);
-        let totalSkeletonCount = parseFloat(totalSkeletonsElement.textContent);
+        let currentSkeletonCount = parseInt(skeletonCountElement.textContent);
+        let totalSkeletonCount = parseInt(totalSkeletonsElement.textContent);
 
         // Accumulate the gain
         accumulatedSkeletonGain += skeletonGainPerInterval;
