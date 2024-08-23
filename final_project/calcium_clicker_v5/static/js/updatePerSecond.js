@@ -1,3 +1,4 @@
+// Note that ChatGPT helped me figure out the syntax for this function
 function updatePerSecondSmoothly() {
     const interval = 100; // Update every 100ms (0.1 seconds)
     let gainPerInterval;
