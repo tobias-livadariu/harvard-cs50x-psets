@@ -185,7 +185,7 @@ def perSecondOperations():
     db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])
 
     # Returning the skeletonsPerSecond value as JSON
-    return jsonify()
+    return jsonify({"skeletonsPerSecond": skeletonsPerSecond})
 
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
