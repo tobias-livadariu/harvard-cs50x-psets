@@ -179,6 +179,7 @@ def updateStats():
 @login_required
 def perSecondOperations():
     # TODO: Finish this
+    
 
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
