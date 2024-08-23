@@ -35,12 +35,12 @@ function perSecondOperations() {
         accumulatedSkeletonGain += skeletonGainPerInterval;
 
         // Only update the display when at least 1 full skeleton is gained
-        if (accumulatedGain >= 1) {
-            // Calculate the integer part of accumulatedGain
-            let increment = math.floor(accumulatedGain);
+        if (accumulatedSkeletonGain >= 1) {
+            // Calculate the integer part of accumulatedSkeletonGain
+            let increment = Math.floor(accumulatedSkeletonGain);
             currentSkeletonCount += increment;
             totalSkeletonCount += increment;
-            accumulatedGain -= increment; // Subtract the integer part, keeping the remainder
+            accumulatedSkeletonGain -= increment; // Subtract the integer part, keeping the remainder
 
             // Display the updated values to the user
             skeletonCountElement.textContent = Math.floor(currentSkeletonCount)
