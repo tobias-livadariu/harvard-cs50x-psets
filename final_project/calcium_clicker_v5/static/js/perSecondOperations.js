@@ -1,4 +1,4 @@
-// Note that ChatGPT helped me figure out the syntax for this function
+// Note that ChatGPT helped me figure out the syntax for some parts of this function
 function perSecondOperations() {
     /* The idea in this function is to update the visual skeleton count that the user sees
     in intervals less than a second, so there is a more continuous visual gain in skeleton count,
@@ -6,6 +6,7 @@ function perSecondOperations() {
     strain on the server. */
     const interval = 50; // Update every 50ms (0.05 seconds)
     let skeletonGainPerInterval; // Pre-initializing the skeletonGainPerInterval variable
+    let accumulatedGain = 0; // To accumulate fractional gains
 
     // Defining a function to fetch the per-second gain from the server.
     function fetchPerSecondGain() {
@@ -29,6 +30,7 @@ function perSecondOperations() {
         let totalSkeletonsElement = document.getElementById("total-skeletons");
         let currentSkeletonCount = parseFloat(skeletonCountElement.textContent);
         let totalSkeletonCount = parseFloat(totalSkeletonsElement.textContent);
+
         currentSkeletonCount += skeletonGainPerInterval;
         totalSkeletonCount += skeletonGainPerInterval;
         // Displaying the updated values to the user and rounding them down
