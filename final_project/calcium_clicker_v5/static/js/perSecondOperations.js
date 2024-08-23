@@ -30,10 +30,15 @@ function perSecondOperations() {
         let currentSkeletonCount = parseFloat(skeletonCountElement.textContent);
         let totalSkeletonCount = parseFloat(totalSkeletonsElement.textContent);
         currentSkeletonCount += skeletonGainPerInterval;
-        // Rounding the textContent in the "skeleton-count" element down to ensure
-        // that it remains a float.
-        skeletonCount.textContent = Math.floor(currentSkeletonCount);
+        totalSkeletonCount += skeletonGainPerInterval;
+        // Displaying the updated values to the user and rounding them down
+        // to ensure they remain integers
+        skeletonCountElement.textContent = Math.floor(currentSkeletonCount);
+        totalSkeletonsElement.textContent = Math.floor(totalSkeletonCount);
     }, interval); // Update every 50ms
+
+    // Re-fetch the per-second gain every second to account for changes
+    setInterval(fetchPerSecondGain, 1000)
 }
 
 // Start the smooth per-second updates
