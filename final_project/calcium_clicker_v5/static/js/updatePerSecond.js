@@ -1,6 +1,9 @@
 // Note that ChatGPT helped me figure out the syntax for this function
 function updatePerSecondSmoothly() {
-    const interval = 100; // Update every 100ms (0.1 seconds)
+    /* The idea in this function is to update the visual skeleton count that the user sees
+    in intervals less than a second, so there is a more continuous visual gain in skeleton count,
+    while still  */
+    const interval = 50; // Update every 50ms (0.05 seconds)
     let gainPerInterval;
 
     // Fetch the initial per-second gain from the server
