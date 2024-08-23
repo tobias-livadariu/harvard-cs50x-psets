@@ -178,14 +178,16 @@ def updateStats():
 @app.route("/perSecondOperations", methods=["POST"])
 @login_required
 def perSecondOperations():
-    
+    # Fetching the current skeletons per second
+    skeletonsPerSecond = db.execute("SELECT skeletonsPerSecond FROM stats WHERE id = ?", session["user_id"])[0]["skeletonsPerSecond"]
 
+    # Updating the skeletonCount and totalSkeletons variables
+    
 
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
 def index():
-    # If the homepage was accessed via get, rendering it.
-
+    # Rendering the webpage
     # Getting the current and total skeleton counts
     usersRow = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])
     users = usersRow[0]
