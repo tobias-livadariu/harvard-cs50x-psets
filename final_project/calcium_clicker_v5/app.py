@@ -177,8 +177,8 @@ def updateStats():
 
 @app.route("/perSecondOperations", methods=["POST"])
 @login_required
-def updatePerSecond():
-    # TODO: Finish this
+def perSecondOperations():
+    # TODO: finish this
 
 
 @app.route("/", methods=["GET"])

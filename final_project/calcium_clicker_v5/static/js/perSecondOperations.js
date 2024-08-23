@@ -1,5 +1,5 @@
 // Note that ChatGPT helped me figure out the syntax for this function
-function updatePerSecond() {
+function perSecondOperations() {
     /* The idea in this function is to update the visual skeleton count that the user sees
     in intervals less than a second, so there is a more continuous visual gain in skeleton count,
     while still only updating the user's server-side skeleton count once per second to minimize
