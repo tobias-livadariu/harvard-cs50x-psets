@@ -41,14 +41,11 @@ function perSecondOperations() {
             currentSkeletonCount += increment;
             totalSkeletonCount += increment;
             accumulatedGain -= increment; // Subtract the integer part, keeping the remainder
-        }
 
-        currentSkeletonCount += skeletonGainPerInterval;
-        totalSkeletonCount += skeletonGainPerInterval;
-        // Displaying the updated values to the user and rounding them down
-        // to ensure they remain integers
-        skeletonCountElement.textContent = Math.floor(currentSkeletonCount);
-        totalSkeletonsElement.textContent = Math.floor(totalSkeletonCount);
+            // Display the updated values to the user
+            skeletonCountElement.textContent = Math.floor(currentSkeletonCount)
+            totalSkeletonsElement.textContent = Math.floor(totalSkeletonCount)
+        }
     }, interval); // Update every 50ms
 
     // Re-fetch the per-second gain every second to account for changes
