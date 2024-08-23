@@ -184,6 +184,9 @@ def perSecondOperations():
     # Updating the skeletonCount and totalSkeletons variables
     db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])
 
+    # Returning the skeletonsPerSecond value as JSON
+    return jsonify()
+
 @app.route("/", methods=["GET"])
 @login_required #NOTE: the @login_required decorator was taken from Finance
 def index():
