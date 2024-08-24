@@ -213,23 +213,23 @@ def perSecondOperations():
 def index():
     # Fetching all necessary data in a single query
     userData = db.execute("""
-        SELECT users.skeletonCount, u.totalSkeletons,
-               su.curShovel, su.shovelCost, su.numAutodiggers, su.autodiggerCost,
-               s.skeletonsPerClick, s.skeletonsPerSecond
-        FROM users u
-        JOIN simple_upgrades su ON u.id = su.user_id
-        JOIN stats s ON u.id = s.user_id
-        WHERE u.id = ?
+        SELECT users.skeletonCount, users.totalSkeletons,
+               simple_upgrades.curShovel, simple_upgrades.shovelCost, simple_upgrades.numAutodiggers, simple_upgrades.autodiggerCost,
+               stats.skeletonsPerClick, stats.skeletonsPerSecond
+        FROM users
+        JOIN simple_upgrades ON users.id = simple_upgrades.user_id
+        JOIN stats ON users.id = stats.user_id
+        WHERE users.id = ?
     """, session["user_id"])[0]
 
-    skeletonCount = user_data["skeletonCount"]
-    totalSkeletons = user_data["totalSkeletons"]
-    curShovel = user_data["curShovel"]
-    shovelCost = user_data["shovelCost"]
-    numAutodiggers = user_data["numAutodiggers"]
-    autodiggerCost = user_data["autodiggerCost"]
-    skeletonsPerClick = user_data["skeletonsPerClick"]
-    skeletonsPerSecond = user_data["skeletonsPerSecond"]
+    skeletonCount = userData["skeletonCount"]
+    totalSkeletons = userData["totalSkeletons"]
+    curShovel = userData["curShovel"]
+    shovelCost = userData["shovelCost"]
+    numAutodiggers = userData["numAutodiggers"]
+    autodiggerCost = userData["autodiggerCost"]
+    skeletonsPerClick = userData["skeletonsPerClick"]
+    skeletonsPerSecond = userData["skeletonsPerSecond"]
 
     # Rendering the webpage with the fetched data
     return render_template("index.html",
