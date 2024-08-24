@@ -73,13 +73,13 @@ def after_request(response):
     return response
 
 # Defining the list of shovels that the user can buy
-shovels = ["Wooden", "Stone", "Iron", "Gold", "Diamond", "Mythril", "Adamantite", "Runeite", "Dragon", "Infernal", "Super"]
+shovels = ["Wooden", "Stone", "Iron", "Gold", "Diamond", "Mythril", "Adamantite", "Runeite", "Dragon", "Infernal", "Masterwork"]
 maxShovel = len(shovels) - 1
 
 # Defining a function to calculate the cost of buying the next tier of shovel
 # Note that ChatGPT gave me ideas for how this function should look
-def calculateShovelCost(curShovel, baseCost, multiplier):
-    return int(baseCost * (multiplier ** (curShovel ** 2)))
+def calculateSkeletonsPerClick(curShovel, baseValue, polyPower, exponentialKicker):
+    return int(baseValue * (curShovel ** polyPower) * (exponentialKicker ** (curShovel ** 0.5)))
 
 # Defining a function to calculate the cost of buying the next autodigger
 # Note that, like with the calculateShovelCost function, ChatGPT gave me ideas for this function
