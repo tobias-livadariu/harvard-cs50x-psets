@@ -29,10 +29,8 @@ function perSecondOperations() {
 
     // Continuously update the skeleton count smoothly
     setInterval(() => {
-        let skeletonCountElement = document.getElementById("skeleton-count");
-        let totalSkeletonsElement = document.getElementById("total-skeletons");
-        let currentSkeletonCount = parseFloat(skeletonCountElement.textContent); // TODO: change it so that you are accessing information directly
-        let totalSkeletonCount = parseFloat(totalSkeletonsElement.textContent); //  TODO: from the sqlite3 databases and not looking at .textContent
+        let currentSkeletonCount = parseFloat(userSkeletons.skeletonCount);
+        let totalSkeletonCount = parseFloat(userSkeletons.totalSkeletons);
 
         if (skeletonGainPerInterval > 0) { // Only update if we have a valid interval
 
