@@ -116,28 +116,33 @@ through AJAX."""
 @app.route("/buyAutodigger", methods=["POST"])
 @login_required
 def buyAutodigger():
-    # Checking if the user can afford an autodigger
-    autodiggerCost = db.execute("SELECT autodiggerCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]["autodiggerCost"]
-    skeletonCount = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])[0]["skeletonCount"]
+    # Fetching autodiggerCost and skeletonCount in one go
+    user_data = db.execute("SELECT skeletonCount, autodiggerCost, numAutodiggers FROM users INNER JOIN simple_upgrades ON users.id = simple_upgrades.user_id WHERE users.id = ?", session["user_id"])[0]
+    skeletonCount = user_data["skeletonCount"]
+    autodiggerCost = user_data["autodiggerCost"]
+    numAutodiggers = user_data["numAutodiggers"]
+
     if skeletonCount < autodiggerCost:
-        # Returning False so that the program knows that the transaction failed
         return jsonify({"wasSuccessful": False})
 
-    # If the transaction was succesful, updating the user's skeletonCount
-    db.execute("UPDATE users SET skeletonCount = skeletonCount - ? WHERE id = ?", autodiggerCost, session["user_id"])
-    # Getting the new skeleteonCount
-    skeletonCount = db.execute("SELECT skeletonCount FROM users WHERE id = ?", session["user_id"])[0]["skeletonCount"]
+    # Calculating the new number of autodiggers and the updated cost
+    newNumAutodiggers = numAutodiggers + 1
+    newAutodiggerCost = calculateAutodiggerCost(numAutodiggers=newNumAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
 
-    # Updating the autodigger count
-    db.execute("UPDATE simple_upgrades SET numAutodiggers = numAutodiggers + 1 WHERE user_id = ?", session["user_id"])
-    # Fetching the updated autodigger count
-    numAutodiggers = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]["numAutodiggers"]
+    # Updating skeletonCount, numAutodiggers, and autodiggerCost in one go
+    updatedValues = db.execute("""
+        UPDATE users
+        SET skeletonCount = skeletonCount - ?
+        WHERE id = ?;
 
-    # Determining the updated cost for a new autodigger
-    autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
-    db.execute("UPDATE simple_upgrades SET autodiggerCost = ? WHERE user_id = ?", autodiggerCost, session["user_id"])
-    # Returning the updated autodigger values as JSON
-    return jsonify({"wasSuccessful": True, "numAutodiggers": numAutodiggers, "autodiggerCost": autodiggerCost, "skeletonCount": skeletonCount})
+        UPDATE simple_upgrades
+        SET numAutodiggers = ?, autodiggerCost = ?
+        WHERE user_id = ?
+        RETURNING numAutodiggers, autodiggerCost;
+    """, autodiggerCost, session["user_id"], newNumAutodiggers, newAutodiggerCost, session["user_id"])[0]
+
+    # Returning the updated values as JSON
+    return jsonify({"wasSuccessful": True, "numAutodiggers": updatedValues["numAutodiggers"], "autodiggerCost": updatedValues["autodiggerCost"], "skeletonCount": skeletonCount - autodiggerCost})
 
 """Updating the user's shovel through AJAX."""
 @app.route("/buyShovel", methods=["POST"])
