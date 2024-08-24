@@ -35,7 +35,7 @@ from flask import Flask, flash, redirect, render_template, request, session, jso
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import apology, login_required, format_number_suffix, calculateShovelCost, calculateAutodiggerCost, shovelSkeletonsPerClick
+from helpers import apology, login_required, formatNumberSuffix, calculateShovelCost, calculateAutodiggerCost, shovelSkeletonsPerClick
 
 # Configuring the flask application
 app = Flask(__name__)
@@ -73,8 +73,8 @@ def after_request(response):
     return response
 
 # Registering Jinja2 filters
-app.jinja_env.filters['format_number_suffix'] = format_number_suffix
-app.jinja_env.filters['format_number_suffix'] = format_number_suffix
+app.jinja_env.filters['formatNumberSuffix'] = formatNumberSuffix
+app.jinja_env.filters['shovelSkeletonsPerClick'] = shovelSkeletonsPerClick
 
 # Defining the list of shovels that the user can buy
 shovels = ["Wooden", "Stone", "Iron", "Gold", "Diamond", "Mythril", "Adamantite", "Runeite", "Dragon", "Infernal", "Masterwork"]

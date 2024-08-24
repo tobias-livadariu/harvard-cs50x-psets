@@ -56,7 +56,7 @@ def login_required(f):
 
 """Writing a function that can be used to
 shrink numbers based on their size using suffixes."""
-def format_number_suffix(num):
+def formatNumberSuffix(num):
     """
     Format a number with a suffix:
     'k' for thousand,
