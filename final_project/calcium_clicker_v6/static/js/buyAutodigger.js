@@ -22,9 +22,6 @@ function buyAutodigger() {
         document.getElementById("num-autodiggers").textContent = data.numAutodiggers;
         document.getElementById("autodigger-cost").textContent = data.autodiggerCost;
         document.getElementById("skeleton-count").textContent = data.skeletonCount;
-
-        // Allow the next request to process after this one
-        canBuyAutodigger = true;
     });
 
     // Fetching the /updateStats route and updating the user's stats
@@ -36,4 +33,8 @@ function buyAutodigger() {
         document.getElementById("skeletons-per-click").textContent = data.skeletonsPerClick;
         document.getElementById("skeletons-per-second").textContent = data.skeletonsPerSecond;
     });
+    // Allow the next request to process after this one
+    .finally(() => {
+        canBuyAutodigger = true;
+    })
 }
