@@ -16,8 +16,7 @@ function buyAutodigger() {
     .then(data => {
         // Checking if the transaction was succesful
         if (data.wasSuccessful == false) {
-            canBuyAutodigger = true; // Allowing another attempt if the purchase failed
-            return;
+            throw new Error("Transaction failed"); // Throwing an error to skip the coming fetch call
         }
 
         document.getElementById("num-autodiggers").textContent = data.numAutodiggers;
@@ -27,9 +26,13 @@ function buyAutodigger() {
         // Fetching the /updateStats route and updating the user's stats
         return fetch("/updateStats", {
             method: "POST",
-        });
-    });
-    .then(response => response.json())
+        })
+    })
+    .then(response => {
+        if (response) {
+            return response.json();
+        }
+    })
     .then(data => {
         document.getElementById("skeletons-per-click").textContent = data.skeletonsPerClick;
         document.getElementById("skeletons-per-second").textContent = data.skeletonsPerSecond;
@@ -37,4 +40,8 @@ function buyAutodigger() {
     .finally(() => {
         canBuyAutodigger = true;
     })
+    .catch(error => {
+        console.error("Error during purchase:", error);
+        canBuyAutodigger = true; // Reset the flag even if there is an error
+    });
 }
