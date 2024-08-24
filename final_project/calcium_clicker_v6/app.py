@@ -207,8 +207,8 @@ def perSecondOperations():
         WHERE id = ?
     """, session["user_id"])[0]
     skeletonsPerSecond = perSecondValues["skeletonsPerSecond"]
-    skeletonCount = perSecondValues["skeletonCount"]
-    totalSkeletons = perSecondValues["totalSkeletons"]
+    skeletonCount = perSecondValues["skeletonCount"] + skeletonsPerSecond
+    totalSkeletons = perSecondValues["totalSkeletons"] + skeletonsPerSecond
 
     # Updating the skeletonCount and totalSkeletons variables
     db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])

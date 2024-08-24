@@ -29,6 +29,8 @@ function perSecondOperations() {
 
     // Continuously update the skeleton count smoothly
     setInterval(() => {
+        let skeletonCountElement = document.getElementById("skeleton-count");
+        let totalSkeletonsElement = document.getElementById("total-skeletons");
         let currentSkeletonCount = parseFloat(userSkeletons.skeletonCount);
         let totalSkeletonCount = parseFloat(userSkeletons.totalSkeletons);
 
