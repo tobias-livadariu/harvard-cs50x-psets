@@ -199,14 +199,22 @@ def updateStats():
 @app.route("/perSecondOperations", methods=["POST"])
 @login_required
 def perSecondOperations():
-    # Fetching the current skeletons per second
-    skeletonsPerSecond = db.execute("SELECT skeletonsPerSecond FROM stats WHERE user_id = ?", session["user_id"])[0]["skeletonsPerSecond"]
+    # Fetching the current skeletonsPerSecond, skeletonCount, and totalSkeletons variables
+    perSecondValues = db.execute("""
+        SELECT stats.skeletonsPerSecond, users.skeletonCount, users.totalSkeletons
+        FROM users
+        JOIN stats ON users.id = stats.user_id
+        WHERE id = ?
+    """, session["user_id"])[0]
+    skeletonsPerSecond = perSecondValues["skeletonsPerSecond"]
+    skeletonCount = perSecondValues["skeletonCount"]
+    totalSkeletons = perSecondValues["totalSkeletons"]
 
     # Updating the skeletonCount and totalSkeletons variables
     db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])
 
     # Returning the skeletonsPerSecond value as JSON
-    return jsonify({"skeletonsPerSecond": skeletonsPerSecond})
+    return jsonify({"skeletonsPerSecond": skeletonsPerSecond, "skeletonCount": skeletonCount, "totalSkeletons": totalSkeletons})
 
 @app.route("/", methods=["GET"])
 @login_required

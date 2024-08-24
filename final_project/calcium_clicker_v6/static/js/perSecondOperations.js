@@ -16,7 +16,7 @@ function perSecondOperations() {
         .then(response => response.json())
         .then(data => {
             skeletonGainPerInterval = data.skeletonsPerSecond / (1000 / interval);
-            console.log("skeletonGainPerInterval:", skeletonGainPerInterval); // Debugging output
+            userSkeletons[]
         })
         // Catching any error in the process of fetching initial per-second gain from the server
         .catch(error => console.error("Error fetching per-second gain:", error));
