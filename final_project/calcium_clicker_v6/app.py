@@ -35,7 +35,7 @@ from flask import Flask, flash, redirect, render_template, request, session, jso
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import apology, login_required, format_number_suffix
+from helpers import apology, login_required, format_number_suffix, calculateShovelCost, calculateAutodiggerCost, shovelSkeletonsPerClick
 
 # Configuring the flask application
 app = Flask(__name__)
@@ -72,23 +72,13 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+# Registering Jinja2 filters
+app.jinja_env.filters['format_number_suffix'] = format_number_suffix
+app.jinja_env.filters['format_number_suffix'] = format_number_suffix
+
 # Defining the list of shovels that the user can buy
 shovels = ["Wooden", "Stone", "Iron", "Gold", "Diamond", "Mythril", "Adamantite", "Runeite", "Dragon", "Infernal", "Masterwork"]
 maxShovel = len(shovels) - 1
-
-# Defining a function to calculate the cost of buying the next tier of shovel
-# Note that ChatGPT gave me ideas for how this function should look
-def calculateShovelCost(curShovel, baseCost, multiplier):
-    return int(baseCost * (multiplier ** (curShovel ** 2)))
-
-# Defining a simple exponential function to calculate the cost of buying the next autodigger
-def calculateAutodiggerCost(numAutodiggers, baseCost, growthRate):
-    return int(baseCost * (growthRate ** numAutodiggers))
-
-# Defining a function to calculate how many skeletons each tier of shovel should provide per click
-# Note that, like with the calculateShovelCost function, ChatGPT gave me ideas for this function
-def shovelSkeletonsPerClick(curShovel, baseValue=10, polyPower=1.5, exponentialKicker=1.02):
-    return int(baseValue * ((curShovel + 1) ** polyPower) * (exponentialKicker ** ((curShovel + 1) ** 0.5)))
 
 """Updating the skeleton count asyncronously through AJAX without
 visually refreshing the webpage. Note that the code below is my own,

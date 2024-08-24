@@ -90,4 +90,18 @@ def format_number_suffix(num):
     else:
         return str(num)
 
-"""Below are a number of cost functions """
+"""Below are a couple of functions used throughout my program
+to determine the cost and power of certain upgrades. """
+# Defining a function to calculate the cost of buying the next tier of shovel
+# Note that ChatGPT gave me ideas for how this function should look
+def calculateShovelCost(curShovel, baseCost, multiplier):
+    return int(baseCost * (multiplier ** (curShovel ** 2)))
+
+# Defining a simple exponential function to calculate the cost of buying the next autodigger
+def calculateAutodiggerCost(numAutodiggers, baseCost, growthRate):
+    return int(baseCost * (growthRate ** numAutodiggers))
+
+# Defining a function to calculate how many skeletons each tier of shovel should provide per click
+# Note that, like with the calculateShovelCost function, ChatGPT gave me ideas for this function
+def shovelSkeletonsPerClick(curShovel, baseValue=10, polyPower=1.5, exponentialKicker=1.02):
+    return int(baseValue * ((curShovel + 1) ** polyPower) * (exponentialKicker ** ((curShovel + 1) ** 0.5)))
