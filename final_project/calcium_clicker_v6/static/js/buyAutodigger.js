@@ -26,7 +26,7 @@ function buyAutodigger() {
         // Fetching the /updateStats route and updating the user's stats
         return fetch("/updateStats", {
             method: "POST",
-        })
+        });
     })
     .then(response => {
         if (response) {
@@ -34,8 +34,11 @@ function buyAutodigger() {
         }
     })
     .then(data => {
-        document.getElementById("skeletons-per-click").textContent = data.skeletonsPerClick;
-        document.getElementById("skeletons-per-second").textContent = data.skeletonsPerSecond;
+        if (data) {
+            document.getElementById("skeletons-per-click").textContent = data.skeletonsPerClick;
+            document.getElementById("skeletons-per-second").textContent = data.skeletonsPerSecond;
+        }
+    })
     // Allow the next request to process after this one
     .finally(() => {
         canBuyAutodigger = true;
