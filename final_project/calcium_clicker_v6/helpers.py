@@ -53,3 +53,25 @@ def login_required(f):
         return f(*args, **kwargs)
 
     return decorated_function
+
+"""Writing a function that can be used to
+shrink numbers and only show their 'important' parts
+based on their size. """
+def format_number_suffix(num):
+    """
+    Format a number with a suffix:
+    'k' for thousands,
+    'm' for millions,
+    'b' for billions,
+    't' for trillions,
+    'q' for quadrillions,
+    'qt'
+    """
+    if num >= 1_000_000_000:
+        return f"{num / 1_000_000_000:.1f}b"
+    elif num >= 1_000_000:
+        return f"{num / 1_000_000:.1f}m"
+    elif num >= 1_000:
+        return f"{num / 1_000:.1f}k"
+    else:
+        return str(num)
