@@ -1,3 +1,5 @@
+// Note that ChatGPT helped me develop this function
+
 /* Using a variable to limit the user's ability to
 buy a shovel until the most recent shovel transaction
 has concluded. */

@@ -1,4 +1,3 @@
-// Note ChatGPT helped me develop this function.
 function digUpSkeletons() {
     fetch("digUpSkeletons", {
         method: "POST",

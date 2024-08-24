@@ -1,3 +1,5 @@
+// Note that ChatGPT helped me develop this function
+
 /* Using a variable to limit the user's ability to
 buy an autodigger until the most recent autodigger transaction
 has concluded. */
