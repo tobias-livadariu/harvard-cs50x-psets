@@ -130,12 +130,15 @@ def buyAutodigger():
     if skeletonCount < autodiggerCost:
         return jsonify({"wasSuccessful": False})
 
+    # Updating the user's skeletonCount value
+    skeletonCount -= autodiggerCost
+
     # Calculating the new number of autodiggers and the updated cost
     numAutodiggers = numAutodiggers + 1
     autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
 
     # Updating skeletonCount
-    db.execute("UPDATE users SET skeletonCount = skeletonCount - ? WHERE id = ?", autodiggerCost, session["user_id"])
+    db.execute("UPDATE users SET skeletonCount = ? WHERE id = ?", skeletonCount, session["user_id"])
 
     # Updating numAutodiggers and autodiggerCost in one go
     db.execute("UPDATE simple_upgrades SET numAutodiggers = ?, autodiggerCost = ? WHERE user_id = ?", numAutodiggers, autodiggerCost, session["user_id"])
