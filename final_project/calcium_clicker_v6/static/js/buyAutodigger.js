@@ -25,14 +25,14 @@ function buyAutodigger() {
         document.getElementById("skeleton-count").textContent = data.skeletonCount;
 
         // Fetching the /updateStats route and updating the user's stats
-        fetch("/updateStats", {
+        return fetch("/updateStats", {
             method: "POST",
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("skeletons-per-click").textContent = data.skeletonsPerClick;
-            document.getElementById("skeletons-per-second").textContent = data.skeletonsPerSecond;
+        });
     });
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("skeletons-per-click").textContent = data.skeletonsPerClick;
+        document.getElementById("skeletons-per-second").textContent = data.skeletonsPerSecond;
     // Allow the next request to process after this one
     .finally(() => {
         canBuyAutodigger = true;
