@@ -81,12 +81,12 @@ maxShovel = len(shovels) - 1
 def calculateShovelCost(curShovel, baseCost, multiplier):
     return int(baseCost * (multiplier ** (curShovel ** 2)))
 
-# Defining a function to calculate the cost of buying the next autodigger
-# Note that, like with the calculateShovelCost function, ChatGPT gave me ideas for this function
-def calculateAutodiggerCost(numAutodiggers, baseCost, multiplier, exponent):
-    return int(baseCost * (1 + multiplier * numAutodiggers) ** exponent)
+# Defining a simple exponential function to calculate the cost of buying the next autodigger
+def calculateAutodiggerCost(numAutodiggers, baseCost, growthRate):
+    return int(baseCost * (growthRate ** numAutodiggers))
 
 # Defining a function to calculate how many skeletons each tier of shovel should provide per click
+# Note that, like with the calculateShovelCost function, ChatGPT gave me ideas for this function
 def shovelSkeletonsPerClick(curShovel, baseValue=10, polyPower=1.5, exponentialKicker=1.02):
     return int(baseValue * ((curShovel + 1) ** polyPower) * (exponentialKicker ** ((curShovel + 1) ** 0.5)))
 
@@ -135,7 +135,7 @@ def buyAutodigger():
 
     # Calculating the new number of autodiggers and the updated cost
     numAutodiggers = numAutodiggers + 1
-    autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
+    autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, growthRate=1.15)
 
     # Updating skeletonCount
     db.execute("UPDATE users SET skeletonCount = ? WHERE id = ?", skeletonCount, session["user_id"])
