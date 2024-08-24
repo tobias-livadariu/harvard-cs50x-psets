@@ -204,7 +204,7 @@ def perSecondOperations():
         SELECT stats.skeletonsPerSecond, users.skeletonCount, users.totalSkeletons
         FROM users
         JOIN stats ON users.id = stats.user_id
-        WHERE id = ?
+        WHERE users.id = ?
     """, session["user_id"])[0]
     skeletonsPerSecond = perSecondValues["skeletonsPerSecond"]
     skeletonCount = perSecondValues["skeletonCount"] + skeletonsPerSecond
