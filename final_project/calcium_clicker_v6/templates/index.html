@@ -33,7 +33,7 @@
                         Your shovel is max level!
                     {% endif %}
                 </button>
-                <p id="shovel-description">Current shovel: {{ shovels[curShovel] }} ({{ (curShovel | shovelSkeletonsPerClick)  | formatNumberSuffix }} skeletons per dig)</p>
+                <p id="shovel-description">Current shovel: {{ shovels[curShovel] }} ({{ shovelSkeletonsPerClick(curShovel) | formatNumberSuffix }} skeletons per dig)</p>
             </div>
             <hr>
         {% endif %}
