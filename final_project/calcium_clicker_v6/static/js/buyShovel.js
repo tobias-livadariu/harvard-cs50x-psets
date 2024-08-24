@@ -20,7 +20,7 @@ function buyShovel() {
     .then(response => response.json())
     .then(data => {
         // Checking if the transaction was successful
-        if (data.wasSuccessful == false) {
+        if (!data.wasSuccessful) {
             throw new Error("Transaction failed"); // Throwing an error to skip the coming fetch call
         }
 
@@ -44,15 +44,30 @@ function buyShovel() {
             shovelButton.setAttribute("disabled", "true");
         }
         document.getElementById("skeleton-count").textContent = skeletonCount;
-    });
 
-    // Fetching the /updateStats route and updating the user's stats
-    fetch("/updateStats", {
-        method: "POST",
+        // Fetching the /updateStats route and updating the user's stats
+        return fetch("/updateStats", {
+            method: "POST",
+        });
     })
-    .then(response => response.json())
+    .then(response => {
+        if (response) {
+            return response.json();
+        }
+    })
     .then(data => {
-        document.getElementById("skeletons-per-click").textContent = data.skeletonsPerClick
-        document.getElementById("skeletons-per-second").textContent = data.skeletonsPerSecond
-    });
+        if (data) {
+            document.getElementById("skeletons-per-click").textContent = data.skeletonsPerClick
+            document.getElementById("skeletons-per-second").textContent = data.skeletonsPerSecond
+        }
+    })
+    // Allow the next request to process after this one
+    .finally(() => {
+        canBuyShovel = true;
+    })
+    // Handling errors
+    .catch(error => {
+        console.log("Error during purchase:", error)
+        canBuyShovel = true; // Reset the flag even if there is an error
+    })
 }

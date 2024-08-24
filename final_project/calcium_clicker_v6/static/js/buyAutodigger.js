@@ -48,6 +48,7 @@ function buyAutodigger() {
     .finally(() => {
         canBuyAutodigger = true;
     })
+    // Handling errors
     .catch(error => {
         console.error("Error during purchase:", error);
         canBuyAutodigger = true; // Reset the flag even if there is an error
