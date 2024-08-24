@@ -177,7 +177,7 @@ def buyShovel():
     db.execute("UPDATE simple_upgrades SET curShovel = ?, shovelCost = ? WHERE user_id = ?", curShovel, shovelCost, session["user_id"])
 
     # Returning the updated shovel values as JSON
-    return jsonify({"wasSuccessful": True, "curShovel": new_curShovel, "shovelCost": new_shovelCost, "shovels": shovels, "maxShovel": maxShovel, "skeletonCount": new_skeletonCount})
+    return jsonify({"wasSuccessful": True, "curShovel": curShovel, "shovelCost": shovelCost, "shovels": shovels, "maxShovel": maxShovel, "skeletonCount": skeletonCount})
 
 @app.route("/updateStats", methods=["POST"])
 @login_required
