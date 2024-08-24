@@ -33,7 +33,7 @@ function buyShovel() {
         let skeletonCount = data.skeletonCount;
 
         if (curShovel < maxShovel) {
-            shovelButton.textContent = `Forge a ${shovels[curShovel + 1]} shovel (cost: ${shovelCost} skeletons)`;
+            shovelButton.textContent = `Forge a ${shovels[curShovel + 1]} shovel (cost: ${formatNumberSuffix(shovelCost)} skeletons)`;
             // Remove dark class and enable the button (this is not necessary, but I am writing it for clarity)
             shovelButton.classList.remove('btn-dark');
             shovelButton.removeAttribute('disabled');
@@ -44,9 +44,9 @@ function buyShovel() {
             shovelButton.classList.add("btn-dark");
             shovelButton.setAttribute("disabled", "true");
         }
-        shovelDescription.textContent = `Current shovel: ${shovels[curShovel]} ${shovelSkeletonsPerClick(curShovel)} skeletons per dig)`
+        shovelDescription.textContent = `Current shovel: ${shovels[curShovel]} ${formatNumberSuffix(shovelSkeletonsPerClick(curShovel))} skeletons per dig)`
 
-        document.getElementById("skeleton-count").textContent = skeletonCount;
+        document.getElementById("skeleton-count").textContent = formatNumberSuffix(skeletonCount);
 
         // Updating the key-value pairs in userSkeletons
         userSkeletons.skeletonCount = data.skeletonCount;
@@ -63,8 +63,8 @@ function buyShovel() {
     })
     .then(data => {
         if (data) {
-            document.getElementById("skeletons-per-click").textContent = data.skeletonsPerClick
-            document.getElementById("skeletons-per-second").textContent = data.skeletonsPerSecond
+            document.getElementById("skeletons-per-click").textContent = formatNumberSuffix(data.skeletonsPerClick)
+            document.getElementById("skeletons-per-second").textContent = formatNumberSuffix(data.skeletonsPerSecond)
         }
     })
     // Allow the next request to process after this one
