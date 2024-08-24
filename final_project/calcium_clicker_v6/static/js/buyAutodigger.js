@@ -1,4 +1,13 @@
+/* Using a variable to limit the user's ability to
+buy an autodigger until the most recent autodigger transaction
+has concluded. */
+let canBuyAutodigger = true;
+
 function buyAutodigger() {
+    // Cancelling out of the function if canBuyAutodigger is false
+    if (!canBuyAutodigger) return;
+    canBuyAutodigger = false;
+
     // Fetching the /buyAutodigger route
     fetch("/buyAutodigger", {
         method: "POST",
@@ -13,6 +22,9 @@ function buyAutodigger() {
         document.getElementById("num-autodiggers").textContent = data.numAutodiggers;
         document.getElementById("autodigger-cost").textContent = data.autodiggerCost;
         document.getElementById("skeleton-count").textContent = data.skeletonCount;
+
+        // Allow the next request to process after this one
+        canBuyAutodigger = true;
     });
 
     // Fetching the /updateStats route and updating the user's stats
