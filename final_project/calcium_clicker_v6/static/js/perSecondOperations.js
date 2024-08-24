@@ -5,7 +5,7 @@ function perSecondOperations() {
     while still only updating the user's server-side skeleton count once per second to minimize
     strain on the server. */
     const interval = 50; // Update every 50ms (0.05 seconds)
-    let skeletonGainPerInterval; // Pre-initializing the skeletonGainPerInterval variable
+    let skeletonGainPerInterval = 0; // Pre-initializing the skeletonGainPerInterval variable
     let accumulatedSkeletonGain = 0; // To accumulate fractional gains in skeleton count
 
     // Defining a function to fetch the per-second gain from the server.
@@ -16,6 +16,7 @@ function perSecondOperations() {
         .then(response => response.json())
         .then(data => {
             skeletonGainPerInterval = data.skeletonsPerSecond / (1000 / interval);
+            console.log("skeletonGainPerInterval:", skeletonGainPerInterval); // Debugging output
         })
         // Catching any error in the process of fetching initial per-second gain from the server
         .catch(error => console.error("Error fetching per-second gain:", error));
@@ -28,8 +29,12 @@ function perSecondOperations() {
     setInterval(() => {
         let skeletonCountElement = document.getElementById("skeleton-count");
         let totalSkeletonsElement = document.getElementById("total-skeletons");
-        let currentSkeletonCount = parseInt(skeletonCountElement.textContent);
-        let totalSkeletonCount = parseInt(totalSkeletonsElement.textContent);
+        let currentSkeletonCount = parseFloat(skeletonCountElement.textContent);
+        let totalSkeletonCount = parseFloat(totalSkeletonsElement.textContent);
+
+        if (skeletonGainPerInterval > 0) {
+            
+        }
 
         // Accumulate the gain
         accumulatedSkeletonGain += skeletonGainPerInterval;
