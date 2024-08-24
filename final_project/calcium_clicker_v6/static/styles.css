@@ -103,13 +103,14 @@ Finance.*/
 
 /* Tweaking with the width of text blocks/sections
 in the main page. */
-.from-left-1st
-{
-    width: 30%;
-    display: inline-block;
+.from-left-1st {
+    width: 23%;
+    position: relative;
 }
 
-
+.from-left-1st hr {
+    margin-left: 8px;
+}
 
 /* Giving the webpage a dark mode coloring. */
 body
