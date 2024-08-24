@@ -88,7 +88,7 @@ def calculateAutodiggerCost(numAutodiggers, baseCost, multiplier, exponent):
 
 # Defining a function to calculate how many skeletons each tier of shovel should provide per click
 def shovelSkeletonsPerClick(curShovel, baseValue=10, polyPower=1.5, exponentialKicker=1.02):
-    return int(baseValue * (curShovel ** polyPower) * (exponentialKicker ** (curShovel ** 0.5)))
+    return int(baseValue * ((curShovel + 1) ** polyPower) * (exponentialKicker ** ((curShovel + 1) ** 0.5)))
 
 """Updating the skeleton count asyncronously through AJAX without
 visually refreshing the webpage. Note that the code below is my own,
