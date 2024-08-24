@@ -45,6 +45,9 @@ function buyShovel() {
         }
         document.getElementById("skeleton-count").textContent = skeletonCount;
 
+        // Updating the key-value pairs in userSkeletons
+        userSkeletons.skeletonCount = data.skeletonCount;
+
         // Fetching the /updateStats route and updating the user's stats
         return fetch("/updateStats", {
             method: "POST",
