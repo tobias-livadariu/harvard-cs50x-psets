@@ -207,11 +207,11 @@ def perSecondOperations():
         WHERE users.id = ?
     """, session["user_id"])[0]
     skeletonsPerSecond = perSecondValues["skeletonsPerSecond"]
-    skeletonCount = perSecondValues["skeletonCount"] + skeletonsPerSecond
-    totalSkeletons = perSecondValues["totalSkeletons"] + skeletonsPerSecond
+    skeletonCount = perSecondValues["skeletonCount"]
+    totalSkeletons = perSecondValues["totalSkeletons"]
 
     # Updating the skeletonCount and totalSkeletons variables
-    db.execute("UPDATE users SET skeletonCount = ?, totalSkeletons = ? WHERE id = ?", skeletonCount, totalSkeletons, session["user_id"])
+    db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = skeletonCount + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])
 
     # Returning the skeletonsPerSecond value as JSON
     return jsonify({"skeletonsPerSecond": skeletonsPerSecond, "skeletonCount": skeletonCount, "totalSkeletons": totalSkeletons})
