@@ -27,13 +27,13 @@
                 <button id="shovel-button" class="btn btn-primary rounded-0 shadow-lg btn-sm {% if curShovel == maxShovel %}btn-dark{% endif %}"
                 onclick="buyShovel()"
                 {% if curShovel == maxShovel %}disabled{% endif %}> <!--TODO: see if the red equal sign is actually a problem -->
-                    {% if curShovel != maxShovel %}
-                        Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost }} skeletons) <!-- The shovels are annoying but just pass more stuff into the jsonify function in the buy shovels route-->
+                    {% if curShovel < maxShovel %}
+                        Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost | formatNumberSuffix }} skeletons)
                     {% else %}
                         Your shovel is max level!
                     {% endif %}
                 </button>
-                <p id="shovel-description">Current shovel: {{ shovels[curShovel] }} ({{ 10**(curShovel) }} skeletons per dig)</p>
+                <p id="shovel-description">Current shovel: {{ shovels[curShovel] }} ({{ curShovel | shovelSkeletonsPerClick }} skeletons per dig)</p>
             </div>
             <hr>
         {% endif %}
