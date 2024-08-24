@@ -131,17 +131,14 @@ def buyAutodigger():
     newNumAutodiggers = numAutodiggers + 1
     newAutodiggerCost = calculateAutodiggerCost(numAutodiggers=newNumAutodiggers, baseCost=10, multiplier=0.05, exponent=2)
 
-    # Updating skeletonCount, numAutodiggers, and autodiggerCost in one go
-    updatedValues = db.execute("""
-        UPDATE users
-        SET skeletonCount = skeletonCount - ?
-        WHERE id = ?;
+    # Updating skeletonCount
+    db.execute("UPDATE users SET skeletonCount = skeletonCount - ? WHERE id = ?", autodiggerCost, session["user_id"])
 
-        UPDATE simple_upgrades
-        SET numAutodiggers = ?, autodiggerCost = ?
-        WHERE user_id = ?
-        RETURNING numAutodiggers, autodiggerCost;
-    """, autodiggerCost, session["user_id"], newNumAutodiggers, newAutodiggerCost, session["user_id"])[0]
+    # Updating numAutodiggers and autodiggerCost in one go
+    db.execute("UPDATE simple_upgrades SET numAutodiggers = ?, autodiggerCost = ? WHERE user_id = ?", newNumAutodiggers, newAutodiggerCost, session["user_id"])
+
+    # Fetch the updated values to return
+    updatedValues = db.execute("SELECT numAutodiggers, autodiggerCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]
 
     # Returning the updated values as JSON
     return jsonify({"wasSuccessful": True, "numAutodiggers": updatedValues["numAutodiggers"], "autodiggerCost": updatedValues["autodiggerCost"], "skeletonCount": skeletonCount - autodiggerCost})
