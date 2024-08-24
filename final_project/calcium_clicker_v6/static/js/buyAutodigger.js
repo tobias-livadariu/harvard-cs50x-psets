@@ -16,6 +16,7 @@ function buyAutodigger() {
     .then(data => {
         // Checking if the transaction was succesful
         if (data.wasSuccessful == false) {
+            canBuyAutodigger = true; // Allowing another attempt if the purchase failed
             return;
         }
 
