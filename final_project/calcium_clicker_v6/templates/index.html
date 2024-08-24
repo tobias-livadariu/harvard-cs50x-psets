@@ -8,12 +8,12 @@
     <div class="from-left-1st">
         <!-- Generating the first block of functions (the main display) -->
         <div class="m-2 from-top-1st">
-            <h2>Skeletons in Army: <span id="skeleton-count">{{ skeletonCount }}</span></h2>
+            <h2>Skeletons in Army: <span id="skeleton-count">{{ skeletonCount | formatNumberSuffix }}</span></h2>
             <button class="btn btn-primary rounded-0 shadow-lg" onclick="digUpSkeletons()">Dig Up More</button>
-            <h4 class="mt-2 mb-3">Total Resurrected: <span id="total-skeletons">{{ totalSkeletons }}</span></h4>
+            <h4 class="mt-2 mb-3">Total Resurrected: <span id="total-skeletons">{{ totalSkeletons | formatNumberSuffix }}</span></h4>
             {% if totalSkeletons > 9 %}
-                <p class="mb-1">Skeletons per click: <span id="skeletons-per-click">{{ skeletonsPerClick }}</span></p>
-                <p class="mb-1">Skeletons per second: <span id="skeletons-per-second">{{ skeletonsPerSecond }}</span></p>
+                <p class="mb-1">Skeletons per click: <span id="skeletons-per-click">{{ skeletonsPerClick | formatNumberSuffix }}</span></p>
+                <p class="mb-1">Skeletons per second: <span id="skeletons-per-second">{{ skeletonsPerSecond | formatNumberSuffix }}</span></p>
             {% endif %}
         </div>
         <hr>
@@ -22,7 +22,7 @@
         {% if totalSkeletons > 9 %}
             <div class="m-2 from-top-2nd">
                 <h3>Simple Upgrades</h3>
-                <button class="btn btn-primary rounded-0 shadow-lg btn-sm" onclick="buyAutodigger()">Buy Autodigger (cost: <span id="autodigger-cost">{{ autodiggerCost }}</span> skeletons)</button>
+                <button class="btn btn-primary rounded-0 shadow-lg btn-sm" onclick="buyAutodigger()">Buy Autodigger (cost: <span id="autodigger-cost">{{ autodiggerCost | formatNumberSuffix }}</span> skeletons)</button>
                 <p>Number of autodiggers: <span id="num-autodiggers">{{ numAutodiggers }}</span></p>
                 <button id="shovel-button" class="btn btn-primary rounded-0 shadow-lg btn-sm {% if curShovel == maxShovel %}btn-dark{% endif %}"
                 onclick="buyShovel()"
