@@ -209,31 +209,40 @@ def perSecondOperations():
     return jsonify({"skeletonsPerSecond": skeletonsPerSecond})
 
 @app.route("/", methods=["GET"])
-@login_required #NOTE: the @login_required decorator was taken from Finance
+@login_required
 def index():
-    # Rendering the webpage
-    # Getting the current and total skeleton counts
-    usersRow = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])
-    users = usersRow[0]
-    skeletonCount = users["skeletonCount"]
-    totalSkeletons = users["totalSkeletons"]
+    # Fetching all necessary data in a single query
+    userData = db.execute("""
+        SELECT users.skeletonCount, u.totalSkeletons,
+               su.curShovel, su.shovelCost, su.numAutodiggers, su.autodiggerCost,
+               s.skeletonsPerClick, s.skeletonsPerSecond
+        FROM users u
+        JOIN simple_upgrades su ON u.id = su.user_id
+        JOIN stats s ON u.id = s.user_id
+        WHERE u.id = ?
+    """, session["user_id"])[0]
 
-    # Getting the current autodigger count, shovel level, and price for the next simple upgrades
-    simpleUpgradesRow = db.execute("SELECT curShovel, shovelCost, numAutodiggers, autodiggerCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])
-    simpleUpgrades = simpleUpgradesRow[0]
-    curShovel = simpleUpgrades["curShovel"]
-    shovelCost = simpleUpgrades["shovelCost"]
-    numAutodiggers = simpleUpgrades["numAutodiggers"]
-    autodiggerCost = simpleUpgrades["autodiggerCost"]
+    skeletonCount = user_data["skeletonCount"]
+    totalSkeletons = user_data["totalSkeletons"]
+    curShovel = user_data["curShovel"]
+    shovelCost = user_data["shovelCost"]
+    numAutodiggers = user_data["numAutodiggers"]
+    autodiggerCost = user_data["autodiggerCost"]
+    skeletonsPerClick = user_data["skeletonsPerClick"]
+    skeletonsPerSecond = user_data["skeletonsPerSecond"]
 
-    # Getting the current skeletons per click and skeletons per second
-    statsRow = db.execute("SELECT skeletonsPerClick, skeletonsPerSecond FROM stats WHERE user_id = ?", session["user_id"])
-    stats = statsRow[0]
-    skeletonsPerClick = stats["skeletonsPerClick"]
-    skeletonsPerSecond = stats["skeletonsPerSecond"]
-
-    return render_template("index.html", skeletonCount=skeletonCount, totalSkeletons=totalSkeletons, curShovel=curShovel, shovelCost=shovelCost, numAutodiggers=numAutodiggers,
-                           autodiggerCost=autodiggerCost, skeletonsPerClick=skeletonsPerClick, skeletonsPerSecond=skeletonsPerSecond, shovels=shovels, maxShovel=maxShovel)
+    # Rendering the webpage with the fetched data
+    return render_template("index.html",
+                           skeletonCount=skeletonCount,
+                           totalSkeletons=totalSkeletons,
+                           curShovel=curShovel,
+                           shovelCost=shovelCost,
+                           numAutodiggers=numAutodiggers,
+                           autodiggerCost=autodiggerCost,
+                           skeletonsPerClick=skeletonsPerClick,
+                           skeletonsPerSecond=skeletonsPerSecond,
+                           shovels=shovels,
+                           maxShovel=maxShovel)
 
 """NOTE: the login route was taken from my work in Finance."""
 @app.route("/login", methods=["GET", "POST"])
