@@ -183,7 +183,7 @@ def buyShovel():
 @login_required
 def updateStats():
     # Getting the user's current shovel level and current autodigger count
-    simpleUpgrades = db.execute("SELECT numAutodiggers, curShovel FROM simple_upgrades WHERE user_id = ?", session["user_id"])
+    simpleUpgrades = db.execute("SELECT numAutodiggers, curShovel FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]
     numAutodiggers = simpleUpgrades["numAutodiggers"]
     curShovel = simpleUpgrades["curShovel"]
 
