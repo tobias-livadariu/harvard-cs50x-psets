@@ -5,7 +5,10 @@ let canBuyShovel = true;
 
 function buyShovel() {
     // Cancelling out of the function if canBuyShovel is false
-    if (!canBuyShovel) return;
+    if (!canBuyShovel) {
+        // Throw an error if canBuyShovel is false to prevent the function from running further
+        throw new Error("Cannot buy shovel at the moment.")
+    };
 
     // Fetching the /buyShovel route
     fetch("/buyShovel", {

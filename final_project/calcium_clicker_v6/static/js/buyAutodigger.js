@@ -5,7 +5,10 @@ let canBuyAutodigger = true;
 
 function buyAutodigger() {
     // Cancelling out of the function if canBuyAutodigger is false
-    if (!canBuyAutodigger) return;
+    if (!canBuyAutodigger) {
+        // Throw an error if canBuyAutodigger is false to prevent the function from running further
+        throw new Error("Cannot buy autodigger at the moment.")
+    };
     canBuyAutodigger = false;
 
     // Fetching the /buyAutodigger route
