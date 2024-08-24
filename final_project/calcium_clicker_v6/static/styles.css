@@ -106,14 +106,10 @@ in the main page. */
 .from-left-1st
 {
     width: 30%;
+    display: inline-block;
 }
 
-.from-left-1st hr
-{
-    width: 98%;
-    position: absolute;
-    left: 2%;
-}
+
 
 /* Giving the webpage a dark mode coloring. */
 body
