@@ -15,8 +15,10 @@ function perSecondOperations() {
         })
         .then(response => response.json())
         .then(data => {
+            // Reseting the skeletonGainPerInterval and userSkeleton values
             skeletonGainPerInterval = data.skeletonsPerSecond / (1000 / interval);
-            userSkeletons[]
+            userSkeletons.skeletonCount = data.skeletonCount;
+            userSkeletons.totalSkeletons = data.totalSkeletons;
         })
         // Catching any error in the process of fetching initial per-second gain from the server
         .catch(error => console.error("Error fetching per-second gain:", error));
