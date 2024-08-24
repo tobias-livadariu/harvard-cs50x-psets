@@ -65,7 +65,8 @@ def format_number_suffix(num):
     'b' for billions,
     't' for trillions,
     'q' for quadrillions,
-    'qt'
+    'Q' for quintillions,
+    's' for sextillions,
     """
     if num >= 1_000_000_000:
         return f"{num / 1_000_000_000:.1f}b"
