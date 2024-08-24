@@ -46,8 +46,8 @@ function perSecondOperations() {
                 accumulatedSkeletonGain -= increment; // Subtract the integer part, keeping the remainder
 
                 // Display the updated values to the user
-                skeletonCountElement.textContent = Math.floor(userSkeletons.skeletonCount)
-                totalSkeletonsElement.textContent = Math.floor(userSkeletons.totalSkeletons)
+                skeletonCountElement.textContent = formatNumberSuffix(Math.floor(userSkeletons.skeletonCount))
+                totalSkeletonsElement.textContent = formatNumberSuffix(Math.floor(userSkeletons.totalSkeletons))
             }
         }
     }, interval); // Update every 50ms
