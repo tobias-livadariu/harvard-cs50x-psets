@@ -166,16 +166,19 @@ def buyShovel():
 @app.route("/updateStats", methods=["POST"])
 @login_required
 def updateStats():
-    # Refreshing the value in skeletonsPerClick and skeletonsPerSecond
+    # Getting the user's current shovel level
     curShovelRow = db.execute("SELECT curShovel FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     curShovel = curShovelRow[0]["curShovel"]
 
+    # Getting the user's current autodigger count
     numAutodiggersRow = db.execute("SELECT numAutodiggers FROM simple_upgrades WHERE user_id = ?", session["user_id"])
     numAutodiggers = numAutodiggersRow[0]["numAutodiggers"]
 
-    skeletonsPerClick = 2 ** curShovel
+    # Determining the user's skeletonsPerClick and skeletonsPerSecond
+    skeletonsPerClick = shovelSkeletonsPerClick(curShovel, baseValue=10, polyPower=1.5, exponentialKicker=1.02)
     skeletonsPerSecond = numAutodiggers
 
+    # Refreshing the value in skeletonsPerClick and skeletonsPerSecond
     db.execute("UPDATE stats SET skeletonsPerClick = ?, skeletonsPerSecond = ? WHERE user_id = ?", skeletonsPerClick, skeletonsPerSecond, session["user_id"])
     # Returning the updated values as JSON
     return jsonify({"skeletonsPerClick": skeletonsPerClick, "skeletonsPerSecond": skeletonsPerSecond})
