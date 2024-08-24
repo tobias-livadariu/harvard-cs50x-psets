@@ -76,13 +76,6 @@ no matter what. */
     transform: translate(-50%, -50%);
 }
 
-/* .navbar .navbar-minor
-{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-} */
-
 /* Note that the two classes "bold"
 and "bottom-margin" were taken from
 my additions to the css file in
@@ -112,7 +105,12 @@ Finance.*/
 in the main page. */
 .from-left-1st
 {
-    display: inline-block;
+    width: 30%;
+}
+
+.from-left-1st hr
+{
+    
 }
 
 /* Giving the webpage a dark mode coloring. */

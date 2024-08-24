@@ -16,7 +16,7 @@
                 <p class="mb-1">Skeletons per second: <span id="skeletons-per-second">{{ skeletonsPerSecond }}</span></p>
             {% endif %}
         </div>
-        <hr class="w-100 mx-auto">
+        <hr>
 
         <!-- Generating the second block of functions (the simple upgrades) -->
         {% if totalSkeletons > 9 %}
@@ -35,7 +35,7 @@
                 </button>
                 <p id>Current shovel: {{ shovels[curShovel] }} ({{ 10**(curShovel) }} skeletons per dig)</p>
             </div>
-            <hr class="w-100 mx-auto">
+            <hr>
         {% endif %}
 
         <!-- Generating the third block of functions (the first rituals)
