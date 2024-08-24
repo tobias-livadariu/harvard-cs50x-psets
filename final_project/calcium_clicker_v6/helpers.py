@@ -89,3 +89,5 @@ def format_number_suffix(num):
         return f"{num / 1_000:.2f}k"
     else:
         return str(num)
+
+"""Below are a number of cost functions """
