@@ -9,6 +9,7 @@ function buyShovel() {
         // Throw an error if canBuyShovel is false to prevent the function from running further
         throw new Error("Cannot buy shovel at the moment.")
     };
+    canBuyShovel = false;
 
     // Fetching the /buyShovel route
     fetch("/buyShovel", {
@@ -18,7 +19,7 @@ function buyShovel() {
     .then(data => {
         // Checking if the transaction was successful
         if (data.wasSuccessful == false) {
-            return;
+            throw new Error("Transaction failed"); // Throwing an error to skip the coming fetch call
         }
 
         let shovelButton = document.getElementById("shovel-button");
