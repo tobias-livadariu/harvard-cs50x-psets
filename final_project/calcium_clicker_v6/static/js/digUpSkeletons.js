@@ -6,5 +6,9 @@ function digUpSkeletons() {
     .then(data => {
         document.getElementById("skeleton-count").textContent = data.skeletonCount;
         document.getElementById("total-skeletons").textContent = data.totalSkeletons;
+
+        // Updating the key-value pairs in userSkeletons
+        userSkeletons.skeletonCount = data.skeletonCount;
+        userSkeletons.totalSkeletons = data.totalSkeletons;
     });
 }
