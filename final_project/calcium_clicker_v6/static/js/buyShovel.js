@@ -25,6 +25,7 @@ function buyShovel() {
         }
 
         let shovelButton = document.getElementById("shovel-button");
+        let shovelDescription = document.getElementById("shovel-description");
         let curShovel = data.curShovel;
         let maxShovel = data.maxShovel;
         let shovels = data.shovels;
@@ -43,6 +44,8 @@ function buyShovel() {
             shovelButton.classList.add("btn-dark");
             shovelButton.setAttribute("disabled", "true");
         }
+        shovelDescription.textContent = `Current shovel: ${shovels[curShovel]} ${shovelSkeletonsPerClick(curShovel)} skeletons per dig)`
+
         document.getElementById("skeleton-count").textContent = skeletonCount;
 
         // Updating the key-value pairs in userSkeletons

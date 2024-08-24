@@ -33,7 +33,7 @@
                         Your shovel is max level!
                     {% endif %}
                 </button>
-                <p id>Current shovel: {{ shovels[curShovel] }} ({{ 10**(curShovel) }} skeletons per dig)</p>
+                <p id="shovel-description">Current shovel: {{ shovels[curShovel] }} ({{ 10**(curShovel) }} skeletons per dig)</p>
             </div>
             <hr>
         {% endif %}
@@ -51,7 +51,7 @@
     <!-- Linking external scripts -->
     <!-- Note that I got the url_for() function from ChatGPT's suggestions -->
     <script src="{{ url_for('static', filename='js/globalVariables.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/formatNumbers.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/shovelSkeletonsPerClick.js') }}"></script>
     <script src="{{ url_for('static', filename='js/formatNumbers.js') }}"></script>
     <script src="{{ url_for('static', filename='js/digUpSkeletons.js') }}"></script>
     <script src="{{ url_for('static', filename='js/buyAutodigger.js') }}"></script>
