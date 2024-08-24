@@ -171,12 +171,10 @@ def buyShovel():
     shovelCost = calculateShovelCost(curShovel=curShovel, baseCost=100, multiplier=1.5)
 
     # Updating the user's skeletonCount value
-    db.execute("UPDATE users SET skeletonCount = ? WHERE id = ?", )
+    db.execute("UPDATE users SET skeletonCount = ? WHERE id = ?", skeletonCount, session["user_id"])
 
-        UPDATE simple_upgrades
-        SET curShovel = ?, shovelCost = ?
-        WHERE user_id = ?;
-    """, new_skeletonCount, session["user_id"], new_curShovel, new_shovelCost, session["user_id"])
+    # Updating the user's curShovel and shovelCost values
+    db.execute("UPDATE simple_upgrades SET curShovel = ?, shovelCost = ? WHERE user_id = ?", curShovel, shovelCost, session["user_id"])
 
     # Returning the updated shovel values as JSON
     return jsonify({"wasSuccessful": True, "curShovel": new_curShovel, "shovelCost": new_shovelCost, "shovels": shovels, "maxShovel": maxShovel, "skeletonCount": new_skeletonCount})
