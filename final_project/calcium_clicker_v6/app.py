@@ -96,15 +96,18 @@ but ChatGPT gave me the idea to use AJAX."""
 @app.route("/digUpSkeletons", methods=["POST"])
 @login_required
 def digUpSkeletons():
-    # Getting the user's current skeletons per click from the stats table
-    skeletonsPerClick = db.execute("SELECT skeletonsPerClick FROM stats WHERE user_id = ?", session["user_id"])[0]["skeletonsPerClick"]
-    # Updating the skeleton count and total skeleton count
-    db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerClick, skeletonsPerClick, session["user_id"])
+    # Updating skeletonCount and totalSkeletons in one go and retrieving all values
+    updatedValues = db.execute("""
+        UPDATE users
+        SET skeletonCount = skeletonCount + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?),
+            totalSkeletons = totalSkeletons + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?)
+        WHERE id = ?
+        RETURNING skeletonCount, totalSkeletons
+    """, session["user_id"], session["user_id"], session["user_id"])[0]
 
-    # Fetching the updating skeletonCount and totalSkeletons values
-    skeletonValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])[0]
-    skeletonCount = skeletonValues["skeletonCount"]
-    totalSkeletons = skeletonValues["totalSkeletons"]
+    skeletonCount = updatedValues["skeletonCount"]
+    totalSkeletons = updatedValues["totalSkeletons"]
+
     # Returning the updated skeleton count as JSON
     return jsonify({"skeletonCount": skeletonCount, "totalSkeletons": totalSkeletons})
 
