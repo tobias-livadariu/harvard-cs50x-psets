@@ -31,8 +31,6 @@ function perSecondOperations() {
     setInterval(() => {
         let skeletonCountElement = document.getElementById("skeleton-count");
         let totalSkeletonsElement = document.getElementById("total-skeletons");
-        let currentSkeletonCount = parseFloat(userSkeletons.skeletonCount);
-        let totalSkeletonCount = parseFloat(userSkeletons.totalSkeletons);
 
         if (skeletonGainPerInterval > 0) { // Only update if we have a valid interval
 
@@ -43,13 +41,13 @@ function perSecondOperations() {
             if (accumulatedSkeletonGain >= 1) {
                 // Calculate the integer part of accumulatedSkeletonGain
                 let increment = Math.floor(accumulatedSkeletonGain);
-                currentSkeletonCount += increment;
-                totalSkeletonCount += increment;
+                userSkeletons.skeletonCount += increment;
+                userSkeletons.totalSkeletons += increment;
                 accumulatedSkeletonGain -= increment; // Subtract the integer part, keeping the remainder
 
                 // Display the updated values to the user
-                skeletonCountElement.textContent = Math.floor(currentSkeletonCount)
-                totalSkeletonsElement.textContent = Math.floor(totalSkeletonCount)
+                skeletonCountElement.textContent = Math.floor(userSkeletons.skeletonCount)
+                totalSkeletonsElement.textContent = Math.floor(userSkeletons.totalSkeletons)
             }
         }
     }, interval); // Update every 50ms
