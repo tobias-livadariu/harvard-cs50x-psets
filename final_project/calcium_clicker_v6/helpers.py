@@ -60,19 +60,33 @@ based on their size. """
 def format_number_suffix(num):
     """
     Format a number with a suffix:
-    'k' for thousands,
-    'm' for millions,
-    'b' for billions,
-    't' for trillions,
-    'q' for quadrillions,
-    'Q' for quintillions,
-    's' for sextillions,
+    'k' for thousand,
+    'm' for million,
+    'b' for billion,
+    't' for trillion,
+    'q' for quadrillion,
+    'Q' for quintillion,
+    's' for sextillion,
+    'S' for septillion,
+    'o' for octillion
     """
-    if num >= 1_000_000_000:
-        return f"{num / 1_000_000_000:.1f}b"
+    if num >= 1_000_000_000_000_000_000_000_000_000:
+        return f"{num / 1_000_000_000_000_000_000_000_000_000:.2f}o"
+    elif num >= 1_000_000_000_000_000_000_000_000:
+        return f"{num / 1_000_000_000_000_000_000_000_000:.2f}S"
+    elif num >= 1_000_000_000_000_000_000_000:
+        return f"{num / 1_000_000_000_000_000_000_000:.2f}s"
+    elif num >= 1_000_000_000_000_000_000:
+        return f"{num / 1_000_000_000_000_000_000:.2f}Q"
+    elif num >= 1_000_000_000_000_000:
+        return f"{num / 1_000_000_000_000_000:.2f}q"
+    elif num >= 1_000_000_000_000:
+        return f"{num / 1_000_000_000_000:.2f}t"
+    elif num >= 1_000_000_000:
+        return f"{num / 1_000_000_000:.2f}b"
     elif num >= 1_000_000:
-        return f"{num / 1_000_000:.1f}m"
+        return f"{num / 1_000_000:.2f}m"
     elif num >= 1_000:
-        return f"{num / 1_000:.1f}k"
+        return f"{num / 1_000:.2f}k"
     else:
         return str(num)
