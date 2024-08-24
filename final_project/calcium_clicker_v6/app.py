@@ -82,7 +82,7 @@ def calculateShovelCost(curShovel, baseCost, multiplier):
     return int(baseCost * (multiplier ** (curShovel ** 2)))
 
 # Defining a function to calculate the cost of buying the next autodigger
-# Note that, like with the calculateShovelCost function, ChatGPT gave me ideas for this one
+# Note that, like with the calculateShovelCost function, ChatGPT gave me ideas for this function
 def calculateAutodiggerCost(numAutodiggers, baseCost, multiplier, exponent):
     return int(baseCost * (1 + multiplier * numAutodiggers) ** exponent)
 
