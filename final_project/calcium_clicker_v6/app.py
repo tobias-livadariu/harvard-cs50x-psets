@@ -96,15 +96,18 @@ but ChatGPT gave me the idea to use AJAX."""
 @app.route("/digUpSkeletons", methods=["POST"])
 @login_required
 def digUpSkeletons():
-    # Updating skeletonCount and totalSkeletons in one go and retrieving all values
-    updatedValues = db.execute("""
+    # Update skeletonCount and totalSkeletons in the users table using a subquery to fetch skeletonsPerClick
+    db.execute("""
         UPDATE users
         SET skeletonCount = skeletonCount + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?),
             totalSkeletons = totalSkeletons + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?)
         WHERE id = ?
-        RETURNING skeletonCount, totalSkeletons
-    """, session["user_id"], session["user_id"], session["user_id"])[0]
+    """, session["user_id"], session["user_id"], session["user_id"])
 
+    # Fetch the updated skeletonCount and totalSkeletons values
+    updatedValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])[0]
+
+    # Unpack the updatedValues dictionary
     skeletonCount = updatedValues["skeletonCount"]
     totalSkeletons = updatedValues["totalSkeletons"]
 
@@ -140,8 +143,15 @@ def buyAutodigger():
     # Fetch the updated values to return
     updatedValues = db.execute("SELECT numAutodiggers, autodiggerCost FROM simple_upgrades WHERE user_id = ?", session["user_id"])[0]
 
+    # Unpack the updatedValues dictionary
+    numAutodiggers = updatedValues["numAutodiggers"]
+    autodiggerCost = updatedValues["autodiggerCost"]
+
+    # Updating the user's skeletonCount value
+    skeletonCount -= autodiggerCost
+
     # Returning the updated values as JSON
-    return jsonify({"wasSuccessful": True, "numAutodiggers": updatedValues["numAutodiggers"], "autodiggerCost": updatedValues["autodiggerCost"], "skeletonCount": skeletonCount - autodiggerCost})
+    return jsonify({"wasSuccessful": True, "numAutodiggers": numAutodiggers, "autodiggerCost": autodiggerCost, "skeletonCount": skeletonCount})
 
 """Updating the user's shovel through AJAX."""
 @app.route("/buyShovel", methods=["POST"])
