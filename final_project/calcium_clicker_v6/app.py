@@ -117,7 +117,9 @@ through AJAX."""
 @login_required
 def buyAutodigger():
     # Fetching autodiggerCost and skeletonCount in one go
-    user_data = db.execute("SELECT skeletonCount, autodiggerCost, numAutodiggers FROM users INNER JOIN simple_upgrades ON users.id = simple_upgrades.user_id WHERE users.id = ?", session["user_id"])[0]
+    user_data = db.execute("""SELECT skeletonCount, autodiggerCost, numAutodiggers FROM users
+                           INNER JOIN simple_upgrades ON users.id = simple_upgrades.user_id
+                           WHERE users.id = ?""", session["user_id"])[0]
     skeletonCount = user_data["skeletonCount"]
     autodiggerCost = user_data["autodiggerCost"]
     numAutodiggers = user_data["numAutodiggers"]
