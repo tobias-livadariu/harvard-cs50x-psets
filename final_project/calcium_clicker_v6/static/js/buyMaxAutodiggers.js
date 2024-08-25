@@ -23,7 +23,9 @@ function buyMaxAutodiggers() {
         let costForMax = data.costForMax;
 
         /* Buying max autodiggers for the user. */
-        fetch ("")
+        return fetch (`/buyAutodiggers?num=${numAutodiggersBuyable}&cost=${costForMax}`, {
+            method: "POST",
+        })
     })
     // Allow the next request to process after this one
     .finally(() => {
