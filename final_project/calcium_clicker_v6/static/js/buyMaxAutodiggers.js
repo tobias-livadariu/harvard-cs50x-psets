@@ -6,7 +6,7 @@ let canBuyMaxAutodiggers = true;
 function buyMaxAutodiggers() {
     if (!canBuyMaxAutodiggers) {
         // Throw an error if canBuyMaxAutodiggers is false to prevent the function from running further
-        throw new Error("Cannot buy ten autodiggers at the moment.");
+        throw new Error("Cannot buy max autodiggers at the moment.");
     }
     canBuyMaxAutodiggers = false;
 
