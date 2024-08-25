@@ -11,8 +11,8 @@ function buyTenAutodiggers() {
         }
 
         /* Buying 10 autodiggers for the user. */
-        for (let i = 0; i < 10; i++) {
-            
+        for (var i = 0; i < 10; i++) {
+
         }
     })
     .catch(error => {
