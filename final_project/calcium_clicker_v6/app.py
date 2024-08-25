@@ -151,17 +151,28 @@ def numAutodiggersBuyable():
     # Defining a variable to hold the number of autodiggers the user can buy
     # And the amount that the max number of autodiggers would cost
     numAutodiggersBuyable = 0
-    maxAutodiggersCost = 0
+    costAutodiggersBuyable = {
+        "costForTen": 0,
+        "costForMax": 0
+    }
 
     # Using a while True for loop to determine the max number of autodiggers the user can buy
     while True:
-        maxAutodiggersCost += calculateAutodiggerCost(numAutodiggers=(numAutodiggers + numAutodiggersBuyable), baseCost=10, growthRate=1.15)
-        if maxAutodiggersCost > skeletonCount:
+        nextCost += calculateAutodiggerCost(numAutodiggers=(numAutodiggers + numAutodiggersBuyable), baseCost=10, growthRate=1.15)
+        costAutodiggersBuyable["costForMax"] += nextCost
+        if costAutodiggersBuyable["costForMax"] > skeletonCount:
+            # If the user can't afford the last attempted autodigger purchase, remove that cost from the total
+            costAutodiggersBuyable["costForMax"] -= nextCost
             break
         numAutodiggersBuyable += 1
 
+        if numAutodiggersBuyable <= 10
+        {
+            costAutodiggersBuyable["costForTen"] += nextCost
+        }
+
     # Returning the maximum number of autodiggers that the user can buy
-    return jsonify({"numAutodiggersBuyable": numAutodiggersBuyable})
+    return jsonify({"numAutodiggersBuyable": numAutodiggersBuyable}, "costForTen": costAutodiggersBuyable["costForTen"], "costForMax": costAutodiggersBuyable["costForMax"])
 
 """Updating the user's shovel through AJAX."""
 @app.route("/buyShovel", methods=["POST"])
