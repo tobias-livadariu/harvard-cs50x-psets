@@ -21,7 +21,7 @@ function buyShovel() {
     .then(data => {
         // Checking if the transaction was successful
         if (!data.wasSuccessful) {
-            throw new Error("Transaction failed"); // Throwing an error to skip the coming fetch call
+            throw new Error("Transaction failed."); // Throwing an error to skip the coming fetch call
         }
 
         let shovelButton = document.getElementById("shovel-button");

@@ -21,7 +21,7 @@ function buyAutodigger() {
     .then(data => {
         // Checking if the transaction was succesful
         if (data.wasSuccessful == false) {
-            throw new Error("Transaction failed"); // Throwing an error to skip the coming fetch call
+            throw new Error("Transaction failed."); // Throwing an error to skip the coming fetch call
         }
 
         document.getElementById("num-autodiggers").textContent = data.numAutodiggers;
