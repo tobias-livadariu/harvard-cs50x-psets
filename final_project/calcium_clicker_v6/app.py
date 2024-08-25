@@ -138,9 +138,9 @@ def buyAutodigger():
 
 """Determining the max number of autodiggers that
 the user is able to buy."""
-@app.route("/autodiggersBuyable", methods=["POST"])
+@app.route("/numAutodiggersBuyable", methods=["POST"])
 @login_required
-def autodiggersBuyable():
+def numAutodiggersBuyable():
     # Fetching numAutodiggers and skeletonCount in one search
     userData = db.execute("""SELECT skeletonCount, numAutodiggers FROM users
                            INNER JOIN simple_upgrades ON users.id = simple_upgrades.user_id
