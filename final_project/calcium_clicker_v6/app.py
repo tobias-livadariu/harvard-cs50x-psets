@@ -110,11 +110,13 @@ through AJAX."""
 @login_required
 def buyAutodigger():
     # Getting the values of num and cost from the route's request args
-    num = request.args.get("num", type=int)
+    numBuying = request.args.get("numBuying", type=int)
+    numAutodiggers = request.args.get("numAutodiggers", type=int)
     cost = request.args.get("cost", type=int)
-    # Checking if num and cost exist
-    if num and cost:
 
+    # Checking if num and cost exist
+    if numBuying and numAutodiggers and cost:
+        
 
     # Fetching autodiggerCost, numAutodiggers, and skeletonCount in one go
     userData = db.execute("""SELECT skeletonCount, autodiggerCost, numAutodiggers FROM users
