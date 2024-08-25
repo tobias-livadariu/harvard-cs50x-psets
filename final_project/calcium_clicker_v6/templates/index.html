@@ -38,8 +38,8 @@
                 {% if curShovel != 0 %}
                     <p id="shovel-description">Current shovel: {{ shovels[curShovel] }} ({{ (curShovel - 1) | shovelSkeletonsPerClick | formatNumberSuffix }} skeletons per dig)</p>
                 {% else %}
-                    <p id="shovel-description">Current shovel: {{ shovels[curShovel] }} 1 skeleton per dig)</p>
-                {$ endif $}
+                    <p id="shovel-description">Current shovel: {{ shovels[curShovel] }} 1 skeleton per dig</p>
+                {% endif %}
             </div>
             <hr>
         {% endif %}
