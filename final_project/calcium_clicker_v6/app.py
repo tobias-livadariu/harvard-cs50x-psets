@@ -113,16 +113,16 @@ def buyAutodigger():
     numBuying = request.args.get("numBuying", type=int)
     numAutodiggers = request.args.get("numAutodiggers", type=int)
     cost = request.args.get("cost", type=int)
+    skeletonCount = request.args.get("skeletonCount", type=int)
 
-    # Checking if num and cost exist
-    if numBuying and numAutodiggers and cost:
-        # Getting the number of 
-
+    # Checking if numBuying, numAutodiggers, cost, and skeletonCount exist
+    if numBuying and numAutodiggers and cost and skeletonCount:
         # Updating values in all pertinent variables
         numAutodiggers += numBuying
+        skeletonCount -= cost
 
         # Updating skeletonCount
-        db.execute("UPDATE users SET skeletonCount = skeletonCount - ? WHERE id = ?", cost, session["user_id"])
+        db.execute("UPDATE users SET skeletonCount = ? WHERE id = ?", skeletonCount, session["user_id"])
 
         # Updating numAutodiggers and autodiggerCost in one go
         db.execute("UPDATE simple_upgrades SET numAutodiggers = ?, autodiggerCost = ? WHERE user_id = ?",
@@ -196,7 +196,8 @@ def numAutodiggersBuyable():
         "numAutodiggersBuyable": numAutodiggersBuyable,
         "costForTen": costAutodiggersBuyable["costForTen"],
         "costForMax": costAutodiggersBuyable["costForMax"],
-        "numAutodiggers": numAutodiggers
+        "numAutodiggers": numAutodiggers,
+        "skeletonCount": skeletonCount
     })
 
 """Updating the user's shovel through AJAX."""
