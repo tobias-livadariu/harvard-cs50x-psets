@@ -115,18 +115,21 @@ def buyAutodigger():
     cost = request.args.get("cost", type=int)
     skeletonCount = request.args.get("skeletonCount", type=int)
 
-    # Checking if numBuying, numAutodiggers, cost, and skeletonCount exist
-    if numBuying and numAutodiggers and cost and skeletonCount:
+    # If all required parameters are provided, use them to process the bulk purchase
+    if all([numBuying, numAutodiggers, cost, skeletonCount]):
+        # Ensure the user has enough skeletons
+        if skeletonCount < cost:
+            return jsonify({"wasSuccessful": False, "message": "Not enough skeletons"})
+
         # Updating values in all pertinent variables
         skeletonCount -= cost
         numAutodiggers += numBuying
         autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, growthRate=1.15)
 
-        # Updating skeletonCount
+        # Updating the database
         db.execute("UPDATE users SET skeletonCount = ? WHERE id = ?", skeletonCount, session["user_id"])
-
-        # Updating numAutodiggers and autodiggerCost in one go
         db.execute("UPDATE simple_upgrades SET numAutodiggers = ?, autodiggerCost = ? WHERE user_id = ?", numAutodiggers, autodiggerCost, session["user_id"])
+
     # Running an alternate route if not all request argument variables exist
     else:
         # Fetching autodiggerCost, numAutodiggers, and skeletonCount in one go
