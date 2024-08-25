@@ -5,14 +5,14 @@ function buyTenAutodiggers() {
     .then(response => response.json())
     .then(data => {
         /* Getting the max number of autodiggers the user can buy. */
-        numAutodiggersBuyable = data.numAutodiggersBuyable
+        let numAutodiggersBuyable = data.numAutodiggersBuyable
         if (numAutodiggersBuyable < 10) {
             throw new Error("10x transaction failed")
         }
 
         /* Buying 10 autodiggers for the user. */
         for (let i = 0; i < 10; i++) {
-            buyAutodigger()
+            await buyAutodigger()
         }
     })
     .catch(error => {
