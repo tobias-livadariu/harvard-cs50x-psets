@@ -178,22 +178,21 @@ def numAutodiggersBuyable():
         "costForMax": 0
     }
 
-    # Using a while True for loop to determine the max number of autodiggers the user can buy
+    # Using a while True loop to determine the max number of autodiggers the user can buy
     while True:
         nextCost = calculateAutodiggerCost(numAutodiggers=(numAutodiggers + numAutodiggersBuyable), baseCost=10, growthRate=1.15)
-        costAutodiggersBuyable["costForMax"] += nextCost
 
-        # Check if the next autodigger cost exceeds the user's skeleton count
-        if costAutodiggersBuyable["costForMax"] > skeletonCount:
-            # If the user can't afford the last attempted autodigger purchase, remove that cost from the total
-            costAutodiggersBuyable["costForMax"] -= nextCost
+        # Break if the accumulated cost considering the next autodigger's cost exceeds the user's skeleton count
+        if costAutodiggersBuyable["costForMax"] + nextCost > skeletonCount:
             break
+
+        # Accumulate costs
+        costAutodiggersBuyable["costForMax"] += nextCost
+        if numAutodiggersBuyable < 10:
+            costAutodiggersBuyable["costForTen"] += nextCost
 
         numAutodiggersBuyable += 1
 
-        # Accumulate the cost for the first ten autodiggers
-        if numAutodiggersBuyable <= 10:
-            costAutodiggersBuyable["costForTen"] += nextCost
 
     # Returning the maximum number of autodiggers that the user can buy
     return jsonify({
