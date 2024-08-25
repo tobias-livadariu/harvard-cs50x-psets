@@ -36,6 +36,25 @@ function buyMaxAutodiggers() {
     })
     .then(data => {
         if (data) {
+            document.getElementById("num-autodiggers").textContent = data.numAutodiggers;
+            document.getElementById("autodigger-cost").textContent = formatNumberSuffix(data.autodiggerCost);
+            document.getElementById("skeleton-count").textContent = formatNumberSuffix(data.skeletonCount);
+
+            // Updating the key-value pairs in userSkeletons
+            userSkeletons.skeletonCount = data.skeletonCount;
+
+            return fetch("/updateStats", {
+                method: "POST",
+            });
+        }
+    })
+    .then(response => {
+        if (response) {
+            return response.json();
+        }
+    })
+    .then(data => {
+        if (data) {
             document.getElementById("skeletons-per-click").textContent = formatNumberSuffix(data.skeletonsPerClick);
             document.getElementById("skeletons-per-second").textContent = formatNumberSuffix(data.skeletonsPerSecond);
         }
