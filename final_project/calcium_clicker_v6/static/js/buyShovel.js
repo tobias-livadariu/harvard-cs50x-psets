@@ -44,7 +44,7 @@ function buyShovel() {
             shovelButton.classList.add("btn-dark");
             shovelButton.setAttribute("disabled", "true");
         }
-        shovelDescription.textContent = `Current shovel: ${shovels[curShovel]} ${formatNumberSuffix(shovelSkeletonsPerClick(curShovel))} skeletons per dig)`
+        shovelDescription.textContent = `Current shovel: ${shovels[curShovel]} ${formatNumberSuffix(shovelSkeletonsPerClick(curShovel - 1))} skeletons per dig)`
 
         document.getElementById("skeleton-count").textContent = formatNumberSuffix(skeletonCount);
 
