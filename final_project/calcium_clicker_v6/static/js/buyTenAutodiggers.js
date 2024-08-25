@@ -4,11 +4,13 @@ function buyTenAutodiggers() {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById("skeleton-count").textContent = formatNumberSuffix(data.skeletonCount);
-        document.getElementById("total-skeletons").textContent = formatNumberSuffix(data.totalSkeletons);
-
-        // Updating the key-value pairs in userSkeletons
-        userSkeletons.skeletonCount = data.skeletonCount;
-        userSkeletons.totalSkeletons = data.totalSkeletons;
+        /* Getting the number of errors  */
+        numAutodiggersBuyable = data.numAutodiggersBuyable
+        if (numAutodiggersBuyable > 10) {
+            throw new Error("10x transaction failed")
+        }
+    })
+    .catch(error => {
+        console.error("Error during purchase:", error);
     });
 }
