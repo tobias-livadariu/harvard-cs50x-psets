@@ -118,15 +118,15 @@ def buyAutodigger():
     # Checking if numBuying, numAutodiggers, cost, and skeletonCount exist
     if numBuying and numAutodiggers and cost and skeletonCount:
         # Updating values in all pertinent variables
-        numAutodiggers += numBuying
         skeletonCount -= cost
+        numAutodiggers += numBuying
+        autodiggerCost = calculateAutodiggerCost(numAutodiggers=numAutodiggers, baseCost=10, growthRate=1.15)
 
         # Updating skeletonCount
         db.execute("UPDATE users SET skeletonCount = ? WHERE id = ?", skeletonCount, session["user_id"])
 
         # Updating numAutodiggers and autodiggerCost in one go
-        db.execute("UPDATE simple_upgrades SET numAutodiggers = ?, autodiggerCost = ? WHERE user_id = ?",
-                   numAutodiggers + numBuying, calculateAutodiggerCost(numAutodiggers=(numAutodiggers + numBuying), baseCost=10, growthRate=1.15), session["user_id"])
+        db.execute("UPDATE simple_upgrades SET numAutodiggers = ?, autodiggerCost = ? WHERE user_id = ?", numAutodiggers, autodiggerCost, session["user_id"])
     else:
         # Fetching autodiggerCost, numAutodiggers, and skeletonCount in one go
         userData = db.execute("""SELECT skeletonCount, autodiggerCost, numAutodiggers FROM users
