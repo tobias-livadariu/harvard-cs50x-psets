@@ -109,6 +109,13 @@ through AJAX."""
 @app.route("/buyAutodigger", methods=["POST"])
 @login_required
 def buyAutodigger():
+    # Getting the values of num and cost from the route's request args
+    num = request.args.get("num", type=int)
+    cost = request.args.get("cost", type=int)
+    # Checking if num and cost exist
+    if num and cost:
+        
+
     # Fetching autodiggerCost, numAutodiggers, and skeletonCount in one go
     userData = db.execute("""SELECT skeletonCount, autodiggerCost, numAutodiggers FROM users
                            INNER JOIN simple_upgrades ON users.id = simple_upgrades.user_id
