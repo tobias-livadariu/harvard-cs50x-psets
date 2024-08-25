@@ -21,11 +21,11 @@ function buyTenAutodiggers() {
             throw new Error("10x transaction failed.");
         }
         let costForTen = data.costForTen;
-        let numAutodiggers = 10;
+        let numAutodiggers = data.numAutodiggers;
         let skeletonCount = data.skeletonCount;
 
         /* Buying max autodiggers for the user. */
-        return fetch (`/buyAutodigger?numBuying=${numAutodiggersBuyable}&numAutodiggers=${numAutodiggers}&cost=${costForTen}&skeletonCount=${skeletonCount}`, {
+        return fetch (`/buyAutodigger?numBuying=10&numAutodiggers=${numAutodiggers}&cost=${costForTen}&skeletonCount=${skeletonCount}`, {
             method: "POST",
         });
     })
