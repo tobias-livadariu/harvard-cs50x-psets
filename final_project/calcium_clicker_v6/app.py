@@ -114,7 +114,7 @@ def buyAutodigger():
     cost = request.args.get("cost", type=int)
     # Checking if num and cost exist
     if num and cost:
-        
+
 
     # Fetching autodiggerCost, numAutodiggers, and skeletonCount in one go
     userData = db.execute("""SELECT skeletonCount, autodiggerCost, numAutodiggers FROM users
@@ -184,7 +184,8 @@ def numAutodiggersBuyable():
     return jsonify({
         "numAutodiggersBuyable": numAutodiggersBuyable,
         "costForTen": costAutodiggersBuyable["costForTen"],
-        "costForMax": costAutodiggersBuyable["costForMax"]
+        "costForMax": costAutodiggersBuyable["costForMax"],
+        "numAutodiggers": numAutodiggers
     })
 
 """Updating the user's shovel through AJAX."""

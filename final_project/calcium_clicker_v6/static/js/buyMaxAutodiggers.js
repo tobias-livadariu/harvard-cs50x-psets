@@ -21,9 +21,10 @@ function buyMaxAutodiggers() {
             throw new Error("Buy max transaction failed.");
         }
         let costForMax = data.costForMax;
+        let numAutodiggers = data.numAutodiggers;
 
         /* Buying max autodiggers for the user. */
-        return fetch (`/buyAutodiggers?num=${numAutodiggersBuyable}&cost=${costForMax}`, {
+        return fetch (`/buyAutodiggers?numBuying=${numAutodiggersBuyable}&numAutodiggers=${numAutodiggers}&cost=${costForMax}`, {
             method: "POST",
         })
     })
