@@ -22,12 +22,12 @@ function buyMaxAutodiggers() {
         }
         let costForMax = data.costForMax;
         let numAutodiggers = data.numAutodiggers;
-        let skeletonCount = data.skeletonCount
+        let skeletonCount = data.skeletonCount;
 
         /* Buying max autodiggers for the user. */
-        return fetch (`/buyAutodiggers?numBuying=${numAutodiggersBuyable}&numAutodiggers=${numAutodiggers}&cost=${costForMax}&skeletonCount=${skeletonCount}`, {
+        return fetch (`/buyAutodigger?numBuying=${numAutodiggersBuyable}&numAutodiggers=${numAutodiggers}&cost=${costForMax}&skeletonCount=${skeletonCount}`, {
             method: "POST",
-        })
+        });
     })
     .then(response => {
         if (response) {
