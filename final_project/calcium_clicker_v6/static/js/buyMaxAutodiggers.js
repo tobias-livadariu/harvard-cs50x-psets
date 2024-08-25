@@ -20,7 +20,7 @@ function buyMaxAutodiggers() {
         if (numAutodiggersBuyable == 0) {
             throw new Error("Buy max transaction failed.");
         }
-        let costAutodiggersBuyable = data.costAutodiggersBuyable;
+        let costForMax = data.costForMax;
 
         /* Buying max autodiggers for the user. */
         fetch ("")
