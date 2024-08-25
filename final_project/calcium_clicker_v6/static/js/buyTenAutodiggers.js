@@ -42,11 +42,11 @@ function buyTenAutodiggers() {
     })
     // Allow the next request to process after this one
     .finally(() => {
-        canBuyMaxAutodiggers = true;
+        canBuyTenAutodiggers = true;
     })
     // Handling errors
     .catch(error => {
         console.error("Error during purchase:", error);
-        canBuyMaxAutodiggers = true; // Reset the flag even if there is an error
+        canBuyTenAutodiggers = true; // Reset the flag even if there is an error
     });
 }
