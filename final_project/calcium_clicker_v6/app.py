@@ -109,13 +109,13 @@ through AJAX."""
 @app.route("/buyAutodigger", methods=["POST"])
 @login_required
 def buyAutodigger():
-    # Fetching autodiggerCost and skeletonCount in one go
-    user_data = db.execute("""SELECT skeletonCount, autodiggerCost, numAutodiggers FROM users
+    # Fetching autodiggerCost, numAutodiggers, and skeletonCount in one go
+    userData = db.execute("""SELECT skeletonCount, autodiggerCost, numAutodiggers FROM users
                            INNER JOIN simple_upgrades ON users.id = simple_upgrades.user_id
                            WHERE users.id = ?""", session["user_id"])[0]
-    skeletonCount = user_data["skeletonCount"]
-    autodiggerCost = user_data["autodiggerCost"]
-    numAutodiggers = user_data["numAutodiggers"]
+    skeletonCount = userData["skeletonCount"]
+    autodiggerCost = userData["autodiggerCost"]
+    numAutodiggers = userData["numAutodiggers"]
 
     if skeletonCount < autodiggerCost:
         return jsonify({"wasSuccessful": False})
@@ -135,6 +135,33 @@ def buyAutodigger():
 
     # Returning the updated values as JSON
     return jsonify({"wasSuccessful": True, "numAutodiggers": numAutodiggers, "autodiggerCost": autodiggerCost, "skeletonCount": skeletonCount})
+
+"""Determining the max number of autodiggers that
+the user is able to buy."""
+@app.route("/autodiggersBuyable", methods=["POST"])
+@login_required
+def autodiggersBuyable():
+    # Fetching numAutodiggers and skeletonCount in one search
+    userData = db.execute("""SELECT skeletonCount, numAutodiggers FROM users
+                           INNER JOIN simple_upgrades ON users.id = simple_upgrades.user_id
+                           WHERE users.id = ?""", session["user_id"])[0]
+    skeletonCount = userData["skeletonCount"]
+    numAutodiggers = userData["numAutodiggers"]
+
+    # Defining a variable to hold the number of autodiggers the user can buy
+    # And the amount that the max number of autodiggers would cost
+    numAutodiggersBuyable = 0
+    maxAutodiggersCost = 0
+
+    # Using a while True for loop to determine the max number of autodiggers the user can buy
+    while True:
+        maxAutodiggersCost += calculateAutodiggerCost(numAutodiggers=(numAutodiggers + numAutodiggersBuyable), baseCost=10, growthRate=1.15)
+        if maxAutodiggersCost > skeletonCount:
+            break
+        numAutodiggersBuyable += 1
+
+    # Returning the maximum number of autodiggers that the user can buy
+    return jsonify({"numAutodiggersBuyable": numAutodiggersBuyable})
 
 """Updating the user's shovel through AJAX."""
 @app.route("/buyShovel", methods=["POST"])
