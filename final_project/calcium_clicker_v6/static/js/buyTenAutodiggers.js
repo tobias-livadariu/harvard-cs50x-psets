@@ -14,24 +14,39 @@ function buyTenAutodiggers() {
         method: "POST",
     })
     .then(response => response.json())
-    .then(async data => {
+    .then(data => {
         /* Getting the max number of autodiggers the user can buy. */
         let numAutodiggersBuyable = data.numAutodiggersBuyable;
         if (numAutodiggersBuyable < 10) {
             throw new Error("10x transaction failed.");
         }
+        let costForTen = data.costForTen;
+        let numAutodiggers = 10;
+        let skeletonCount = data.skeletonCount;
 
-        /* Buying 10 autodiggers for the user. */
-        for (let i = 0; i < 10; i++) {
-            await buyAutodigger();
+        /* Buying max autodiggers for the user. */
+        return fetch (`/buyAutodigger?numBuying=${numAutodiggersBuyable}&numAutodiggers=${numAutodiggers}&cost=${costForTen}&skeletonCount=${skeletonCount}`, {
+            method: "POST",
+        });
+    })
+    .then(response => {
+        if (response) {
+            return response.json();
+        }
+    })
+    .then(data => {
+        if (data) {
+            document.getElementById("skeletons-per-click").textContent = formatNumberSuffix(data.skeletonsPerClick);
+            document.getElementById("skeletons-per-second").textContent = formatNumberSuffix(data.skeletonsPerSecond);
         }
     })
     // Allow the next request to process after this one
     .finally(() => {
-        canBuyTenAutodiggers = true;
+        canBuyMaxAutodiggers = true;
     })
+    // Handling errors
     .catch(error => {
         console.error("Error during purchase:", error);
-        canBuyTenAutodiggers = true; // Reset the flag even if there is an error
+        canBuyMaxAutodiggers = true; // Reset the flag even if there is an error
     });
 }
