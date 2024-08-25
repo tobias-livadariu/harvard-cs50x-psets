@@ -14,7 +14,7 @@ function buyMaxAutodiggers() {
         method: "POST",
     })
     .then(response => response.json())
-    .then(async data => {
+    .then(data => {
         /* Getting the max number of autodiggers the user can buy. */
         let numAutodiggersBuyable = data.numAutodiggersBuyable;
         if (numAutodiggersBuyable == 0) {
