@@ -24,7 +24,7 @@ function buyTenAutodiggers() {
         let numAutodiggers = data.numAutodiggers;
         let skeletonCount = data.skeletonCount;
 
-        /* Buying max autodiggers for the user. */
+        /* Buying 10 autodiggers for the user. */
         return fetch (`/buyAutodigger?numBuying=10&numAutodiggers=${numAutodiggers}&cost=${costForTen}&skeletonCount=${skeletonCount}`, {
             method: "POST",
         });
