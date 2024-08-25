@@ -24,6 +24,13 @@ function buyTenAutodiggers() {
         let numAutodiggers = data.numAutodiggers;
         let skeletonCount = data.skeletonCount;
 
+        document.getElementById("num-autodiggers").textContent = data.numAutodiggers;
+        document.getElementById("autodigger-cost").textContent = formatNumberSuffix(data.autodiggerCost);
+        document.getElementById("skeleton-count").textContent = formatNumberSuffix(data.skeletonCount);
+
+        // Updating the key-value pairs in userSkeletons
+        userSkeletons.skeletonCount = data.skeletonCount;
+
         /* Buying 10 autodiggers for the user. */
         return fetch (`/buyAutodigger?numBuying=10&numAutodiggers=${numAutodiggers}&cost=${costForTen}&skeletonCount=${skeletonCount}`, {
             method: "POST",
