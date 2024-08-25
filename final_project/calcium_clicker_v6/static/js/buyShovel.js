@@ -12,9 +12,6 @@ function buyShovel() {
         throw new Error("Cannot buy shovel at the moment.")
     };
     canBuyShovel = false;
-    // Giving the user visual feedback so they know the button is disabled
-    shovelButton.classList.add("btn-dark");
-    shovelButton.setAttribute("disabled", "true");
 
     // Fetching the /buyShovel route
     fetch("/buyShovel", {
