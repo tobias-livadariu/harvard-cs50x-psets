@@ -29,10 +29,22 @@ function buyMaxAutodiggers() {
             method: "POST",
         })
     })
+    .then(response => {
+        if (response) {
+            return response.json();
+        }
+    })
+    .then(data => {
+        if (data) {
+            document.getElementById("skeletons-per-click").textContent = formatNumberSuffix(data.skeletonsPerClick);
+            document.getElementById("skeletons-per-second").textContent = formatNumberSuffix(data.skeletonsPerSecond);
+        }
+    })
     // Allow the next request to process after this one
     .finally(() => {
         canBuyMaxAutodiggers = true;
     })
+    // Handling errors
     .catch(error => {
         console.error("Error during purchase:", error);
         canBuyMaxAutodiggers = true; // Reset the flag even if there is an error
