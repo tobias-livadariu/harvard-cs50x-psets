@@ -4,25 +4,26 @@ has concluded. */
 let canBuyTenAutodiggers = true;
 
 function buyTenAutodiggers() {
+    if (!canBuyTenAutodiggers) {
+        // Throw an error if canBuyTenAutodiggers is false to prevent the function from running further
+        throw new Error("Cannot buy ten autodiggers at the moment.");
+    }
+    canBuyTenAutodiggers = false;
+
     fetch("numAutodiggersBuyable", {
         method: "POST",
     })
     .then(response => response.json())
     .then(async data => {
-        if (!canBuyTenAutodiggers) {
-            // Throw an error if canBuyTenAutodiggers is false to prevent the function from running further
-            throw new Error("Cannot buy ten autodiggers at the moment.")
-        }
-
         /* Getting the max number of autodiggers the user can buy. */
-        let numAutodiggersBuyable = data.numAutodiggersBuyable
+        let numAutodiggersBuyable = data.numAutodiggersBuyable;
         if (numAutodiggersBuyable < 10) {
-            throw new Error("10x transaction failed.")
+            throw new Error("10x transaction failed.");
         }
 
         /* Buying 10 autodiggers for the user. */
         for (let i = 0; i < 10; i++) {
-            await buyAutodigger()
+            await buyAutodigger();
         }
     })
     // Allow the next request to process after this one
