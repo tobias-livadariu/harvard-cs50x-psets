@@ -127,6 +127,7 @@ def buyAutodigger():
 
         # Updating numAutodiggers and autodiggerCost in one go
         db.execute("UPDATE simple_upgrades SET numAutodiggers = ?, autodiggerCost = ? WHERE user_id = ?", numAutodiggers, autodiggerCost, session["user_id"])
+    # Running an alternate route if not all request argument variables exist
     else:
         # Fetching autodiggerCost, numAutodiggers, and skeletonCount in one go
         userData = db.execute("""SELECT skeletonCount, autodiggerCost, numAutodiggers FROM users
