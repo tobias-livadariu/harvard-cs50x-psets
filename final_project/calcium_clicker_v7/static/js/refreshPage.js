@@ -11,30 +11,29 @@ if (isNaN(previousTotalSkeletons)) {
     localStorage.setItem('previousTotalSkeletons', previousTotalSkeletons);
 }
 
+// Defining a function to check if the page should be reset if new elements should be introduced to the user
 function checkPageRefresh() {
     // Get the current total skeleton count
     let currentTotalSkeletons = userSkeletons.totalSkeletons;
 
-    // Check if currentTotalSkeletons and previousTotalSkeletons are valid numbers before proceeding
+    // Verifying that currentTotalSkeletons and previousTotalSkeletons are valid numbers before proceeding
     if (isNaN(currentTotalSkeletons) || isNaN(previousTotalSkeletons)) {
         console.log("Invalid skeleton count");
         return;
     }
 
-    // Refresh the page if the total skeletons go from below 10 to 10 or more
+    // Refresh the page and reassign the value in local storage for previousTotalSkeletons if the total skeletons go from below 10 to 10 or more
     if (previousTotalSkeletons < 10 && currentTotalSkeletons >= 10) {
-        console.log(`previousTotalSkeletons: ${previousTotalSkeletons}`);
-        console.log(`currentTotalSkeletons: ${currentTotalSkeletons}`);
-        localStorage.setItem('previousTotalSkeletons', currentTotalSkeletons); // Store the current value
+        localStorage.setItem('previousTotalSkeletons', currentTotalSkeletons);
         location.reload();
     } else {
-        // Update the previous total skeleton count for the next check
+        // Update and store the previous total skeleton count for the next check
         previousTotalSkeletons = currentTotalSkeletons;
-        localStorage.setItem('previousTotalSkeletons', previousTotalSkeletons); // Store the updated value
+        localStorage.setItem('previousTotalSkeletons', previousTotalSkeletons);
 
-        // If both values are 10 or more, stop the interval
+        // If both previousTotalSkeletons and currentTotalSkeletons exceed a certain threshold, stop the interval because it is no longer necessary
         if (previousTotalSkeletons >= 10 && currentTotalSkeletons >= 10) {
-            clearInterval(checkInterval); // Stop checking
+            clearInterval(checkInterval); // Stop checking TODO:: change this threshold in the future if you make more element chunks to introduce to the user
         }
     }
 }
