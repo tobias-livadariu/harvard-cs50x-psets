@@ -118,15 +118,3 @@ body
     background-color: #1c2833;
     color: #e0e0e0;
 }
-
-/* Making it so text cannot be selected or outlined,
-and ensuring the cursor doesn't change into a vertical
-line when the user hovers over text */
-p, span, h1, h2, h3, h4, h5, h6 {
-    cursor: default;
-    user-select: none;
-}
-
-p:focus, span:focus, h1:focus, h2:focus, h3:focus, h4:focus, h5:focus, h6:focus {
-    outline: none;
-}
