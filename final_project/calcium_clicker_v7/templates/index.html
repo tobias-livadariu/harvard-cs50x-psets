@@ -11,7 +11,7 @@
             <h2>Skeletons in Army: <span id="skeleton-count">{{ skeletonCount | formatNumberSuffix }}</span></h2>
             <button class="btn btn-primary rounded-0 shadow-lg" onclick="digUpSkeletons()">Dig Up More</button>
             <h4 class="mt-2 mb-3">Total Resurrected: <span id="total-skeletons">{{ totalSkeletons | formatNumberSuffix }}</span></h4>
-            {% if (totalSkeletons + skeletonsPerSecond) > 9 %}
+            {% if (totalSkeletons + int(1.3 * skeletonsPerSecond)) > 9 %}
                 <p class="mb-1">Skeletons per click: <span id="skeletons-per-click">{{ skeletonsPerClick | formatNumberSuffix }}</span></p>
                 <p class="mb-1">Skeletons per second: <span id="skeletons-per-second">{{ skeletonsPerSecond | formatNumberSuffix }}</span></p>
             {% endif %}
