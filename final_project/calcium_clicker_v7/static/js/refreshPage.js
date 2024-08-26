@@ -16,8 +16,8 @@ function checkPageRefresh() {
 
     // Refresh the page if the total skeletons go from below 10 to 10
     if (previousTotalSkeletons < 10 && currentTotalSkeletons >= 10) {
-        console.log(previousTotalSkeletons: )
-        console.log(currentTotalSkeletons)
+        console.log(`previousTotalSkeletons: ${previousTotalSkeletons}`)
+        console.log(`currentTotalSkeletons: ${currentTotalSkeletons}`)
         location.reload();
     }
 
