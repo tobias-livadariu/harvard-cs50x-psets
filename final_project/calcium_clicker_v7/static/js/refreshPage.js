@@ -4,9 +4,6 @@
 // Initialize a variable to track the previous skeleton count
 let previousTotalSkeletons = parseInt(document.getElementById("total-skeletons").textContent);
 
-// Initialize a variable to track the previous skeleton count
-let previousTotalSkeletons = parseInt(document.getElementById("total-skeletons").textContent);
-
 function checkPageRefresh() {
     // Get the current total skeleton count from the page
     let currentTotalSkeletons = parseInt(document.getElementById("total-skeletons").textContent);
