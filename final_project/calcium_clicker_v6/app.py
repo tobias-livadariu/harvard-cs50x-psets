@@ -195,6 +195,12 @@ def numAutodiggersBuyable():
 
 
     # Returning the maximum number of autodiggers that the user can buy
+    print(f"""
+          numAutodiggersBuyable: {numAutodiggersBuyable},
+          costForTen: {costAutodiggersBuyable['costForTen']},
+          costForMax: {costAutodiggersBuyable["costForMax"]},
+          numAutodiggers: {numAutodiggers},
+          skeletonCount: {skeletonCount}""")
     return jsonify({
         "numAutodiggersBuyable": numAutodiggersBuyable,
         "costForTen": costAutodiggersBuyable["costForTen"],
