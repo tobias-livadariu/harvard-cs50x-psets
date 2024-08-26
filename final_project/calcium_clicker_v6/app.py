@@ -116,7 +116,7 @@ def buyAutodigger():
     skeletonCount = request.args.get("skeletonCount", type=int)
 
     # If all required parameters are provided, use them to process the bulk purchase
-    if all([numBuying, numAutodiggers, cost, skeletonCount]):
+    if all([numBuying, numAutodiggers, cost, skeletonCount]) or (all([numBuying, cost, skeletonCount]) and numAutodiggers = 0):
         # Ensure the user has enough skeletons
         if skeletonCount < cost:
             return jsonify({"wasSuccessful": False, "message": "Not enough skeletons"})
