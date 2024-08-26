@@ -9,8 +9,7 @@ function checkPageRefresh() {
     let currentTotalSkeletons = parseInt(document.getElementById("total-skeletons").textContent);
 
     // Refresh the page if the total skeletons go from below 10 to above 10 or below 500 to above 500
-    if ((previousTotalSkeletons < 10 && currentTotalSkeletons >= 10) ||
-        (previousTotalSkeletons < 500 && currentTotalSkeletons >= 500)) {
+    if (previousTotalSkeletons < 10 && currentTotalSkeletons >= 10) {
             location.reload();
         }
 
