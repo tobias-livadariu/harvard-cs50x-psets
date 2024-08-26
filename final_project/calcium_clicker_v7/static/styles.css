@@ -127,6 +127,10 @@ p, span, h1, h2, h3, h4, h5, h6, .not-clickable {
     user-select: none;
 }
 
-p:focus, span:focus, h1:focus, h2:focus, h3:focus, h4:focus, h5:focus, h6:focus, .not-clickable:focus {
+p:focus, span:focus, h1:focus, h2:focus, h3:focus, h4:focus, h5:focus, h6:focus, .not-clickable:focus, .nav-item:focus {
     outline: none;
+}
+
+.nav-item {
+    user-select: none;
 }
