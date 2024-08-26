@@ -1,11 +1,12 @@
 /* Note that ChatGPT helped teach me how to implement the use of localStorage
 into this function. */
 
-// Initialize a variable to track the previous skeleton count
+// Assigning the value in localStorage of 'previousTotalSkeletons' to a variable
 let previousTotalSkeletons = parseInt(localStorage.getItem('previousTotalSkeletons'));
 
+// Checking if there is a number in localStorage for 'previousTotalSkeletons'
 if (isNaN(previousTotalSkeletons)) {
-    // If there is nothing in localStorage, set previousTotalSkeletons to the current value
+    // If there is not a number, set previousTotalSkeletons to the current number of skeletons owned by the user
     previousTotalSkeletons = userSkeletons.totalSkeletons;
     localStorage.setItem('previousTotalSkeletons', previousTotalSkeletons);
 }
