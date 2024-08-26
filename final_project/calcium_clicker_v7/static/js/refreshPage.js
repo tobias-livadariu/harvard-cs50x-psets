@@ -2,11 +2,17 @@
 // When these thresholds are reached, the script will refresh the page to allow the new elements to generate
 
 // Initialize a variable to track the previous skeleton count
-let previousTotalSkeletons = parseInt(document.getElementById("total-skeletons").textContent);
+let previousTotalSkeletons = userSkeletons.totalSkeletons;
 
 function checkPageRefresh() {
     // Get the current total skeleton count from the page
-    let currentTotalSkeletons = parseInt(document.getElementById("total-skeletons").textContent);
+    let currentTotalSkeletons = userSkeletons.totalSkeletons;
+
+    // Check if currentTotalSkeletons and previousTotalSkeletons are valid numbers before proceeding
+    if (isNaN(currentTotalSkeletons) || isNaN(previousTotalSkeletons)) {
+        console.log("Invalid skeleton count");
+        return;
+    }
 
     // Refresh the page if the total skeletons go from below 10 to 10
     if (previousTotalSkeletons < 10 && currentTotalSkeletons >= 10) {
