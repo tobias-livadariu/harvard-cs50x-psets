@@ -4,6 +4,9 @@
 // Initialize a variable to track the previous skeleton count
 let previousTotalSkeletons = parseInt(document.getElementById("total-skeletons").textContent);
 
+// Initialize a variable to track the previous skeleton count
+let previousTotalSkeletons = parseInt(document.getElementById("total-skeletons").textContent);
+
 function checkPageRefresh() {
     // Get the current total skeleton count from the page
     let currentTotalSkeletons = parseInt(document.getElementById("total-skeletons").textContent);
@@ -14,14 +17,22 @@ function checkPageRefresh() {
         return;
     }
 
-    // Refresh the page if the total skeletons go from below 10 to above 10
+    // Refresh the page if the total skeletons go from below 10 to 10 or above
     if (previousTotalSkeletons < 10 && currentTotalSkeletons >= 10) {
-            location.reload();
-        }
+        location.reload();
+    }
+
+    // Stop refreshing if both currentTotalSkeletons and previousTotalSkeletons are above 10
+    if (previousTotalSkeletons >= 10 && currentTotalSkeletons >= 10) {  // VERY IMPORTANT NOTE::: if I ever add more elements beyond the current final block, I will need to adjust this amount
+        clearInterval(refreshInterval);
+    }
 
     // Update the previous total skeleton count for the next check
     previousTotalSkeletons = currentTotalSkeletons;
 }
 
-// Set an interval to repeadly check the skeleton count every 25 milliseconds
-setInterval(checkPageRefresh, 25)
+// Set an interval to repeatedly check the skeleton count every 25 milliseconds if previousTotalSkeletons is below the maximum threshold valid
+// VERY IMPORTANT NOTE::: if I ever add more elements beyond the current final block, I will need to adjust this amount
+if (previousTotalSkeletons < 10) {
+    let refreshInterval = setInterval(checkPageRefresh, 25);
+}
