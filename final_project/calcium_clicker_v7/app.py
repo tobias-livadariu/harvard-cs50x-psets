@@ -245,7 +245,7 @@ def updateStats():
     curShovel = simpleUpgrades["curShovel"]
 
     # Determining the user's skeletonsPerClick and skeletonsPerSecond
-    skeletonsPerClick = shovelSkeletonsPerClick(curShovel, baseValue=1, polyPower=1.5, exponentialKicker=1.02)
+    skeletonsPerClick = shovelSkeletonsPerClick(curShovel, baseValue=1, polyPower=1.75, exponentialKicker=1.08)
     skeletonsPerSecond = numAutodiggers
 
     # Refreshing the value in skeletonsPerClick and skeletonsPerSecond
