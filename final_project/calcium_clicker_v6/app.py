@@ -200,7 +200,8 @@ def numAutodiggersBuyable():
           costForTen: {costAutodiggersBuyable['costForTen']},
           costForMax: {costAutodiggersBuyable["costForMax"]},
           numAutodiggers: {numAutodiggers},
-          skeletonCount: {skeletonCount}""")
+          skeletonCount: {skeletonCount}
+    """)
     return jsonify({
         "numAutodiggersBuyable": numAutodiggersBuyable,
         "costForTen": costAutodiggersBuyable["costForTen"],
