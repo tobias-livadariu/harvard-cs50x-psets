@@ -1,3 +1,5 @@
+// Defining a variable to keep track of if the user is currently manually digging skeletons
+
 // Note that ChatGPT helped me figure out the syntax for some parts of this function
 function perSecondOperations() {
     /* The idea in this function is to update the visual skeleton count that the user sees
@@ -19,6 +21,11 @@ function perSecondOperations() {
             skeletonGainPerInterval = data.skeletonsPerSecond / (1000 / interval);
             userSkeletons.skeletonCount = data.skeletonCount;
             userSkeletons.totalSkeletons = data.totalSkeletons;
+            /* If the user is currently digging skeletons and the number of total skeletons owned by the user is 1k or over,
+            make DOM adjustments in the fetch call */
+            if ((data.totalSkeletons > 999) && ()) {
+
+            }
         })
         // Catching any error in the process of fetching initial per-second gain from the server
         .catch(error => console.error("Error fetching per-second gain:", error));
