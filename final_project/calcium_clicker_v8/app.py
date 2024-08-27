@@ -253,25 +253,42 @@ def updateStats():
     # Returning the updated values as JSON
     return jsonify({"skeletonsPerClick": skeletonsPerClick, "skeletonsPerSecond": skeletonsPerSecond})
 
+# Using transactions to group requests together 
 @app.route("/perSecondOperations", methods=["POST"])
 @login_required
 def perSecondOperations():
-    # Fetching the current skeletonsPerSecond, skeletonCount, and totalSkeletons variables
-    perSecondValues = db.execute("""
-        SELECT stats.skeletonsPerSecond, users.skeletonCount, users.totalSkeletons
-        FROM users
-        JOIN stats ON users.id = stats.user_id
-        WHERE users.id = ?
-    """, session["user_id"])[0]
-    skeletonsPerSecond = perSecondValues["skeletonsPerSecond"]
-    skeletonCount = perSecondValues["skeletonCount"]
-    totalSkeletons = perSecondValues["totalSkeletons"]
+    # Start a transaction
+    try:
+        db.execute("BEGIN")
 
-    # Updating the skeletonCount and totalSkeletons variables
-    db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])
+        # Fetching the current skeletonsPerSecond, skeletonCount, and totalSkeletons variables
+        perSecondValues = db.execute("""
+            SELECT stats.skeletonsPerSecond, users.skeletonCount, users.totalSkeletons
+            FROM users
+            JOIN stats ON users.id = stats.user_id
+            WHERE users.id = ?
+        """, session["user_id"])[0]
 
-    # Returning the skeletonsPerSecond value as JSON
-    return jsonify({"skeletonsPerSecond": skeletonsPerSecond, "skeletonCount": skeletonCount, "totalSkeletons": totalSkeletons})
+        # Updating the skeletonCount and totalSkeletons variables
+        db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?",
+                   perSecondValues["skeletonsPerSecond"],
+                   perSecondValues["skeletonsPerSecond"],
+                   session["user_id"])
+
+        # Commit the transaction
+        db.execute("COMMIT")
+
+        # Returning the skeletonsPerSecond value as JSON
+        return jsonify({
+            "skeletonsPerSecond": perSecondValues["skeletonsPerSecond"],
+            "skeletonCount": perSecondValues["skeletonCount"],
+            "totalSkeletons": perSecondValues["totalSkeletons"]
+        })
+
+    except Exception as transactionError:
+        # Rollback the transaction in case of error
+        db.execute("ROLLBACK")
+        return jsonify({"error": str(transactionError)}), 500
 
 @app.route("/", methods=["GET"])
 @login_required
