@@ -7,6 +7,4 @@ function resyncDOM() {
     document.getElementById("total-skeletons").textContent = formatNumberSuffix(userSkeletons.totalSkeletons)
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    setInterval(resyncDOM, 25)
-})
+setInterval(resyncDOM, 25)
