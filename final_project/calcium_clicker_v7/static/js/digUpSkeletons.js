@@ -1,13 +1,13 @@
 // Using a variable to only let this function run under certain conditions
-let numQuyed 
+let numQueued = 0;
 
 function digUpSkeletons() {
-    // Checking if currently digging skeletons
-    if (!canDigUpSkeletons) {
+    // Checking if numQueued is too large
+    if (numQueued > 9) {
         // Throw an error if canDigUpSkeletons is false to prevent the function from running further
         throw new Error("Cannot dig more skeletons at the moment.");
     }
-    canDigUpSkeletons = false;
+    numQueued++;
 
     fetch("digUpSkeletons", {
         method: "POST",
