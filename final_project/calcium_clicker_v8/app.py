@@ -291,14 +291,21 @@ def perSecondOperations():
                    perSecondValues["skeletonsPerSecond"],
                    session["user_id"])
 
+        # Fetch the updated skeletonCount and totalSkeletons values after the update
+        updatedValues = db.execute("""
+            SELECT skeletonCount, totalSkeletons
+            FROM users
+            WHERE id = ?
+        """, session["user_id"])[0]
+
         # Commit the transaction
         db.execute("COMMIT")
 
-        # Returning the skeletonsPerSecond value as JSON
+        # Returning the updated skeleton count as JSON
         return jsonify({
             "skeletonsPerSecond": perSecondValues["skeletonsPerSecond"],
-            "skeletonCount": perSecondValues["skeletonCount"],
-            "totalSkeletons": perSecondValues["totalSkeletons"]
+            "skeletonCount": updatedValues["skeletonCount"],
+            "totalSkeletons": updatedValues["totalSkeletons"]
         })
 
     except Exception as transactionError:
