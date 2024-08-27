@@ -22,9 +22,10 @@ function perSecondOperations() {
             userSkeletons.skeletonCount = data.skeletonCount;
             userSkeletons.totalSkeletons = data.totalSkeletons;
             /* If the user is currently digging skeletons and the number of total skeletons owned by the user is 1k or over,
-            make DOM adjustments in the fetch call */
-            if ((data.totalSkeletons > 999) && ()) {
-
+            make DOM adjustments directly in the fetch call */
+            if ((data.totalSkeletons > 999) && (numQueued > 0)) {
+                document.getElementById("skeleton-count").textContent = formatNumberSuffix(Math.floor(userSkeletons.skeletonCount))
+                document.getElementById("total-skeletons").textContent = formatNumberSuffix(Math.floor(userSkeletons.totalSkeletons))
             }
         })
         // Catching any error in the process of fetching initial per-second gain from the server
