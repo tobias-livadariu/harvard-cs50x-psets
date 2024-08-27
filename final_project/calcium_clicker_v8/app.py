@@ -84,7 +84,7 @@ maxShovel = len(shovels) - 1
 visually refreshing the webpage. Note that the code below is my own,
 but ChatGPT gave me the idea to use AJAX."""
 @app.route("/digUpSkeletons", methods=["POST"])
-@login_required 
+@login_required
 def digUpSkeletons():
     # Update skeletonCount and totalSkeletons in the users table using a subquery to fetch skeletonsPerClick
     db.execute("""
