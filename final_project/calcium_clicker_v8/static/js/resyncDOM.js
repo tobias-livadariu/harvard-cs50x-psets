@@ -7,4 +7,4 @@ function resyncDOM() {
     document.getElementById("total-skeletons").textContent = formatNumberSuffix(userSkeletons.totalSkeletons)
 }
 
-setInterval(resyncDOM(), 25)
+setInterval(resyncDOM, 25)
