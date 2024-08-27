@@ -1,5 +1,7 @@
 // Using a variable to only let this function run under certain conditions
 let numQueued = 0;
+// Using a second variable to limit how quickly the DOM can update if the user is spam clicking
+let lastUpdate = date.now()
 
 function digUpSkeletons() {
     // Checking if numQueued is too large
@@ -20,6 +22,9 @@ function digUpSkeletons() {
         // Updating the key-value pairs in userSkeletons
         userSkeletons.skeletonCount = data.skeletonCount;
         userSkeletons.totalSkeletons = data.totalSkeletons;
+
+        // Only update the DOM if a certain amount of time has passed since the last update
+        let now = date.now()
     })
     .finally(() => {
         numQueued--;
