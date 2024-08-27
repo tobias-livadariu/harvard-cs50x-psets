@@ -8,5 +8,5 @@ let userSkeletons = {
 
 document.addEventListener("DOMContentLoaded", function() {
     userSkeletons.skeletonCount = parseInt(document.getElementById("skeleton-count").textContent)
-    userSkeletons.skeletonCount = parseInt(document.getElementById("total-skeletons").textContent)
+    userSkeletons.totalSkeletons = parseInt(document.getElementById("total-skeletons").textContent)
 })
