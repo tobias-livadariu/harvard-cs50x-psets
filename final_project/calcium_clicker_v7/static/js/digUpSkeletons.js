@@ -1,6 +1,7 @@
 // Using a variable to only let this function run under certain conditions
 let numQueued = 0;
 // Using a second variable to limit how quickly the DOM can update if the user is spam clicking
+// Note that ChatGPT taught me how to use the methods of the data object
 let lastUpdate = date.now()
 
 function digUpSkeletons() {
@@ -24,7 +25,7 @@ function digUpSkeletons() {
         userSkeletons.totalSkeletons = data.totalSkeletons;
 
         // Only update the DOM if a certain amount of time has passed since the last update
-        let now = date.now()
+        const now = date.now()
     })
     .finally(() => {
         numQueued--;
