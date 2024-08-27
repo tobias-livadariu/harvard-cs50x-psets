@@ -37,6 +37,10 @@ function perSecondOperations() {
 
     // Continuously update the skeleton count smoothly
     setInterval(() => {
+        /* If the user is currently digging skeletons and the number of total skeletons owned by the user is 1k or over,
+        do not continuously update the skeleton count smoothly */
+        
+
         let skeletonCountElement = document.getElementById("skeleton-count");
         let totalSkeletonsElement = document.getElementById("total-skeletons");
 
