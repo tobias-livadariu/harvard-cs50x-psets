@@ -83,6 +83,10 @@ maxShovel = len(shovels) - 1
 """Updating the skeleton count asyncronously through AJAX without
 visually refreshing the webpage. Note that the code below is my own,
 but ChatGPT gave me the idea to use AJAX."""
+# Also note that transactions are used here to group requests together, and to commit requests more frequently.
+# The goal of using transactions is to avoid race conditions between
+# skeletons being generated through clicking and per second.
+# Note that ChatGPT taught me the technique of using SQL transactions.
 @app.route("/digUpSkeletons", methods=["POST"])
 @login_required
 def digUpSkeletons():
