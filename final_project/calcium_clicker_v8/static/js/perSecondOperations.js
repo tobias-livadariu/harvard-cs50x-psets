@@ -6,7 +6,7 @@ function perSecondOperations() {
     in intervals less than a second, so there is a more continuous visual gain in skeleton count,
     while still only updating the user's server-side skeleton count once per second to minimize
     strain on the server. */
-    const interval = 25; // Update every 50ms (0.050 seconds)
+    const interval = 25; // Update every 25ms (0.025 seconds)
     let skeletonGainPerInterval = 0; // Pre-initializing the skeletonGainPerInterval variable
     let accumulatedSkeletonGain = 0; // To accumulate fractional gains in skeleton count
 
@@ -46,7 +46,7 @@ function perSecondOperations() {
                 accumulatedSkeletonGain -= increment; // Subtract the integer part, keeping the remainder
             }
         }
-    }, interval); // Update every 50ms
+    }, interval); // Update every 25ms
 
     // Re-fetch the per-second gain every second to account for changes
     setInterval(fetchPerSecondGain, 1000);
