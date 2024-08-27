@@ -83,39 +83,26 @@ maxShovel = len(shovels) - 1
 """Updating the skeleton count asyncronously through AJAX without
 visually refreshing the webpage. Note that the code below is my own,
 but ChatGPT gave me the idea to use AJAX."""
-# Also note that transactions are used here to group requests together, and to commit requests more frequently.
-# The goal of using transactions is to avoid race conditions between
-# skeletons being generated through clicking and per second.
-# Note that ChatGPT taught me the technique of using SQL transactions.
 @app.route("/digUpSkeletons", methods=["POST"])
 @login_required
 def digUpSkeletons():
-    # Start a transaction
-    try:
-        db.execute("BEGIN")
+    # Update skeletonCount and totalSkeletons in the users table using a subquery to fetch skeletonsPerClick
+    db.execute("""
+        UPDATE users
+        SET skeletonCount = skeletonCount + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?),
+            totalSkeletons = totalSkeletons + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?)
+        WHERE id = ?
+    """, session["user_id"], session["user_id"], session["user_id"])
 
-        # Update skeletonCount and totalSkeletons in the users table using a subquery to fetch skeletonsPerClick
-        db.execute("""
-            UPDATE users
-            SET skeletonCount = skeletonCount + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?),
-                totalSkeletons = totalSkeletons + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?)
-            WHERE id = ?
-        """, session["user_id"], session["user_id"], session["user_id"])
+    # Fetch the updated skeletonCount and totalSkeletons values
+    updatedValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])[0]
 
-        # Fetch the updated skeletonCount and totalSkeletons values
-        updatedValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])[0]
+    # Unpack the updatedValues dictionary
+    skeletonCount = updatedValues["skeletonCount"]
+    totalSkeletons = updatedValues["totalSkeletons"]
 
-        # Commit the transaction
-        db.execute("COMMIT")
-
-        # Returning the updated skeleton count as JSON
-        return jsonify({"skeletonCount": updatedValues["skeletonCount"], "totalSkeletons": updatedValues["totalSkeletons"]})
-
-    except Exception as transactionError:
-        # Rollback the transaction in case of error
-        db.execute("ROLLBACK")
-        return jsonify({"error": str(transactionError)}), 500
-
+    # Returning the updated skeleton count as JSON
+    return jsonify({"skeletonCount": skeletonCount, "totalSkeletons": totalSkeletons})
 
 """Updating the number of autodiggers that the user has
 through AJAX."""
@@ -266,52 +253,28 @@ def updateStats():
     # Returning the updated values as JSON
     return jsonify({"skeletonsPerClick": skeletonsPerClick, "skeletonsPerSecond": skeletonsPerSecond})
 
-# Using transactions to group requests together, and to commit requests more frequently.
-# The goal of using transactions is to avoid race conditions between
-# skeletons being generated through clicking and per second.
-# Note that ChatGPT taught me the technique of using SQL transactions.
 @app.route("/perSecondOperations", methods=["POST"])
 @login_required
 def perSecondOperations():
-    # Start a transaction
-    try:
-        db.execute("BEGIN")
+    # Fetching the current skeletonsPerSecond, skeletonCount, and totalSkeletons variables
+    perSecondValues = db.execute("""
+        SELECT stats.skeletonsPerSecond, users.skeletonCount, users.totalSkeletons
+        FROM users
+        JOIN stats ON users.id = stats.user_id
+        WHERE users.id = ?
+    """, session["user_id"])[0]
+    skeletonsPerSecond = perSecondValues["skeletonsPerSecond"]
+    skeletonCount = perSecondValues["skeletonCount"]
+    totalSkeletons = perSecondValues["totalSkeletons"]
 
-        # Fetching the current skeletonsPerSecond, skeletonCount, and totalSkeletons variables
-        perSecondValues = db.execute("""
-            SELECT stats.skeletonsPerSecond, users.skeletonCount, users.totalSkeletons
-            FROM users
-            JOIN stats ON users.id = stats.user_id
-            WHERE users.id = ?
-        """, session["user_id"])[0]
+    # Updating the skeletonCount and totalSkeletons variables
+    db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])
 
-        # Updating the skeletonCount and totalSkeletons variables
-        db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?",
-                   perSecondValues["skeletonsPerSecond"],
-                   perSecondValues["skeletonsPerSecond"],
-                   session["user_id"])
+    # Fetching the updated values
+    updatedValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])[0]
 
-        # Fetch the updated skeletonCount and totalSkeletons values after the update
-        updatedValues = db.execute("""
-            SELECT skeletonCount, totalSkeletons
-            FROM users
-            WHERE id = ?
-        """, session["user_id"])[0]
-
-        # Commit the transaction
-        db.execute("COMMIT")
-
-        # Returning the updated skeleton count as JSON
-        return jsonify({
-            "skeletonsPerSecond": perSecondValues["skeletonsPerSecond"],
-            "skeletonCount": updatedValues["skeletonCount"],
-            "totalSkeletons": updatedValues["totalSkeletons"]
-        })
-
-    except Exception as transactionError:
-        # Rollback the transaction in case of error
-        db.execute("ROLLBACK")
-        return jsonify({"error": str(transactionError)}), 500
+    # Returning the skeletonsPerSecond value as JSON
+    return jsonify({"skeletonsPerSecond": skeletonsPerSecond, "skeletonCount": updatedValues["skeletonCount"], "totalSkeletons": updatedValues["totalSkeletons"]})
 
 @app.route("/", methods=["GET"])
 @login_required
