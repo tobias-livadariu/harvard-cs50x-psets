@@ -84,18 +84,19 @@ maxShovel = len(shovels) - 1
 visually refreshing the webpage. Note that the code below is my own,
 but ChatGPT gave me the idea to use AJAX."""
 @app.route("/digUpSkeletons", methods=["POST"])
-@login_required 
+@login_required
 def digUpSkeletons():
-    # Update skeletonCount and totalSkeletons in the users table using a subquery to fetch skeletonsPerClick
-    db.execute("""
-        UPDATE users
-        SET skeletonCount = skeletonCount + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?),
-            totalSkeletons = totalSkeletons + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?)
-        WHERE id = ?
-    """, session["user_id"], session["user_id"], session["user_id"])
+    with db.transaction():
+        # Update skeletonCount and totalSkeletons in the users table using a subquery to fetch skeletonsPerClick
+        db.execute("""
+            UPDATE users
+            SET skeletonCount = skeletonCount + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?),
+                totalSkeletons = totalSkeletons + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?)
+            WHERE id = ?
+        """, session["user_id"], session["user_id"], session["user_id"])
 
-    # Fetch the updated skeletonCount and totalSkeletons values
-    updatedValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])[0]
+        # Fetch the updated skeletonCount and totalSkeletons values
+        updatedValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])[0]
 
     # Unpack the updatedValues dictionary
     skeletonCount = updatedValues["skeletonCount"]
@@ -256,19 +257,20 @@ def updateStats():
 @app.route("/perSecondOperations", methods=["POST"])
 @login_required
 def perSecondOperations():
-    # Fetching the current skeletonsPerSecond, skeletonCount, and totalSkeletons variables
-    perSecondValues = db.execute("""
-        SELECT stats.skeletonsPerSecond, users.skeletonCount, users.totalSkeletons
-        FROM users
-        JOIN stats ON users.id = stats.user_id
-        WHERE users.id = ?
-    """, session["user_id"])[0]
-    skeletonsPerSecond = perSecondValues["skeletonsPerSecond"]
-    skeletonCount = perSecondValues["skeletonCount"]
-    totalSkeletons = perSecondValues["totalSkeletons"]
+    with db.transaction():
+        # Fetching the current skeletonsPerSecond, skeletonCount, and totalSkeletons variables
+        perSecondValues = db.execute("""
+            SELECT stats.skeletonsPerSecond, users.skeletonCount, users.totalSkeletons
+            FROM users
+            JOIN stats ON users.id = stats.user_id
+            WHERE users.id = ?
+        """, session["user_id"])[0]
+        skeletonsPerSecond = perSecondValues["skeletonsPerSecond"]
+        skeletonCount = perSecondValues["skeletonCount"]
+        totalSkeletons = perSecondValues["totalSkeletons"]
 
-    # Updating the skeletonCount and totalSkeletons variables
-    db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])
+        # Updating the skeletonCount and totalSkeletons variables
+        db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])
 
     # Returning the skeletonsPerSecond value as JSON
     return jsonify({"skeletonsPerSecond": skeletonsPerSecond, "skeletonCount": skeletonCount, "totalSkeletons": totalSkeletons})
