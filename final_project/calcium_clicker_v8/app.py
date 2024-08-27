@@ -86,24 +86,33 @@ but ChatGPT gave me the idea to use AJAX."""
 @app.route("/digUpSkeletons", methods=["POST"])
 @login_required
 def digUpSkeletons():
-    with db.transaction():
+    user_id = session["user_id"]
+
+    # Start a transaction
+    try:
+        db.execute("BEGIN")
+
         # Update skeletonCount and totalSkeletons in the users table using a subquery to fetch skeletonsPerClick
         db.execute("""
             UPDATE users
             SET skeletonCount = skeletonCount + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?),
                 totalSkeletons = totalSkeletons + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?)
             WHERE id = ?
-        """, session["user_id"], session["user_id"], session["user_id"])
+        """, user_id, user_id, user_id)
 
         # Fetch the updated skeletonCount and totalSkeletons values
-        updatedValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])[0]
+        updatedValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", user_id)[0]
 
-    # Unpack the updatedValues dictionary
-    skeletonCount = updatedValues["skeletonCount"]
-    totalSkeletons = updatedValues["totalSkeletons"]
+        # Commit the transaction
+        db.execute("COMMIT")
 
-    # Returning the updated skeleton count as JSON
-    return jsonify({"skeletonCount": skeletonCount, "totalSkeletons": totalSkeletons})
+        # Returning the updated skeleton count as JSON
+        return jsonify({"skeletonCount": updatedValues["skeletonCount"], "totalSkeletons": updatedValues["totalSkeletons"]})
+
+    except Exception as e:
+        # Rollback the transaction in case of error
+        db.execute("ROLLBACK")
+        return jsonify({"error": str(e)}), 500
 
 """Updating the number of autodiggers that the user has
 through AJAX."""
@@ -257,23 +266,40 @@ def updateStats():
 @app.route("/perSecondOperations", methods=["POST"])
 @login_required
 def perSecondOperations():
-    with db.transaction():
+    user_id = session["user_id"]
+
+    # Start a transaction
+    try:
+        db.execute("BEGIN")
+
         # Fetching the current skeletonsPerSecond, skeletonCount, and totalSkeletons variables
         perSecondValues = db.execute("""
             SELECT stats.skeletonsPerSecond, users.skeletonCount, users.totalSkeletons
             FROM users
             JOIN stats ON users.id = stats.user_id
             WHERE users.id = ?
-        """, session["user_id"])[0]
-        skeletonsPerSecond = perSecondValues["skeletonsPerSecond"]
-        skeletonCount = perSecondValues["skeletonCount"]
-        totalSkeletons = perSecondValues["totalSkeletons"]
+        """, user_id)[0]
 
         # Updating the skeletonCount and totalSkeletons variables
-        db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?", skeletonsPerSecond, skeletonsPerSecond, session["user_id"])
+        db.execute("UPDATE users SET skeletonCount = skeletonCount + ?, totalSkeletons = totalSkeletons + ? WHERE id = ?",
+                   perSecondValues["skeletonsPerSecond"],
+                   perSecondValues["skeletonsPerSecond"],
+                   user_id)
 
-    # Returning the skeletonsPerSecond value as JSON
-    return jsonify({"skeletonsPerSecond": skeletonsPerSecond, "skeletonCount": skeletonCount, "totalSkeletons": totalSkeletons})
+        # Commit the transaction
+        db.execute("COMMIT")
+
+        # Returning the skeletonsPerSecond value as JSON
+        return jsonify({
+            "skeletonsPerSecond": perSecondValues["skeletonsPerSecond"],
+            "skeletonCount": perSecondValues["skeletonCount"],
+            "totalSkeletons": perSecondValues["totalSkeletons"]
+        })
+
+    except Exception as e:
+        # Rollback the transaction in case of error
+        db.execute("ROLLBACK")
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/", methods=["GET"])
 @login_required
