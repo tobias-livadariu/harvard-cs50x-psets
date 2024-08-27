@@ -22,11 +22,11 @@ function digUpSkeletons() {
         userSkeletons.totalSkeletons = data.totalSkeletons;
     })
     .finally(() => {
-        canDigUpSkeletons = true
+        numQueued--;
     })
     // Handling errors
     .catch(error => {
         console.error("Error during dig:", error);
-        canDigUpSkeletons = true; // Reset the flag even if there is an error
+        numQueued--; // Decrement the flag even if there is an error
     });
 }
