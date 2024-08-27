@@ -253,7 +253,10 @@ def updateStats():
     # Returning the updated values as JSON
     return jsonify({"skeletonsPerClick": skeletonsPerClick, "skeletonsPerSecond": skeletonsPerSecond})
 
-# Using transactions to group requests together 
+# Using transactions to group requests together, and to commit requests more frequently.
+# The goal of using transactions is to avoid race conditions between
+# skeletons being generated through clicking and per second.
+# Note that ChatGPT taught me the technique of using SQL transactions.
 @app.route("/perSecondOperations", methods=["POST"])
 @login_required
 def perSecondOperations():
