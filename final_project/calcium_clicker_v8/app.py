@@ -90,23 +90,32 @@ but ChatGPT gave me the idea to use AJAX."""
 @app.route("/digUpSkeletons", methods=["POST"])
 @login_required
 def digUpSkeletons():
-    # Update skeletonCount and totalSkeletons in the users table using a subquery to fetch skeletonsPerClick
-    db.execute("""
-        UPDATE users
-        SET skeletonCount = skeletonCount + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?),
-            totalSkeletons = totalSkeletons + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?)
-        WHERE id = ?
-    """, session["user_id"], session["user_id"], session["user_id"])
+    # Start a transaction
+    try:
+        db.execute("BEGIN")
 
-    # Fetch the updated skeletonCount and totalSkeletons values
-    updatedValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])[0]
+        # Update skeletonCount and totalSkeletons in the users table using a subquery to fetch skeletonsPerClick
+        db.execute("""
+            UPDATE users
+            SET skeletonCount = skeletonCount + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?),
+                totalSkeletons = totalSkeletons + (SELECT skeletonsPerClick FROM stats WHERE user_id = ?)
+            WHERE id = ?
+        """, session["user_id"], session["user_id"], session["user_id"])
 
-    # Unpack the updatedValues dictionary
-    skeletonCount = updatedValues["skeletonCount"]
-    totalSkeletons = updatedValues["totalSkeletons"]
+        # Fetch the updated skeletonCount and totalSkeletons values
+        updatedValues = db.execute("SELECT skeletonCount, totalSkeletons FROM users WHERE id = ?", session["user_id"])[0]
 
-    # Returning the updated skeleton count as JSON
-    return jsonify({"skeletonCount": skeletonCount, "totalSkeletons": totalSkeletons})
+        # Commit the transaction
+        db.execute("COMMIT")
+
+        # Returning the updated skeleton count as JSON
+        return jsonify({"skeletonCount": updatedValues["skeletonCount"], "totalSkeletons": updatedValues["totalSkeletons"]})
+
+    except Exception as transactionError:
+        # Rollback the transaction in case of error
+        db.execute("ROLLBACK")
+        return jsonify({"error": str(transactionError)}), 500
+
 
 """Updating the number of autodiggers that the user has
 through AJAX."""
