@@ -1,7 +1,10 @@
 // Using a variable to only let this function run if it is not already running
-let isUpdating = 
+let canDigUpSkeletons = true;
 
 function digUpSkeletons() {
+    // Checking if currently digging skeletons
+    if (!canDigUpSkeletons)
+
     fetch("digUpSkeletons", {
         method: "POST",
     })
