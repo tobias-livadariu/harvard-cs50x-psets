@@ -5,3 +5,8 @@ let userSkeletons = {
     skeletonCount: 0,
     totalSkeletons: 0
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    userSkeletons.skeletonCount = parseInt(document.getElementById("skeleton-count").textContent)
+    userSkeletons.skeletonCount = parseInt(document.getElementById("total-skeletons").textContent)
+})

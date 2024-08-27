@@ -53,4 +53,6 @@ function perSecondOperations() {
 }
 
 // Start the smooth per-second updates
-perSecondOperations();
+document.addEventListener("DOMContentListener", function () {
+    perSecondOperations();
+})

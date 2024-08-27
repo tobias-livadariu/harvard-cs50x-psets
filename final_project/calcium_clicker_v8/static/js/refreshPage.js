@@ -30,6 +30,8 @@ function checkPageRefresh() {
 
 // Set an interval to repeatedly check the skeleton count every 25 milliseconds if previousTotalSkeletons is below the maximum threshold valid
 // VERY IMPORTANT NOTE::: if I ever add more elements beyond the current final block, I will need to adjust this amount
-if (previousTotalSkeletons < 10) {
-    let refreshInterval = setInterval(checkPageRefresh, 25);
-}
+document.addEventListener("DOMContentLoaded", function() {
+    if (previousTotalSkeletons < 10) {
+        let refreshInterval = setInterval(checkPageRefresh, 25);
+    }
+})
