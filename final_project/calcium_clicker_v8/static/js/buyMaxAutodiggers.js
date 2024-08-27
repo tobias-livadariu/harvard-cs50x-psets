@@ -38,7 +38,6 @@ function buyMaxAutodiggers() {
         if (data) {
             document.getElementById("num-autodiggers").textContent = data.numAutodiggers;
             document.getElementById("autodigger-cost").textContent = formatNumberSuffix(data.autodiggerCost);
-            document.getElementById("skeleton-count").textContent = formatNumberSuffix(data.skeletonCount);
 
             // Updating the key-value pairs in userSkeletons
             userSkeletons.skeletonCount = data.skeletonCount;
