@@ -3,7 +3,7 @@ let numQueued = 0;
 
 function digUpSkeletons() {
     // Checking if numQueued is too large
-    if (numQueued > 9) {
+    if (numQueued > 10) {
         // Throw an error if canDigUpSkeletons is false to prevent the function from running further
         throw new Error("Cannot dig more skeletons at the moment.");
     }
