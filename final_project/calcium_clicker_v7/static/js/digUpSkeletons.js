@@ -1,5 +1,5 @@
-// Using a variable to only let this function run if it is not already running
-let canDigUpSkeletons = true;
+// Using a variable to only let this function run under certain conditions
+let numQuyed 
 
 function digUpSkeletons() {
     // Checking if currently digging skeletons
