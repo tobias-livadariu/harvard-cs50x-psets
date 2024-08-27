@@ -39,7 +39,7 @@ function perSecondOperations() {
     setInterval(() => {
         /* If the user is currently digging skeletons and the number of total skeletons owned by the user is 1k or over,
         do not continuously update the skeleton count smoothly */
-        if ((data.totalSkeletons > 999) && (numQueued > 0)) {
+        if ((userSkeletons.totalSkeletons > 999) && (numQueued > 0)) {
             return;
         }
 
