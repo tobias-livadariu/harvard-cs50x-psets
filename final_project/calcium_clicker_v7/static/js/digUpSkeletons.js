@@ -1,3 +1,6 @@
+// Using a variable to only let this function run if it is not already running
+let isUpdating = 
+
 function digUpSkeletons() {
     fetch("digUpSkeletons", {
         method: "POST",
