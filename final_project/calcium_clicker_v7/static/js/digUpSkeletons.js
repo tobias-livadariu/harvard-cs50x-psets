@@ -3,7 +3,10 @@ let canDigUpSkeletons = true;
 
 function digUpSkeletons() {
     // Checking if currently digging skeletons
-    if (!canDigUpSkeletons)
+    if (!canDigUpSkeletons) {
+        // Throw an error if canDigUpSkeletons is false to prevent the function from running further
+        throw new Error("Cannot buy max autodiggers at the moment.");
+    }
 
     fetch("digUpSkeletons", {
         method: "POST",
