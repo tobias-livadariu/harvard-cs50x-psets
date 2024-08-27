@@ -49,10 +49,10 @@ function perSecondOperations() {
     }, interval); // Update every 50ms
 
     // Re-fetch the per-second gain every second to account for changes
-    setInterval(fetchPerSecondGain, 1000)
+    setInterval(fetchPerSecondGain, 1000);
 }
 
 // Start the smooth per-second updates
-document.addEventListener("DOMContentListener", function () {
+document.addEventListener("DOMContentLoaded", function () {
     perSecondOperations();
 })

@@ -3,6 +3,7 @@
 
 // Initialize a variable to track the previous skeleton count
 let previousTotalSkeletons = parseInt(document.getElementById("total-skeletons").textContent);
+let refreshInterval; // Declare this in the outer scope so it's accessible for clearing
 
 function checkPageRefresh() {
     // Get the current total skeleton count from the page
@@ -32,6 +33,6 @@ function checkPageRefresh() {
 // VERY IMPORTANT NOTE::: if I ever add more elements beyond the current final block, I will need to adjust this amount
 document.addEventListener("DOMContentLoaded", function() {
     if (previousTotalSkeletons < 10) {
-        let refreshInterval = setInterval(checkPageRefresh, 25);
+        refreshInterval = setInterval(checkPageRefresh, 25);
     }
 })
