@@ -46,8 +46,6 @@ function buyShovel() {
         }
         shovelDescription.textContent = `Current shovel: ${shovels[curShovel]} (${formatNumberSuffix(shovelSkeletonsPerClick(curShovel))} skeletons per dig)`
 
-        document.getElementById("skeleton-count").textContent = formatNumberSuffix(skeletonCount);
-
         // Updating the key-value pairs in userSkeletons
         userSkeletons.skeletonCount = data.skeletonCount;
 

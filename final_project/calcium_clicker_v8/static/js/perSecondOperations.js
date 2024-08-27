@@ -21,12 +21,6 @@ function perSecondOperations() {
             skeletonGainPerInterval = data.skeletonsPerSecond / (1000 / interval);
             userSkeletons.skeletonCount = data.skeletonCount;
             userSkeletons.totalSkeletons = data.totalSkeletons;
-            /* If the user is currently digging skeletons and the number of total skeletons owned by the user is 1k or over,
-            make DOM adjustments directly in the fetch call */
-            if ((data.totalSkeletons > 999) && (numQueued > 0)) {
-                document.getElementById("skeleton-count").textContent = formatNumberSuffix(Math.floor(userSkeletons.skeletonCount))
-                document.getElementById("total-skeletons").textContent = formatNumberSuffix(Math.floor(userSkeletons.totalSkeletons))
-            }
         })
         // Catching any error in the process of fetching initial per-second gain from the server
         .catch(error => console.error("Error fetching per-second gain:", error));
@@ -39,15 +33,7 @@ function perSecondOperations() {
     setInterval(() => {
         /* If the user is currently digging skeletons and the number of total skeletons owned by the user is 1k or over,
         do not continuously update the skeleton count smoothly */
-        if ((userSkeletons.totalSkeletons > 999) && (numQueued > 0)) {
-            return;
-        }
-
-        let skeletonCountElement = document.getElementById("skeleton-count");
-        let totalSkeletonsElement = document.getElementById("total-skeletons");
-
         if (skeletonGainPerInterval > 0) { // Only update if we have a valid interval
-
             // Accumulate the gain
             accumulatedSkeletonGain += skeletonGainPerInterval;
 
@@ -58,10 +44,6 @@ function perSecondOperations() {
                 userSkeletons.skeletonCount += increment;
                 userSkeletons.totalSkeletons += increment;
                 accumulatedSkeletonGain -= increment; // Subtract the integer part, keeping the remainder
-
-                // Display the updated values to the user
-                skeletonCountElement.textContent = formatNumberSuffix(Math.floor(userSkeletons.skeletonCount))
-                totalSkeletonsElement.textContent = formatNumberSuffix(Math.floor(userSkeletons.totalSkeletons))
             }
         }
     }, interval); // Update every 50ms
