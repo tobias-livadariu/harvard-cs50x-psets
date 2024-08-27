@@ -27,6 +27,6 @@ function digUpSkeletons() {
     // Handling errors
     .catch(error => {
         console.error("Error during dig:", error);
-        canBuyMaxAutodiggers = true; // Reset the flag even if there is an error
+        canDigUpSkeletons = true; // Reset the flag even if there is an error
     });
 }
