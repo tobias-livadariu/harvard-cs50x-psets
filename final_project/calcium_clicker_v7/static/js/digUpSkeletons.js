@@ -23,7 +23,7 @@ function digUpSkeletons() {
 
         // Only update the DOM if a certain amount of time has passed since the last update
         const now = Date.now()
-        if (now - lastUpdate > 100) {
+        if (now - lastUpdate > 50) {
             document.getElementById("skeleton-count").textContent = formatNumberSuffix(data.skeletonCount);
             document.getElementById("total-skeletons").textContent = formatNumberSuffix(data.totalSkeletons);
             lastUpdate = now;
