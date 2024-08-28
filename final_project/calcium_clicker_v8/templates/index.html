@@ -30,7 +30,7 @@
                 onclick="buyShovel()"
                 {% if curShovel == maxShovel %}disabled{% endif %}> <!--TODO: see if the red signs are actually a problem -->
                     {% if curShovel < maxShovel %}
-                        Forge a {{ shovels[curShovel + 1] }} shovel (cost: {{ shovelCost | formatNumberSuffix }} skeletons)
+                        Forge a {{ shovels[curShovel + 1] }} Shovel (cost: {{ shovelCost | formatNumberSuffix }} skeletons)
                     {% else %}
                         Your shovel is max level!
                     {% endif %}
