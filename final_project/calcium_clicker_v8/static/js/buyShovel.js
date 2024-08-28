@@ -33,7 +33,7 @@ function buyShovel() {
         let skeletonCount = data.skeletonCount;
 
         if (curShovel < maxShovel) {
-            shovelButton.textContent = `Forge a ${shovels[curShovel + 1]} shovel (cost: ${formatNumberSuffix(shovelCost)} skeletons)`;
+            shovelButton.textContent = `Forge a ${shovels[curShovel + 1]} Shovel (cost: ${formatNumberSuffix(shovelCost)} skeletons)`;
             // Remove dark class and enable the button (this is not necessary, but I am writing it for clarity)
             shovelButton.classList.remove('btn-dark');
             shovelButton.removeAttribute('disabled');
