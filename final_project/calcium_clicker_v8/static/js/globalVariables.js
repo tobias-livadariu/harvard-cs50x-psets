@@ -7,6 +7,6 @@ let userSkeletons = {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    userSkeletons.skeletonCount = parseInt(document.getElementById("skeleton-count").textContent)
-    userSkeletons.totalSkeletons = parseInt(document.getElementById("total-skeletons").textContent)
+    userSkeletons.skeletonCount = document.getElementById("skeleton-count").textContent
+    userSkeletons.totalSkeletons = document.getElementById("total-skeletons").textContent
 })
