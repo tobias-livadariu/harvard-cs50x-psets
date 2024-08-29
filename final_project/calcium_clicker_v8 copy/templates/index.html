@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <div class="from-left-1st">
+        <!-- Generating the first block of functions (the main display) -->
+        <div class="m-2 from-top-1st">
+            <h2>Skeletons in Army: <span id="skeleton-count">{{ skeletonCount | formatNumberSuffix }}</span></h2>
+            <button class="btn btn-primary rounded-0 shadow-lg" onclick="digUpSkeletons()">Dig Up More</button>
+            <h4 class="mt-2 mb-3">Total Resurrected: <span id="total-skeletons">{{ totalSkeletons | formatNumberSuffix }}</span></h4>
+            {% if (totalSkeletons + (1.3 * skeletonsPerSecond)) > 9 %}
+                <p class="mb-1">Skeletons per click: <span id="skeletons-per-click">{{ skeletonsPerClick | formatNumberSuffix }}</span></p>
+                <p class="mb-1">Skeletons per second: <span id="skeletons-per-second">{{ skeletonsPerSecond | formatNumberSuffix }}</span></p>
+            {% endif %}
+        </div>
+        <hr>
+
+        <!-- Generating the second block of functions (the simple upgrades) -->
+        {% if (totalSkeletons + (1.3 * skeletonsPerSecond)) > 9 %} <!-- Make sure to use (totalSkeletons + (1.3 * skeletonsPerSecond)) whenever using jinja2 to check if an element block is ready to be rendered -->
+            <div class="m-2 from-top-2nd">
+                <h3>Simple Upgrades</h3>
+                <button class="btn btn-primary rounded-0 shadow-lg btn-sm" onclick="buyAutodigger()">Buy Autodigger (cost: <span id="autodigger-cost">{{ autodiggerCost | formatNumberSuffix }}</span> skeletons)</button>
+                <button class="btn btn-primary rounded-0 shadow-lg btn-sm" onclick="buyTenAutodiggers()">Buy 10</button>
+                <button class="btn btn-primary rounded-0 shadow-lg btn-sm" onclick="buyMaxAutodiggers()">Buy Max</button>
+                <p>Number of autodiggers: <span id="num-autodiggers">{{ numAutodiggers }}</span></p>
+                <button id="shovel-button" class="btn btn-primary rounded-0 shadow-lg btn-sm {% if curShovel == maxShovel %}btn-dark{% endif %}"
+                onclick="buyShovel()"
+                {% if curShovel == maxShovel %}disabled{% endif %}> <!--TODO: see if the red signs are actually a problem -->
+                    {% if curShovel < maxShovel %}
+                        Forge a {{ shovels[curShovel + 1] }} Shovel (cost: {{ shovelCost | formatNumberSuffix }} skeletons)
+                    {% else %}
+                        Your shovel is max level!
+                    {% endif %}
+                </button>
+                {% if curShovel != 0 %}
+                    <p id="shovel-description">Current shovel: {{ shovels[curShovel] }} ({{ curShovel | shovelSkeletonsPerClick | formatNumberSuffix }} skeletons per dig)</p>
+                {% else %}
+                    <p id="shovel-description">Current shovel: {{ shovels[curShovel] }} (1 skeleton per dig)</p>
+                {% endif %}
+            </div>
+            <hr>
+        {% endif %}
+
+        <!-- Generating the third block of functions (the first rituals)
+         {% if (totalSkeletons + (1.3 * skeletonsPerSecond)) > 499 %}
+            <div class="m-2 from-top-2nd">
+                <h3>Rituals</h3>
+            </div>
+            <hr class="w-100 mx-auto">
+         {% endif %} TODO:: finish this
+          -->
+    </div>
+
+    <!-- Linking external scripts -->
+    <!-- Note that I got the url_for() function from ChatGPT's suggestions -->
+    <script src="{{ url_for('static', filename='js/globalVariables.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/perSecondOperations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/resyncDOM.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/shovelSkeletonsPerClick.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/formatNumberSuffix.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/digUpSkeletons.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/buyAutodigger.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/buyShovel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/buyTenAutodiggers.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/buyMaxAutodiggers.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/refreshPage.js') }}"></script>
+
+{% endblock %}

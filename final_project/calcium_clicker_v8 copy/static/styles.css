@@ -1,0 +1,136 @@
+nav
+{
+    background-color: #f5f5f5;
+    color: #1c2833;
+    border: none;
+}
+
+/* Note that the below style for the nav bar
+was taken from Finance's css file. */
+nav .navbar-brand
+{
+    font-size: 2.2rem;
+}
+
+nav .navbar-brand .deep-blue
+{
+    color: #0a3d62;
+}
+
+nav .navbar-brand .bright-blue
+{
+    color: #0a3d62;
+}
+
+nav .navbar-brand .charcoal-black
+{
+    color: #2c3e50;
+}
+
+nav .navbar-brand .slate-gray
+{
+    color: #34495e;
+}
+
+nav .navbar-brand .midnight-blue
+{
+    color: #2c3e50;
+}
+
+nav .navbar-brand .steel-blue
+{
+    color: #4a69bd;
+}
+
+/* Styling the smaller navbar links. */
+.navbar-nav .nav-link
+{
+    color: #0a3d62;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover
+{
+    color: #1279ba;
+}
+
+/* Horizontally centering the major navbar in the webpage and
+vertically centering the minor navbar. */
+
+.navbar
+{
+    position: relative;
+    width: 100%
+}
+
+/* The use of the transform: translate(-50%, -50%);
+was ChatGPT's idea. This absolutely brilliant solution
+offsets the element by half of its width and height,
+perfectly aligning it in the center of the webpage
+no matter what. */
+.navbar .navbar-major
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Note that the two classes "bold"
+and "bottom-margin" were taken from
+my additions to the css file in
+Finance.*/
+.bold
+{
+    font-weight: 600;
+}
+
+.boldish
+{
+    font-weight: 500;
+}
+
+.bottom-margin
+{
+    margin-bottom: 14px;
+}
+
+.padding
+{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Tweaking with the width of text blocks/sections
+in the main page. */
+.from-left-1st {
+    width: 23%;
+    position: relative;
+}
+
+.from-left-1st hr {
+    margin-left: 8px;
+}
+
+/* Giving the webpage a dark mode coloring. */
+body
+{
+    background-color: #1c2833;
+    color: #e0e0e0;
+    user-select: none;
+}
+
+.nav-item {
+    user-select: none;
+}
+
+/* Making it so text cannot be selected or outlined,
+and ensuring the cursor doesn't change into a vertical
+line when the user hovers over text */
+p, span, h1, h2, h3, h4, h5, h6, .not-clickable {
+    cursor: default;
+}
+
+p:focus, span:focus, h1:focus, h2:focus, h3:focus, h4:focus, h5:focus, h6:focus, .not-clickable:focus, .nav-item:focus {
+    outline: none;
+}
