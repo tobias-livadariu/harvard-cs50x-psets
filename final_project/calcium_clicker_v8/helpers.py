@@ -2,14 +2,6 @@
 functions were directly taken from the Finance pset's helpers.py file. To support these
 functions, the libraries used in Finance's helpers.py file were imported."""
 
-# import csv
-# import datetime
-# import pytz
-# import requests
-
-# import urllib
-# import uuid
-
 from flask import redirect, render_template, request, session
 from functools import wraps
 
